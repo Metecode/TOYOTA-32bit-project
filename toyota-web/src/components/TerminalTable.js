@@ -1,119 +1,113 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { TableVirtuoso } from 'react-virtuoso';
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Button from "@mui/material/Button";
+import axios from "axios";
 import "../App.css";
-import "./TerminalTable.css";
-const sample = [
-  ['Frozen yoghurt', 159, 6.0, 24, 4.0],
-  ['Ice cream sandwich', 237, 9.0, 37, 4.3],
-  ['Eclair', 262, 16.0, 24, 6.0],
-  ['Cupcake', 305, 3.7, 67, 4.3],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-];
-
-function createData(id, dessert, calories, fat, carbs, protein) {
-  return { id, dessert, calories, fat, carbs, protein };
-}
+import { useEffect, useState } from "react";
 
 const columns = [
-  {
-    width: 200,
-    label: 'Dessert',
-    dataKey: 'dessert',
-  },
-  {
-    width: 120,
-    label: 'Calories\u00A0(g)',
-    dataKey: 'calories',
-    numeric: true,
-  },
-  {
-    width: 120,
-    label: 'Fat\u00A0(g)',
-    dataKey: 'fat',
-    numeric: true,
-  },
-  {
-    width: 120,
-    label: 'Carbs\u00A0(g)',
-    dataKey: 'carbs',
-    numeric: true,
-  },
-  {
-    width: 120,
-    label: 'Protein\u00A0(g)',
-    dataKey: 'protein',
-    numeric: true,
-  },
+  { id: "name", label: "Bolum Bazinda", minWidth: 50 },
+  { id: "code", label: "Filtre Bazinda", minWidth: 250 },
 ];
 
-const rows = Array.from({ length: 500 }, (_, index) => {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  return createData(index, ...randomSelection);
-});
-
-const VirtuosoTableComponents = {
-  
-  Table: (props) => (
-    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
-  ),
-  TableHead,
-  TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
-  TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
-};
-
-function fixedHeaderContent() {
-  return (
-    <TableRow>
-      {columns.map((column) => (
-        <TableCell
-        
-          key={column.dataKey}
-          variant="head"
-          align={column.numeric || false ? 'right' : 'left'}
-          style={{ width: column.width }}
-          sx={{
-            backgroundColor: 'background.paper',
-          }}
-        >
-          {column.label}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
+function createData(name, code, population, size) {
+  const density = population / size;
+  return { name, code, population, size, density };
 }
 
-function rowContent(_index, row) {
-  return (
-    <React.Fragment>
-      {columns.map((column) => (
-        <TableCell
-        className="grid-item"
-          key={column.dataKey}
-          align={column.numeric || false ? 'right' : 'left'}
-        >
-          {row[column.dataKey]}
-        </TableCell>
-      ))}
-    </React.Fragment>
-  );
-}
+const rows = [
+  createData("India", "IN ", 1324171354, 3287263),
+  createData("China", "CN", 1403500365, 9596961),
+  createData("Italy", "IT", 60483973, 301340),
+  createData("United States", "US", 327167434, 9833520),
+  createData("Canada", "CA", 37602103, 9984670),
+  createData("Australia", "AU", 25475400, 7692024),
+  createData("Germany", "DE", 83019200, 357578),
+  createData("Ireland", "IE", 4857000, 70273),
+  createData("Mexico", "MX", 126577691, 1972550),
+  createData("Japan", "JP", 126317000, 377973),
+  createData("France", "FR", 67022000, 640679),
+  createData("United Kingdom", "GB", 67545757, 242495),
+  createData("Russia", "RU", 146793744, 17098246),
+  createData("Nigeria", "NG", 200962417, 923768),
+  createData("Brazil", "BR", 210147125, 8515767),
+];
 
 export default function TerminalTable() {
+  const [terminals, setTerminals] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("./db/terminal.json")
+      .then((res) => {
+        res.data.data.map((item) => {
+          terminals.push(
+            `(${item.depCode}) ${item.depName}  `
+          );
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  console.log(terminals);
   return (
-    <Paper style={{ height: 1000, width: '100%' }}>
-      <TableVirtuoso
-        data={rows}
-        components={VirtuosoTableComponents}
-        fixedHeaderContent={fixedHeaderContent}
-        itemContent={rowContent}
-      />
+    <Paper sx={{ width: "100%" }}>
+      <TableContainer
+        sx={{ maxHeight: "100%" }}
+        style={{ overflowX: "initial" }}
+      >
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" colSpan={5} position="sticky">
+                Tum Terminaller
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align="center"
+                  style={{ top: 57, minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell
+                        className="grid-item"
+                        key={column.id}
+                        align={column.align}
+                      >
+                        <Button variant="outlined">
+                          {" "}
+                          {column.format && typeof value === "number"
+                            ? column.format(value)
+                            : value}
+                        </Button>
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Paper>
   );
 }
+// `(${res.data.data[0].depCode}) ${res.data.data[0].depName} `
