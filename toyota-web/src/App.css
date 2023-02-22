@@ -13,4 +13,9 @@
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  
+}
+
+.td{
+  border-bottom: 2px solid #000;
 }

@@ -39,27 +39,52 @@ export default function TerminalTable() {
     <Paper sx={{ width: "100%" }}>
       <TableContainer
         sx={{ maxHeight: "100%" }}
-        style={{ overflowX: "initial" }}
+        // style={{ overflowX: "initial" }}
       >
-        <Table stickyHeader aria-label="sticky table">
+        <Table
+          style={{
+            width: "auto",
+            tableLayout: "auto",
+            borderCollapse: "collapse",
+            border: "1px solid black",
+          }}
+          stickyHeader
+          aria-label="sticky table"
+        >
           <TableHead>
-            <TableRow>
-              <TableCell align="center" colSpan={5} position="sticky">
+            <TableRow style={{ width: "100%" }}>
+              <TableCell
+                style={{ borderBottom: "1px solid black" }}
+                align="center"
+                colSpan={14}
+                position="sticky"
+              >
                 Tum Terminaller
               </TableCell>
             </TableRow>
-            <TableRow>
+            <TableRow style={{ width: "100%" }}>
               <TableCell
+                className="grid-item"
                 key="bolum"
                 align="center"
-                style={{ top: 57, minWidth: 50 }}
+                style={{
+                  top: 57,
+                  minWidth: 150,
+                  borderBottom: "1px solid black",
+                }}
               >
                 Bölüm Bazında
               </TableCell>
               <TableCell
+                colSpan={13}
+                className="grid-item"
                 key="filtre"
                 align="center"
-                style={{ top: 57, minWidth: 250 }}
+                style={{
+                  top: 57,
+                  width: "100%",
+                  borderBottom: "1px solid black",
+                }}
               >
                 Filtre bazinda
               </TableCell>
@@ -68,14 +93,29 @@ export default function TerminalTable() {
           <TableBody>
             {terminals.map((terminal) => {
               return (
-                <TableRow hover role="checkbox" key={terminal.depName}>
-                  <TableCell className="grid-item" key="bolumFiltre">
+                <TableRow
+                  style={{ borderBottom: "1px solid black" }}
+                  hover
+                  role="checkbox"
+                  key={terminal.depName}
+                >
+                  <TableCell
+                    style={{ minWidth: 150, borderBottom: "1px solid black" }}
+                    className="grid-item"
+                    key="bolumFiltre"
+                  >
                     {terminal.depCode}
                   </TableCell>
 
                   {terminal.filterBaseds.map((filter) => {
                     return (
-                      <TableCell className="grid-item" key="filtreBazinda">
+                      <TableCell
+                        style={{
+                          width: "100%",
+                          borderBottom: "1px solid black",
+                        }}
+                        key="filtreBazinda"
+                      >
                         <Badge
                           badgeContent={filter.linkCount}
                           invisible={filter.linkCount === 1}

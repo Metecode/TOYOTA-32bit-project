@@ -1,0 +1,275 @@
+{
+  "type": "SUCCESS",
+  "data": [
+    {
+      "termId": 82842,
+      "depCode": "AI",
+      "termName": "CHASSIS SPEC",
+      "searchType": "A",
+      "lastAssyNo": "770",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 83993,
+      "depCode": "AI",
+      "termName": "CHASSIS-1",
+      "searchType": "A",
+      "lastAssyNo": "197",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76733,
+      "depCode": "AI",
+      "termName": "CHASSIS-2",
+      "searchType": "A",
+      "lastAssyNo": "222",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 82843,
+      "depCode": "AI",
+      "termName": "DRIVER SPEC",
+      "searchType": "A",
+      "lastAssyNo": "682",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76736,
+      "depCode": "AI",
+      "termName": "E/G",
+      "searchType": "A",
+      "lastAssyNo": "683",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76734,
+      "depCode": "AI",
+      "termName": "E/G SPEK",
+      "searchType": "A",
+      "lastAssyNo": "683",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 92341,
+      "depCode": "AI",
+      "termName": "FLEXIBLE",
+      "searchType": "A",
+      "lastAssyNo": "677",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 83992,
+      "depCode": "AI",
+      "termName": "FONKSIYON",
+      "searchType": "A",
+      "lastAssyNo": "680",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 91431,
+      "depCode": "AI",
+      "termName": "FR EXTERIOR LH",
+      "searchType": "A",
+      "lastAssyNo": "415",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 91432,
+      "depCode": "AI",
+      "termName": "FR EXTERIOR RH",
+      "searchType": "A",
+      "lastAssyNo": "415",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 93071,
+      "depCode": "AI",
+      "termName": "FR EXTERIOR SPEC",
+      "searchType": "A",
+      "lastAssyNo": "582",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76740,
+      "depCode": "AI",
+      "termName": "FR INTERIOR LH",
+      "searchType": "A",
+      "lastAssyNo": "000",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76738,
+      "depCode": "AI",
+      "termName": "FR INTERIOR RH",
+      "searchType": "A",
+      "lastAssyNo": "679",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76731,
+      "depCode": "AI",
+      "termName": "LH EXTERIOR",
+      "searchType": "A",
+      "lastAssyNo": "683",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 91941,
+      "depCode": "AI",
+      "termName": "LH SIDE SPEC",
+      "searchType": "A",
+      "lastAssyNo": "682",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76732,
+      "depCode": "AI",
+      "termName": "RH EXTERIOR",
+      "searchType": "A",
+      "lastAssyNo": "684",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 91942,
+      "depCode": "AI",
+      "termName": "RH SIDE SPEC",
+      "searchType": "A",
+      "lastAssyNo": "680",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 82848,
+      "depCode": "AI",
+      "termName": "RR EXTERIOR  SPEC",
+      "searchType": "A",
+      "lastAssyNo": "519",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 91433,
+      "depCode": "AI",
+      "termName": "RR EXTERIOR LH",
+      "searchType": "A",
+      "lastAssyNo": "478",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 91434,
+      "depCode": "AI",
+      "termName": "RR EXTERIOR RH",
+      "searchType": "A",
+      "lastAssyNo": "477",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 82847,
+      "depCode": "AI",
+      "termName": "RR INTERIOR LH",
+      "searchType": "A",
+      "lastAssyNo": "680",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 82846,
+      "depCode": "AI",
+      "termName": "RR INTERIOR RH",
+      "searchType": "A",
+      "lastAssyNo": "682",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 92280,
+      "depCode": "AI",
+      "termName": "RR ROOM",
+      "searchType": "A",
+      "lastAssyNo": "679",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 93065,
+      "depCode": "AI",
+      "termName": "RR ROOM SPEC",
+      "searchType": "A",
+      "lastAssyNo": "678",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 92281,
+      "depCode": "AI",
+      "termName": "SIDE EXTERIOR LH",
+      "searchType": "A",
+      "lastAssyNo": "678",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 92282,
+      "depCode": "AI",
+      "termName": "SIDE EXTERIOR RH",
+      "searchType": "A",
+      "lastAssyNo": "678",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    },
+    {
+      "termId": 76741,
+      "depCode": "AI",
+      "termName": "INLINE KONFİRME",
+      "searchType": "B",
+      "lastAssyNo": "579",
+      "searchRequired": "Y",
+      "line": "1",
+      "filterCode": "HAT"
+    }
+  ]
+}
