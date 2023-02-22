@@ -10,34 +10,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
-
-const columns = [
-  { id: "name", label: "Bolum Bazinda", minWidth: 50 },
-  { id: "code", label: "Filtre Bazinda", minWidth: 250 },
-];
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [
-  createData("India", "IN ", 1324171354, 3287263),
-  createData("China", "CN", 1403500365, 9596961),
-  createData("Italy", "IT", 60483973, 301340),
-  createData("United States", "US", 327167434, 9833520),
-  createData("Canada", "CA", 37602103, 9984670),
-  createData("Australia", "AU", 25475400, 7692024),
-  createData("Germany", "DE", 83019200, 357578),
-  createData("Ireland", "IE", 4857000, 70273),
-  createData("Mexico", "MX", 126577691, 1972550),
-  createData("Japan", "JP", 126317000, 377973),
-  createData("France", "FR", 67022000, 640679),
-  createData("United Kingdom", "GB", 67545757, 242495),
-  createData("Russia", "RU", 146793744, 17098246),
-  createData("Nigeria", "NG", 200962417, 923768),
-  createData("Brazil", "BR", 210147125, 8515767),
-];
+import Badge from "@mui/material/Badge";
 
 export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
@@ -46,15 +19,22 @@ export default function TerminalTable() {
     axios
       .get("./db/terminal.json")
       .then((res) => {
-        res.data.data.map((item) => {
-          terminals.push(
-            `(${item.depCode}) ${item.depName}  `
-          );
+        let data = res.data.data.map((item) => {
+          return {
+            depCode: `(${item.depCode})  ${item.depName}`,
+            filterBaseds: item.filterBaseds.map((x) => {
+              return {
+                filterCode: x.filterCode,
+                linkCount: x.linkCount,
+              };
+            }),
+          };
         });
+        setTerminals(data);
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(terminals);
+
   return (
     <Paper sx={{ width: "100%" }}>
       <TableContainer
@@ -69,35 +49,42 @@ export default function TerminalTable() {
               </TableCell>
             </TableRow>
             <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align="center"
-                  style={{ top: 57, minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
+              <TableCell
+                key="bolum"
+                align="center"
+                style={{ top: 57, minWidth: 50 }}
+              >
+                Bölüm Bazında
+              </TableCell>
+              <TableCell
+                key="filtre"
+                align="center"
+                style={{ top: 57, minWidth: 250 }}
+              >
+                Filtre bazinda
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => {
+            {terminals.map((terminal) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
+                <TableRow hover role="checkbox" key={terminal.depName}>
+                  <TableCell className="grid-item" key="bolumFiltre">
+                    {terminal.depCode}
+                  </TableCell>
+
+                  {terminal.filterBaseds.map((filter) => {
                     return (
-                      <TableCell
-                        className="grid-item"
-                        key={column.id}
-                        align={column.align}
-                      >
-                        <Button variant="outlined">
-                          {" "}
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </Button>
+                      <TableCell className="grid-item" key="filtreBazinda">
+                        <Badge
+                          badgeContent={filter.linkCount}
+                          invisible={filter.linkCount === 1}
+                          color="primary"
+                        >
+                          <Button variant="outlined">
+                            {filter.filterCode}
+                          </Button>
+                        </Badge>
                       </TableCell>
                     );
                   })}
@@ -110,4 +97,3 @@ export default function TerminalTable() {
     </Paper>
   );
 }
-// `(${res.data.data[0].depCode}) ${res.data.data[0].depName} `
