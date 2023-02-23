@@ -5,5 +5,6 @@ export const LoginSchema = Yup.object().shape({
     .required(),
     password: Yup.string()
     .required(),
-    
+    montaj: Yup.string()
+    .required(),
 })

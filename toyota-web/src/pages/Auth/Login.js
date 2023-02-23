@@ -1,8 +1,15 @@
+import * as React from 'react';
 import { useNavigate, useLocation } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { useFormik, Formik, Form } from "formik";
 import Input from "../../components/form/Input";
 import { LoginSchema } from "../../validations";
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import InputPassword from '../../components/form/InputPassword';
+import Select from "../../components/form/Select";
+import "./login.css"
 
 export default function Login() {
   const navigate = useNavigate();
@@ -35,6 +42,11 @@ export default function Login() {
 
   return (
     <div>
+      <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="sm" className='round1' >
+        <Box textAlign={'center'} component="form">
+
       Login page <br />
       <Formik
         initialValues={{
@@ -56,8 +68,18 @@ export default function Login() {
         {({ value, isSubmitting }) => (
           <Form className="grid gap-y-3 p-4">
             <h1 className="text-2xl font-bold mb-3">Giris Yap </h1>
-            <Input label="Kullanici Adi" name="username" /> <br />
-            <Input label="Parola" name="password" type="password" /> <br />
+            <Select
+              name="gender"
+              options={[
+                { key: 1, value: "Kadin" },
+                { key: 2, value: "Erkek" },
+              ]}
+            />
+            <Input  label="Kullanici Adi" name="username" /> <br />
+            {/* <Input label="Parola" name="password" type="password" /> <br /> */}
+            <InputPassword name="password" /> 
+            <Input  label="Montaj No" name="montaj" /> <br />
+
             <button type="reset">Formu Resetle</button>
             <button
               disabled={isSubmitting}
@@ -69,6 +91,10 @@ export default function Login() {
           </Form>
         )}
       </Formik>
+        </Box>
+        
+      </Container>
+    </React.Fragment>
     </div>
   );
 }

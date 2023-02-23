@@ -7,13 +7,15 @@ export default function Input({label, ...props}) {
     return(
         <>
         <label className="block w-full">
-            <div className="text-sm text-gray-600">{label}</div>
-            <input  className={classNames({
+            <TextField error={meta.error && Boolean(meta.error)}  helperText={meta.error ? meta.error:""}  sx={{ m: 1, minWidth: 400 }} id="outlined-basic" size="small" label={label} variant="outlined"  {...field} {...props} />
+            
+            {/* <input  className={classNames({
                 "w-full h-10  border-b outline-none ":true,
                 "focus:border-black": !meta.error,
                 "border-red-600":meta.error 
-            })} {...field} {...props} />
-            <ErrorMessage name={field.name} component="small" className="text-xs block mt-2 text-red-600" />
+            })} {...field} {...props} /> */}
+        
+            
         </label>
                 </>
     )
