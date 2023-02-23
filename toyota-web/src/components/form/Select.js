@@ -18,14 +18,13 @@ export default function Input({label, options, original = false, ...props}) {
     }
     return(
         <label className="block w-full">
-            <div >{label}</div>
-            <FormControl required sx={{ m: 1, minWidth: 400 }}>
-        <InputLabel size='small' id="demo-simple-select-required-label">Terminal Listesi</InputLabel>
+            <FormControl required  sx={{ m: 1, minWidth: 400 }}>
+        <InputLabel size='small' id="demo-simple-select-required-label">{label}</InputLabel>
         <Select
         size='small'
           labelId="demo-simple-select-required-label"
           id="demo-simple-select-required"
-          label="Terminal Listesi *"
+          label={label}
           value={age}
           onChange={handleChange}
         >

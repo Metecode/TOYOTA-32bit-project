@@ -1,0 +1,10 @@
+{
+    "type":"SUCCESS",
+    "data":[
+       {
+          "shiftNo":3,
+          "shiftCode":"M",
+          "rgbColor":"#12a6eb"
+       }
+    ]
+ }

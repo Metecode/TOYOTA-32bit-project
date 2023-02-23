@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import InputPassword from '../../components/form/InputPassword';
 import Select from "../../components/form/Select";
 import "./login.css"
+import DatePicker from '../../components/form/DatePicker';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ export default function Login() {
           <Form className="grid gap-y-3 p-4">
             <h1 className="text-2xl font-bold mb-3">Giris Yap </h1>
             <Select
+            label="Terminal listesi"
               name="gender"
               options={[
                 { key: 1, value: "Kadin" },
@@ -79,7 +81,17 @@ export default function Login() {
             {/* <Input label="Parola" name="password" type="password" /> <br /> */}
             <InputPassword name="password" /> 
             <Input  label="Montaj No" name="montaj" /> <br />
+            <Box className="dene">
 
+            <DatePicker /> <Select className="vardiya"
+              label="Vardiya"
+              name="vardiya"
+              options={[
+                { key: 1, value: "K" },
+                { key: 2, value: "M" },
+              ]}
+            /> <br />
+            </Box>
             <button type="reset">Formu Resetle</button>
             <button
               disabled={isSubmitting}

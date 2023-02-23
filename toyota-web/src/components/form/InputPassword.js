@@ -8,6 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useField, ErrorMessage } from "formik";
+import "./form.css"
 export default function InputPassword({label, ...props}) {
     const[field, meta, helpers] = useField(props)
   const [showPassword, setShowPassword] = React.useState(false);
@@ -41,9 +42,10 @@ export default function InputPassword({label, ...props}) {
                 </IconButton>
               </InputAdornment>
             }
+            
             label="Password"
           />
-      <ErrorMessage name={field.name} component="small" className="text-xs block mt-2 text-red-600" />
+      <ErrorMessage name={field.name} component="small" className="errorMessage" />
         </FormControl>
       </div>
       
