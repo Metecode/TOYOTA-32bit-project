@@ -6,7 +6,9 @@
 
 .dene{
     background-color: aqua;
+    border-radius: 20px;
 }
 .vardiya{
-    width: 50px;
+    min-width: 50px!important;
 }
+
