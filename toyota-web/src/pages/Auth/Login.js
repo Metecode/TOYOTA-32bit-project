@@ -11,36 +11,89 @@ import InputPassword from "../../components/form/InputPassword";
 import Select from "../../components/form/Select";
 import "./login.css";
 import DatePicker from "../../components/form/DatePicker";
-import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
+import Keyboard from "react-simple-keyboard";
+import axios from "axios";
+import "react-simple-keyboard/build/css/index.css";
+import { useEffect, useState } from "react";
+
 
 export default function Login() {
+  const [options, setOptions] = useState([]);
+  const [vardiya, setVardiya] = useState([]);
+  const [background, setBackground] = useState([]);
+  useEffect(() => {
+    axios
+      .get("../db/girisEkrani.json")
+      .then((res) => {
+        let data = res.data.data.map((item) => {
+          return {
+            termName: `${item.termName}`,
+            termId: `${item.termId}`,
+          };
+        });
+        setOptions(data);
+      })
+      .catch((err) => console.log(err));
+      axios
+      .get("../db/shifts.json")
+      .then((res) => {
+        let data = res.data.data.map((item) => {
+          return {
+            shiftId: `${item.shiftId}`,
+            shiftName: `${item.shiftName}`,
+            shiftCode: `${item.shiftCode}`,
+            rgbColor: `${item.rgbColor}`,
+          };
+        });
+        setVardiya(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+
+
   const navigate = useNavigate();
   const location = useLocation();
-  const [input, setInput] = React.useState("");
+  // const [usernameInput, setusernameInput] = React.useState("");
+  // const [montajInput, setmontajInput] = React.useState("");
+  // const [passwordInput, setPasswordInput] = React.useState("");
+
   const [layout, setLayout] = React.useState("default");
   const keyboard = React.useRef();
 
-  const onChange = input => {
-    setInput(input);
-  };
-  const handleShift = () => {
-    const newLayoutName = layout === "default" ? "shift" : "default";
-    setLayout(newLayoutName);
-  };
+  // const onChange = (input) => {
+  //   setusernameInput(input);
+  //   setmontajInput(input);
+  //   setPasswordInput(input);
+  // };
+  // const onChangeP = (input) => {
+  //   setPasswordInput(input);
+  // };
+  // const handleShift = () => {
+  //   const newLayoutName = layout === "default" ? "shift" : "default";
+  //   setLayout(newLayoutName);
+  // };
 
-  const onKeyPress = button => {
+  // const onKeyPress = (button) => {
+  //   /**
+  //    * If you want to handle the shift and caps lock buttons
+  //    */
+  //   if (button === "{shift}" || button === "{lock}") handleShift();
+  // };
 
-    /**
-     * If you want to handle the shift and caps lock buttons
-     */
-    if (button === "{shift}" || button === "{lock}") handleShift();
-  };
+  // const onChangeInput = (event) => {
+  //   const input = event.target.value;
+  //   setusernameInput(input);
+  //   setmontajInput(input);
 
-  const onChangeInput = event => {
-    const input = event.target.value;
-    setInput(input);
-    keyboard.current.setInput(input);
-  };
+  //   keyboard.current.setusernameInput(input);
+  //   keyboard.current.setmontajInput(input);
+  // };
+  // const onChangePassword = (event) => {
+  //   const password = event.target.value;
+  //   setPasswordInput(password);
+  //   keyboard.current.setPasswordInput(password);
+  // };
   const { setUser } = useAuth();
 
   const loginHandle = () => {
@@ -65,7 +118,10 @@ export default function Login() {
       });
     },
   });
-
+  const hhandleChange = (e) => {
+    setBackground(e.target.value);
+    console.log(background);
+  };
   return (
     <div>
       <React.Fragment>
@@ -75,61 +131,96 @@ export default function Login() {
             Login page <br />
             <Formik
               initialValues={{
-                username: "",
-                password: "",
+                terminalListesi: "",
+                sicilNo: "",
+                password:"",
+                montaj:"",
+                date:"",
+                vardiya:"",
               }}
-              onSubmit={(values, actions) => {
-                setUser(values);
-                navigate(location?.state?.return_url || "/", {
-                  replace: true,
-                });
-                setTimeout(() => {
-                  actions.setSubmitting(false);
-                  actions.resetForm();
-                }, 3000);
+              // onSubmit={(values, actions) => {
+              //   setUser(values);
+              //   navigate(location?.state?.return_url || "/", {
+              //     replace: true,
+              //   });
+              //   setTimeout(() => {
+              //     actions.setSubmitting(false);
+              //     actions.resetForm();
+              //   }, 3000);
+              // }}
+              onSubmit={(values) => {
+                console.log(values);
               }}
               validationSchema={LoginSchema}
             >
-              {({ value, isSubmitting }) => (
+              {({ values }) => (
                 <Form className="grid gap-y-3 p-4">
                   <h1 className="text-2xl font-bold mb-3">Giris Yap </h1>
                   <Select
+                  
                     label="Terminal listesi"
-                    name="gender"
-                    options={[
-                      { key: 1, value: "Kadin" },
-                      { key: 2, value: "Erkek" },
-                    ]}
+                    name="terminalListesi"
+
+                 options={options.map((option)=>{
+                  return {
+                    key:option.termId,
+                    value:option.termName,
+                  }
+                })}
                   />
-                  <Input  value={input}
-        onChange={onChangeInput} label="Kullanici Adi" name="username" /> <br />
+                  <br />
+                  <Input
+                    
+                    label="Sicil No"
+                    name="sicilNo"
+                  />{" "}
+                  <br />
                   {/* <Input label="Parola" name="password" type="password" /> <br /> */}
-                  <InputPassword  value={input} name="password" />
-                  <Input         onChange={onChangeInput} label="Montaj No" name="montaj" /> <br />
-                  <div className="dene">
-                    <DatePicker />
+                  <InputPassword
+                  
+                    name="password"
+                  />
+                  <Input
+
+                    label="Montaj No"
+                    name="montaj"
+                  />{" "}
+                  <br />
+                  <div className="dene"  >
+                    <DatePicker name="date" />
                     <div>
                       <Select
+                    // defaultValue={colourOptions[1]}
                         className="vardiya"
                         label="Vardiya"
                         name="vardiya"
-                        options={[
-                          { key: 1, value: "K" },
-                          { key: 2, value: "M" },
-                        ]}
-                      />{" "}
+                        options={vardiya.map((vardiya)=>{
+                          return {
+                            key:vardiya.shiftId,
+                            value:vardiya.shiftCode                  
+                          }
+                         })}
+                         
+                         />{" "}
                       <br />
                     </div>
                   </div>
                   <button type="reset">Formu Resetle</button>
                   <button
-                    disabled={isSubmitting}
+                    // disabled={isSubmitting}
                     type="submit"
                     className="bg-black h-10 rounded text-sm text-white disabled:opacity-40"
                   >
                     Giris yap
                   </button>
-                  <VirtualKeyboard onChange={onChange}/>
+                  <Keyboard
+                    keyboardRef={(r) => (keyboard.current = r)}
+                    layoutName={layout}
+                    // onChange={onChange}
+                    // onKeyPress={onKeyPress}
+                  />
+                  
+                  <pre>{JSON.stringify(values,82842,19)}</pre>
                 </Form>
               )}
             </Formik>

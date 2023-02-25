@@ -1,7 +1,7 @@
 .round1 {
     border: 2px solid rgb(139, 137, 137);
     border-radius: 5px;
-    padding: 5px;
+    padding: 50px;
   }
 
 .dene{
@@ -9,6 +9,21 @@
     border-radius: 20px;
 }
 .vardiya{
-    min-width: 50px!important;
+    height: 10;
+    width: 10;
 }
 
+input {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    box-sizing: border-box;
+  }
+  
+  .simple-keyboard {
+    max-width: 850px;
+  }
+  
+  
