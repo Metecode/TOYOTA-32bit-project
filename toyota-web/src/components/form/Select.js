@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useField, ErrorMessage } from "formik";
 
-export default function Input({ label, options, original = false, ...props }) {
+export default function Input({ label, options, original = false,onChange, defaultValue, ...props }) {
   const [field, meta, helpers] = useField(props);
 
   const changeHandle = (e) => {
@@ -21,17 +21,16 @@ export default function Input({ label, options, original = false, ...props }) {
         </InputLabel>
         <Select
           size="small"
-          labelId="demo-simple-select-required-label"
-          id="demo-simple-select-required"
           label={label}
           defaultValue={field.value}
           {...props}
           onChange={changeHandle}
+          onBlur={() => props.input.onBlur(props.input.value)}
         >
-          <MenuItem value="">
+          {/* <MenuItem value="">
             {" "}
             <em>Secin</em>{" "}
-          </MenuItem>
+          </MenuItem> */}
           {options.map((option, key) => (
             <MenuItem value={option.key} key={key}>
               {option.value}

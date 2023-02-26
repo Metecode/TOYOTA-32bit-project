@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
-  const [background, setBackground] = useState([]);
+  const [background, setBackground] = useState();
   useEffect(() => {
     axios
       .get("../db/girisEkrani.json")
@@ -49,7 +49,6 @@ export default function Login() {
       })
       .catch((err) => console.log(err));
   }, []);
-
 
 
   const navigate = useNavigate();
@@ -118,10 +117,7 @@ export default function Login() {
       });
     },
   });
-  const hhandleChange = (e) => {
-    setBackground(e.target.value);
-    console.log(background);
-  };
+
   return (
     <div>
       <React.Fragment>
@@ -136,7 +132,7 @@ export default function Login() {
                 password:"",
                 montaj:"",
                 date:"",
-                vardiya:"",
+                vardiya:vardiya.shiftCode,
               }}
               // onSubmit={(values, actions) => {
               //   setUser(values);
@@ -186,7 +182,7 @@ export default function Login() {
                     name="montaj"
                   />{" "}
                   <br />
-                  <div className="dene"  >
+                  <div className="dene" style={{backgroundColor:values.vardiya}} >
                     <DatePicker name="date" />
                     <div>
                       <Select
@@ -196,7 +192,7 @@ export default function Login() {
                         name="vardiya"
                         options={vardiya.map((vardiya)=>{
                           return {
-                            key:vardiya.shiftId,
+                            key:vardiya.rgbColor,
                             value:vardiya.shiftCode                  
                           }
                          })}
@@ -218,9 +214,9 @@ export default function Login() {
                     layoutName={layout}
                     // onChange={onChange}
                     // onKeyPress={onKeyPress}
-                  />
+                  />                  
                   
-                  <pre>{JSON.stringify(values,82842,19)}</pre>
+                  <pre>{JSON.stringify(values,82842,1)}</pre>
                 </Form>
               )}
             </Formik>
