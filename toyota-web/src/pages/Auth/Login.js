@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
-  const [background, setBackground] = useState();
+
   useEffect(() => {
     axios
       .get("../db/girisEkrani.json")
@@ -132,7 +132,7 @@ export default function Login() {
                 password:"",
                 montaj:"",
                 date:"",
-                vardiya:vardiya.shiftCode,
+                vardiya:"",
               }}
               // onSubmit={(values, actions) => {
               //   setUser(values);
@@ -183,7 +183,7 @@ export default function Login() {
                   />{" "}
                   <br />
                   <div className="dene" style={{backgroundColor:values.vardiya}} >
-                    <DatePicker name="date" />
+                    <DatePicker name="date"   />
                     <div>
                       <Select
                     // defaultValue={colourOptions[1]}
@@ -216,7 +216,7 @@ export default function Login() {
                     // onKeyPress={onKeyPress}
                   />                  
                   
-                  <pre>{JSON.stringify(values,82842,1)}</pre>
+                  <pre>{JSON.stringify(values,null, 2)}</pre>
                 </Form>
               )}
             </Formik>
