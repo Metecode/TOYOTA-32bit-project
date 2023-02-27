@@ -15,7 +15,6 @@ import Badge from "@mui/material/Badge";
 
 export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
-
   useEffect(() => {
     axios
       .get("./db/terminal.json")
@@ -37,7 +36,7 @@ export default function TerminalTable() {
   }, []);
 
   return (
-    <Paper sx={{ width: "100%" }}>
+    <Paper sx={{ width: "100%", backgroundColor:"#B9F3FC" }}>
       <TableContainer
         sx={{ maxHeight: "100%" }}
         // style={{ overflowX: "initial" }}
@@ -53,9 +52,9 @@ export default function TerminalTable() {
           aria-label="sticky table"
         >
           <TableHead>
-            <TableRow style={{ width: "100%" }}>
+            <TableRow >
               <TableCell
-                style={{ borderBottom: "1px solid black" }}
+                style={{ borderBottom: "1px solid black",backgroundColor:"#B9F3FC"}}
                 align="center"
                 colSpan={14}
                 position="sticky"
@@ -65,13 +64,14 @@ export default function TerminalTable() {
             </TableRow>
             <TableRow style={{ width: "100%" }}>
               <TableCell
-                className="grid-item"
+                className="grid-item "
                 key="bolum"
                 align="center"
                 style={{
                   top: 57,
                   minWidth: 150,
                   borderBottom: "1px solid black",
+                  backgroundColor:"#B9F3FC"
                 }}
               >
                 Bölüm Bazında
@@ -85,6 +85,7 @@ export default function TerminalTable() {
                   top: 57,
                   width: "100%",
                   borderBottom: "1px solid black",
+                  backgroundColor:"#B9F3FC"
                 }}
               >
                 Filtre bazinda
@@ -95,14 +96,14 @@ export default function TerminalTable() {
             {terminals.map((terminal) => {
               return (
                 <TableRow
-                  style={{ borderBottom: "1px solid black" }}
+                  style={{ borderBottom: "1px solid black", backgroundColor:"#B9F3FC" }}
                   hover
                   role="checkbox"
                   key={terminal.depName}
                 >
                   <TableCell
-                    style={{ minWidth: 150, borderBottom: "1px solid black" }}
-                    className="grid-item"
+                    style={{ minWidth: 150, borderBottom: "1px solid black", backgroundColor:"#B9F3FC" }}
+                    className="grid-item "
                     key="bolumFiltre"
                   >
                     {terminal.depCode}

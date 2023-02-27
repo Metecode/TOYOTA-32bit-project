@@ -3,6 +3,7 @@ import routes from "./routes";
 import { url } from "./utils";
 
 function App() {
+  document.body.style = 'background: #B9F3FC;';
   return useRoutes(routes);
 }
 

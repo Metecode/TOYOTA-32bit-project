@@ -12,6 +12,7 @@ export default function DatePicker({ original = false, ...props }) {
   const [field, meta, helpers] = useField(props);
   const changeHandle = (e) => {
     helpers.setValue(new Date(e).toLocaleDateString())
+    setSelectedDate(e);
     // let selected = options.find((option) => option.key === +e.target.value);
     // helpers.setValue(original ? selected : e.target.value);
   };
