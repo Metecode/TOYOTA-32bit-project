@@ -16,14 +16,13 @@ import axios from "axios";
 import "react-simple-keyboard/build/css/index.css";
 import { useEffect, useState } from "react";
 
-
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
 
   useEffect(() => {
     axios
-      .get("../db/girisEkrani.json")
+      .get(`../db/${state.filterCode}.json`)
       .then((res) => {
         let data = res.data.data.map((item) => {
           return {
@@ -34,7 +33,7 @@ export default function Login() {
         setOptions(data);
       })
       .catch((err) => console.log(err));
-      axios
+    axios
       .get("../db/shifts.json")
       .then((res) => {
         let data = res.data.data.map((item) => {
@@ -49,8 +48,8 @@ export default function Login() {
       })
       .catch((err) => console.log(err));
   }, []);
-
-
+  const {state} = useLocation();
+  console.log(state.filterCode)
   const navigate = useNavigate();
   const location = useLocation();
   // const [usernameInput, setusernameInput] = React.useState("");
@@ -119,7 +118,7 @@ export default function Login() {
   });
 
   return (
-    <div >
+    <div>
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="sm" className="round1">
@@ -129,10 +128,10 @@ export default function Login() {
               initialValues={{
                 terminalListesi: "",
                 sicilNo: "",
-                password:"",
-                montaj:"",
-                date:"",
-                vardiya:"",
+                password: "",
+                montaj: "",
+                date: "",
+                vardiya: "",
               }}
               // onSubmit={(values, actions) => {
               //   setUser(values);
@@ -153,51 +152,51 @@ export default function Login() {
                 <Form className="grid gap-y-3 p-4">
                   <h1 className="text-2xl font-bold mb-3">Giris Yap </h1>
                   <Select
-                  
+                    
                     label="Terminal listesi"
                     name="terminalListesi"
-
-                 options={options.map((option)=>{
-                  return {
-                    key:option.termId,
-                    value:option.termName,
-                  }
-                })}
+                    options={options.map((option) => {
+                      return {
+                        key: option.termId,
+                        value: option.termName,
+                      };
+                    })}
                   />
                   <br />
                   <Input
-                    
+                    inputProps={{ min: 0 }}
+                    type="number"
                     label="Sicil No"
                     name="sicilNo"
                   />{" "}
                   <br />
                   {/* <Input label="Parola" name="password" type="password" /> <br /> */}
-                  <InputPassword
-                  
-                    name="password"
-                  />
+                  <InputPassword name="password" />
                   <Input
-
+                    inputProps={{ min: 0 }}
+                    type="number"
                     label="Montaj No"
                     name="montaj"
                   />{" "}
                   <br />
-                  <div className="dene" style={{backgroundColor:values.vardiya}} >
-                    <DatePicker name="date"   />
+                  <div
+                    className="dene"
+                    style={{ backgroundColor: values.vardiya }}
+                  >
+                    <DatePicker name="date" />
                     <div>
                       <Select
-                    // defaultValue={colourOptions[1]}
+                        // defaultValue={colourOptions[1]}
                         className="vardiya"
                         label="Vardiya"
                         name="vardiya"
-                        options={vardiya.map((vardiya)=>{
+                        options={vardiya.map((vardiya) => {
                           return {
-                            key:vardiya.rgbColor,
-                            value:vardiya.shiftCode                  
-                          }
-                         })}
-                         
-                         />{" "}
+                            key: vardiya.rgbColor,
+                            value: vardiya.shiftCode,
+                          };
+                        })}
+                      />{" "}
                       <br />
                     </div>
                   </div>
@@ -214,9 +213,8 @@ export default function Login() {
                     layoutName={layout}
                     // onChange={onChange}
                     // onKeyPress={onKeyPress}
-                  />                  
-                  
-                  <pre>{JSON.stringify(values,null, 2)}</pre>
+                  />
+                  <pre>{JSON.stringify(values, null, 2)}</pre>
                 </Form>
               )}
             </Formik>

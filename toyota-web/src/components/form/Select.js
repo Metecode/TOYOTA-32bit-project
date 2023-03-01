@@ -4,15 +4,24 @@ import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useField, ErrorMessage } from "formik";
-
+import { useField, ErrorMessage,  } from "formik";
+import { useEffect, useState, useRef } from "react";
 export default function Input({ label, options, original = false, defaultValue, ...props }) {
   const [field, meta, helpers] = useField(props);
-
+  const selectRef = useRef(null);
   const changeHandle = (e) => {
     let selected = options.find((option) => option.key === +e.target.value);
     helpers.setValue(original ? selected : e.target.value);
   };
+  useEffect(()=>{
+    selectRef.current.focus();
+  })
+  const handleScroll = (offset) => {
+    if (selectRef.current) {
+      selectRef.current.scrollTop += offset;
+    }
+  }
+  
   return (
     <label className="block w-full">
       <FormControl required sx={{ m: 1, minWidth: 400 }}>
@@ -20,6 +29,7 @@ export default function Input({ label, options, original = false, defaultValue, 
           {label}
         </InputLabel>
         <Select
+        ref={selectRef}
          id="demo-simple-select-error"
           size="small"
           label={label}
@@ -27,6 +37,7 @@ export default function Input({ label, options, original = false, defaultValue, 
           {...props}
           onChange={changeHandle}
         >
+          
           <MenuItem value="">
             {" "}
             <em>Secin</em>{" "}
@@ -38,6 +49,8 @@ export default function Input({ label, options, original = false, defaultValue, 
           ))}
         </Select>
         <FormHelperText>Required</FormHelperText>
+        
+
       </FormControl>
       {/* <select  className="w-full  border-b outline-none focus:border-black" onChange={changeHandle} defaultValue={field.value} {...props}>
                 
@@ -47,6 +60,8 @@ export default function Input({ label, options, original = false, defaultValue, 
         component="small"
         className="text-xs block mt-2 text-red-600"
       />
+      {/* <button onClick={() => handleScroll(-10)}>Up</button>
+        <button onClick={() => handleScroll(10)}>Up</button> */}
     </label>
   );
 }

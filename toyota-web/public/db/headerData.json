@@ -1,0 +1,22 @@
+{
+    "type":"SUCCESS",
+    "data":[
+       {
+          "seqNo":222,
+          "bodyNo":25073,
+          "specData":"",
+          "bgColor":"#ff1c23",
+          "extCode":" 3U5",
+          "firstname":"Yusuf Ziya",
+          "lastname":"Başbuğ",
+          "departmentCode":"AI",
+          "modelName":"CHR",
+          "companyName":"CVQS (TMMT)",
+          "termName":"CHASSIS-2",
+          "modelId":23638,
+          "assyNo":222
+       }
+    ]
+ }
+
+ 

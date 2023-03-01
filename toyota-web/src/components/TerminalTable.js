@@ -9,12 +9,18 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import "../App.css";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 import { useEffect, useState } from "react";
 import Badge from "@mui/material/Badge";
 
 export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
+  const navigate = useNavigate();
+
+  const navigateToContacts = (filterCode) => {
+    navigate('/auth/login', {state:{filterCode}});
+  };
   useEffect(() => {
     axios
       .get("./db/terminal.json")
@@ -123,7 +129,9 @@ export default function TerminalTable() {
                           invisible={filter.linkCount === 1}
                           color="primary"
                         >
-                          <Button variant="outlined">
+                          <Button variant="outlined"  onClick={()=>{
+                            navigateToContacts(filter.filterCode)
+                          }} >
                             {filter.filterCode}
                           </Button>
                         </Badge>
