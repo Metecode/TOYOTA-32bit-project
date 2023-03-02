@@ -21,7 +21,9 @@ export default function Input({ label, options, original = false, defaultValue, 
       selectRef.current.scrollTop += offset;
     }
   }
-  
+  const scrollToTop = () => {
+    document.getElementById("scroller").scroll(0,50)
+  }
   return (
     <label className="block w-full">
       <FormControl required sx={{ m: 1, minWidth: 400 }}>
@@ -30,14 +32,14 @@ export default function Input({ label, options, original = false, defaultValue, 
         </InputLabel>
         <Select
         ref={selectRef}
-         id="demo-simple-select-error"
+         id="demo-simple-select-error scroller"
           size="small"
           label={label}
           defaultValue={field.value}
           {...props}
           onChange={changeHandle}
         >
-          
+          <button onClick={scrollToTop}>Scroll to Top</button>
           <MenuItem value="">
             {" "}
             <em>Secin</em>{" "}
@@ -62,6 +64,7 @@ export default function Input({ label, options, original = false, defaultValue, 
       />
       {/* <button onClick={() => handleScroll(-10)}>Up</button>
         <button onClick={() => handleScroll(10)}>Up</button> */}
+        
     </label>
   );
 }

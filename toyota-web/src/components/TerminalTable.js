@@ -18,8 +18,8 @@ export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
   const navigate = useNavigate();
 
-  const navigateToContacts = (filterCode) => {
-    navigate('/auth/login', {state:{filterCode}});
+  const navigateToContacts = (filterCode,linkCount,depCode,termName) => {
+    navigate(`/auth/login/${depCode}/${filterCode}`, {state:{filterCode, linkCount,depCode,termName}});
   };
   useEffect(() => {
     axios
@@ -28,10 +28,12 @@ export default function TerminalTable() {
         let data = res.data.data.map((item) => {
           return {
             depCode: `(${item.depCode})  ${item.depName}`,
+            pathCode:`${item.depCode}`,
             filterBaseds: item.filterBaseds.map((x) => {
               return {
                 filterCode: x.filterCode,
                 linkCount: x.linkCount,
+                termName:x.termName,
               };
             }),
           };
@@ -130,7 +132,7 @@ export default function TerminalTable() {
                           color="primary"
                         >
                           <Button variant="outlined"  onClick={()=>{
-                            navigateToContacts(filter.filterCode)
+                            navigateToContacts(filter.filterCode,filter.linkCount,terminal.pathCode,filter.termName)
                           }} >
                             {filter.filterCode}
                           </Button>

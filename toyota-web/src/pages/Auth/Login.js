@@ -19,10 +19,13 @@ import { useEffect, useState } from "react";
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
+  const {state} = useLocation();
+  console.log(state.filterCode, state.linkCount, state.depCode)
 
   useEffect(() => {
-    axios
-      .get(`../db/${state.filterCode}.json`)
+    if(state.linkCount > 1){
+      axios
+      .get(`../../../db/${state.filterCode}.json`)
       .then((res) => {
         let data = res.data.data.map((item) => {
           return {
@@ -33,8 +36,13 @@ export default function Login() {
         setOptions(data);
       })
       .catch((err) => console.log(err));
+    }else{
+      // setOptions(item.)
+    }
+    
     axios
-      .get("../db/shifts.json")
+    
+      .get("../../../db/shifts.json")
       .then((res) => {
         let data = res.data.data.map((item) => {
           return {
@@ -48,8 +56,7 @@ export default function Login() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const {state} = useLocation();
-  console.log(state.filterCode)
+
   const navigate = useNavigate();
   const location = useLocation();
   // const [usernameInput, setusernameInput] = React.useState("");

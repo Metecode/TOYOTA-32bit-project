@@ -11,6 +11,11 @@ import Contact from "./pages/Contact"
 import Terminal from "./pages/Terminal"
 import TerminalLayout from "./pages/TerminalLayout"
 import Profile from "./pages/Profile"
+// import { useNavigate, useLocation } from "react-router";
+// import * as React from "react";
+
+// const {state} = useLocation();
+// console.log(state.filterCode, state.linkCount)
 const routes = [
     {
         path:'/',
@@ -70,7 +75,7 @@ const routes = [
         children:[
             {
                 name:'login',
-                path: 'login',
+                path: 'login/:depCode/:filterCode',
                 element: <Login/>
             }
         ]
