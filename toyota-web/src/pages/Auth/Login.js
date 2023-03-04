@@ -15,33 +15,56 @@ import Keyboard from "react-simple-keyboard";
 import axios from "axios";
 import "react-simple-keyboard/build/css/index.css";
 import { useEffect, useState } from "react";
-
+import Button from "@mui/material/Button";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import Stack from "@mui/material/Stack";
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
-  const {state} = useLocation();
-  console.log(state.filterCode, state.linkCount, state.depCode)
+  const [option, setOption] = useState();
+  const [control, setControl] = useState(true);
+  const { state } = useLocation();
+  const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate();
+  const navigateToContacts = () => {
+    Logout(`../../`);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  console.log(state.filterCode, state.linkCount, state.depCode, state.termName);
 
   useEffect(() => {
-    if(state.linkCount > 1){
+    if (state.linkCount > 1) {
       axios
-      .get(`../../../db/${state.filterCode}.json`)
-      .then((res) => {
-        let data = res.data.data.map((item) => {
-          return {
-            termName: `${item.termName}`,
-            termId: `${item.termId}`,
-          };
-        });
-        setOptions(data);
-      })
-      .catch((err) => console.log(err));
-    }else{
-      // setOptions(item.)
+        .get(`../../../db/${state.filterCode}.json`)
+        .then((res) => {
+          let data = res.data.data.map((item) => {
+            return {
+              termName: `${item.termName}`,
+              termId: `${item.termId}`,
+            };
+          });
+          setOptions(data);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      setControl(false);
+      let data = {
+        termName: state.termName,
+        termId: state.filterCode,
+      };
+      setOption(data);
     }
-    
+
     axios
-    
+
       .get("../../../db/shifts.json")
       .then((res) => {
         let data = res.data.data.map((item) => {
@@ -57,7 +80,7 @@ export default function Login() {
       .catch((err) => console.log(err));
   }, []);
 
-  const navigate = useNavigate();
+  const Logout = useNavigate();
   const location = useLocation();
   // const [usernameInput, setusernameInput] = React.useState("");
   // const [montajInput, setmontajInput] = React.useState("");
@@ -140,28 +163,31 @@ export default function Login() {
                 date: "",
                 vardiya: "",
               }}
-              // onSubmit={(values, actions) => {
-              //   setUser(values);
-              //   navigate(location?.state?.return_url || "/", {
-              //     replace: true,
-              //   });
-              //   setTimeout(() => {
-              //     actions.setSubmitting(false);
-              //     actions.resetForm();
-              //   }, 3000);
-              // }}
-              onSubmit={(values) => {
-                console.log(values);
+              onSubmit={(values, actions) => {
+                setUser(values);
+                navigate(location?.state?.return_url || "/", {
+                  replace: true,
+                });
+                setTimeout(() => {
+                  actions.setSubmitting(false);
+                  actions.resetForm();
+                }, 3000);
               }}
+              // onSubmit={(values) => {
+              //   console.log(values);
+              // }}
               validationSchema={LoginSchema}
             >
-              {({ values }) => (
+              {({ values, isSubmitting }) => (
                 <Form className="grid gap-y-3 p-4">
                   <h1 className="text-2xl font-bold mb-3">Giris Yap </h1>
                   <Select
-                    
+                    open={open}
+                    onClose={handleClose}
+                    onOpen={handleOpen}
                     label="Terminal listesi"
                     name="terminalListesi"
+                    // control ? {key: option.termId, value: option.termName} :
                     options={options.map((option) => {
                       return {
                         key: option.termId,
@@ -193,7 +219,6 @@ export default function Login() {
                     <DatePicker name="date" />
                     <div>
                       <Select
-                        // defaultValue={colourOptions[1]}
                         className="vardiya"
                         label="Vardiya"
                         name="vardiya"
@@ -207,14 +232,33 @@ export default function Login() {
                       <br />
                     </div>
                   </div>
-                  <button type="reset">Formu Resetle</button>
-                  <button
-                    // disabled={isSubmitting}
-                    type="submit"
-                    className="bg-black h-10 rounded text-sm text-white disabled:opacity-40"
+                  <Stack
+                    alignItems="center"
+                    justifyContent="center"
+                    mt={1}
+                    mb={2}
+                    spacing={2}
+                    direction="row"
                   >
-                    Giris yap
-                  </button>
+                    <Button
+                      variant="contained"
+                      disabled={isSubmitting}
+                      type="submit"
+                      className="bg-black h-10 rounded text-sm text-white disabled:opacity-40"
+                      startIcon={<LoginIcon />}
+                    >
+                      Giris yap
+                    </Button>
+                    <Button
+                      type="Logout "
+                      variant="contained"
+                      color="primary"
+                      startIcon={<LogoutIcon />}
+                      onClick={navigateToContacts}
+                    >
+                      Kapat
+                    </Button>
+                  </Stack>
                   <Keyboard
                     keyboardRef={(r) => (keyboard.current = r)}
                     layoutName={layout}

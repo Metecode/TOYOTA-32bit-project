@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useField, ErrorMessage,  } from "formik";
 import { useEffect, useState, useRef } from "react";
-export default function Input({ label, options, original = false, defaultValue, ...props }) {
+export default function Input({ label, options, original = false, ...props }) {
   const [field, meta, helpers] = useField(props);
   const selectRef = useRef(null);
   const changeHandle = (e) => {
