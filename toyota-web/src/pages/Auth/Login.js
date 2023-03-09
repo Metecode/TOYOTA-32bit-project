@@ -22,8 +22,8 @@ import Stack from "@mui/material/Stack";
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
-  const [option, setOption] = useState();
-  const [control, setControl] = useState(true);
+  const [option, setOption] = useState([]);
+  const [control, setControl] = useState(false);
   const { state } = useLocation();
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ export default function Login() {
         })
         .catch((err) => console.log(err));
     } else {
-      setControl(false);
+      setControl(true);
       let data = {
         termName: state.termName,
         termId: state.filterCode,
@@ -188,7 +188,7 @@ export default function Login() {
                     label="Terminal listesi"
                     name="terminalListesi"
                     // control ? {key: option.termId, value: option.termName} :
-                    options={options.map((option) => {
+                    options={control ? [ { key: option.termId, value: option.termName} ] :options.map((option) => {
                       return {
                         key: option.termId,
                         value: option.termName,

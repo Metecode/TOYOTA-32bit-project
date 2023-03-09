@@ -40,10 +40,7 @@ export default function Input({ label, options, original = false, ...props }) {
           onChange={changeHandle}
         >
           <button onClick={scrollToTop}>Scroll to Top</button>
-          <MenuItem value="">
-            {" "}
-            <em>Secin</em>{" "}
-          </MenuItem>
+
           {options.map((option, key) => (
             <MenuItem value={option.key} key={key}>
               {option.value}
