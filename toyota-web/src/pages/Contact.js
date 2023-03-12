@@ -1,4 +1,3 @@
-
 // import * as React from 'react';
 // import PropTypes from 'prop-types';
 // import { alpha } from '@mui/material/styles';
@@ -120,7 +119,7 @@
 //   return (
 //     <TableHead>
 //       <TableRow>
-        
+
 //         {headCells.map((headCell) => (
 //           <TableCell
 //             key={headCell.id}
@@ -147,12 +146,10 @@
 //   );
 // }
 
-
 // export default function EnhancedTable() {
 //   const [order, setOrder] = React.useState('asc');
 //   const [orderBy, setOrderBy] = React.useState('calories');
 //   const [dense, setDense] = React.useState(false);
- 
 
 //   const handleRequestSort = (event, property) => {
 //     const isAsc = orderBy === property && order === 'asc';
@@ -163,8 +160,6 @@
 //   const handleChangeDense = (event) => {
 //     setDense(event.target.checked);
 //   };
-
-
 
 //   return (
 //     <Box sx={{ width: '100%' }}>
@@ -185,16 +180,15 @@
 //               {stableSort(rows, getComparator(order, orderBy))
 //                 .map((row, index) => {
 
-
 //                   return (
 //                     <TableRow
 //                       hover
 //                       role="checkbox"
 //                       tabIndex={-1}
 //                       key={row.name}
-                      
+
 //                     >
-                      
+
 //                       <TableCell
 //                         component="th"
 //                         scope="row"
@@ -209,11 +203,11 @@
 //                     </TableRow>
 //                   );
 //                 })}
-              
+
 //             </TableBody>
 //           </Table>
 //         </TableContainer>
-        
+
 //       </Paper>
 //       <FormControlLabel
 //         control={<Switch checked={dense} onChange={handleChangeDense} />}
@@ -227,35 +221,38 @@ import Input from "../components/form/Input";
 import File from "../components/form/File";
 import Checkbox from "../components/form/Checkbox";
 import Textarea from "../components/form/Textarea";
-import Select from "../components/form/Select";
 import Radio from "../components/form/Radio";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SampleSchema, ContactSchema } from "../validations";
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { TableVirtuoso } from 'react-virtuoso';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { TableVirtuoso } from "react-virtuoso";
 import "../App.css";
 import axios from "axios";
-
-
-
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 const sample = [
-  ['Frozen yoghurt', 159, 6.0, 24, 4.0],
-  ['Ice cream sandwich', 237, 9.0, 37, 4.3],
-  ['Eclair', 262, 16.0, 24, 6.0],
-  ['Cupcake', 305, 3.7, 67, 4.3],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-
+  ["Frozen yoghurt", 159, 6.0, 24, 4.0],
+  ["Ice cream sandwich", 237, 9.0, 37, 4.3],
+  ["Eclair", 262, 16.0, 24, 6.0],
+  ["Cupcake", 305, 3.7, 67, 4.3],
+  ["Gingerbread", 356, 16.0, 49, 3.9],
+  ["Gingerbread", 356, 16.0, 49, 3.9],
+  ["Gingerbread", 356, 16.0, 49, 3.9],
+  ["Gingerbread", 356, 16.0, 49, 3.9],
+  ["Gingerbread", 356, 16.0, 49, 3.9],
 ];
 
 function createData(id, dessert, calories, fat, carbs, protein) {
@@ -265,135 +262,135 @@ function createData(id, dessert, calories, fat, carbs, protein) {
 const columns = [
   {
     width: 25,
-    label: 'Bildiren',
-    dataKey: 'bildiren',
+    label: "Bildiren",
+    dataKey: "bildiren",
   },
   {
     width: 25,
-    label: 'Body',
-    dataKey: 'body',
+    label: "Body",
+    dataKey: "body",
     numeric: true,
   },
   {
     width: 15,
-    label: 'Assy',
-    dataKey: 'assy',
+    label: "Assy",
+    dataKey: "assy",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Vin No',
-    dataKey: 'vin No',
+    label: "Vin No",
+    dataKey: "vin No",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Renk',
-    dataKey: 'renk',
+    label: "Renk",
+    dataKey: "renk",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Mdl',
-    dataKey: 'mdl',
+    label: "Mdl",
+    dataKey: "mdl",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Sicil',
-    dataKey: 'sicil',
+    label: "Sicil",
+    dataKey: "sicil",
     numeric: true,
   },
   {
     width: 100,
-    label: 'Parca',
-    dataKey: 'parca',
+    label: "Parca",
+    dataKey: "parca",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Spot',
-    dataKey: 'spot',
+    label: "Spot",
+    dataKey: "spot",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Gun',
-    dataKey: 'gun',
+    label: "Gun",
+    dataKey: "gun",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Arc',
-    dataKey: 'arc',
+    label: "Arc",
+    dataKey: "arc",
     numeric: true,
   },
   {
     width: 25,
-    label: 'ArcGun',
-    dataKey: 'arcGun',
+    label: "ArcGun",
+    dataKey: "arcGun",
     numeric: true,
   },
   {
     width: 100,
-    label: 'Hata',
-    dataKey: 'hata',
+    label: "Hata",
+    dataKey: "hata",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Rank',
-    dataKey: 'rank',
+    label: "Rank",
+    dataKey: "rank",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Saat',
-    dataKey: 'saat',
+    label: "Saat",
+    dataKey: "saat",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Hata Türü',
-    dataKey: 'hata turu',
+    label: "Hata Türü",
+    dataKey: "hata turu",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Hata Türü',
-    dataKey: 'hata turu',
+    label: "Hata Türü",
+    dataKey: "hata turu",
     numeric: true,
   },
   {
     width: 25,
-    label: 'Hata Sor',
-    dataKey: 'hata sor',
+    label: "Hata Sor",
+    dataKey: "hata sor",
     numeric: true,
   },
   {
     width: 40,
-    label: 'Alt Sorumlu',
-    dataKey: 'alt sorumlu',
+    label: "Alt Sorumlu",
+    dataKey: "alt sorumlu",
     numeric: true,
   },
-  {
-    width: 50,
-    label: 'NR REASON',
-    dataKey: 'nr reason',
-    numeric: true,
-  },
-  {
-    width: 25,
-    label: 'Kaydet',
-    dataKey: 'kaydet',
-    numeric: true,
-  },
-  {
-    width: 25,
-    label: 'İşlem',
-    dataKey: 'islem',
-    numeric: true,
-  },
+  // {
+  //   width: 50,
+  //   label: 'NR REASON',
+  //   dataKey: 'nr reason',
+  //   numeric: true,
+  // },
+  // {
+  //   width: 25,
+  //   label: 'Kaydet',
+  //   dataKey: 'kaydet',
+  //   numeric: true,
+  // },
+  // {
+  //   width: 25,
+  //   label: 'İşlem',
+  //   dataKey: 'islem',
+  //   numeric: true,
+  // },
 ];
 
 const rows = Array.from({ length: 200 }, (_, index) => {
@@ -406,11 +403,16 @@ const VirtuosoTableComponents = {
     <TableContainer component={Paper} {...props} ref={ref} />
   )),
   Table: (props) => (
-    <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
+    <Table
+      {...props}
+      sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
+    />
   ),
   TableHead,
   TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
-  TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
+  TableBody: React.forwardRef((props, ref) => (
+    <TableBody {...props} ref={ref} />
+  )),
 };
 
 function fixedHeaderContent() {
@@ -418,20 +420,64 @@ function fixedHeaderContent() {
     <TableRow>
       {columns.map((column) => (
         <TableCell
-        className="grid-item "
+          className="grid-item "
           key={column.dataKey}
           variant="head"
-          align={column.numeric || false ? 'right' : 'left'}
-          style={{ width: column.width,
+          align={column.numeric || false ? "right" : "left"}
+          style={{
+            width: column.width,
             borderCollapse: "collapse",
-            border: "1px solid black", }}
+            border: "1px solid black",
+          }}
           sx={{
-            backgroundColor: 'background.paper',
+            backgroundColor: "background.paper",
           }}
         >
           {column.label}
         </TableCell>
       ))}
+      <TableCell
+        className="grid-item "
+        variant="head"
+        style={{
+          borderCollapse: "collapse",
+          border: "1px solid black",
+          width:100,
+        }}
+        sx={{
+          backgroundColor: "background.paper",
+        }}
+      >
+        Nr Reason
+      </TableCell>
+      <TableCell
+        className="grid-item "
+        variant="head"
+        style={{
+          borderCollapse: "collapse",
+          border: "1px solid black",
+          width:60,
+        }}
+        sx={{
+          backgroundColor: "background.paper",
+        }}
+      >
+        Kaydet
+      </TableCell>
+      <TableCell
+        className="grid-item "
+        variant="head"
+        style={{
+          borderCollapse: "collapse",
+          border: "1px solid black",
+          width:150,
+        }}
+        sx={{
+          backgroundColor: "background.paper",
+        }}
+      >
+        İşlem
+      </TableCell>
     </TableRow>
   );
 }
@@ -441,18 +487,48 @@ function rowContent(_index, row) {
     <React.Fragment>
       {columns.map((column) => (
         <TableCell
-        className="grid-item "
+          className="grid-item "
           key={column.dataKey}
-          align={column.numeric || false ? 'right' : 'left'}
+          align={column.numeric || false ? "right" : "left"}
         >
           {row[column.dataKey]}
         </TableCell>
       ))}
+      <TableCell className="grid-item ">
+      <Select
+        labelId="demo-select-small"
+        id="demo-select-small"
+      
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>
+      </TableCell>
+      <TableCell className="grid-item ">
+      <Button size="small" variant="contained" style={{backgroundColor: "black"}} aria-label="save">
+          <SaveIcon />
+        </Button>
+      </TableCell>
+      <TableCell className="grid-item ">
+        <Stack direction="row" spacing={2} >
+        <Button size="small"  variant="contained" color="success" aria-label="edit">
+        <EditIcon />
+        </Button>
+        <Button size="small" variant="contained" color="error" aria-label="delete">
+          <DeleteIcon />
+        </Button>
+        </Stack>
+      </TableCell>
     </React.Fragment>
   );
 }
 
 export default function Contact() {
+  const [defectList, setdefectList] = useState([]);
   useEffect(() => {
     axios
       .get("./db/hataListesiData.json")
@@ -471,23 +547,23 @@ export default function Contact() {
         // setTerminals(data);
       })
       .catch((err) => console.log(err));
-      //depCode -> bildiren
-      //bodyNo -> body
-      //vinNo -> Vin No
-      //colorExtCode -> renk
-      //modelCode-> mdl
-      //localId -> sicil
-      //partName -> parca 
-      //spotCode-> spot
-      //spotgunName-> gun
-      //arcnutboltCode->arc
-      //arcnutboltgunName-> arcgun
-      //description-> hata
-      //defrankCode-> rank
-      //formattedDefectHour -> saat
-      //defectType -> hata turu
-      //defectName -> HATA SOR
-      axios
+    //depCode -> bildiren
+    //bodyNo -> body
+    //vinNo -> Vin No
+    //colorExtCode -> renk
+    //modelCode-> mdl
+    //localId -> sicil
+    //partName -> parca
+    //spotCode-> spot
+    //spotgunName-> gun
+    //arcnutboltCode->arc
+    //arcnutboltgunName-> arcgun
+    //description-> hata
+    //defrankCode-> rank
+    //formattedDefectHour -> saat
+    //defectType -> hata turu
+    //defectName -> HATA SOR
+    axios
       .get("./db/hataListesiData.json")
       .then((res) => {
         let hata = res.data.data.map((item) => {
@@ -514,7 +590,7 @@ export default function Contact() {
             }),
           };
         });
-        console.log(hata);
+        setdefectList(hata);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -541,16 +617,21 @@ export default function Contact() {
   return (
     <div>
       Hata Data List
-
-    <Paper style={{ height: 480, width: '100%', borderCollapse: "collapse",
-            border: "1px solid black", }}>
-      <TableVirtuoso 
-        data={rows}
-        components={VirtuosoTableComponents}
-        fixedHeaderContent={fixedHeaderContent}
-        itemContent={rowContent}
-      />
-    </Paper>
+      <Paper
+        style={{
+          height: 480,
+          width: "100%",
+          borderCollapse: "collapse",
+          border: "1px solid black",
+        }}
+      >
+        <TableVirtuoso
+          data={rows}
+          components={VirtuosoTableComponents}
+          fixedHeaderContent={fixedHeaderContent}
+          itemContent={rowContent}
+        />
+      </Paper>
     </div>
   );
 }
@@ -566,79 +647,6 @@ export default function Contact() {
 
 // export default function Contact() {
 //   return (
-    
+
 //   );
 // }
-
-{/* <Formik
-  initialValues={{
-    code: "",
-  }}
-  onSubmit={(values) => {
-    console.log(values);
-  }}
-  validationSchema={SampleSchema}
->
-  {({ values }) => (
-    <Form className="hidden">
-      <Input label="Kodu Girin" name="code"></Input> 
-      <button type="submit">Gonder</button>
-      <AutoSubmitCode></AutoSubmitCode>
-    </Form>
-  )}
-</Formik>
-<Formik
-  initialValues={{
-    name: "",
-    about: "",
-    accept: false,
-    gender: 1,
-    avatar: "",
-    skills: [],
-    level: "sr",
-  }}
-  onSubmit={(values) => {
-    console.log(values);
-  }}
-  validationSchema={ContactSchema}
->
-  {({ values }) => (
-    <Form className="p-6 m-4 shadow=lg grid gap-y-4 border rounded p-4">
-      <Input label="ad-soyad" name="name"/> 
-      <Textarea label="Hakkimda" rows={5} name="about" /> 
-      <Checkbox label="Kurallari kabul ediyorum!" name="accept" />
-      <Select
-        label="Cinsiyet"
-        name="gender"
-        options={[
-          { key: 1, value: "Kadin" },
-          { key: 2, value: "Erkek" },
-        ]}
-      />{" "}
-      
-      <Field component="select" name="skills" multiple={true}>
-        <option value="css">css</option>
-        <option value="js">js</option>
-        <option value="php">php</option>
-        <option value="c++">c++</option>
-      </Field>
-      <File label="Avatar" name="avatar" />
-      <Radio
-        label="Seviyenizi secin"
-        name="level"
-        options={[
-          { key: "jr", value: "Jr. Developer" },
-          { key: "sr", value: "Sr. Developer" },
-          { key: "ninja", value: "Ninja" },
-        ]}
-      />
-      <button
-        className="h-10 rounded bg-black text-sm text-white px-5"
-        type="submit"
-      >
-        Gonder
-      </button>
-    </Form>
-  )}
-</Formik> */}
-
