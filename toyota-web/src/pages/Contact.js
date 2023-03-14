@@ -238,11 +238,15 @@ import axios from "axios";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
-import SaveIcon from '@mui/icons-material/Save';
-import EditIcon from '@mui/icons-material/Edit';
-import Button from '@mui/material/Button';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
+import Button from "@mui/material/Button";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const sample = [
   ["Frozen yoghurt", 159, 6.0, 24, 4.0],
   ["Ice cream sandwich", 237, 9.0, 37, 4.3],
@@ -255,9 +259,59 @@ const sample = [
   ["Gingerbread", 356, 16.0, 49, 3.9],
 ];
 
-function createData(id, dessert, calories, fat, carbs, protein) {
-  return { id, dessert, calories, fat, carbs, protein };
+function createData(
+  id,
+  bildiren,
+  body,
+  assy,
+  vinNo,
+  renk,
+  mdl,
+  sicil,
+  parca,
+  spot,
+  gun,
+  arc,
+  arcGun,
+  hata,
+  rank,
+  saat,
+  hataTuru,
+  hataSor,
+  altSorumlu
+) {
+  return {
+    id,
+    bildiren,
+    body,
+    assy,
+    vinNo,
+    renk,
+    mdl,
+    sicil,
+    parca,
+    spot,
+    gun,
+    arc,
+    arcGun,
+    hata,
+    rank,
+    saat,
+    hataTuru,
+    hataSor,
+    altSorumlu,
+  };
 }
+
+const getValueAxios = async () => {
+  try {
+    let resGet = await axios.get("http://localhost:3001/process");
+    console.log(resGet);
+    return resGet;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const columns = [
   {
@@ -280,7 +334,7 @@ const columns = [
   {
     width: 25,
     label: "Vin No",
-    dataKey: "vin No",
+    dataKey: "vinNo",
     numeric: true,
   },
   {
@@ -352,25 +406,19 @@ const columns = [
   {
     width: 25,
     label: "Hata Türü",
-    dataKey: "hata turu",
-    numeric: true,
-  },
-  {
-    width: 25,
-    label: "Hata Türü",
-    dataKey: "hata turu",
+    dataKey: "hataTuru",
     numeric: true,
   },
   {
     width: 25,
     label: "Hata Sor",
-    dataKey: "hata sor",
+    dataKey: "hataSor",
     numeric: true,
   },
   {
     width: 40,
     label: "Alt Sorumlu",
-    dataKey: "alt sorumlu",
+    dataKey: "altSorumlu",
     numeric: true,
   },
   // {
@@ -442,7 +490,7 @@ function fixedHeaderContent() {
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
-          width:100,
+          width: 100,
         }}
         sx={{
           backgroundColor: "background.paper",
@@ -456,7 +504,7 @@ function fixedHeaderContent() {
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
-          width:60,
+          width: 60,
         }}
         sx={{
           backgroundColor: "background.paper",
@@ -470,7 +518,7 @@ function fixedHeaderContent() {
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
-          width:150,
+          width: 150,
         }}
         sx={{
           backgroundColor: "background.paper",
@@ -495,32 +543,43 @@ function rowContent(_index, row) {
         </TableCell>
       ))}
       <TableCell className="grid-item ">
-      <Select
-        labelId="demo-select-small"
-        id="demo-select-small"
-      
-      >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-      </Select>
+        <Select labelId="demo-select-small" id="demo-select-small">
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
       </TableCell>
       <TableCell className="grid-item ">
-      <Button size="small" variant="contained" style={{backgroundColor: "black"}} aria-label="save">
+        <Button
+          size="small"
+          variant="contained"
+          style={{ backgroundColor: "black" }}
+          aria-label="save"
+        >
           <SaveIcon />
         </Button>
       </TableCell>
       <TableCell className="grid-item ">
-        <Stack direction="row" spacing={2} >
-        <Button size="small"  variant="contained" color="success" aria-label="edit">
-        <EditIcon />
-        </Button>
-        <Button size="small" variant="contained" color="error" aria-label="delete">
-          <DeleteIcon />
-        </Button>
+        <Stack direction="row" spacing={2}>
+          <Button
+            size="small"
+            variant="contained"
+            color="success"
+            aria-label="edit"
+          >
+            <EditIcon />
+          </Button>
+          <Button
+            size="small"
+            variant="contained"
+            color="error"
+            aria-label="delete"
+          >
+            <DeleteIcon />
+          </Button>
         </Stack>
       </TableCell>
     </React.Fragment>
@@ -619,7 +678,7 @@ export default function Contact() {
       Hata Data List
       <Paper
         style={{
-          height: 480,
+          height: 500,
           width: "100%",
           borderCollapse: "collapse",
           border: "1px solid black",
@@ -632,6 +691,42 @@ export default function Contact() {
           itemContent={rowContent}
         />
       </Paper>
+      <Box sx={{ backgroundColor: "white", "& button": { m: 1 } }}>
+        
+        <ButtonGroup 
+          
+          orientation="vertical"
+          aria-label="vertical contained button group"
+          variant="contained"
+        >
+          <Button variant="contained" size="small" style={{margin:0, padding:0}}>
+          <ArrowDropUpIcon/>
+        </Button>
+        <Button variant="contained" size="small" style={{margin:0, padding:0}}>
+        <ArrowDropDownIcon/>
+        </Button>
+        
+        </ButtonGroup>
+
+        <Button variant="contained" size="large" style={{ padding: 40 }}>
+          Araç Listesi
+        </Button>
+        <Button variant="contained" size="large" style={{ padding: 40 }}>
+          Manual Hata
+        </Button>
+        <Button variant="contained" size="large" style={{ padding: 40 }}>
+          Çoklu Hata
+        </Button>
+        <Button variant="contained" size="large" style={{ padding: 40 }}>
+          Hata Listesi
+        </Button>
+        <Button variant="contained" size="large" style={{ padding: 40 }}>
+          Hata Kopya
+        </Button>
+        <Button variant="contained" size="large" style={{ padding: 40 }}>
+          Çıkış
+        </Button>
+      </Box>
     </div>
   );
 }
