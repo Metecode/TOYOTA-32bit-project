@@ -219,6 +219,8 @@ export default function Login() {
                     <DatePicker name="date" />
                     <div>
                       <Select
+                        
+                      dropDown={false}
                         className="vardiya"
                         label="Vardiya"
                         name="vardiya"

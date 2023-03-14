@@ -4,26 +4,51 @@ import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useField, ErrorMessage,  } from "formik";
+import { useField, ErrorMessage } from "formik";
 import { useEffect, useState, useRef } from "react";
-export default function Input({ label, options, original = false, ...props }) {
+export default function Input({
+  label,
+  options,
+  dropDown = true,
+  original = false,
+  ...props
+}) {
   const [field, meta, helpers] = useField(props);
+  const [menuItems, setMenuItems] = useState([]);
+  const [index, setIndex] = useState(0);
   const selectRef = useRef(null);
   const changeHandle = (e) => {
     let selected = options.find((option) => option.key === +e.target.value);
     helpers.setValue(original ? selected : e.target.value);
   };
-  useEffect(()=>{
-    selectRef.current.focus();
-  })
-  const handleScroll = (offset) => {
-    if (selectRef.current) {
-      selectRef.current.scrollTop += offset;
+
+  setTimeout(()=>{
+    if(menuItems.length==0){
+
+      setMenuItems(options.slice(index, index + 10));
+      selectRef.current.focus();
     }
-  }
-  const scrollToTop = () => {
-    document.getElementById("scroller").scroll(0,50)
-  }
+  },100)
+  const scrollToUp = () => {
+    if (index == 0) {
+      return;
+    }
+    setIndex(index - 1);
+  };
+  const scrollToDown = () => {
+    if (index == options.length - 10) {
+      return;
+    }
+    setIndex(index + 1);
+
+    console.log({ s: selectRef.current });
+    // selectRef.current.scrollTop += 50
+    selectRef.current.scrollTo(0, 100);
+  };
+  useEffect(() => {
+    setMenuItems(options.slice(index, index + 10));
+  }, [index]);
+  
   return (
     <label className="block w-full">
       <FormControl required sx={{ m: 1, minWidth: 400 }}>
@@ -31,25 +56,24 @@ export default function Input({ label, options, original = false, ...props }) {
           {label}
         </InputLabel>
         <Select
-        ref={selectRef}
-         id="demo-simple-select-error scroller"
+          ref={selectRef}
+          id="demo-simple-select-error"
           size="small"
           label={label}
-          defaultValue={field.value}
+          defaultValue={menuItems[0] ? menuItems[0].value : 'seciniz'}
           {...props}
           onChange={changeHandle}
         >
-          <button onClick={scrollToTop}>Scroll to Top</button>
+          {dropDown && <button onClick={scrollToDown}>Scroll to down</button>}
+          {dropDown && <button onClick={scrollToUp}>Scroll to up</button>}
 
-          {options.map((option, key) => (
+          {menuItems.map((option, key) => (
             <MenuItem value={option.key} key={key}>
               {option.value}
             </MenuItem>
           ))}
         </Select>
         <FormHelperText>Required</FormHelperText>
-        
-
       </FormControl>
       {/* <select  className="w-full  border-b outline-none focus:border-black" onChange={changeHandle} defaultValue={field.value} {...props}>
                 
@@ -61,7 +85,6 @@ export default function Input({ label, options, original = false, ...props }) {
       />
       {/* <button onClick={() => handleScroll(-10)}>Up</button>
         <button onClick={() => handleScroll(10)}>Up</button> */}
-        
     </label>
   );
 }

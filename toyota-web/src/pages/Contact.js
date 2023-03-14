@@ -247,17 +247,7 @@ import Box from "@mui/material/Box";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-const sample = [
-  ["Frozen yoghurt", 159, 6.0, 24, 4.0],
-  ["Ice cream sandwich", 237, 9.0, 37, 4.3],
-  ["Eclair", 262, 16.0, 24, 6.0],
-  ["Cupcake", 305, 3.7, 67, 4.3],
-  ["Gingerbread", 356, 16.0, 49, 3.9],
-  ["Gingerbread", 356, 16.0, 49, 3.9],
-  ["Gingerbread", 356, 16.0, 49, 3.9],
-  ["Gingerbread", 356, 16.0, 49, 3.9],
-  ["Gingerbread", 356, 16.0, 49, 3.9],
-];
+import TextField from '@mui/material/TextField';
 
 function createData(
   id,
@@ -303,26 +293,18 @@ function createData(
   };
 }
 
-const getValueAxios = async () => {
-  try {
-    let resGet = await axios.get("http://localhost:3001/process");
-    console.log(resGet);
-    return resGet;
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 const columns = [
   {
     width: 25,
     label: "Bildiren",
-    dataKey: "bildiren",
+    dataKey: "depCode",
   },
   {
     width: 25,
     label: "Body",
-    dataKey: "body",
+    dataKey: "bodyNo",
     numeric: true,
   },
   {
@@ -340,79 +322,79 @@ const columns = [
   {
     width: 25,
     label: "Renk",
-    dataKey: "renk",
+    dataKey: "colorExtCode",
     numeric: true,
   },
   {
     width: 25,
     label: "Mdl",
-    dataKey: "mdl",
+    dataKey: "modelCode",
     numeric: true,
   },
   {
     width: 25,
     label: "Sicil",
-    dataKey: "sicil",
+    dataKey: "localId",
     numeric: true,
   },
   {
     width: 100,
     label: "Parca",
-    dataKey: "parca",
+    dataKey: "partName",
     numeric: true,
   },
   {
     width: 25,
     label: "Spot",
-    dataKey: "spot",
+    dataKey: "spotCode",
     numeric: true,
   },
   {
     width: 25,
     label: "Gun",
-    dataKey: "gun",
+    dataKey: "spotgunName",
     numeric: true,
   },
   {
     width: 25,
     label: "Arc",
-    dataKey: "arc",
+    dataKey: "arcnutboltCode",
     numeric: true,
   },
   {
     width: 25,
     label: "ArcGun",
-    dataKey: "arcGun",
+    dataKey: "arcnutboltgunName",
     numeric: true,
   },
   {
     width: 100,
     label: "Hata",
-    dataKey: "hata",
+    dataKey: "description",
     numeric: true,
   },
   {
     width: 25,
     label: "Rank",
-    dataKey: "rank",
+    dataKey: "defrankCode",
     numeric: true,
   },
   {
     width: 25,
     label: "Saat",
-    dataKey: "saat",
+    dataKey: "formattedDefectHour",
     numeric: true,
   },
   {
     width: 25,
     label: "Hata Türü",
-    dataKey: "hataTuru",
+    dataKey: "defectType",
     numeric: true,
   },
   {
     width: 25,
     label: "Hata Sor",
-    dataKey: "hataSor",
+    dataKey: "defectName",
     numeric: true,
   },
   {
@@ -441,10 +423,6 @@ const columns = [
   // },
 ];
 
-const rows = Array.from({ length: 200 }, (_, index) => {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  return createData(index, ...randomSelection);
-});
 
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
@@ -531,59 +509,61 @@ function fixedHeaderContent() {
 }
 
 function rowContent(_index, row) {
-  return (
-    <React.Fragment>
-      {columns.map((column) => (
-        <TableCell
-          className="grid-item "
-          key={column.dataKey}
-          align={column.numeric || false ? "right" : "left"}
-        >
-          {row[column.dataKey]}
+  
+   return (
+      <React.Fragment>
+        {columns.map((column) => (
+          <TableCell
+            className="grid-item "
+            key={column.dataKey}
+            align={column.numeric || false ? "right" : "left"}
+          >
+            {row[column.dataKey]}
+          </TableCell>
+        ))}
+        <TableCell className="grid-item ">
+          <Select labelId="demo-select-small" id="demo-select-small">
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
         </TableCell>
-      ))}
-      <TableCell className="grid-item ">
-        <Select labelId="demo-select-small" id="demo-select-small">
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </TableCell>
-      <TableCell className="grid-item ">
-        <Button
-          size="small"
-          variant="contained"
-          style={{ backgroundColor: "black" }}
-          aria-label="save"
-        >
-          <SaveIcon />
-        </Button>
-      </TableCell>
-      <TableCell className="grid-item ">
-        <Stack direction="row" spacing={2}>
+        <TableCell className="grid-item ">
           <Button
             size="small"
             variant="contained"
-            color="success"
-            aria-label="edit"
+            style={{ backgroundColor: "black" }}
+            aria-label="save"
           >
-            <EditIcon />
+            <SaveIcon />
           </Button>
-          <Button
-            size="small"
-            variant="contained"
-            color="error"
-            aria-label="delete"
-          >
-            <DeleteIcon />
-          </Button>
-        </Stack>
-      </TableCell>
-    </React.Fragment>
-  );
+        </TableCell>
+        <TableCell className="grid-item ">
+          <Stack direction="row" spacing={2}>
+            <Button
+              size="small"
+              variant="contained"
+              color="success"
+              aria-label="edit"
+            >
+              <EditIcon />
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="error"
+              aria-label="delete"
+            >
+              <DeleteIcon />
+            </Button>
+          </Stack>
+        </TableCell>
+      </React.Fragment>
+    );
+    
 }
 
 export default function Contact() {
@@ -625,9 +605,8 @@ export default function Contact() {
     axios
       .get("./db/hataListesiData.json")
       .then((res) => {
-        let hata = res.data.data.map((item) => {
-          return {
-            defectList: item.defectList.map((x) => {
+        console.log(res)
+        let hata = res.data.data[0].defectList.map((x) => {
               return {
                 depCode: x.depCode,
                 bodyNo: x.bodyNo,
@@ -646,10 +625,8 @@ export default function Contact() {
                 defectType: x.defectType,
                 defectName: x.defectName,
               };
-            }),
-          };
-        });
-        setdefectList(hata);
+            })
+            setdefectList(hata);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -678,14 +655,14 @@ export default function Contact() {
       Hata Data List
       <Paper
         style={{
-          height: 500,
+          height: 570,
           width: "100%",
           borderCollapse: "collapse",
           border: "1px solid black",
         }}
       >
         <TableVirtuoso
-          data={rows}
+          data={defectList}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
           itemContent={rowContent}
@@ -693,16 +670,23 @@ export default function Contact() {
       </Paper>
       <Box sx={{ backgroundColor: "white", "& button": { m: 1 } }}>
         
+<div style={{display:"flex"
+  }}>
+
+      <TextField id="outlined-search" label="Search field" type="search" />
+      <TextField id="outlined-search" label="Search field" type="search" />
+</div>
+        
         <ButtonGroup 
-          
+          style={{margin:20}}
           orientation="vertical"
           aria-label="vertical contained button group"
           variant="contained"
         >
-          <Button variant="contained" size="small" style={{margin:0, padding:0}}>
+          <Button variant="contained" size="large" style={{margin:0, paddingTop:0, paddingBottom:0 ,height:40, width:100}}>
           <ArrowDropUpIcon/>
         </Button>
-        <Button variant="contained" size="small" style={{margin:0, padding:0}}>
+        <Button variant="contained" size="large" style={{margin:0, paddingTop:0, paddingBottom:0,height:40, width:100}}>
         <ArrowDropDownIcon/>
         </Button>
         
