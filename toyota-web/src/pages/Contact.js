@@ -313,7 +313,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 25,
+    width: 35,
     label: "Arc",
     dataKey: "arcnutboltCode",
     numeric: true,
@@ -349,7 +349,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 50,
+    width: 90,
     label: "Hata Sor",
     dataKey: "defectName",
     numeric: true,
@@ -388,6 +388,7 @@ const VirtuosoTableComponents = {
     <Table
       {...props}
       sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
+      
     />
   ),
   TableHead,
@@ -402,7 +403,7 @@ function fixedHeaderContent() {
     <TableRow>
       {columns.map((column) => (
         <TableCell
-          className="grid-item "
+          className="grid-item color"
           key={column.dataKey}
           variant="head"
           align={"center"}
@@ -411,51 +412,41 @@ function fixedHeaderContent() {
             borderCollapse: "collapse",
             border: "1px solid black",
           }}
-          sx={{
-            backgroundColor: "background.paper",
-          }}
         >
           {column.label}
         </TableCell>
       ))}
       <TableCell
-        className="grid-item"
+        className="grid-item color"
         variant="head"
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
           width: 150,
         }}
-        sx={{
-          backgroundColor: "background.paper",
-        }}
+        
       >
         Nr Reason
       </TableCell>
       <TableCell
-        className="grid-item "
+        className="grid-item color "
         variant="head"
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
           width: 60,
         }}
-        sx={{
-          backgroundColor: "background.paper",
-        }}
+        
       >
         Kaydet
       </TableCell>
       <TableCell
-        className="grid-item "
+        className="grid-item color"
         variant="head"
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
           width: 140,
-        }}
-        sx={{
-          backgroundColor: "background.paper",
         }}
       >
         İşlem
@@ -488,7 +479,6 @@ export default function Contact() {
     axios
       .get("./db/hataListesiData.json")
       .then((res) => {
-        console.log(res);
         let reason = res.data.data[0].nrReasonList.map((x) => {
           return {
             nrId: x.nrId,
@@ -524,20 +514,19 @@ export default function Contact() {
     return (
       <React.Fragment>
         {columns.map((column) => (
-          <TableCell className="grid-item " key={column.dataKey} align={"left"}>
+          <TableCell className="grid-item color " key={column.dataKey} align={"left"}>
             {row[column.dataKey]}
           </TableCell>
         ))}
-        <TableCell className="grid-item break">
+        <TableCell className="grid-item break color">
           <Select
             size="small"
             className="break"
             labelId="demo-select-small"
             id="demo-select-small"
+            style={{maxWidth:150}}
+            value={reasonList[0].nrReasonDetail}
           >
-            <MenuItem>
-              <em>Seciniz</em>
-            </MenuItem>
             {reasonList.map((option, key) => (
               <MenuItem value={option.nrReasonDetail} key={key}>
                 {option.nrReasonDetail}
@@ -553,7 +542,7 @@ export default function Contact() {
                           
                          />{" "} */}
         </TableCell>
-        <TableCell className="grid-item ">
+        <TableCell className="grid-item color">
           <Button
             size="small"
             variant="contained"
@@ -563,7 +552,7 @@ export default function Contact() {
             <SaveIcon />
           </Button>
         </TableCell>
-        <TableCell className="grid-item ">
+        <TableCell className="grid-item  color">
           <Stack direction="row" spacing={2}>
             <Button
               size="small"
@@ -624,16 +613,21 @@ export default function Contact() {
           itemContent={rowContent}
         />
       </Paper>
+      <Box className="total-row" >
+      <span style={{marginRight:5}}>Total Row: {defectList.length}</span>
+      </Box>
+      
       <Box
         style={{ display: "flex" }}
         sx={{ backgroundColor: "white", "& button": { m: 1 } }}
       >
-        <Box style={{ marginTop: 10, marginBottom: 10, marginLeft: 10 }}>
+        <Box style={{ marginTop: 10, marginLeft: 10 }}>
+          
           <TextField id="outlined-search" label="MONTAJ NO" type="search" />
           <Button
             size="large"
             variant="contained"
-            style={{ height: 50, width: 100 }}
+            style={{ height: 50, width: 100, }}
           >
             ARA
           </Button>

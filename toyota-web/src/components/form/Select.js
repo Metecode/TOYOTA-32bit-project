@@ -60,7 +60,8 @@ export default function Input({
           id="demo-simple-select-error"
           size="small"
           label={label}
-          defaultValue={menuItems[0] ? menuItems[0].value : 'seciniz'}
+          // value={menuItems[0].value}
+          // defaultValue={menuItems[0] ? menuItems[0].value : 'seciniz'}
           {...props}
           onChange={changeHandle}
         >

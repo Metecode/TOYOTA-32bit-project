@@ -1,13 +1,22 @@
-.teknik-text{
-    font-family: "Toyota Base",arial,helvetica,sans-serif;
-    color:red;
-    font-weight: 400;
-    font-size: 1rem;
+.teknik-text {
+  font-family: "Toyota Base", arial, helvetica, sans-serif;
+  color: red;
+  font-weight: 400;
+  font-size: 1rem;
 }
-.table{
-    text-align: center;
+.table {
+  text-align: center;
 }
-.break{
-    overflow-wrap: break-word;
-    display:block;
+.break {
+  overflow-wrap: break-word;
+  display: block;
+}
+.total-row {
+  width: 100%;
+  text-align: right;
+  background-color: white;
+  font-family: "Toyota Base", arial, helvetica, sans-serif;
+}
+.color{
+    background-color: #B9F3FC;
 }
