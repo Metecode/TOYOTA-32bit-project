@@ -188,12 +188,16 @@ export default function Login() {
                     label="Terminal listesi"
                     name="terminalListesi"
                     // control ? {key: option.termId, value: option.termName} :
-                    options={control ? [ { key: option.termId, value: option.termName} ] :options.map((option) => {
-                      return {
-                        key: option.termId,
-                        value: option.termName,
-                      };
-                    })}
+                    options={
+                      control
+                        ? [{ key: option.termId, value: option.termName }]
+                        : options.map((option) => {
+                            return {
+                              key: option.termId,
+                              value: option.termName,
+                            };
+                          })
+                    }
                   />
                   <br />
                   <Input
@@ -219,8 +223,7 @@ export default function Login() {
                     <DatePicker name="date" />
                     <div>
                       <Select
-                        
-                      dropDown={false}
+                        dropDown={false}
                         className="vardiya"
                         label="Vardiya"
                         name="vardiya"

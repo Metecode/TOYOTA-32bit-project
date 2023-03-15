@@ -242,62 +242,19 @@ import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
+// import Select from "../components/form/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import TextField from '@mui/material/TextField';
-
-function createData(
-  id,
-  bildiren,
-  body,
-  assy,
-  vinNo,
-  renk,
-  mdl,
-  sicil,
-  parca,
-  spot,
-  gun,
-  arc,
-  arcGun,
-  hata,
-  rank,
-  saat,
-  hataTuru,
-  hataSor,
-  altSorumlu
-) {
-  return {
-    id,
-    bildiren,
-    body,
-    assy,
-    vinNo,
-    renk,
-    mdl,
-    sicil,
-    parca,
-    spot,
-    gun,
-    arc,
-    arcGun,
-    hata,
-    rank,
-    saat,
-    hataTuru,
-    hataSor,
-    altSorumlu,
-  };
-}
-
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import TextField from "@mui/material/TextField";
+import "../fonts/hataListesi.css";
 
 
 const columns = [
   {
-    width: 25,
+    width: 40,
     label: "Bildiren",
     dataKey: "depCode",
   },
@@ -308,13 +265,13 @@ const columns = [
     numeric: true,
   },
   {
-    width: 15,
+    width: 20,
     label: "Assy",
     dataKey: "assy",
     numeric: true,
   },
   {
-    width: 25,
+    width: 150,
     label: "Vin No",
     dataKey: "vinNo",
     numeric: true,
@@ -362,7 +319,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 25,
+    width: 35,
     label: "ArcGun",
     dataKey: "arcnutboltgunName",
     numeric: true,
@@ -380,7 +337,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 25,
+    width: 40,
     label: "Saat",
     dataKey: "formattedDefectHour",
     numeric: true,
@@ -392,7 +349,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 25,
+    width: 50,
     label: "Hata Sor",
     dataKey: "defectName",
     numeric: true,
@@ -423,7 +380,6 @@ const columns = [
   // },
 ];
 
-
 const VirtuosoTableComponents = {
   Scroller: React.forwardRef((props, ref) => (
     <TableContainer component={Paper} {...props} ref={ref} />
@@ -449,7 +405,7 @@ function fixedHeaderContent() {
           className="grid-item "
           key={column.dataKey}
           variant="head"
-          align={column.numeric || false ? "right" : "left"}
+          align={"center"}
           style={{
             width: column.width,
             borderCollapse: "collapse",
@@ -463,12 +419,12 @@ function fixedHeaderContent() {
         </TableCell>
       ))}
       <TableCell
-        className="grid-item "
+        className="grid-item"
         variant="head"
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
-          width: 100,
+          width: 150,
         }}
         sx={{
           backgroundColor: "background.paper",
@@ -496,7 +452,7 @@ function fixedHeaderContent() {
         style={{
           borderCollapse: "collapse",
           border: "1px solid black",
-          width: 150,
+          width: 140,
         }}
         sx={{
           backgroundColor: "background.paper",
@@ -508,28 +464,94 @@ function fixedHeaderContent() {
   );
 }
 
-function rowContent(_index, row) {
-  
-   return (
+export default function Contact() {
+  const [defectList, setdefectList] = useState([]);
+
+  const [reasonList, setReasonList] = useState([]);
+  useEffect(() => {
+    //depCode -> bildiren
+    //bodyNo -> body
+    //vinNo -> Vin No
+    //colorExtCode -> renk
+    //modelCode-> mdl
+    //localId -> sicil
+    //partName -> parca
+    //spotCode-> spot
+    //spotgunName-> gun
+    //arcnutboltCode->arc
+    //arcnutboltgunName-> arcgun
+    //description-> hata
+    //defrankCode-> rank
+    //formattedDefectHour -> saat
+    //defectType -> hata turu
+    //defectName -> HATA SOR
+    axios
+      .get("./db/hataListesiData.json")
+      .then((res) => {
+        console.log(res);
+        let reason = res.data.data[0].nrReasonList.map((x) => {
+          return {
+            nrId: x.nrId,
+            nrReasonDetail: x.nrReasonDetail,
+          };
+        });
+        setReasonList(reason);
+        let hata = res.data.data[0].defectList.map((x) => {
+          return {
+            depCode: x.depCode,
+            bodyNo: x.bodyNo,
+            vinNo: x.vinNo,
+            colorExtCode: x.colorExtCode,
+            modelCode: x.modelCode,
+            localId: x.localId,
+            partName: x.partName,
+            spotCode: x.spotCode,
+            spotgunName: x.spotgunName,
+            arcnutboltCode: x.arcnutboltCode,
+            arcnutboltgunName: x.arcnutboltgunName,
+            description: x.description,
+            defrankCode: x.defrankCode,
+            formattedDefectHour: x.formattedDefectHour,
+            defectType: x.defectType,
+            defectName: x.defectName,
+          };
+        });
+        setdefectList(hata);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  function rowContent(_index, row) {
+    return (
       <React.Fragment>
         {columns.map((column) => (
-          <TableCell
-            className="grid-item "
-            key={column.dataKey}
-            align={column.numeric || false ? "right" : "left"}
-          >
+          <TableCell className="grid-item " key={column.dataKey} align={"left"}>
             {row[column.dataKey]}
           </TableCell>
         ))}
-        <TableCell className="grid-item ">
-          <Select labelId="demo-select-small" id="demo-select-small">
-            <MenuItem value="">
-              <em>None</em>
+        <TableCell className="grid-item break">
+          <Select
+            size="small"
+            className="break"
+            labelId="demo-select-small"
+            id="demo-select-small"
+          >
+            <MenuItem>
+              <em>Seciniz</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {reasonList.map((option, key) => (
+              <MenuItem value={option.nrReasonDetail} key={key}>
+                {option.nrReasonDetail}
+              </MenuItem>
+            ))}
           </Select>
+          {/* <Select
+                         
+                         dropDown={false}
+                           className="vardiya"
+                           label="Vardiya"
+                           name="vardiya"
+                          
+                         />{" "} */}
         </TableCell>
         <TableCell className="grid-item ">
           <Button
@@ -563,96 +585,30 @@ function rowContent(_index, row) {
         </TableCell>
       </React.Fragment>
     );
-    
-}
+  }
 
-export default function Contact() {
-  const [defectList, setdefectList] = useState([]);
-  useEffect(() => {
-    axios
-      .get("./db/hataListesiData.json")
-      .then((res) => {
-        let data = res.data.data.map((item) => {
-          return {
-            nrReasonList: item.nrReasonList.map((x) => {
-              return {
-                nrId: x.nrId,
-                nrReasonDetail: x.nrReasonDetail,
-              };
-            }),
-          };
-        });
-        console.log(data);
-        // setTerminals(data);
-      })
-      .catch((err) => console.log(err));
-    //depCode -> bildiren
-    //bodyNo -> body
-    //vinNo -> Vin No
-    //colorExtCode -> renk
-    //modelCode-> mdl
-    //localId -> sicil
-    //partName -> parca
-    //spotCode-> spot
-    //spotgunName-> gun
-    //arcnutboltCode->arc
-    //arcnutboltgunName-> arcgun
-    //description-> hata
-    //defrankCode-> rank
-    //formattedDefectHour -> saat
-    //defectType -> hata turu
-    //defectName -> HATA SOR
-    axios
-      .get("./db/hataListesiData.json")
-      .then((res) => {
-        console.log(res)
-        let hata = res.data.data[0].defectList.map((x) => {
-              return {
-                depCode: x.depCode,
-                bodyNo: x.bodyNo,
-                vinNo: x.vinNo,
-                colorExtCode: x.colorExtCode,
-                modelCode: x.modelCode,
-                localId: x.localId,
-                partName: x.partName,
-                spotCode: x.spotCode,
-                spotgunName: x.spotgunName,
-                arcnutboltCode: x.arcnutboltCode,
-                arcnutboltgunName: x.arcnutboltgunName,
-                description: x.description,
-                defrankCode: x.defrankCode,
-                formattedDefectHour: x.formattedDefectHour,
-                defectType: x.defectType,
-                defectName: x.defectName,
-              };
-            })
-            setdefectList(hata);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  //  useEffect(() => {
-  //   axios
-  //     .get("./db/hataListesiData.json")
-  //     .then((res) => {
-  //       let data = res.data.data.map((item) => {
-  //         return {
-  //           nrReasonList: item.nrReasonList.map((x) => {
-  //             return {
-  //               nrId: x.nrId,
-  //               nrReasonAbb: x.nrReasonAbb,
-  //               nrReasonDetail:x.nrReasonDetail,
-  //             };
-  //           }),
-  //         };
-  //       });
-  //       console.log(data);
-  //       // setTerminals(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const buttons = [
+    <Button variant="contained" size="large" style={{ padding: 40 }}>
+      Araç Listesi
+    </Button>,
+    <Button variant="contained" size="large" style={{ padding: 40 }}>
+      Manual Hata
+    </Button>,
+    <Button variant="contained" size="large" style={{ padding: 40 }}>
+      Çoklu Hata
+    </Button>,
+    <Button variant="contained" size="large" style={{ padding: 40 }}>
+      Hata Listesi
+    </Button>,
+    <Button variant="contained" size="large" style={{ padding: 40 }}>
+      Hata Kopya
+    </Button>,
+    <Button variant="contained" size="large" style={{ padding: 40 }}>
+      Çıkış
+    </Button>,
+  ];
   return (
     <div>
-      Hata Data List
       <Paper
         style={{
           height: 570,
@@ -668,64 +624,59 @@ export default function Contact() {
           itemContent={rowContent}
         />
       </Paper>
-      <Box sx={{ backgroundColor: "white", "& button": { m: 1 } }}>
-        
-<div style={{display:"flex"
-  }}>
+      <Box
+        style={{ display: "flex" }}
+        sx={{ backgroundColor: "white", "& button": { m: 1 } }}
+      >
+        <Box style={{ marginTop: 10, marginBottom: 10, marginLeft: 10 }}>
+          <TextField id="outlined-search" label="MONTAJ NO" type="search" />
+          <Button
+            size="large"
+            variant="contained"
+            style={{ height: 50, width: 100 }}
+          >
+            ARA
+          </Button>
+          <TextField
+            style={{ marginTop: 8 }}
+            id="outlined-search"
+            label="BODY NO"
+            type="search"
+          />
+          <Button
+            size="large"
+            variant="contained"
+            style={{ height: 50, width: 100 }}
+          >
+            ARA
+          </Button>
+        </Box>
 
-      <TextField id="outlined-search" label="Search field" type="search" />
-      <TextField id="outlined-search" label="Search field" type="search" />
-</div>
-        
-        <ButtonGroup 
-          style={{margin:20}}
+        <ButtonGroup
+          style={{ margin: 20 }}
           orientation="vertical"
           aria-label="vertical contained button group"
-          variant="contained"
         >
-          <Button variant="contained" size="large" style={{margin:0, paddingTop:0, paddingBottom:0 ,height:40, width:100}}>
-          <ArrowDropUpIcon/>
-        </Button>
-        <Button variant="contained" size="large" style={{margin:0, paddingTop:0, paddingBottom:0,height:40, width:100}}>
-        <ArrowDropDownIcon/>
-        </Button>
-        
+          <Button
+            variant="contained"
+            size="large"
+            style={{ margin: 0, height: 40, width: 100 }}
+          >
+            <ArrowDropUpIcon />
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            style={{ margin: 0, height: 40, width: 100 }}
+          >
+            <ArrowDropDownIcon />
+          </Button>
+          <span style={{ marginTop: 30 }} className="teknik-text">
+            Teknik Destek
+          </span>
         </ButtonGroup>
-
-        <Button variant="contained" size="large" style={{ padding: 40 }}>
-          Araç Listesi
-        </Button>
-        <Button variant="contained" size="large" style={{ padding: 40 }}>
-          Manual Hata
-        </Button>
-        <Button variant="contained" size="large" style={{ padding: 40 }}>
-          Çoklu Hata
-        </Button>
-        <Button variant="contained" size="large" style={{ padding: 40 }}>
-          Hata Listesi
-        </Button>
-        <Button variant="contained" size="large" style={{ padding: 40 }}>
-          Hata Kopya
-        </Button>
-        <Button variant="contained" size="large" style={{ padding: 40 }}>
-          Çıkış
-        </Button>
+        {buttons}
       </Box>
     </div>
   );
 }
-// const AutoSubmitCode = () => {
-//   const { values, submitForm } = useFormikContext();
-//   useEffect(() => {
-//     if (values.code.length === 6) {
-//       submitForm();
-//     }
-//   }, [values]);
-//   return null;
-// };
-
-// export default function Contact() {
-//   return (
-
-//   );
-// }
