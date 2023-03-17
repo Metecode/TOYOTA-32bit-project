@@ -20,3 +20,8 @@
 .color{
     background-color: #B9F3FC;
 }
+.button{
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}

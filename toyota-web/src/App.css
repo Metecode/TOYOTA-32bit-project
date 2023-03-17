@@ -19,3 +19,6 @@
 .td{
   border-bottom: 2px solid #000;
 }
+#root{
+  height: 100%;
+}

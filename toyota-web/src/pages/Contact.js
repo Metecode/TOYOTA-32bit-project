@@ -251,7 +251,6 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import TextField from "@mui/material/TextField";
 import "../fonts/hataListesi.css";
 
-
 const columns = [
   {
     width: 40,
@@ -351,7 +350,7 @@ const columns = [
   {
     width: 90,
     label: "Hata Sor",
-    dataKey: "defectName",
+    dataKey: "defrespName",
     numeric: true,
   },
   {
@@ -360,12 +359,12 @@ const columns = [
     dataKey: "altSorumlu",
     numeric: true,
   },
-  // {
-  //   width: 50,
-  //   label: 'NR REASON',
-  //   dataKey: 'nr reason',
-  //   numeric: true,
-  // },
+  {
+    width: 150,
+    label: "NR REASON",
+    dataKey: "nrReason",
+    numeric: true,
+  },
   // {
   //   width: 25,
   //   label: 'Kaydet',
@@ -388,7 +387,6 @@ const VirtuosoTableComponents = {
     <Table
       {...props}
       sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
-      
     />
   ),
   TableHead,
@@ -416,7 +414,7 @@ function fixedHeaderContent() {
           {column.label}
         </TableCell>
       ))}
-      <TableCell
+      {/* <TableCell
         className="grid-item color"
         variant="head"
         style={{
@@ -427,7 +425,7 @@ function fixedHeaderContent() {
         
       >
         Nr Reason
-      </TableCell>
+      </TableCell> */}
       <TableCell
         className="grid-item color "
         variant="head"
@@ -436,7 +434,6 @@ function fixedHeaderContent() {
           border: "1px solid black",
           width: 60,
         }}
-        
       >
         Kaydet
       </TableCell>
@@ -487,10 +484,15 @@ export default function Contact() {
         });
         setReasonList(reason);
         let hata = res.data.data[0].defectList.map((x) => {
+         let color = "black"
+         if(x.rgbCode === "#ff1c23" || "#6C414F" ){
+          color= "white"
+         }
           return {
             depCode: x.depCode,
             bodyNo: x.bodyNo,
             vinNo: x.vinNo,
+            rgbCode: x.rgbCode,
             colorExtCode: x.colorExtCode,
             modelCode: x.modelCode,
             localId: x.localId,
@@ -503,7 +505,11 @@ export default function Contact() {
             defrankCode: x.defrankCode,
             formattedDefectHour: x.formattedDefectHour,
             defectType: x.defectType,
-            defectName: x.defectName,
+            defrespName: x.defrespName,
+            textColorCode: color,
+            nrReasonId: x.nrReasonId,
+            nrReasonValue: reason.filter((r) => r.nrId == x.nrReasonId)[0]?.nrReasonDetail
+          
           };
         });
         setdefectList(hata);
@@ -514,34 +520,42 @@ export default function Contact() {
     return (
       <React.Fragment>
         {columns.map((column) => (
-          <TableCell className="grid-item color " key={column.dataKey} align={"left"}>
-            {row[column.dataKey]}
+          <TableCell
+            style={{
+              color:column.dataKey == "colorExtCode" ?  row.textColorCode : "",
+              background: column.dataKey == "colorExtCode" ? row.rgbCode : "",
+              
+            }}
+            className={`grid-item color ${
+              column.dataKey == "colorExtCode" ? "button" : " "
+            }`}
+            key={column.dataKey}
+            align={"left"}
+          >
+            
+            {column.dataKey == "nrReason" ? (
+          
+            <Select
+                size="small"
+                className="break"
+                labelId="demo-select-small"
+                id="demo-select-small"
+                style={{ maxWidth: 150 }}
+                value={row.nrReasonValue}
+              >
+                {console.log(row.nrReasonValue, row.nrReasonId)}
+                {reasonList.map((option, key) => (
+                  <MenuItem value={option.nrReasonDetail} key={key}>
+                    {option.nrReasonDetail}
+                  </MenuItem>
+                ))}
+              </Select>
+            ) : (
+              row[column.dataKey]
+            )}
           </TableCell>
         ))}
-        <TableCell className="grid-item break color">
-          <Select
-            size="small"
-            className="break"
-            labelId="demo-select-small"
-            id="demo-select-small"
-            style={{maxWidth:150}}
-            value={reasonList[0].nrReasonDetail}
-          >
-            {reasonList.map((option, key) => (
-              <MenuItem value={option.nrReasonDetail} key={key}>
-                {option.nrReasonDetail}
-              </MenuItem>
-            ))}
-          </Select>
-          {/* <Select
-                         
-                         dropDown={false}
-                           className="vardiya"
-                           label="Vardiya"
-                           name="vardiya"
-                          
-                         />{" "} */}
-        </TableCell>
+
         <TableCell className="grid-item color">
           <Button
             size="small"
@@ -597,7 +611,7 @@ export default function Contact() {
     </Button>,
   ];
   return (
-    <div>
+    <div style={{height:"100%"}}>
       <Paper
         style={{
           height: 570,
@@ -613,21 +627,20 @@ export default function Contact() {
           itemContent={rowContent}
         />
       </Paper>
-      <Box className="total-row" >
-      <span style={{marginRight:5}}>Total Row: {defectList.length}</span>
+      <Box className="total-row">
+        <span style={{ marginRight: 5 }}>Total Row: {defectList.length}</span>
       </Box>
-      
+
       <Box
-        style={{ display: "flex" }}
-        sx={{ backgroundColor: "white", "& button": { m: 1 } }}
+        style={{ display: "flex", height: "100%" }}
+        sx={{ backgroundColor: "white", "& button": { m: 1 } ,}}
       >
         <Box style={{ marginTop: 10, marginLeft: 10 }}>
-          
           <TextField id="outlined-search" label="MONTAJ NO" type="search" />
           <Button
             size="large"
             variant="contained"
-            style={{ height: 50, width: 100, }}
+            style={{ height: 50, width: 100 }}
           >
             ARA
           </Button>
