@@ -294,7 +294,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 100,
+    width: 150,
     label: "Parca",
     dataKey: "partName",
     numeric: true,
@@ -385,12 +385,17 @@ const VirtuosoTableComponents = {
   )),
   Table: (props) => (
     <Table
+    stickyHeader 
       {...props}
-      sx={{ borderCollapse: "separate", tableLayout: "fixed" }}
+      sx={{ borderCollapse: "separate", tableLayout: "fixed", backgroundColor:"#B9F3FC",
+      "& .MuiTableRow-root:hover": {
+            backgroundColor: "primary.light"
+          }
+      }} 
     />
   ),
   TableHead,
-  TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
+  TableRow: ({ item: _item, ...props }) => <TableRow {...props}  />,
   TableBody: React.forwardRef((props, ref) => (
     <TableBody {...props} ref={ref} />
   )),
@@ -398,10 +403,11 @@ const VirtuosoTableComponents = {
 
 function fixedHeaderContent() {
   return (
-    <TableRow>
+    <TableRow >
       {columns.map((column) => (
         <TableCell
-          className="grid-item color"
+          
+          className="grid-item header-color"
           key={column.dataKey}
           variant="head"
           align={"center"}
@@ -414,20 +420,8 @@ function fixedHeaderContent() {
           {column.label}
         </TableCell>
       ))}
-      {/* <TableCell
-        className="grid-item color"
-        variant="head"
-        style={{
-          borderCollapse: "collapse",
-          border: "1px solid black",
-          width: 150,
-        }}
-        
-      >
-        Nr Reason
-      </TableCell> */}
       <TableCell
-        className="grid-item color "
+        className="grid-item header-color "
         variant="head"
         style={{
           borderCollapse: "collapse",
@@ -438,7 +432,7 @@ function fixedHeaderContent() {
         Kaydet
       </TableCell>
       <TableCell
-        className="grid-item color"
+        className="grid-item header-color"
         variant="head"
         style={{
           borderCollapse: "collapse",
@@ -529,9 +523,9 @@ export default function Contact() {
     return (
       <React.Fragment>
         {columns.map((column) => (
-          <TableCell
+          <TableCell 
             style={{
-              color: column.dataKey == "colorExtCode" ? row.textColorCode : "",
+              color: (column.dataKey == "colorExtCode" ? row.textColorCode : "") || (column.dataKey == "partName" ? "red": ""),
               background: column.dataKey == "colorExtCode" ? row.rgbCode : "",
             }}
             className={`grid-item color ${
@@ -562,7 +556,7 @@ export default function Contact() {
           </TableCell>
         ))}
 
-        <TableCell className="grid-item color">
+        <TableCell className="grid-item ">
           <Button
             size="small"
             variant="contained"
@@ -572,7 +566,7 @@ export default function Contact() {
             <SaveIcon />
           </Button>
         </TableCell>
-        <TableCell className="grid-item  color">
+        <TableCell className="grid-item  ">
           <Stack direction="row" spacing={2}>
             <Button
               size="small"
@@ -624,9 +618,13 @@ export default function Contact() {
           width: "100%",
           borderCollapse: "collapse",
           border: "1px solid black",
+          
         }}
+        
+        
       >
         <TableVirtuoso
+          
           data={defectList}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}

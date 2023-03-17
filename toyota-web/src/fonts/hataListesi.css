@@ -17,9 +17,10 @@
   background-color: white;
   font-family: "Toyota Base", arial, helvetica, sans-serif;
 }
-.color{
+.header-color{
     background-color: #B9F3FC;
 }
+
 .button{
   border-radius: 15px;
   text-align: center;
