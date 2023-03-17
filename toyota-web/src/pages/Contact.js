@@ -484,10 +484,19 @@ export default function Contact() {
         });
         setReasonList(reason);
         let hata = res.data.data[0].defectList.map((x) => {
-         let color = "black"
-         if(x.rgbCode === "#ff1c23" || "#6C414F" ){
-          color= "white"
-         }
+          let color = "black";
+          if (
+            x.rgbCode == "#ff1c23" ||
+            x.rgbCode == "#000000" ||
+            x.rgbCode == "#6C414F" ||
+            x.rgbCode == "#CF0C0C" ||
+            x.rgbCode == "#686e92" ||
+            x.rgbCode == "#969696" ||
+            x.rgbCode == "#5f4769"
+          ) {
+            color = "white";
+          }
+
           return {
             depCode: x.depCode,
             bodyNo: x.bodyNo,
@@ -508,8 +517,8 @@ export default function Contact() {
             defrespName: x.defrespName,
             textColorCode: color,
             nrReasonId: x.nrReasonId,
-            nrReasonValue: reason.filter((r) => r.nrId == x.nrReasonId)[0]?.nrReasonDetail
-          
+            nrReasonValue: reason.filter((r) => r.nrId == x.nrReasonId)[0]
+              ?.nrReasonDetail,
           };
         });
         setdefectList(hata);
@@ -522,9 +531,8 @@ export default function Contact() {
         {columns.map((column) => (
           <TableCell
             style={{
-              color:column.dataKey == "colorExtCode" ?  row.textColorCode : "",
+              color: column.dataKey == "colorExtCode" ? row.textColorCode : "",
               background: column.dataKey == "colorExtCode" ? row.rgbCode : "",
-              
             }}
             className={`grid-item color ${
               column.dataKey == "colorExtCode" ? "button" : " "
@@ -532,10 +540,8 @@ export default function Contact() {
             key={column.dataKey}
             align={"left"}
           >
-            
             {column.dataKey == "nrReason" ? (
-          
-            <Select
+              <Select
                 size="small"
                 className="break"
                 labelId="demo-select-small"
@@ -611,7 +617,7 @@ export default function Contact() {
     </Button>,
   ];
   return (
-    <div style={{height:"100%"}}>
+    <div style={{ height: "100%" }}>
       <Paper
         style={{
           height: 570,
@@ -633,7 +639,7 @@ export default function Contact() {
 
       <Box
         style={{ display: "flex", height: "100%" }}
-        sx={{ backgroundColor: "white", "& button": { m: 1 } ,}}
+        sx={{ backgroundColor: "white", "& button": { m: 1 } }}
       >
         <Box style={{ marginTop: 10, marginLeft: 10 }}>
           <TextField id="outlined-search" label="MONTAJ NO" type="search" />
