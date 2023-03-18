@@ -375,22 +375,22 @@ export default function Contact() {
   }
 
   const buttons = [
-    <Button variant="contained" size="large" style={{ padding: 40 }}>
+    <Button variant="contained" size="large" style={{ padding: 20 }}>
       Araç Listesi
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 40 }}>
+    <Button variant="contained" size="large" style={{ padding: 20 }}>
       Manual Hata
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 40 }}>
+    <Button variant="contained" size="large" style={{ padding: 20 }}>
       Çoklu Hata
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 40 }}>
+    <Button variant="contained" size="large" style={{ padding: 20 }}>
       Hata Listesi
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 40 }}>
+    <Button variant="contained" size="large" style={{ padding: 20 }}>
       Hata Kopya
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 40 }}>
+    <Button variant="contained" size="large" style={{ padding: 20, width:150}}>
       Çıkış
     </Button>,
   ];
