@@ -230,7 +230,7 @@ function fixedHeaderContent() {
   );
 }
 
-export default function Contact() {
+export default function HataListesi() {
   const [defectList, setdefectList] = useState([]);
 
   const [reasonList, setReasonList] = useState([]);

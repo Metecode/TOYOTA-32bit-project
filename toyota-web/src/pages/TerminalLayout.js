@@ -6,7 +6,7 @@ export default function TerminalLayout() {
     <>
       <nav>
         <NavLink to={url("terminal")}>AnaSayfa</NavLink>
-        <NavLink to={url("terminal.contact")}>Iletisim</NavLink>
+        <NavLink to={url("terminal.hataListesi")}>Iletisim</NavLink>
         <NavLink to={url("terminal.profile")}>Profil</NavLink>
       </nav>
       <Outlet></Outlet>

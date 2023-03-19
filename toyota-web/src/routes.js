@@ -7,7 +7,7 @@ import Blog from "./pages/Blog/Blog"
 import Blog404 from "./pages/Blog/Blog404"
 import Categories from "./pages/Blog/Categories"
 import Post from "./pages/Blog/Post"
-import Contact from "./pages/Contact"
+import HataListesi from "./pages/HataListesi"
 import Terminal from "./pages/Terminal"
 import TerminalLayout from "./pages/TerminalLayout"
 import Profile from "./pages/Profile"
@@ -28,9 +28,9 @@ const routes = [
                 element: <Terminal/>
             },
             {
-                name:'contact',
-                path:'contact',
-                element: <Contact/>
+                name:'hataListesi',
+                path:'hataListesi',
+                element: <HataListesi/>
             },
             {
                 name:'blog',
