@@ -1,11 +1,4 @@
-import { Formik, Form, Field, useFormikContext } from "formik";
-import Input from "../components/form/Input";
-import File from "../components/form/File";
-import Checkbox from "../components/form/Checkbox";
-import Textarea from "../components/form/Textarea";
-import Radio from "../components/form/Radio";
 import { useEffect, useState } from "react";
-import { SampleSchema, ContactSchema } from "../validations";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -17,7 +10,6 @@ import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
 import "../App.css";
 import axios from "axios";
-import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
@@ -31,7 +23,8 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import TextField from "@mui/material/TextField";
 import "../fonts/hataListesi.css";
-
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 const columns = [
   {
     width: 40,
@@ -207,10 +200,17 @@ function fixedHeaderContent() {
     </TableRow>
   );
 }
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function HataListesi() {
   const [defectList, setdefectList] = useState([]);
-
   const [reasonList, setReasonList] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     //depCode -> bildiren
@@ -285,6 +285,7 @@ export default function HataListesi() {
     setdefectList((defectList) =>
       defectList.filter((_, index) => index !== columnIndex)
     );
+    setOpen(true);
   };
   function rowContent(_index, row) {
     return (
@@ -478,6 +479,16 @@ export default function HataListesi() {
         </ButtonGroup>
         {buttons}
       </Box>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} open={open} severity="success" sx={{ width: "100%" }}>
+          Kayıt başarıyla silinmiştir!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
