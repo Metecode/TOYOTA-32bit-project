@@ -146,18 +146,18 @@ const columns = [
     dataKey: "nrReason",
     numeric: true,
   },
-  // {
-  //   width: 25,
-  //   label: 'Kaydet',
-  //   dataKey: 'kaydet',
-  //   numeric: true,
-  // },
-  // {
-  //   width: 25,
-  //   label: 'İşlem',
-  //   dataKey: 'islem',
-  //   numeric: true,
-  // },
+  {
+    width: 60,
+    label: "Kaydet",
+    dataKey: "kaydet",
+    numeric: true,
+  },
+  {
+    width: 140,
+    label: "İşlem",
+    dataKey: "islem",
+    numeric: true,
+  },
 ];
 
 const VirtuosoTableComponents = {
@@ -166,17 +166,20 @@ const VirtuosoTableComponents = {
   )),
   Table: (props) => (
     <Table
-    stickyHeader 
+      stickyHeader
       {...props}
-      sx={{ borderCollapse: "separate", tableLayout: "fixed", backgroundColor:"#B9F3FC",
-      "& .MuiTableRow-root:hover": {
-            backgroundColor: "primary.light"
-          }
-      }} 
+      sx={{
+        borderCollapse: "separate",
+        tableLayout: "fixed",
+        backgroundColor: "#B9F3FC",
+        "& .MuiTableRow-root:hover": {
+          backgroundColor: "primary.light",
+        },
+      }}
     />
   ),
   TableHead,
-  TableRow: ({ item: _item, ...props }) => <TableRow {...props}  />,
+  TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
   TableBody: React.forwardRef((props, ref) => (
     <TableBody {...props} ref={ref} />
   )),
@@ -184,10 +187,9 @@ const VirtuosoTableComponents = {
 
 function fixedHeaderContent() {
   return (
-    <TableRow >
+    <TableRow>
       {columns.map((column) => (
         <TableCell
-          
           className="grid-item header-color"
           key={column.dataKey}
           variant="head"
@@ -196,44 +198,20 @@ function fixedHeaderContent() {
             width: column.width,
             borderCollapse: "collapse",
             border: "1px solid black",
-            backgroundColor:"#B9F3FC"
+            backgroundColor: "#B9F3FC",
           }}
         >
           {column.label}
         </TableCell>
       ))}
-      <TableCell
-        className="grid-item header-color "
-        variant="head"
-        style={{
-          borderCollapse: "collapse",
-          border: "1px solid black",
-          width: 60,
-          backgroundColor:"#B9F3FC"
-        }}
-      >
-        Kaydet
-      </TableCell>
-      <TableCell
-        className="grid-item header-color"
-        variant="head"
-        style={{
-          borderCollapse: "collapse",
-          border: "1px solid black",
-          width: 140,
-          backgroundColor:"#B9F3FC"
-        }}
-      >
-        İşlem
-      </TableCell>
     </TableRow>
   );
 }
-
 export default function HataListesi() {
   const [defectList, setdefectList] = useState([]);
 
   const [reasonList, setReasonList] = useState([]);
+
   useEffect(() => {
     //depCode -> bildiren
     //bodyNo -> body
@@ -303,13 +281,20 @@ export default function HataListesi() {
       })
       .catch((err) => console.log(err));
   }, []);
+  const handleDelete = (columnIndex) => {
+    setdefectList((defectList) =>
+      defectList.filter((_, index) => index !== columnIndex)
+    );
+  };
   function rowContent(_index, row) {
     return (
       <React.Fragment>
         {columns.map((column) => (
-          <TableCell 
+          <TableCell
             style={{
-              color: (column.dataKey == "colorExtCode" ? row.textColorCode : "") || (column.dataKey == "partName" ? "red": ""),
+              color:
+                (column.dataKey == "colorExtCode" ? row.textColorCode : "") ||
+                (column.dataKey == "partName" ? "red" : ""),
               background: column.dataKey == "colorExtCode" ? row.rgbCode : "",
             }}
             className={`grid-item color ${
@@ -337,39 +322,43 @@ export default function HataListesi() {
             ) : (
               row[column.dataKey]
             )}
+            {column.dataKey == "kaydet" ? (
+              <Button
+                size="small"
+                variant="contained"
+                style={{ backgroundColor: "black" }}
+                aria-label="save"
+              >
+                <SaveIcon />
+              </Button>
+            ) : (
+              ""
+            )}
+            {column.dataKey == "islem" ? (
+              <Stack direction="row" spacing={2}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="success"
+                  aria-label="edit"
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="error"
+                  aria-label="delete"
+                  onClick={(e) => handleDelete(_index, e)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Stack>
+            ) : (
+              ""
+            )}
           </TableCell>
         ))}
-
-        <TableCell className="grid-item ">
-          <Button
-            size="small"
-            variant="contained"
-            style={{ backgroundColor: "black" }}
-            aria-label="save"
-          >
-            <SaveIcon />
-          </Button>
-        </TableCell>
-        <TableCell className="grid-item  ">
-          <Stack direction="row" spacing={2}>
-            <Button
-              size="small"
-              variant="contained"
-              color="success"
-              aria-label="edit"
-            >
-              <EditIcon />
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="error"
-              aria-label="delete"
-            >
-              <DeleteIcon />
-            </Button>
-          </Stack>
-        </TableCell>
       </React.Fragment>
     );
   }
@@ -390,7 +379,11 @@ export default function HataListesi() {
     <Button variant="contained" size="large" style={{ padding: 20 }}>
       Hata Kopya
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 20, width:150}}>
+    <Button
+      variant="contained"
+      size="large"
+      style={{ padding: 20, width: 150 }}
+    >
       Çıkış
     </Button>,
   ];
@@ -402,13 +395,9 @@ export default function HataListesi() {
           width: "100%",
           borderCollapse: "collapse",
           border: "1px solid black",
-          
         }}
-        
-        
       >
         <TableVirtuoso
-          
           data={defectList}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
@@ -423,34 +412,45 @@ export default function HataListesi() {
         style={{ display: "flex", height: "100%" }}
         sx={{ backgroundColor: "white", "& button": { m: 1 } }}
       >
-        <Box style={{ marginTop: 10, marginLeft: 10,display: "inline-block",display: 'flex',
-        flexDirection: 'column' }}>
+        <Box
+          style={{
+            marginTop: 10,
+            marginLeft: 10,
+            display: "inline-block",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Box component="form">
-          <TextField style={{ marginTop: 8 }} id="outlined-search" label="MONTAJ NO" type="search" />
-          <Button
-            size="large"
-            variant="contained"
-            style={{ height: 50, width: 100 }}
-          >
-            ARA
-          </Button>
+            <TextField
+              style={{ marginTop: 8 }}
+              id="outlined-search"
+              label="MONTAJ NO"
+              type="search"
+            />
+            <Button
+              size="large"
+              variant="contained"
+              style={{ height: 50, width: 100 }}
+            >
+              ARA
+            </Button>
           </Box>
           <Box component="form">
-
-          <TextField
-            style={{ marginTop: 8 }}
-            id="outlined-search"
-            label="BODY NO"
-            type="search"
-          />
-          <Button
-            size="large"
-            variant="contained"
-            style={{ height: 50, width: 100 }}
-          >
-            ARA
-          </Button>
-            </Box>
+            <TextField
+              style={{ marginTop: 8 }}
+              id="outlined-search"
+              label="BODY NO"
+              type="search"
+            />
+            <Button
+              size="large"
+              variant="contained"
+              style={{ height: 50, width: 100 }}
+            >
+              ARA
+            </Button>
+          </Box>
         </Box>
 
         <ButtonGroup
