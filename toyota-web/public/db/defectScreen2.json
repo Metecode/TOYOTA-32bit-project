@@ -1,0 +1,675 @@
+{
+    "type":"SUCCESS",
+    "data":[
+       {
+          "picDataId":29359,
+          "motherPicDataId":24411,
+          "terminalPicDataId":24411,
+          "mainPictureId":97743,
+          "motherPictureId":71835,
+          "terminalPictureId":71835,
+          "lastPictureId":87897,
+          "depParamDTO":{
+             "blnShowBlankDefectCode":false,
+             "intPTAHeight":80,
+             "intPTAWidth":80,
+             "intPTAFontSize":8,
+             "intPTABorderSize":6,
+             "strPTABorderColor":"mavi",
+             "strPTALabelColor":"blue",
+             "strPTAFontFace":"Arial",
+             "strPTAFontWeight":"NORMAL",
+             "blnVDFPrintAllDefect":true,
+             "blnVDFPrintAllOffline":false,
+             "intVDFPrintManifest":0,
+             "blnVDFPrintWithConfirm":false,
+             "blnVDFPrintPortrait":true,
+             "strVDFManifestType":"manifestw",
+             "intVDFDefCountPerPage":7,
+             "blnCheckEngineNo":false,
+             "strDefectTransferStatus":"I",
+             "strDefaultDefectStatus":"W",
+             "blnMultipleSpotArcBoltNutDefectOpen":false,
+             "blnDEPUseVINNo":true,
+             "blnDEPUseAssyNo":true,
+             "blnDEPUseSpot":true,
+             "blnDEPUseSpotDetails":true,
+             "blnDEPUseSpotGunNo":true,
+             "blnDEPUseSpotRepresent":true,
+             "blnDEPUseArc":true,
+             "blnDEPUseArcGunNo":true,
+             "blnDEPShowShiftColor":true,
+             "blnRepeatingDefect":false,
+             "blnSelectAutoLocation":true,
+             "blnEnterPartDefectDetail":true,
+             "blnDeleteOnTransfer":false,
+             "blnCorrectOnTransfer":true,
+             "blnNotRepOnTransfer":true,
+             "blnNotRepStyleIsComboboxOnTransAndConf":true,
+             "blnNoExitForDefectVehicle":true,
+             "blnHideNotReported":false,
+             "blnFastDefectEntry":true,
+             "blnShowTermPicture":true,
+             "blnCheckTMNo":false,
+             "blnRecordKm":false,
+             "blnRecordTVECS":false,
+             "intDefectWarningLimit":10,
+             "intDefectRepeatLimit":2,
+             "intShippingDelayWarningLimit":220,
+             "blnConfirmNoRepairDefectOnTransfer":true,
+             "blnConfirmNoRepairDefectOnConfirmation":true,
+             "blnShowRankOnDefectList":true,
+             "blnShowDefSubResOnDefectList":true,
+             "blnShowDefectBeforeInspection":false,
+             "blnForcePartDefect":false,
+             "blnChangeRankOnTransfer":false,
+             "blnChangeSubRespOnTransfer":false,
+             "strShowVehicleSequence":"ASSYSEQ",
+             "blnConvertDefectToUpperCase":false,
+             "intNextVehicleClickDelay":1,
+             "blnSortDefectByAppOnInlineRepair":true,
+             "blnHDselectedOnDefectEntry":false,
+             "blnNRselectedOnDefectEntry":false,
+             "blnShowSaveNextOnTransfer":true,
+             "blnEnableMultiDepConfirm":false,
+             "blnShowNRReasonOnDefectUpdate":true,
+             "blnUpdateExitPointOnTransfer":true,
+             "blnEnableGalcZeroDefect":false,
+             "intExitDepID":112
+          },
+          "partDefects":[
+             {
+                "displayOrder":0,
+                "buttonId":700469,
+                "defectId":1548,
+                "defectName":"BODY GİRİŞİM",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":0,
+                "buttonId":700469,
+                "defectId":1502,
+                "defectName":"DEFORME",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":0,
+                "buttonId":700469,
+                "defectId":1532,
+                "defectName":"EKSİK",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":0,
+                "buttonId":700469,
+                "defectId":2057,
+                "defectName":"GAZ KAÇAĞI",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":0,
+                "buttonId":700469,
+                "defectId":1511,
+                "defectName":"ÇİZİK",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":1649,
+                "defectName":"BOLT EKSİK",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":1306,
+                "defectName":"BOLT GEVŞEK",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":1267,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":2315,
+                "defectName":"BOLT SIKMA HATASI",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":1786,
+                "defectName":"LABEL DEFORME",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":1531,
+                "defectName":"YANLIŞ",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":1441,
+                "defectName":"YERLEŞTİRME HATASI",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":1441,
+                "defectName":"YERLEŞTİRME HATASI",
+                "defRankId":1255,
+                "defRespId":1213,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             },
+             {
+                "displayOrder":9,
+                "buttonId":700469,
+                "defectId":2028,
+                "defectName":"ÇIKMA",
+                "defRankId":0,
+                "defRespId":0,
+                "defRespId2":0,
+                "defClsId":0,
+                "defGrpId":0,
+                "defTypeId":0,
+                "notReported":"N",
+                "harigami":"N"
+             }
+          ],
+          "spotDefects":[
+             {
+                "defectId":1525,
+                "defectName":"ÇAPAK",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":11471,
+                "defectName":"ÇİFT SPOT",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1980,
+                "defectName":"HALF SPOT",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1992,
+                "defectName":"İNCE ÇEKİRDEK",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2467,
+                "defectName":"NO SPOT",
+                "defectGroupId":1268,
+                "defectTypeId":0
+             },
+             {
+                "defectId":27205,
+                "defectName":"OPEN CHISEL YAPILDI AYRILMADI",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1473,
+                "defectName":"PIN HOLE",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2551,
+                "defectName":"SEPERASYON",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":27194,
+                "defectName":"SMALL CHISEL YAPILDI AYRILMADI ",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2595,
+                "defectName":"SPARCK",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2542,
+                "defectName":"SPOT CRACK",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2541,
+                "defectName":"SPOT ÇAPAK",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1800,
+                "defectName":"SPOT ÇUKUR",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2560,
+                "defectName":"SPOT GUN TOUCH",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1455,
+                "defectName":"SPOT HOLE",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2580,
+                "defectName":"SPOT OFF-SET",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2596,
+                "defectName":"SPOT TÜMSEK",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":27196,
+                "defectName":"STICK CHISEL YAPILDI AYRILMADI",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":27199,
+                "defectName":"STICK soğuk yapışma",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":27195,
+                "defectName":"THIN CHISEL YAPILDI AYRILMADI",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":27202,
+                "defectName":"THIN ince çekirdek",
+                "defectGroupId":1277,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1650,
+                "defectName":"YANIK",
+                "defectGroupId":0,
+                "defectTypeId":0
+             }
+          ],
+          "arcDefects":[
+             {
+                "defectId":1492,
+                "defectName":"ARALIK AZ",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1520,
+                "defectName":"ARALIK FAZLA",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1509,
+                "defectName":"ARALIK SAPMA",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2244,
+                "defectName":"ARK AYRILMA",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2245,
+                "defectName":"ARK BİNME",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2264,
+                "defectName":"ARK ÇAPAK",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2265,
+                "defectName":"ARK ÇATLAK",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2247,
+                "defectName":"ARK DAMLAMA",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2266,
+                "defectName":"ARK DELİK",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2252,
+                "defectName":"ARK GENİŞLİK AZ",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2253,
+                "defectName":"ARK KISA",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2257,
+                "defectName":"ARK KÖPÜRME",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2259,
+                "defectName":"ARK OFF-SET",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2260,
+                "defectName":"ARK OLUK",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2278,
+                "defectName":"ARK TÜMSEK",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":119831,
+                "defectName":"ARK UZUN",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2280,
+                "defectName":"ARK YANMA",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2455,
+                "defectName":"NO ARK",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":476612,
+                "defectName":"R/L ARALIK SAPMA",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":476613,
+                "defectName":"R/L SEVİYE SAPMA",
+                "defectGroupId":11955,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1334,
+                "defectName":"SEVİYE AZ",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1544,
+                "defectName":"SEVİYE FAZLA",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2022,
+                "defectName":"SEVİYE SAPMA",
+                "defectGroupId":1273,
+                "defectTypeId":0
+             }
+          ],
+          "nutDefects":[
+             {
+                "defectId":2452,
+                "defectName":"NO NUT",
+                "defectGroupId":1268,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2449,
+                "defectName":"NUT KOPMA",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2458,
+                "defectName":"NUT OFF-SET",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2468,
+                "defectName":"NUT TERS KAYNATILMIŞ",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":19453,
+                "defectName":"NUT YANLIŞ",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2474,
+                "defectName":"NUT ZAYIF KAYNAK",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             }
+          ],
+          "boltDefects":[
+             {
+                "defectId":748378,
+                "defectName":"BOLT ÇAPAK",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1780,
+                "defectName":"BOLT DEFORME",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1306,
+                "defectName":"BOLT GEVŞEK",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2014,
+                "defectName":"BOLT KIRIK",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2395,
+                "defectName":"BOLT KOPUK",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2318,
+                "defectName":"BOLT PIN HOLE",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2335,
+                "defectName":"BOLT YAMUK",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             },
+             {
+                "defectId":1525,
+                "defectName":"ÇAPAK",
+                "defectGroupId":0,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2437,
+                "defectName":"NO BOLT",
+                "defectGroupId":1268,
+                "defectTypeId":0
+             },
+             {
+                "defectId":2732,
+                "defectName":"ZAYIF BOLT",
+                "defectGroupId":1267,
+                "defectTypeId":0
+             }
+          ],
+          "defectButtonRecords":[
+             {
+                "buttonId":700469,
+                "picId":87897,
+                "childPicID":0,
+                "boxX":441,
+                "boxY":65,
+                "lineX":348,
+                "lineY":279,
+                "boxColor":"red",
+                "labelColor":"red",
+                "boxWidth":80,
+                "boxHeight":80,
+                "labelText":"A/C TUBE",
+                "buttonType":"P",
+                "locId11":0,
+                "locId12":0,
+                "locId13":0,
+                "partId1":6605,
+                "locId21":0,
+                "locId22":0,
+                "locId23":0,
+                "partId2":0,
+                "locId31":0,
+                "locId32":0,
+                "locId33":0,
+                "partId3":0,
+                "spotId":0,
+                "arcnutboltId":null,
+                "wisNo":null,
+                "defRespId":0,
+                "defClsId":0
+             }
+          ],
+          "showUserList":"N"
+       }
+    ]
+ }

@@ -11,6 +11,7 @@ import HataListesi from "./pages/HataListesi"
 import Terminal from "./pages/Terminal"
 import TerminalLayout from "./pages/TerminalLayout"
 import Profile from "./pages/Profile"
+import HataGiris from "./pages/HataGiris/HataGiris"
 // import { useNavigate, useLocation } from "react-router";
 // import * as React from "react";
 
@@ -31,6 +32,11 @@ const routes = [
                 name:'hataListesi',
                 path:'hataListesi',
                 element: <HataListesi/>
+            },
+            {
+                name:'hataGirisSayfasi',
+                path:'hataGirisSayfasi',
+                element: <HataGiris/>
             },
             {
                 name:'blog',
