@@ -66,6 +66,7 @@ export default function PermanentDrawerRight() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor:"#F5F5F5",
           },
         }}
         variant="permanent"

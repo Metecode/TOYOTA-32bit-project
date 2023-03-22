@@ -1,0 +1,14 @@
+.wrap div:last-child {
+    margin-left: auto;
+  }
+
+  .wrap {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .wrap-text{
+    font-size: large;
+    color:coral;
+  }
