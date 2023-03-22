@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import HataSideBar from './HataSideBar';
 import HataFooterBar from './HataFooterBar';
 import HataHeaderBar from './HataHeaderBar';
+import CarMapper from './CarMapper';
 
 const drawerWidth = 240;
 
@@ -43,6 +44,7 @@ export default function PermanentDrawerRight() {
         component="main"
         sx={{ flexGrow: 1, p: 3 }}
       >
+        <CarMapper/>
         <Toolbar />
       </Box>
        <AppBar position="fixed" color="default" sx={{ top: 'auto', bottom: 0 }}>
