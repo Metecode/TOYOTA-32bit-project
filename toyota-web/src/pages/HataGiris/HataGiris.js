@@ -8,13 +8,22 @@ import Divider from '@mui/material/Divider';
 import HataSideBar from './HataSideBar';
 import HataFooterBar from './HataFooterBar';
 import HataHeaderBar from './HataHeaderBar';
+import { useEffect,useState} from "react";
 import CarMapper from './CarMapper';
+import axios from "axios";
 
 const drawerWidth = 240;
 
 export default function PermanentDrawerRight() {
     const [checked, setChecked] = React.useState([0]);
+  const [info, setInfo]= useState([]);
 
+    useEffect(()=>{
+      axios
+      .get("../db/headerData.json")
+        .then((res) => setInfo(res.data.data[0]))
+        .catch((err) => console.log(err));
+      },[])
     const handleToggle = (value) => () => {
       const currentIndex = checked.indexOf(value);
       const newChecked = [...checked];
@@ -65,7 +74,9 @@ export default function PermanentDrawerRight() {
         variant="permanent"
         anchor="right"
       >
-        <Toolbar />
+        <Toolbar>
+        <span style={{textAlign:'center',color:"red"}} >{`${info.firstname} ${info.lastname} (${info.departmentCode})`}</span>
+        </Toolbar>
         <Divider />
         <HataSideBar/>
       </Drawer>

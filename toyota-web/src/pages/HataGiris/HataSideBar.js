@@ -17,6 +17,12 @@ export default function HataSideBar() {
   const [checked, setChecked] = React.useState([0]);
   const [info, setInfo]= useState([]);
 
+  useEffect(()=>{
+    axios
+    .get("../db/headerData.json")
+      .then((res) => setInfo(res.data.data[0]))
+      .catch((err) => console.log(err));
+    },[])
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -29,12 +35,6 @@ export default function HataSideBar() {
     setChecked(newChecked);
   };
 
-  useEffect(()=>{
-    axios
-    .get("../db/headerData.json")
-      .then((res) => setInfo(res.data.data[0]))
-      .catch((err) => console.log(err));
-    },[])
     console.log(info)
   return (
     <Box>
@@ -63,7 +63,7 @@ export default function HataSideBar() {
       <List>
       
       <ListItem >
-      <TextField id="outlined-basic" label="MONTAJ NO" defaultValue={`${info.seqNo}`} variant="outlined" />
+      <TextField id="outlined-basic" label="MONTAJ NO" value={`${info.seqNo}`} variant="outlined" />
           </ListItem>
           <ListItem >
             <ListItemButton className="Button">
@@ -86,6 +86,9 @@ export default function HataSideBar() {
             </ListItemButton>
           </ListItem>
       </List>
+      <br />
+      <span style={{color:"red"}}>Teknik Destek</span>
+      <span> {info.companyName}</span>
     </Box>
   );
 }
