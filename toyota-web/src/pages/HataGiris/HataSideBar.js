@@ -10,9 +10,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css"
 import TextField from '@mui/material/TextField';
+import axios from "axios";
+import { useEffect,useState} from "react";
 
 export default function HataSideBar() {
   const [checked, setChecked] = React.useState([0]);
+  const [info, setInfo]= useState([]);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -23,9 +26,16 @@ export default function HataSideBar() {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     setChecked(newChecked);
   };
+
+  useEffect(()=>{
+    axios
+    .get("../db/headerData.json")
+      .then((res) => setInfo(res.data.data[0]))
+      .catch((err) => console.log(err));
+    },[])
+    console.log(info)
   return (
     <Box>
       <List>
@@ -53,7 +63,7 @@ export default function HataSideBar() {
       <List>
       
       <ListItem >
-      <TextField id="outlined-basic" label="MONTAJ NO" defaultValue={'222'} variant="outlined" />
+      <TextField id="outlined-basic" label="MONTAJ NO" defaultValue={`${info.seqNo}`} variant="outlined" />
           </ListItem>
           <ListItem >
             <ListItemButton className="Button">

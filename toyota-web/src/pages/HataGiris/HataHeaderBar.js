@@ -2,22 +2,35 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css"
+import axios from "axios";
+import { useEffect,useState} from "react";
+
 export default function HataHeaderBar() {
-  return (
+   const [info, setInfo]= useState([]);
+
+  useEffect(()=>{
+    axios
+    .get("../db/headerData.json")
+      .then((res) => setInfo(res.data.data[0]))
+      .catch((err) => console.log(err));
+    },[])
+    
+    console.log(info)
+    return (
     <Stack spacing={3} className="wrap" direction="row" >
       <Button>
         MONTAJ NO <br />
-        222
+        {info.seqNo}
       </Button>
       <Button variant="contained">
         BODY NO <br />
-        222
+        {info.bodyNo}
       </Button>
-      <span className="wrap-text">HATA GİRİŞ EKRANI</span>
+      <span className="wrap-text">HATA GİRİŞ EKRANI  </span>
       <div>
-      <Button >
+      <Button style={{backgroundColor:"#ff1c23", color:"white"}} >
         RENK <br />
-        222
+        {info.extCode}
       </Button>
       </div>
     </Stack>
