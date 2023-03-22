@@ -9,6 +9,11 @@
   }
 
   .wrap-text{
-    font-size: large;
+    font-size:x-large;
     color:coral;
+  }
+
+  .Button{
+    border: 1px solid black!important;
+    border-radius: 10px!important;
   }
