@@ -11,13 +11,31 @@ import HataHeaderBar from './HataHeaderBar';
 import { useEffect,useState} from "react";
 import CarMapper from './CarMapper';
 import axios from "axios";
-
+import ImperialAlert from "../../fonts/sound/AlertSirenSound.mp3";
 const drawerWidth = 240;
 
 export default function PermanentDrawerRight() {
     const [checked, setChecked] = React.useState([0]);
   const [info, setInfo]= useState([]);
+  const audio = new Audio(ImperialAlert);
+  audio.loop = true;
+  let timer = null;
 
+const handleMouseMove = () => {
+  if (timer) clearTimeout(timer);
+  audio.pause()
+  timer = setTimeout(() => {
+      audio.loop = true;
+      audio.play();
+  }, 30000);
+};
+useEffect(() => {
+  window.addEventListener("mousemove", handleMouseMove);
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+    if (timer) clearTimeout(timer);
+  };
+},[]);
     useEffect(()=>{
       axios
       .get("../db/headerData.json")
@@ -36,9 +54,8 @@ export default function PermanentDrawerRight() {
   
       setChecked(newChecked);
     };
-  
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} >
       <CssBaseline />
       <AppBar
       color="default"
