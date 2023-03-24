@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ImageMapper from "react-img-mapper";
 import "../../fonts/carMapper.css"
+import carImg from "../../fonts/img/car.jpg"
 
 //ES6 way
 const CarMapper = (props) => {
@@ -69,7 +70,6 @@ const CarMapper = (props) => {
     ]
   };
 
-  var URL = "https://c1.staticflickr.com/5/4052/4503898393_303cfbc9fd_b.jpg";
 
   const load = () => {
     setMsg("Interact with image !");
@@ -131,11 +131,11 @@ const CarMapper = (props) => {
   };
 
   return (
-    <div className="grid">
+    <div className="gridd">
       <div className="presenter"> 
         <div style={{ position: "relative" }}>
           <ImageMapper
-            src={URL}
+            src={carImg}
             map={MAP2}
             width={500}
             onLoad={() => load()}

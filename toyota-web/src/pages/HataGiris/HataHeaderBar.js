@@ -24,7 +24,8 @@ export default function HataHeaderBar() {
       </Button>
       <Button variant="contained">
         BODY NO <br />
-        {info.bodyNo}
+        {info.bodyNo} 
+        {/* Arka plan vardiyaya gore renk degistirecek */}
       </Button>
       <span className="wrap-text">HATA GİRİŞ EKRANI  </span>
       <div>

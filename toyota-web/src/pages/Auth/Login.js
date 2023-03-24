@@ -180,7 +180,6 @@ export default function Login() {
             >
               {({ values, isSubmitting }) => (
                 <Form className="grid gap-y-3 p-4">
-                  <h1 className="text-2xl font-bold mb-3">Giris Yap </h1>
                   <Select
                     open={open}
                     onClose={handleClose}
