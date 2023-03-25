@@ -9,6 +9,7 @@ import { useEffect, useState, useRef } from "react";
 import Button from '@mui/material/Button';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import "./form.css";
 export default function Input({
   label,
   options,
@@ -59,6 +60,7 @@ export default function Input({
           {label}
         </InputLabel>
         <Select
+        
           ref={selectRef}
           id="demo-simple-select-error"
           size="small"
@@ -70,8 +72,8 @@ export default function Input({
           onChange={changeHandle}
         >
           
-          <FormControl style={{float:"right"}}>
-          {dropDown && <Button size="large" onClick={scrollToUp}><ArrowDropUpIcon/></Button>}
+          <FormControl style={{float:"right"}} >
+          {dropDown && <Button  size="large" onClick={scrollToUp}><ArrowDropUpIcon/></Button>}
           {dropDown && <Button size="large" onClick={scrollToDown}> <ArrowDropDownIcon/> </Button>}
       </FormControl>
          
