@@ -11,13 +11,12 @@ import HataHeaderBar from './HataHeaderBar';
 import { useEffect,useState} from "react";
 import CarMapper from './CarMapper';
 import axios from "axios";
-import ImperialAlert from "../../fonts/sound/AlertSirenSound.mp3";
 const drawerWidth = 240;
 
 export default function PermanentDrawerRight() {
     const [checked, setChecked] = React.useState([0]);
   const [info, setInfo]= useState([]);
-  const audio = new Audio(ImperialAlert);
+  const audio = new Audio("/assets/sound/AlertSirenSound.mp3");
   audio.loop = true;
   let timer = null;
 
@@ -95,7 +94,7 @@ useEffect(() => {
         <span style={{textAlign:'center',color:"red"}} >{`${info.firstname} ${info.lastname} (${info.departmentCode})`}</span>
         </Toolbar>
         <Divider />
-        <HataSideBar/>
+        <HataSideBar  />
       </Drawer>
     </Box>
   );

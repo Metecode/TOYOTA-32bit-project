@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import axios from "axios";
 import { useEffect,useState} from "react";
 
-export default function HataSideBar() {
+export default function HataSideBar({firstImage}) {
   const [checked, setChecked] = React.useState([0]);
   const [info, setInfo]= useState([]);
 
@@ -71,7 +71,7 @@ export default function HataSideBar() {
             </ListItemButton>
           </ListItem>
           <ListItem >
-            <ListItemButton className="Button">
+            <ListItemButton onClick={firstImage} className="Button">
               <ListItemText primary={"TERMİNAL İLK RESMİ"} />
             </ListItemButton>
           </ListItem>

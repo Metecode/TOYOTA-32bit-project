@@ -4,43 +4,49 @@ import "../../fonts/carMapper.css";
 
 import axios from "axios";
 
+
 //ES6 way
 const CarMapper = (props) => {
+  
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
   const [box, setBox] = useState(null);
-  const [carImg, setCarImg] = useState( "/assets/img/car.jpg")
- 
+  const [carImg, setCarImg] = useState("/assets/img/car.jpg");
+  // const [extendedAreas] = useState(() => getCenterCoords(box));
+  const getProducts = async() =>  {
+  await  axios
+    .get("../db/defectScreen.json")
+    .then((res) => {
+      let data = res.data.data[0].defectButtonRecords.map((x) => {
+        return {
+          id: x.buttonId,
+          childPicID: x.childPicID,
+          title: x.labelText,
+          name: x.labelText,
+          picId: x.picId,
+          childPicID: x.childPicID,
+          boxX: x.boxX,
+          boxY: x.boxY,
+          boxColor: x.boxColor,
+          labelColor: x.labelColor,
+          boxWidth: x.boxWidth,
+          boxHeight: x.boxHeight,
+          preFillColor: "rgba(255, 255, 255, 0)",
+          lineWidth: 5,
+          shape: "rect",
+          coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
+          strokeColor: x.boxColor,
+          color: x.labelColor,
+        };
+      });
+      setBox({ name: "my-map2", areas: data });
+    })
+    .catch((err) => console.log(err));
+  }
   useEffect(() => {
-    axios
-      .get("../db/defectScreen.json")
-      .then((res) => {
-        let data = res.data.data[0].defectButtonRecords.map((x) => {
-          return {
-            name: x.labelText,
-            picId: x.picId,
-            childPicID: x.childPicID,
-            boxX: x.boxX,
-            boxY: x.boxY,
-            boxColor: x.boxColor,
-            labelColor: x.labelColor,
-            boxWidth: x.boxWidth,
-            boxHeight: x.boxHeight,
-            preFillColor: "rgba(255, 255, 255, 0)",
-            lineWidth: 5,
-            shape: "rect",
-            coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY+x.boxHeight],
-            strokeColor: x.boxColor,
-            color:x.labelColor,
-          };
-        });
-        setBox({name:"my-map2",areas:data});
-      })
-      .catch((err) => console.log(err));
+    getProducts();
   }, []);
-
- 
 
   // let MAP = {
   //   name: "my-map",
@@ -92,13 +98,13 @@ const CarMapper = (props) => {
   //   ],
   // };
 
-  const load = () => {
+  const load = (imageRef) => {
     setMsg("Interact with image !");
   };
 
   const clicked = (area) => {
-    setCarImg("/assets/img/ac-condenser.jpg")
-    console.log("girdi")
+    setCarImg(`/assets/img/${area.childPicID}.jpg`);
+    console.log("girdi");
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
@@ -127,7 +133,7 @@ const CarMapper = (props) => {
   };
 
   const leaveArea = (area) => {
-    setHoveredArea(null);
+    // setHoveredArea(null);
     setMsg(
       `You leaved ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
@@ -149,21 +155,32 @@ const CarMapper = (props) => {
         "} !"
     );
   };
-
-  const getTipPosition = (area) => {
-    return { top: `${area.center[1]}px`, left: `${area.center[0]}px` };
-  };
-
+  // const getCenterCoords = async (box) =>
+  // await
+  // box.map((area) => {
+  //   const n = area.coords.length / 2;
+  //   const { y: scaleY, x: scaleX } = area.coords.reduce(
+  //     ({ y, x }, val, idx) =>
+  //       !(idx % 2) ? { y, x: x + val / n } : { y: y + val / n, x },
+  //     { y: 0, x: 0 }
+  //   );
+  //   return { ...area, center: { x: scaleX, y: scaleY } };
+  // });
+  // const getTipPosition = (area) => {
+  //   return { top: `${area.center[1]}px`, left: `${area.center[0]}px` };
+  // };
+  
+  
   return (
     <div className="gridd">
       <div className="presenter">
-        <div style={{ position: "relative" }}>   
+        <div style={{ position: "relative" }}>
           <ImageMapper
             src={carImg}
-            map={box !=null ? box : {name:"undefined", areas:[]}}
+            map={box != null ? box : { name: "undefined", areas: [] }}
             width={900}
             height={600}
-            onLoad={() => load()}
+            onLoad={(imageRef) => load(imageRef)}
             onMouseMove={(area, _, evt) => moveOnArea(area, evt)}
             onClick={(area) => clicked(area)}
             onMouseEnter={(area) => enterArea(area)}
@@ -174,17 +191,28 @@ const CarMapper = (props) => {
             strokeColor={"white"}
             active={true}
           />
-
-          {hoveredArea && (
+          {/* {extendedAreas.map((area) => (
+            <span
+              key={area.id}
+              className="tooltip"
+              style={{
+                position: "absolute",
+                zIndex: 1000,
+              }}
+            >
+              {area.title}
+            </span>
+          ))} */}
+          {/* {hoveredArea && (
             <span
               className="tooltip"
               style={{ ...getTipPosition(hoveredArea) }}
             >
               {hoveredArea && hoveredArea.name}
             </span>
-          )}
+          )} */}
         </div>
-            
+
         <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre>
       </div>
