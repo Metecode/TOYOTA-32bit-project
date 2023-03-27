@@ -7,11 +7,11 @@ import Blog from "./pages/Blog/Blog"
 import Blog404 from "./pages/Blog/Blog404"
 import Categories from "./pages/Blog/Categories"
 import Post from "./pages/Blog/Post"
-import HataListesi from "./pages/HataListesi"
+import ErrorList from "./pages/ErrorList"
 import Terminal from "./pages/Terminal"
 import TerminalLayout from "./pages/TerminalLayout"
 import Profile from "./pages/Profile"
-import HataGiris from "./pages/HataGiris/HataGiris"
+import ErrorEntryPage from "./pages/ErrorEntry/ErrorEntryPage"
 // import { useNavigate, useLocation } from "react-router";
 // import * as React from "react";
 
@@ -29,14 +29,14 @@ const routes = [
                 element: <Terminal/>
             },
             {
-                name:'hataListesi',
-                path:'hataListesi',
-                element: <HataListesi/>
+                name:'errorList',
+                path:'errorList',
+                element: <ErrorList/>
             },
             {
-                name:'hataGirisSayfasi',
-                path:'hataGirisSayfasi',
-                element: <HataGiris/>
+                name:'errorEntryPage',
+                path:'errorEntryPage',
+                element: <ErrorEntryPage/>
             },
             {
                 name:'blog',
