@@ -1,12 +1,16 @@
 .tooltip {
 	position: absolute;
-	color: #fff;
-	padding: 10px;
-	background: rgba(0,0,0,0.8);
+	color: #030303;
+	padding: 1px;
+	background: rgba(239, 236, 236, 0.8);
 	transform: translate3d(-50%, -50%, 0);
 	border-radius: 5px;
 	pointer-events: none;
-	z-index: 1000;
+	z-index: 10;
+	font-size: 10px;
+	overflow-wrap: break-word;
+	width: 78px;
+    height: 50px;
 }
 
 a {

@@ -4,48 +4,56 @@ import "../../fonts/carMapper.css";
 
 import axios from "axios";
 
-
 //ES6 way
 const CarMapper = (props) => {
-  
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
   const [box, setBox] = useState(null);
   const [carImg, setCarImg] = useState("/assets/img/car.jpg");
-  // const [extendedAreas] = useState(() => getCenterCoords(box));
-  const getProducts = async() =>  {
-  await  axios
-    .get("../db/defectScreen.json")
-    .then((res) => {
-      let data = res.data.data[0].defectButtonRecords.map((x) => {
-        return {
-          id: x.buttonId,
-          childPicID: x.childPicID,
-          title: x.labelText,
-          name: x.labelText,
-          picId: x.picId,
-          childPicID: x.childPicID,
-          boxX: x.boxX,
-          boxY: x.boxY,
-          boxColor: x.boxColor,
-          labelColor: x.labelColor,
-          boxWidth: x.boxWidth,
-          boxHeight: x.boxHeight,
-          preFillColor: "rgba(255, 255, 255, 0)",
-          lineWidth: 5,
-          shape: "rect",
-          coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
-          strokeColor: x.boxColor,
-          color: x.labelColor,
-        };
-      });
-      setBox({ name: "my-map2", areas: data });
-    })
-    .catch((err) => console.log(err));
-  }
+  const [extendedAreas, setExtendedAreas] = useState([]);
+  const getCenterCoords = (box) => {
+     return box.map((area) => {
+      const n = area.coords.length / 2;
+      const { y: scaleY, x: scaleX } = area.coords.reduce(
+        ({ y, x }, val, idx) =>
+          !(idx % 2) ? { y, x: x + val / n } : { y: y + val / n, x },
+        { y: 0, x: 0 }
+      );
+      return { ...area, center: { x: scaleX, y: scaleY } };
+    });
+  };
+
   useEffect(() => {
-    getProducts();
+    axios
+      .get("../db/defectScreen.json")
+      .then((res) => {
+        let data = res.data.data[0].defectButtonRecords.map((x) => {
+          return {
+            id: x.buttonId,
+            childPicID: x.childPicID,
+            title: x.labelText,
+            name: x.labelText,
+            picId: x.picId,
+            childPicID: x.childPicID,
+            boxX: x.boxX,
+            boxY: x.boxY,
+            boxColor: x.boxColor,
+            labelColor: x.labelColor,
+            boxWidth: x.boxWidth,
+            boxHeight: x.boxHeight,
+            preFillColor: "rgba(255, 255, 255, 0)",
+            lineWidth: 5,
+            shape: "rect",
+            coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
+            strokeColor: x.boxColor,
+            color: x.labelColor,
+          };
+        });
+        setBox({ name: "my-map2", areas: data });
+        setExtendedAreas(getCenterCoords(data));
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   // let MAP = {
@@ -155,22 +163,11 @@ const CarMapper = (props) => {
         "} !"
     );
   };
-  // const getCenterCoords = async (box) =>
-  // await
-  // box.map((area) => {
-  //   const n = area.coords.length / 2;
-  //   const { y: scaleY, x: scaleX } = area.coords.reduce(
-  //     ({ y, x }, val, idx) =>
-  //       !(idx % 2) ? { y, x: x + val / n } : { y: y + val / n, x },
-  //     { y: 0, x: 0 }
-  //   );
-  //   return { ...area, center: { x: scaleX, y: scaleY } };
-  // });
+
   // const getTipPosition = (area) => {
   //   return { top: `${area.center[1]}px`, left: `${area.center[0]}px` };
   // };
-  
-  
+
   return (
     <div className="gridd">
       <div className="presenter">
@@ -180,7 +177,7 @@ const CarMapper = (props) => {
             map={box != null ? box : { name: "undefined", areas: [] }}
             width={900}
             height={600}
-            onLoad={(imageRef) => load(imageRef)}
+            onLoad={() => load()}
             onMouseMove={(area, _, evt) => moveOnArea(area, evt)}
             onClick={(area) => clicked(area)}
             onMouseEnter={(area) => enterArea(area)}
@@ -189,20 +186,22 @@ const CarMapper = (props) => {
             onImageMouseMove={(evt) => moveOnImage(evt)}
             // lineWidth={4}
             strokeColor={"white"}
-            active={true}
           />
-          {/* {extendedAreas.map((area) => (
+          {extendedAreas.map((area) => (
             <span
               key={area.id}
               className="tooltip"
               style={{
                 position: "absolute",
+                top: area.center.y-12,
+                left: area.center.x,
                 zIndex: 1000,
+                overflowWrap: "break-word"
               }}
             >
               {area.title}
             </span>
-          ))} */}
+          ))}
           {/* {hoveredArea && (
             <span
               className="tooltip"

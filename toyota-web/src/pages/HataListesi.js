@@ -281,21 +281,21 @@ export default function HataListesi() {
       })
       .catch((err) => console.log(err));
       
-    }, []);
-    useEffect(() => {
       sorting();
-      // filterEvenResults();
-    }, 
-    [defectList, setdefectList]);
-    const sorting = () => {
-
-      setdefectList(data => {
-        const dataToSort = [...data];
-        dataToSort.sort((a, b) => Number(a.bodyNo) - Number(b.bodyNo)); // or b.money - a.money to invert order
-        return dataToSort; // <-- now sorted ascending
-      })
-    }
-    // const filterEvenResults = () => setdefectList(defectList => defectList.filter(bildiren=> bildiren.depCode === bildiren.depCode ))
+    
+  }, []);
+ 
+  const sorting = () => {
+    setdefectList((data) => {
+      const dataToSort = [...data];
+      dataToSort.sort((a, b) => Number(a.bodyNo) - Number(b.bodyNo)); // or b.money - a.money to invert order
+      return dataToSort; // <-- now sorted ascending
+    });
+  };
+  // const filterEvenResults = () =>
+  //   setdefectList((defectList) =>
+  //     defectList.sort((a, b) => a.depCode - b.depCode)
+  //   );
   const handleDelete = (columnIndex) => {
     setdefectList((defectList) =>
       defectList.filter((_, index) => index !== columnIndex)
@@ -500,7 +500,12 @@ export default function HataListesi() {
         autoHideDuration={6000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} open={open} severity="success" sx={{ width: "100%" }}>
+        <Alert
+          onClose={handleClose}
+          open={open}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
           Kayıt başarıyla silinmiştir!
         </Alert>
       </Snackbar>
