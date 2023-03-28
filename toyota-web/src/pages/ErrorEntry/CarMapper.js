@@ -13,6 +13,7 @@ const CarMapper = (props) => {
   const [box, setBox] = useState(null);
   const [carImg, dispatch] = useReducer(siteReducer, {image:"./assets/img/car.jpg"});
   const [extendedAreas, setExtendedAreas] = useState([]);
+  const [data, setData] = useState("defectScreen")
   const getCenterCoords = (box) => {
      return box.map((area) => {
       const n = area.coords.length / 2;
@@ -25,37 +26,41 @@ const CarMapper = (props) => {
     });
   };
 
+const dataCoord = async ()=>{
+  await axios
+     .get(`../db/${data}.json`)
+     .then((res) => {
+       let data = res.data.data[0].defectButtonRecords.map((x) => {
+         return {
+           id: x.buttonId,
+           childPicID: x.childPicID,
+           title: x.labelText,
+           name: x.labelText,
+           picId: x.picId,
+           childPicID: x.childPicID,
+           boxX: x.boxX,
+           boxY: x.boxY,
+           boxColor: x.boxColor,
+           labelColor: x.labelColor,
+           boxWidth: x.boxWidth,
+           boxHeight: x.boxHeight,
+           preFillColor: "rgba(255, 255, 255, 0)",
+           lineWidth: 5,
+           shape: "rect",
+           coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
+           strokeColor: x.boxColor,
+           color: x.labelColor,
+         };
+       });
+       setBox({ name: "my-map2", areas: data });
+       setExtendedAreas(getCenterCoords(data));
+     })
+     .catch((err) => console.log(err));
+}
+
   useEffect(() => {
-    axios
-      .get("../db/defectScreen.json")
-      .then((res) => {
-        let data = res.data.data[0].defectButtonRecords.map((x) => {
-          return {
-            id: x.buttonId,
-            childPicID: x.childPicID,
-            title: x.labelText,
-            name: x.labelText,
-            picId: x.picId,
-            childPicID: x.childPicID,
-            boxX: x.boxX,
-            boxY: x.boxY,
-            boxColor: x.boxColor,
-            labelColor: x.labelColor,
-            boxWidth: x.boxWidth,
-            boxHeight: x.boxHeight,
-            preFillColor: "rgba(255, 255, 255, 0)",
-            lineWidth: 5,
-            shape: "rect",
-            coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
-            strokeColor: x.boxColor,
-            color: x.labelColor,
-          };
-        });
-        setBox({ name: "my-map2", areas: data });
-        setExtendedAreas(getCenterCoords(data));
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    dataCoord();
+  }, [data]);
 
   // let MAP = {
   //   name: "my-map",
@@ -112,7 +117,9 @@ const CarMapper = (props) => {
   };
 
   const clicked = (area) => {
-    dispatch({type:"TOGGLE_IMAGE", value:area.childPicID});
+    setData(area.childPicID)
+  dispatch({type:"TOGGLE_IMAGE", value:area.childPicID});
+   
     console.log("girdi");
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
