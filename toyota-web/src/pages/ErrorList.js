@@ -281,8 +281,8 @@ export default function HataListesi() {
       })
       .catch((err) => console.log(err));
       
-      sorting();
-    
+      
+      filterEvenResults();
   }, []);
  
   const sorting = () => {
@@ -292,10 +292,13 @@ export default function HataListesi() {
       return dataToSort; // <-- now sorted ascending
     });
   };
-  // const filterEvenResults = () =>
-  //   setdefectList((defectList) =>
-  //     defectList.sort((a, b) => a.depCode - b.depCode)
-  //   );
+  const filterEvenResults = () => {
+    setdefectList((data) => {
+      const dataToSort = [...data];
+      dataToSort.sort((a, b) => b.depCode?.localeCompare(a.depCode)); // or b.money - a.money to invert order
+      return dataToSort; // <-- now sorted ascending
+    });
+  }
   const handleDelete = (columnIndex) => {
     setdefectList((defectList) =>
       defectList.filter((_, index) => index !== columnIndex)

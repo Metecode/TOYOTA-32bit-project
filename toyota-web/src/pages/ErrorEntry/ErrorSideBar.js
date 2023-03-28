@@ -11,12 +11,19 @@ import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css"
 import TextField from '@mui/material/TextField';
 import axios from "axios";
-import { useEffect,useState} from "react";
+import { useEffect,useState, useReducer} from "react";
+import { siteReducer } from "../../reducer";
+import MainImage from "./MainImage";
 
-export default function HataSideBar({firstImage}) {
+export default function HataSideBar() {
   const [checked, setChecked] = React.useState([0]);
   const [info, setInfo]= useState([]);
+  const [carImg, dispatch] = useReducer(siteReducer);
 
+ const firstImage=() =>{
+  dispatch({type:"TOGGLE_IMAGE"})
+  console.log(carImg)
+ }
   useEffect(()=>{
     axios
     .get("../db/headerData.json")
@@ -73,7 +80,9 @@ export default function HataSideBar({firstImage}) {
           <ListItem >
             <ListItemButton onClick={firstImage} className="Button">
               <ListItemText primary={"TERMİNAL İLK RESMİ"} />
+             
             </ListItemButton>
+            
           </ListItem>
           <ListItem >
             <ListItemButton className="Button">

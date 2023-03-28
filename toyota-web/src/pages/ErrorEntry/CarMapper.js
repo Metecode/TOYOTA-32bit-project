@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import ImageMapper from "react-img-mapper";
 import "../../fonts/carMapper.css";
 
 import axios from "axios";
+import { siteReducer } from "../../reducer";
 
 //ES6 way
 const CarMapper = (props) => {
@@ -10,7 +11,7 @@ const CarMapper = (props) => {
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
   const [box, setBox] = useState(null);
-  const [carImg, setCarImg] = useState("/assets/img/car.jpg");
+  const [carImg, dispatch] = useReducer(siteReducer, {image:"./assets/img/car.jpg"});
   const [extendedAreas, setExtendedAreas] = useState([]);
   const getCenterCoords = (box) => {
      return box.map((area) => {
@@ -111,7 +112,7 @@ const CarMapper = (props) => {
   };
 
   const clicked = (area) => {
-    setCarImg(`/assets/img/${area.childPicID}.jpg`);
+    dispatch({type:"TOGGLE_IMAGE", value:area.childPicID});
     console.log("girdi");
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
@@ -173,7 +174,7 @@ const CarMapper = (props) => {
       <div className="presenter">
         <div style={{ position: "relative" }}>
           <ImageMapper
-            src={carImg}
+            src={carImg.image}
             map={box != null ? box : { name: "undefined", areas: [] }}
             width={900}
             height={600}
@@ -196,7 +197,8 @@ const CarMapper = (props) => {
                 top: area.center.y-12,
                 left: area.center.x,
                 zIndex: 1000,
-                overflowWrap: "break-word"
+                overflowWrap: "break-word",
+                color:area.color
               }}
             >
               {area.title}
