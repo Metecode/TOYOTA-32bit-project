@@ -1,16 +1,17 @@
 import { useSite} from '../../context'
+import ListItemButton from "@mui/material/ListItemButton";
 
 export default function MainImage() {
 
     const {image , dispatch} = useSite()
 
     const mainImage = ()=>{
-        dispatch({type:"TOGGLE_IMAGE",image:"./assets/img/car.jpg"})
+        dispatch({type:"TOGGLE_IMAGE"})
     }
     return(
         <>
         Mevcut tema = {image} <br />
-            <button onClick={mainImage}>Resmi degistir</button>
+            <ListItemButton onClick={mainImage}>Resmi degistir</ListItemButton>
         </>
     )
 }

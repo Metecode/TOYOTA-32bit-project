@@ -6,7 +6,9 @@ export default function reducer(state, action) {
       if(action.value){
         image= `/assets/img/${action.value}.jpg`;
       }
-      
+      else if(image=== `/assets/img/${action.value}.jpg`){
+     state.image = "./assets/img/car.jpg" ;
+      }
       // localStorage.setItem('image', image)
       return {
         ...state,

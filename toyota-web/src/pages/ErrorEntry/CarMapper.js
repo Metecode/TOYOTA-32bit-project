@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useReducer } from "react";
 import ImageMapper from "react-img-mapper";
 import "../../fonts/carMapper.css";
-
+import Select from "../../components/form/Select.js";
 import axios from "axios";
 import { siteReducer } from "../../reducer";
+import { useFormik, Formik, Form } from "formik";
 
 //ES6 way
 const CarMapper = (props) => {
@@ -11,11 +12,25 @@ const CarMapper = (props) => {
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
   const [box, setBox] = useState(null);
-  const [carImg, dispatch] = useReducer(siteReducer, {image:"./assets/img/car.jpg"});
+  const [carImg, dispatch] = useReducer(siteReducer, {
+    image: "./assets/img/car.jpg",
+  });
   const [extendedAreas, setExtendedAreas] = useState([]);
-  const [data, setData] = useState("defectScreen")
+  const [data, setData] = useState("defectScreen");
+  const [partDefects, setPartDefects] = useState([]);
+  const [open, setOpen] = React.useState(true);
+  const [show, setShow] = useState(false);
+  const [controlClick, setControlClick] = useState(true);
+  const [controlSelect , setControlSelect] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
   const getCenterCoords = (box) => {
-     return box.map((area) => {
+    return box.map((area) => {
       const n = area.coords.length / 2;
       const { y: scaleY, x: scaleX } = area.coords.reduce(
         ({ y, x }, val, idx) =>
@@ -26,40 +41,63 @@ const CarMapper = (props) => {
     });
   };
 
-const dataCoord = async ()=>{
-  await axios
-     .get(`../db/${data}.json`)
-     .then((res) => {
-       let data = res.data.data[0].defectButtonRecords.map((x) => {
-         return {
-           id: x.buttonId,
-           childPicID: x.childPicID,
-           title: x.labelText,
-           name: x.labelText,
-           picId: x.picId,
-           childPicID: x.childPicID,
-           boxX: x.boxX,
-           boxY: x.boxY,
-           boxColor: x.boxColor,
-           labelColor: x.labelColor,
-           boxWidth: x.boxWidth,
-           boxHeight: x.boxHeight,
-           preFillColor: "rgba(255, 255, 255, 0)",
-           lineWidth: 5,
-           shape: "rect",
-           coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
-           strokeColor: x.boxColor,
-           color: x.labelColor,
-         };
-       });
-       setBox({ name: "my-map2", areas: data });
-       setExtendedAreas(getCenterCoords(data));
-     })
-     .catch((err) => console.log(err));
-}
-
+  const dataCoord = async () => {
+    await axios
+      .get(`../db/${data}.json`)
+      .then((res) => {
+        let data = res.data.data[0].defectButtonRecords.map((x) => {
+          return {
+            id: x.buttonId,
+            childPicID: x.childPicID,
+            title: x.labelText,
+            name: x.labelText,
+            picId: x.picId,
+            childPicID: x.childPicID,
+            boxX: x.boxX,
+            boxY: x.boxY,
+            boxColor: x.boxColor,
+            labelColor: x.labelColor,
+            boxWidth: x.boxWidth,
+            boxHeight: x.boxHeight,
+            preFillColor: "rgba(255, 255, 255, 0)",
+            lineWidth: 5,
+            shape: "rect",
+            coords: [x.boxX, x.boxY, x.boxX + x.boxWidth, x.boxY + x.boxHeight],
+            strokeColor: x.boxColor,
+            color: x.labelColor,
+          };
+        });
+        setBox({ name: "my-map2", areas: data });
+        setExtendedAreas(getCenterCoords(data));
+        let partDefect = res.data.data[0].partDefects.map((x) => {
+          return {
+            defectId: x.defectId,
+            defectName: x.defectName,
+            harigami: x.harigami,
+          };
+        });
+        setPartDefects(partDefect);
+      })
+      .catch((err) => console.log(err));
+  };
+  const dataDefect = async () => {
+    await axios
+      .get(`../db/${data}.json`)
+      .then((res) => {
+        let partDefect = res.data.data[0].partDefects.map((x) => {
+          return {
+            defectId: x.defectId,
+            defectName: x.defectName,
+            harigami: x.harigami,
+          };
+        });
+        setPartDefects(partDefect);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
     dataCoord();
+    dataDefect();
   }, [data]);
 
   // let MAP = {
@@ -116,11 +154,12 @@ const dataCoord = async ()=>{
     setMsg("Interact with image !");
   };
 
-  const clicked = (area) => {
-    setData(area.childPicID)
-  dispatch({type:"TOGGLE_IMAGE", value:area.childPicID});
-   
-    console.log("girdi");
+  const clicked = async (area) => {
+    setControlClick(false);
+    setData(area.childPicID);
+    dispatch({ type: "TOGGLE_IMAGE", value: area.childPicID });
+    console.log(partDefects);
+    setShow(true);
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
@@ -128,6 +167,14 @@ const dataCoord = async ()=>{
     );
   };
 
+  const clickedChildPic = async (area) => {
+    setControlSelect(true);
+    setMsg(
+      `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
+        area.coords
+      )} !`
+    );
+  };
   const clickedOutside = (evt) => {
     const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
     setMsg(`You clicked on the image at coords ${JSON.stringify(coords)} !`);
@@ -187,7 +234,7 @@ const dataCoord = async ()=>{
             height={600}
             onLoad={() => load()}
             onMouseMove={(area, _, evt) => moveOnArea(area, evt)}
-            onClick={(area) => clicked(area)}
+            onClick={controlClick ? (area) => clicked(area) : (area) => clickedChildPic(area)}
             onMouseEnter={(area) => enterArea(area)}
             onMouseLeave={(area) => leaveArea(area)}
             onImageClick={(evt) => clickedOutside(evt)}
@@ -201,11 +248,11 @@ const dataCoord = async ()=>{
               className="tooltip"
               style={{
                 position: "absolute",
-                top: area.center.y-12,
+                top: area.center.y - 12,
                 left: area.center.x,
                 zIndex: 1000,
                 overflowWrap: "break-word",
-                color:area.color
+                color: area.color,
               }}
             >
               {area.title}
@@ -220,6 +267,23 @@ const dataCoord = async ()=>{
             </span>
           )} */}
         </div>
+        {controlSelect && <Formik>
+          <div style={{position:"absolute",left:data.boxX,top:data.boxY}}>
+          {show &&<Select 
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            label=""
+            name="terminalListesi"
+            options={partDefects.map((option) => {
+              return {
+                key: option.defectId,
+                value: option.defectName,
+              };
+            })}
+          />}
+          </div>
+        </Formik>}
 
         <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre>

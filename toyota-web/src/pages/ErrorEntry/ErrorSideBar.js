@@ -78,10 +78,10 @@ export default function HataSideBar() {
             </ListItemButton>
           </ListItem>
           <ListItem >
-            <ListItemButton onClick={firstImage} className="Button">
+            <MainImage className="Button">
               <ListItemText primary={"TERMİNAL İLK RESMİ"} />
              
-            </ListItemButton>
+            </MainImage>
             
           </ListItem>
           <ListItem >

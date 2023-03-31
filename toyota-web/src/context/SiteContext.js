@@ -5,8 +5,7 @@ export const Context = createContext()
 const Provider = ({children}) =>{
 
     const[state, dispatch] = useReducer(siteReducer,{
-        image: localStorage.getItem('image') || './assets/img/car.jpg',
-        language: localStorage.getItem('language') || 'tr'
+        carImg: localStorage.getItem('image') || './assets/img/car.jpg',
     })
 
     const data = {
