@@ -22,6 +22,7 @@ const CarMapper = (props) => {
   const [show, setShow] = useState(false);
   const [controlClick, setControlClick] = useState(true);
   const [controlSelect , setControlSelect] = useState(false);
+  const [controlCursor, setControlCursor] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
@@ -166,18 +167,30 @@ const CarMapper = (props) => {
       )} !`
     );
   };
-
-  const clickedChildPic = async (area) => {
+  const [style, setStyle] = useState(null); 
+  const setCoordinates = (x,y) => {
+    
+        return `position:"absolute",   
+                left:${x}px,         
+                top:${y}px,
+                zIndex:100`
+    }
+  const clickedChildPic = async (area, evt) => {
     setControlSelect(true);
+  await setControlCursor(true);
+    // const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
+    // const newStyle = setCoordinates(JSON.stringify(
+    //   area.coords));
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
       )} !`
     );
   };
-  const clickedOutside = (evt) => {
-    const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
+  const clickedOutside = async (evt) => {
+   const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
     setMsg(`You clicked on the image at coords ${JSON.stringify(coords)} !`);
+    setStyle({x:coords.x,y:coords.y});
   };
 
   const moveOnImage = (evt) => {
@@ -234,7 +247,7 @@ const CarMapper = (props) => {
             height={600}
             onLoad={() => load()}
             onMouseMove={(area, _, evt) => moveOnArea(area, evt)}
-            onClick={controlClick ? (area) => clicked(area) : (area) => clickedChildPic(area)}
+            onClick={controlClick ? (area) => clicked(area) : (area, _ ,evt) => clickedChildPic(area, evt)}
             onMouseEnter={(area) => enterArea(area)}
             onMouseLeave={(area) => leaveArea(area)}
             onImageClick={(evt) => clickedOutside(evt)}
@@ -284,7 +297,7 @@ const CarMapper = (props) => {
           />}
           </div>
         </Formik>}
-
+            {controlCursor &&  <img src="./assets/img/cursor.gif" style={{position:"absolute",left:style.x,top:style.y, zIndex:1,height:50, width:50}}  />}
         <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre>
       </div>
