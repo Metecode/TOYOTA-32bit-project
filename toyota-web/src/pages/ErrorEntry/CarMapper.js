@@ -243,7 +243,7 @@ const CarMapper = (props) => {
           <ImageMapper
             src={carImg.image}
             map={box != null ? box : { name: "undefined", areas: [] }}
-            width={900}
+            width={1000}
             height={600}
             onLoad={() => load()}
             onMouseMove={(area, _, evt) => moveOnArea(area, evt)}
@@ -255,6 +255,7 @@ const CarMapper = (props) => {
             // lineWidth={4}
             strokeColor={"white"}
           />
+          {controlCursor &&  <img src="./assets/img/cursor.gif" style={{position:"absolute",left:style.x,top:style.y, zIndex:1,height:50, width:50}}  />}
           {extendedAreas.map((area) => (
             <span
               key={area.id}
@@ -297,7 +298,7 @@ const CarMapper = (props) => {
           />}
           </div>
         </Formik>}
-            {controlCursor &&  <img src="./assets/img/cursor.gif" style={{position:"absolute",left:style.x,top:style.y, zIndex:1,height:50, width:50}}  />}
+            
         <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre>
       </div>
