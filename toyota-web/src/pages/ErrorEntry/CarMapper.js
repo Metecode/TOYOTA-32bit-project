@@ -6,7 +6,7 @@ import axios from "axios";
 import { siteReducer } from "../../reducer";
 import { useFormik, Formik, Form, useFormikContext } from "formik";
 
-const CarMapper = ({ hide, defects }) => {
+const CarMapper = ({ hide, defects,defectsName }) => {
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
@@ -30,8 +30,9 @@ const CarMapper = ({ hide, defects }) => {
     setControlCursor(true);
     setShowBox(false);
     hide(active);
+    defectsName(defect)
   };
-
+  
   const handleOpen = () => {
     setOpen(true);
   };
@@ -85,7 +86,8 @@ const CarMapper = ({ hide, defects }) => {
         setPartDefects(partDefect);
       })
       .catch((err) => console.log(err));
-  };
+    };
+    
   const dataDefect = async () => {
     await axios
       .get(`../db/${data}.json`)
@@ -106,56 +108,6 @@ const CarMapper = ({ hide, defects }) => {
     dataDefect();
   }, [data]);
 
-  // let MAP = {
-  //   name: "my-map",
-  //   areas: [
-  //     {
-  //       name: "1",
-  //       shape: "poly",
-  //       coords: [25, 33, 27, 300, 128, 240, 128, 94],
-  //       preFillColor: "green",
-  //       fillColor: "#0000ff",
-  //     },
-  //     {
-  //       name: "2",
-  //       shape: "poly",
-  //       coords: [219, 118, 220, 210, 283, 210, 284, 119],
-  //       preFillColor: "pink",
-  //       lineWidth: 10,
-  //       strokeColor: "#0000ff",
-  //     },
-  //     {
-  //       name: "3",
-  //       shape: "poly",
-  //       coords: [381, 241, 383, 94, 462, 53, 457, 282],
-  //       preFillColor: "yellow", // this is mandatory for stroke color to work
-  //       lineWidth: 10,
-  //       strokeColor: "#6afd09",
-  //     },
-  //     {
-  //       name: "4",
-  //       shape: "poly",
-  //       coords: [245, 285, 290, 285, 274, 239, 249, 238],
-  //       preFillColor: "red",
-  //     },
-  //     {
-  //       name: "5",
-  //       shape: "circle",
-  //       coords: [170, 100, 25],
-  //       preFillColor: "rgb(255,255,255,0.3)",
-  //       lineWidth: 2,
-  //     },
-  //     {
-  //       name: "6",
-  //       shape: "rect",
-  //       coords: [270, 100, 200, 50],
-  //       lineWidth: 2,
-  //       preFillColor: "rgba(255, 255, 255, 0.3)",
-  //       strokeColor: "#6afd09",
-  //     },
-  //   ],
-  // };
-
   const load = (imageRef) => {
     setMsg("Interact with image !");
   };
@@ -163,6 +115,7 @@ const CarMapper = ({ hide, defects }) => {
   const clicked = async (area) => {
     setControlClick(false);
     setData(area.childPicID);
+    setDefect(area.name)
     dispatch({ type: "TOGGLE_IMAGE", value: area.childPicID });
     console.log(partDefects);
     setShow(true);
@@ -172,6 +125,7 @@ const CarMapper = ({ hide, defects }) => {
       )} !`
     );
   };
+  
   const [style, setStyle] = useState(null);
   const clickedChildPic = async (area, evt) => {
     setControlSelect(true);
@@ -182,6 +136,7 @@ const CarMapper = ({ hide, defects }) => {
       )} !`
     );
   };
+  
   const clickedOutside = async (evt) => {
     const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
     setMsg(`You clicked on the image at coords ${JSON.stringify(coords)} !`);
