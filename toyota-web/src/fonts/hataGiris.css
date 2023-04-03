@@ -18,4 +18,23 @@
     border-radius: 10px!important;
   }
 
+  .rightRapper {
+    margin: 0px; 
+    display: inline-block; 
+    color:red;
+    margin-right: 10px;
+    font-size: small;
+    font-weight: bold;
+    align-items: end;
+
+  }
   
+  .leftRapper {
+    margin: 0px;
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    align-items: end;
+    
+  }
+ 

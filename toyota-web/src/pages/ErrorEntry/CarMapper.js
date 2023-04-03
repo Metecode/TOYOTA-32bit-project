@@ -4,10 +4,9 @@ import "../../fonts/carMapper.css";
 import Select from "../../components/form/Select.js";
 import axios from "axios";
 import { siteReducer } from "../../reducer";
-import { useFormik, Formik, Form } from "formik";
+import { useFormik, Formik, Form, useFormikContext } from "formik";
 
-//ES6 way
-const CarMapper = (props) => {
+const CarMapper = ({ hide, defects }) => {
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
@@ -20,11 +19,17 @@ const CarMapper = (props) => {
   const [partDefects, setPartDefects] = useState([]);
   const [open, setOpen] = React.useState(true);
   const [show, setShow] = useState(false);
+  const [showBox, setShowBox] = useState(true);
   const [controlClick, setControlClick] = useState(true);
-  const [controlSelect , setControlSelect] = useState(false);
+  const [controlSelect, setControlSelect] = useState(false);
   const [controlCursor, setControlCursor] = useState(false);
-  const handleClose = () => {
+  let active = false;
+  const [defect, setDefect] = useState("")
+  const handleClose = async () => {
     setOpen(false);
+    setControlCursor(true);
+    setShowBox(false);
+    hide(active);
   };
 
   const handleOpen = () => {
@@ -167,20 +172,10 @@ const CarMapper = (props) => {
       )} !`
     );
   };
-  const [style, setStyle] = useState(null); 
-  const setCoordinates = (x,y) => {
-    
-        return `position:"absolute",   
-                left:${x}px,         
-                top:${y}px,
-                zIndex:100`
-    }
+  const [style, setStyle] = useState(null);
   const clickedChildPic = async (area, evt) => {
     setControlSelect(true);
-  await setControlCursor(true);
-    // const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
-    // const newStyle = setCoordinates(JSON.stringify(
-    //   area.coords));
+    setStyle({ x: 439, y: 243 });
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
@@ -188,9 +183,9 @@ const CarMapper = (props) => {
     );
   };
   const clickedOutside = async (evt) => {
-   const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
+    const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
     setMsg(`You clicked on the image at coords ${JSON.stringify(coords)} !`);
-    setStyle({x:coords.x,y:coords.y});
+    setStyle({ x: coords.x, y: coords.y });
   };
 
   const moveOnImage = (evt) => {
@@ -230,24 +225,35 @@ const CarMapper = (props) => {
         coords.y +
         "} !"
     );
+  };const AutoSubmitCode = () => {
+    const { values, submitForm } = useFormikContext();
+    useEffect(() => {
+        submitForm();
+    }, [values]);
+    return null;
   };
-
   // const getTipPosition = (area) => {
   //   return { top: `${area.center[1]}px`, left: `${area.center[0]}px` };
   // };
-
+  
   return (
     <div className="gridd">
       <div className="presenter">
         <div style={{ position: "relative" }}>
           <ImageMapper
             src={carImg.image}
-            map={box != null ? box : { name: "undefined", areas: [] }}
+            map={
+              showBox && box != null ? box : { name: "undefined", areas: [] }
+            }
             width={1000}
             height={600}
             onLoad={() => load()}
             onMouseMove={(area, _, evt) => moveOnArea(area, evt)}
-            onClick={controlClick ? (area) => clicked(area) : (area, _ ,evt) => clickedChildPic(area, evt)}
+            onClick={
+              controlClick
+                ? (area) => clicked(area)
+                : (area, _, evt) => clickedChildPic(area, evt)
+            }
             onMouseEnter={(area) => enterArea(area)}
             onMouseLeave={(area) => leaveArea(area)}
             onImageClick={(evt) => clickedOutside(evt)}
@@ -255,23 +261,36 @@ const CarMapper = (props) => {
             // lineWidth={4}
             strokeColor={"white"}
           />
-          {controlCursor &&  <img src="./assets/img/cursor.gif" style={{position:"absolute",left:style.x,top:style.y, zIndex:1,height:50, width:50}}  />}
-          {extendedAreas.map((area) => (
-            <span
-              key={area.id}
-              className="tooltip"
+          {controlCursor && (
+            <img
+              src="./assets/img/cursor.gif"
               style={{
                 position: "absolute",
-                top: area.center.y - 12,
-                left: area.center.x,
-                zIndex: 1000,
-                overflowWrap: "break-word",
-                color: area.color,
+                left: style.x,
+                top: style.y,
+                zIndex: 1,
+                height: 50,
+                width: 50,
               }}
-            >
-              {area.title}
-            </span>
-          ))}
+            />
+          )}
+          {showBox &&
+            extendedAreas.map((area) => (
+              <span
+                key={area.id}
+                className="tooltip"
+                style={{
+                  position: "absolute",
+                  top: area.center.y - 12,
+                  left: area.center.x,
+                  zIndex: 1000,
+                  overflowWrap: "break-word",
+                  color: area.color,
+                }}
+              >
+                {area.title}
+              </span>
+            ))}
           {/* {hoveredArea && (
             <span
               className="tooltip"
@@ -281,24 +300,46 @@ const CarMapper = (props) => {
             </span>
           )} */}
         </div>
-        {controlSelect && <Formik>
-          <div style={{position:"absolute",left:data.boxX,top:data.boxY}}>
-          {show &&<Select 
-            open={open}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            label=""
-            name="terminalListesi"
-            options={partDefects.map((option) => {
-              return {
-                key: option.defectId,
-                value: option.defectName,
-              };
-            })}
-          />}
-          </div>
-        </Formik>}
+        {controlSelect && (
+          <Formik
+            initialValues={{
+              defect: "",
+            }}
+            onSubmit={(value) => {
+              defects(value)
+            }}
+          >
+            {({ values }) => (
+              <div
+                style={{
+                  position: "absolute",
+                  left: data.boxX,
+                  top: data.boxY,
+                }}
+              >
+                {show && (
+                  <Select
+                    open={open}
+                    onClose={handleClose}
+                    onOpen={handleOpen}
+                    isSubmitting={true}
+                    label=""
+                    name="defect"
+                    options={partDefects.map((option) => {
+                      return {
+                        key: option.defectName,
+                        value: option.defectName,
+                      };
+                    })}
+                  />
+                )}   
+            <AutoSubmitCode></AutoSubmitCode>
+              </div>
+              
+            )}
             
+          </Formik>
+        )}
         <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre>
       </div>
