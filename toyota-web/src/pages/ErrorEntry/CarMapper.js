@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, {forwardRef,
+  useImperativeHandle,
+  useRef, useState, useEffect, useReducer } from "react";
 import ImageMapper from "react-img-mapper";
 import "../../fonts/carMapper.css";
 import Select from "../../components/form/Select.js";
@@ -6,14 +8,15 @@ import axios from "axios";
 import { siteReducer } from "../../reducer";
 import { useFormik, Formik, Form, useFormikContext } from "formik";
 
-const CarMapper = ({ hide, defects,defectsName }) => {
+const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName},ref)  {
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
   const [box, setBox] = useState(null);
-  const [carImg, dispatch] = useReducer(siteReducer, {
-    image: "./assets/img/car.jpg",
-  });
+  // const [carImg, dispatch] = useReducer(siteReducer, {
+  //   image: "./assets/img/car.jpg",
+  // });
+  const [carImg, setImg] = useState("./assets/img/car.jpg");
   const [extendedAreas, setExtendedAreas] = useState([]);
   const [data, setData] = useState("defectScreen");
   const [partDefects, setPartDefects] = useState([]);
@@ -25,7 +28,22 @@ const CarMapper = ({ hide, defects,defectsName }) => {
   const [controlCursor, setControlCursor] = useState(false);
   let active = false;
   const [defect, setDefect] = useState("")
-  const handleClose = async () => {
+  useImperativeHandle(ref, () => ({
+    changePic: changePic
+  }));
+  const changePic = () => {
+    setImg("./assets/img/car.jpg");
+    setControlClick(true);
+    setData("defectScreen");
+    setControlSelect(false);
+    setControlCursor(false);
+    setShowBox(true);
+    setShow(false);
+    setOpen(true);
+    defects("");
+    defectsName("");
+  };
+  const handleClose = () => {
     setOpen(false);
     setControlCursor(true);
     setShowBox(false);
@@ -103,6 +121,12 @@ const CarMapper = ({ hide, defects,defectsName }) => {
       })
       .catch((err) => console.log(err));
   };
+
+
+  // const mainPic = async()=>{
+   
+  // }
+
   useEffect(() => {
     dataCoord();
     dataDefect();
@@ -116,7 +140,8 @@ const CarMapper = ({ hide, defects,defectsName }) => {
     setControlClick(false);
     setData(area.childPicID);
     setDefect(area.name)
-    dispatch({ type: "TOGGLE_IMAGE", value: area.childPicID });
+    // dispatch({ type: "TOGGLE_IMAGE", value: area.childPicID });
+    setImg(`./assets/img/${area.childPicID}.jpg`);
     console.log(partDefects);
     setShow(true);
     setMsg(
@@ -127,7 +152,7 @@ const CarMapper = ({ hide, defects,defectsName }) => {
   };
   
   const [style, setStyle] = useState(null);
-  const clickedChildPic = async (area, evt) => {
+  const clickedChildPic = async (area) => {
     setControlSelect(true);
     setStyle({ x: 439, y: 243 });
     setMsg(
@@ -196,7 +221,7 @@ const CarMapper = ({ hide, defects,defectsName }) => {
       <div className="presenter">
         <div style={{ position: "relative" }}>
           <ImageMapper
-            src={carImg.image}
+            src={carImg}
             map={
               showBox && box != null ? box : { name: "undefined", areas: [] }
             }
@@ -207,7 +232,7 @@ const CarMapper = ({ hide, defects,defectsName }) => {
             onClick={
               controlClick
                 ? (area) => clicked(area)
-                : (area, _, evt) => clickedChildPic(area, evt)
+                : (area) => clickedChildPic(area)
             }
             onMouseEnter={(area) => enterArea(area)}
             onMouseLeave={(area) => leaveArea(area)}
@@ -260,7 +285,7 @@ const CarMapper = ({ hide, defects,defectsName }) => {
             initialValues={{
               defect: "",
             }}
-            onSubmit={(value) => {
+            onSubmit={(value,actions) => {
               defects(value)
             }}
           >
@@ -301,6 +326,6 @@ const CarMapper = ({ hide, defects,defectsName }) => {
     </div>
   );
   //return React.createElement('div', {className:"App"}, React.createElement('h1',null,'Hi 2 !!!'))
-};
+});
 
 export default CarMapper;

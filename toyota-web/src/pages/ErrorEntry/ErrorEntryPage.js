@@ -17,7 +17,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css";
 import TextField from "@mui/material/TextField";
-import { useEffect, useState, useReducer } from "react";
+import {forwardRef,
+  useImperativeHandle,
+  useRef, useEffect, useState, useReducer } from "react";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Dialog from "@mui/material/Dialog";
@@ -56,10 +58,14 @@ export default function PermanentDrawerRight() {
   const [defectRdd, setDefectRdd] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
+  const [img, setImg]= useState("");
+  const [control, setControl]=useState(false);
+  const mainPicElement = useRef();
   function handleClick() {
     setLoading(true);
     setTimeout(() => setLoading(false), 3000);
     setTimeout(() => handleClose(), 3000);
+    setTimeout(() => setAlert(true), 3000);
   }
   const handleClickOpen = () => {
     setOpen(true);
@@ -67,7 +73,6 @@ export default function PermanentDrawerRight() {
 
   const handleClose = () => {
     setOpen(false);
-    setAlert(true)
   };
   const alertClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -166,7 +171,7 @@ export default function PermanentDrawerRight() {
       .catch((err) => console.log(err));
   };
  const passFirstPic = ()=>{
-  
+    mainPicElement.current.changePic();
  }
   useEffect(() => {
     defectLog();
@@ -330,7 +335,7 @@ export default function PermanentDrawerRight() {
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <CarMapper hide={hide} defects={defects} defectsName={defectsName} />
+        <CarMapper hide={hide} defects={defects} defectsName={defectsName} ref={mainPicElement} />
         <Toolbar />
       </Box>
       <AppBar
