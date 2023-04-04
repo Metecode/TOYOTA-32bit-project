@@ -8,7 +8,7 @@ import axios from "axios";
 import { siteReducer } from "../../reducer";
 import { useFormik, Formik, Form, useFormikContext } from "formik";
 
-const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName},ref)  {
+const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coord},ref)  {
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
@@ -166,6 +166,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName},ref
     const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
     setMsg(`You clicked on the image at coords ${JSON.stringify(coords)} !`);
     setStyle({ x: coords.x, y: coords.y });
+    coord({ x: coords.x, y: coords.y })
   };
 
   const moveOnImage = (evt) => {

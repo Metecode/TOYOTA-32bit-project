@@ -17,9 +17,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css";
 import TextField from "@mui/material/TextField";
-import {forwardRef,
+import {
+  forwardRef,
   useImperativeHandle,
-  useRef, useEffect, useState, useReducer } from "react";
+  useRef,
+  useEffect,
+  useState,
+  useReducer,
+} from "react";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Dialog from "@mui/material/Dialog";
@@ -38,6 +43,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { useFormik, Formik, Form } from "formik";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
 const drawerWidth = 270;
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -58,8 +64,7 @@ export default function PermanentDrawerRight() {
   const [defectRdd, setDefectRdd] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
-  const [img, setImg]= useState("");
-  const [control, setControl]=useState(false);
+  const [coordxy, setCoordxy] = useState("");
   const mainPicElement = useRef();
   function handleClick() {
     setLoading(true);
@@ -75,7 +80,7 @@ export default function PermanentDrawerRight() {
     setOpen(false);
   };
   const alertClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -96,8 +101,9 @@ export default function PermanentDrawerRight() {
   const defectsName = (defect) => {
     setDefect(defect);
   };
-
-  console.log(selectedValue);
+  const coord = (coordxy) => {
+    setCoordxy(coordxy);
+  };
   const handleMouseMove = () => {
     if (timer) clearTimeout(timer);
     audio.pause();
@@ -170,9 +176,9 @@ export default function PermanentDrawerRight() {
       })
       .catch((err) => console.log(err));
   };
- const passFirstPic = ()=>{
+  const passFirstPic = () => {
     mainPicElement.current.changePic();
- }
+  };
   useEffect(() => {
     defectLog();
     rdd();
@@ -201,9 +207,14 @@ export default function PermanentDrawerRight() {
               subResponsible: "",
               explanation: "",
               rdd: "",
+              coordXY:{coordxy},
             }}
-            onSubmit={(value) => {
-              console.log(value);
+            onSubmit={(values) => {
+              console.log(values);
+              setLoading(true);
+              setTimeout(() => setLoading(false), 3000);
+              setTimeout(() => handleClose(), 3000);
+              setTimeout(() => setAlert(true), 3000);
             }}
           >
             {({ values }) => (
@@ -266,18 +277,20 @@ export default function PermanentDrawerRight() {
                     </Grid>
                     <Grid item xs={8}>
                       <DialogActions>
-                        <LoadingButton
-                          onClick={handleClick}
+                        <Button
+                          // onClick={handleClick}
                           loading={loading}
                           loadingPosition="start"
                           type="submit"
                           size="large"
                           variant="contained"
-                          color="error"
+                          color="success"
+                          disabled={loading}
                           startIcon={<SaveIcon />}
                         >
-                          Kaydet
-                        </LoadingButton>
+                          {loading && <CircularProgress size={30} />}
+                          {!loading && "Kaydet "}
+                        </Button>
                         <Button
                           size="large"
                           variant="contained"
@@ -312,6 +325,7 @@ export default function PermanentDrawerRight() {
                     />
                   </Stack>
                 </Box>
+                {JSON.stringify(values)}
               </Form>
             )}
           </Formik>
@@ -335,7 +349,13 @@ export default function PermanentDrawerRight() {
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <CarMapper hide={hide} defects={defects} defectsName={defectsName} ref={mainPicElement} />
+        <CarMapper
+          hide={hide}
+          defects={defects}
+          defectsName={defectsName}
+          coord={coord}
+          ref={mainPicElement}
+        />
         <Toolbar />
       </Box>
       <AppBar
@@ -509,15 +529,15 @@ export default function PermanentDrawerRight() {
   );
 }
 
-  // const handleToggle = (value) => () => {
-  //   const currentIndex = checked.indexOf(value);
-  //   const newChecked = [...checked];
+// const handleToggle = (value) => () => {
+//   const currentIndex = checked.indexOf(value);
+//   const newChecked = [...checked];
 
-  //   if (currentIndex === -1) {
-  //     newChecked.push(value);
-  //   } else {
-  //     newChecked.splice(currentIndex, 1);
-  //   }
+//   if (currentIndex === -1) {
+//     newChecked.push(value);
+//   } else {
+//     newChecked.splice(currentIndex, 1);
+//   }
 
-  //   setChecked(newChecked);
-  // };
+//   setChecked(newChecked);
+// };
