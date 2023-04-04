@@ -27,11 +27,22 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Select from "../../components/form/Select.js";
 import Input from "../../components/form/Input";
+import Textarea from "../../components/form/Textarea";
+import Keyboard from "react-simple-keyboard";
+import Grid from "@mui/material/Grid";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useFormik, Formik, Form } from "formik";
-
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 const drawerWidth = 270;
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function PermanentDrawerRight() {
+  const [layout, setLayout] = React.useState("default");
+  const keyboard = React.useRef();
   const [checked, setChecked] = React.useState([0]);
   const [info, setInfo] = useState([]);
   const [isHide, setIsHide] = useState(true);
@@ -42,12 +53,28 @@ export default function PermanentDrawerRight() {
   const [defectClass, setDefectClass] = useState({});
   const [defectRes, setDefectRes] = useState({});
   const [defectExit, setDefectExit] = useState({});
+  const [defectRdd, setDefectRdd] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
+  function handleClick() {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 3000);
+    setTimeout(() => handleClose(), 3000);
+  }
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setAlert(true)
+  };
+  const alertClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setAlert(false);
   };
   const audio = new Audio("/assets/sound/AlertSirenSound.mp3");
   audio.loop = true;
@@ -55,20 +82,16 @@ export default function PermanentDrawerRight() {
   const hide = (isHide) => {
     setIsHide(isHide);
   };
+
   const defects = (selectedValue) => {
     setSelectedValue(selectedValue);
     setShow(true);
   };
+
   const defectsName = (defect) => {
     setDefect(defect);
   };
-  // useEffect(() => {
-  //   async function getData(selectedValue) {
-  //     const defects = await setSelectedValue(selectedValue);
-  //     setShow(true);
-  //   }
-  //   getData(selectedValue);
-  // }, []);
+
   console.log(selectedValue);
   const handleMouseMove = () => {
     if (timer) clearTimeout(timer);
@@ -133,22 +156,23 @@ export default function PermanentDrawerRight() {
       })
       .catch((err) => console.log(err));
   };
+  const rdd = () => {
+    axios
+      .get(`../db/hataDetay2.json`)
+      .then((res) => {
+        let rddDefect = res.data;
+        setDefectRdd(rddDefect);
+      })
+      .catch((err) => console.log(err));
+  };
+ const passFirstPic = ()=>{
+  
+ }
   useEffect(() => {
     defectLog();
+    rdd();
   }, []);
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -158,74 +182,143 @@ export default function PermanentDrawerRight() {
         maxWidth="lg"
         fullWidth="fullWidth"
       >
-        <DialogTitle>{info.companyName}</DialogTitle>
+        <DialogTitle style={{ fontWeight: "bold" }}>
+          {info.companyName}
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
+          <DialogContentText></DialogContentText>
           <Formik
             initialValues={{
               defectResponsibles: "",
               defectClass: "",
               defectExit: "",
               appliedOperation: "",
-              subResponsible:"",
+              subResponsible: "",
+              explanation: "",
+              rdd: "",
             }}
-            onSubmit={(value) => {}}
+            onSubmit={(value) => {
+              console.log(value);
+            }}
           >
             {({ values }) => (
               <Form>
-                <Select
-                  label="Hata Sorumlusu"
-                  name="defectResponsibles"
-                  options={defectRes[0].map((option) => {
-                    return {
-                      key: option.dataValue,
-                      value: option.dataValue,
-                    };
-                  })}
-                />
-                <Select
-                  dropDown={false}
-                  label="Hata Sınıfı"
-                  name="defectClass"
-                  options={defectClass[0].map((option) => {
-                    return {
-                      key: option.dataValue,
-                      value: option.dataValue,
-                    };
-                  })}
-                />
-                <Select
-                  dropDown={false}
-                  label="Exit Department"
-                  name="defectExit"
-                  options={defectExit[0].map((option) => {
-                    return {
-                      key: option.dataValue,
-                      value: option.dataValue,
-                    };
-                  })}
-                />
-                <Input label="Yapılan İşlem" name="appliedOperation" />
-                <Input label="Alt Sorumlu" name="subResponsible" />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Grid container spacing={20}>
+                    <Grid item xs={4}>
+                      <Select
+                        label="Hata Sorumlusu"
+                        name="defectResponsibles"
+                        options={defectRes[0].map((option) => {
+                          return {
+                            key: option.dataValue,
+                            value: option.dataValue,
+                          };
+                        })}
+                      />
+                    </Grid>
+                    <Grid item xs={8}>
+                      <FormControlLabel
+                        control={<Checkbox defaultChecked />}
+                        label="Harigami"
+                      />
+                      <FormControlLabel
+                        control={<Checkbox defaultChecked />}
+                        label="Sık Gelen Hata"
+                      />
+
+                      <Select
+                        dropDown={false}
+                        label="RDD"
+                        name="rdd"
+                        options={defectRdd.map((option) => {
+                          return {
+                            key: option.nrReasonDetail,
+                            value: option.nrReasonDetail,
+                          };
+                        })}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                      <Select
+                        dropDown={false}
+                        label="Hata Sınıfı"
+                        name="defectClass"
+                        options={defectClass[0].map((option) => {
+                          return {
+                            key: option.dataValue,
+                            value: option.dataValue,
+                          };
+                        })}
+                      />
+                    </Grid>
+                    <Grid item xs={8}>
+                      <DialogActions>
+                        <LoadingButton
+                          onClick={handleClick}
+                          loading={loading}
+                          loadingPosition="start"
+                          type="submit"
+                          size="large"
+                          variant="contained"
+                          color="error"
+                          startIcon={<SaveIcon />}
+                        >
+                          Kaydet
+                        </LoadingButton>
+                        <Button
+                          size="large"
+                          variant="contained"
+                          color="error"
+                          onClick={handleClose}
+                          startIcon={<CancelIcon />}
+                        >
+                          İptal
+                        </Button>
+                      </DialogActions>
+                    </Grid>
+                  </Grid>
+
+                  <Select
+                    dropDown={false}
+                    label="Exit Department"
+                    name="defectExit"
+                    options={defectExit[0].map((option) => {
+                      return {
+                        key: option.dataValue,
+                        value: option.dataValue,
+                      };
+                    })}
+                  />
+                  <Input label="Yapılan İşlem" name="appliedOperation" />
+                  <Input label="Alt Sorumlu" name="subResponsible" />
+                  <Stack style={{ marginLeft: 8 }}>
+                    <Textarea
+                      label="Açıklama"
+                      placeHolder="Örnek açıklama"
+                      name="explanation"
+                    />
+                  </Stack>
+                </Box>
               </Form>
             )}
           </Formik>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Açıklama"
-            fullWidth
-            variant="standard"
-          />
+          <Stack style={{ alignItems: "center", marginTop: 10 }}>
+            <Keyboard
+              keyboardRef={(r) => (keyboard.current = r)}
+              layoutName={layout}
+              // onChange={onChange}
+              // onKeyPress={onKeyPress}
+            />
+          </Stack>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
       </Dialog>
       <AppBar
         color="default"
@@ -357,7 +450,7 @@ export default function PermanentDrawerRight() {
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton className="Button">
+            <ListItemButton onClick={passFirstPic} className="Button">
               <ListItemText primary={"TERMİNAL İLK RESMİ"} />
             </ListItemButton>
           </ListItem>
@@ -389,11 +482,37 @@ export default function PermanentDrawerRight() {
           </div>
         </div>
       </Drawer>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={alert}
+        autoHideDuration={5000}
+        onClose={alertClose}
+      >
+        <Alert
+          onClose={alertClose}
+          open={alert}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Kaydedildi
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
-{
-  /* <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon> */
-}
+
+  // const handleToggle = (value) => () => {
+  //   const currentIndex = checked.indexOf(value);
+  //   const newChecked = [...checked];
+
+  //   if (currentIndex === -1) {
+  //     newChecked.push(value);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1);
+  //   }
+
+  //   setChecked(newChecked);
+  // };

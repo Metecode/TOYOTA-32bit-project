@@ -8,6 +8,7 @@ export default function Input({ label, ...props }) {
     <>
       <label className="block w-full">
         <TextField
+        required
           error={meta.error && Boolean(meta.error)}
           helperText={meta.error ? meta.error : ""}
           sx={{ m: 1, minWidth: 400 }}
