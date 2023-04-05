@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import "./form.css";
+
 export default function Input({
   label,
   options,
@@ -17,6 +18,7 @@ export default function Input({
   original = false,
   ...props
 }) {
+
   const [field, meta, helpers] = useField(props);
   const [menuItems, setMenuItems] = useState([]);
   const [index, setIndex] = useState(0);
@@ -33,13 +35,15 @@ export default function Input({
       selectRef.current.focus();
     }
   },100)
-  const scrollToUp = () => {
+  const scrollToUp = (e) => {
+    e.stopPropagation();
     if (index == 0) {
       return;
     }
     setIndex(index - 1);
   };
-  const scrollToDown = () => {
+  const scrollToDown = (e) => {
+    e.stopPropagation();
     if (index == options.length - 10) {
       return;
     }
@@ -52,15 +56,13 @@ export default function Input({
   useEffect(() => {
     setMenuItems(options.slice(index, index + 10));
   }, [index]);
-  
   return (
     <label className="block w-full">
-      <FormControl required sx={{ m: 1, minWidth: 400 }}>
+      <FormControl required sx={{ m: 1, minWidth: 400}}>
         <InputLabel size="small" id="demo-simple-select-required-label">
           {label}
         </InputLabel>
         <Select
-        
           ref={selectRef}
           id="demo-simple-select-error"
           size="small"
@@ -69,16 +71,16 @@ export default function Input({
           // value={menuItems[0].value}
           // defaultValue={menuItems[0] ? menuItems[0].value : 'seciniz'}
           {...props}
-          onChange={changeHandle}
+          onChange={changeHandle} 
         >
           
           <FormControl style={{float:"right"}} >
-          {dropDown && <Button  size="large" onClick={scrollToUp}><ArrowDropUpIcon/></Button>}
+          {dropDown && <Button size="large" onClick={scrollToUp}><ArrowDropUpIcon/></Button>}
           {dropDown && <Button size="large" onClick={scrollToDown}> <ArrowDropDownIcon/> </Button>}
       </FormControl>
          
           {menuItems.map((option, key) => (
-            <MenuItem value={option.key} key={key}>
+            <MenuItem   value={option.key} key={key}>
               {option.value}
             </MenuItem>
           ))}

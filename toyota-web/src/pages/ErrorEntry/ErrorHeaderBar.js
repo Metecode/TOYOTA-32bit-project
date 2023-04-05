@@ -15,7 +15,7 @@ export default function HataHeaderBar() {
       .catch((err) => console.log(err));
     },[])
     
-    console.log(info)
+  
     return (
     <Stack spacing={3} className="wrap" direction="row" >
       <Button>

@@ -17,6 +17,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css";
 import TextField from "@mui/material/TextField";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   forwardRef,
   useImperativeHandle,
@@ -37,13 +38,13 @@ import Input from "../../components/form/Input";
 import Textarea from "../../components/form/Textarea";
 import Keyboard from "react-simple-keyboard";
 import Grid from "@mui/material/Grid";
-import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useFormik, Formik, Form } from "formik";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import CircularProgress from "@mui/material/CircularProgress";
+import LargeFont from "./LargeFont";
+
 const drawerWidth = 270;
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -66,6 +67,7 @@ export default function PermanentDrawerRight() {
   const [alert, setAlert] = useState(false);
   const [coordxy, setCoordxy] = useState("");
   const mainPicElement = useRef();
+  const largeFontElement = useRef();
   function handleClick() {
     setLoading(true);
     setTimeout(() => setLoading(false), 3000);
@@ -176,9 +178,13 @@ export default function PermanentDrawerRight() {
       })
       .catch((err) => console.log(err));
   };
+
   const passFirstPic = () => {
     mainPicElement.current.changePic();
   };
+  const openLargeFont = ()=>{
+    largeFontElement.current.openDialog();
+  }
   useEffect(() => {
     defectLog();
     rdd();
@@ -215,6 +221,9 @@ export default function PermanentDrawerRight() {
               setTimeout(() => setLoading(false), 3000);
               setTimeout(() => handleClose(), 3000);
               setTimeout(() => setAlert(true), 3000);
+              setTimeout(() => passFirstPic(), 3000);
+              setTimeout(() => setIsHide(true), 3000);
+              
             }}
           >
             {({ values }) => (
@@ -277,20 +286,17 @@ export default function PermanentDrawerRight() {
                     </Grid>
                     <Grid item xs={8}>
                       <DialogActions>
-                        <Button
-                          // onClick={handleClick}
+                         <LoadingButton
                           loading={loading}
                           loadingPosition="start"
                           type="submit"
                           size="large"
                           variant="contained"
                           color="success"
-                          disabled={loading}
                           startIcon={<SaveIcon />}
                         >
-                          {loading && <CircularProgress size={30} />}
-                          {!loading && "Kaydet "}
-                        </Button>
+                          Kaydet
+                        </LoadingButton>
                         <Button
                           size="large"
                           variant="contained"
@@ -389,9 +395,10 @@ export default function PermanentDrawerRight() {
             <Button size="large" variant="outlined">
               TEMİZLE
             </Button>
-            <Button size="large" variant="outlined" href="#contained-buttons">
+            <Button onClick={openLargeFont} size="large" variant="outlined">
               BÜYÜK FONT
             </Button>
+            <LargeFont ref={largeFontElement}/>
           </Stack>
         </Toolbar>
         <Stack>

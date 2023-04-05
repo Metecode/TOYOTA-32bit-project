@@ -1,0 +1,12 @@
+{
+    "type":"SUCCESS",
+    "data":[
+       {
+          "modelId":23638,
+          "modelCode":"CHR",
+          "modelName":"CHR",
+          "modelShortName":"CHR",
+          "deleted":false
+       }
+    ]
+ }

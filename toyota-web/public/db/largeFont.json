@@ -1,0 +1,19 @@
+{
+    "type":"SUCCESS",
+    "data":[
+       {
+          "partName":"ECI PAR DENEME",
+          "description":"test",
+          "defectName":"ARACI VPI ANALİZ 'E AYIRIN"
+       },
+       {
+          "partName":"CHASSIS PROSES",
+          "defectName":"KONTROL EDİLEMEDİ"
+       },
+       {
+          "partName":"A/C TUBE",
+          "description":"örnek açıklama",
+          "defectName":"DEFORME"
+       }
+    ]
+ }

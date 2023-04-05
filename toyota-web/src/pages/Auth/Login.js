@@ -38,7 +38,7 @@ export default function Login() {
     setOpen(true);
   };
 
-  console.log(state.filterCode, state.linkCount, state.depCode, state.termName);
+  // console.log(state.filterCode, state.linkCount, state.depCode, state.termName);
 
   useEffect(() => {
     if (state.linkCount > 1) {
