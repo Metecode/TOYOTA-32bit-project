@@ -66,6 +66,7 @@ export default function PermanentDrawerRight() {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(false);
   const [coordxy, setCoordxy] = useState("");
+  const [color, setColor] = useState(false);
   const mainPicElement = useRef();
   const largeFontElement = useRef();
   function handleClick() {
@@ -108,11 +109,13 @@ export default function PermanentDrawerRight() {
   };
   const handleMouseMove = () => {
     if (timer) clearTimeout(timer);
+    setColor(false);
     audio.pause();
     timer = setTimeout(() => {
+      setColor(!color);
       audio.loop = true;
       audio.play();
-    }, 80000);
+    }, 8000);
   };
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
@@ -398,7 +401,7 @@ export default function PermanentDrawerRight() {
             <Button onClick={openLargeFont} size="large" variant="outlined">
               BÜYÜK FONT
             </Button>
-            <LargeFont ref={largeFontElement}/>
+            <LargeFont color={color} ref={largeFontElement}/>
           </Stack>
         </Toolbar>
         <Stack>

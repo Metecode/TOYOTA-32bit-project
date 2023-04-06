@@ -24,10 +24,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const LargeFont = forwardRef(function LargeFont({}, ref) {
+const LargeFont = forwardRef(function LargeFont({color}, ref) {
   const [info, setInfo] = useState([]);
   const [info2, setInfo2] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [background, setBackground] = useState(null);
   useEffect(() => {
     axios
       .get("../db/largeFont.json")
@@ -48,7 +49,10 @@ const LargeFont = forwardRef(function LargeFont({}, ref) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(info);
+  
+useEffect(()=>{
+  setBackground(color);
+},[color])
   return (
     <div>
       <Dialog
@@ -58,7 +62,7 @@ const LargeFont = forwardRef(function LargeFont({}, ref) {
         TransitionComponent={Transition}
         PaperProps={{
           style: {
-            backgroundColor: "#B9F3FC",
+            backgroundColor: (background ? "red" : "#B9F3FC"),
           },
         }}
       >
