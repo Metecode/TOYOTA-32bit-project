@@ -9,6 +9,10 @@ Yup.setLocale({
     string:{
         min:'Bu alan minimum ${min} karakter olmalidir.',
         max:'Bu alan maksimum ${max} karakter olmalidir'
+    },
+    number:{
+        min:'Bu alan minimum ${min} karakter olmalidir.',
+        max:'Bu alan maksimum ${max} karakter olmalidir'
     }
 
 })

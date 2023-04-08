@@ -1,0 +1,16 @@
+{
+    "users": [
+      {
+        "sicilNo": "99619",
+        "pass": "password1"
+      },
+      {
+        "sicilNo": "user2",
+        "password": "password2"
+      },
+      {
+        "sicilNo": "user3",
+        "password": "password3"
+      }
+    ]
+  }

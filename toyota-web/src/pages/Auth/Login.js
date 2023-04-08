@@ -19,6 +19,12 @@ import Button from "@mui/material/Button";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function Login() {
   const [options, setOptions] = useState([]);
   const [vardiya, setVardiya] = useState([]);
@@ -37,7 +43,13 @@ export default function Login() {
   const handleOpen = () => {
     setOpen(true);
   };
+  const alertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
 
+    setPass(false);
+  };
   // console.log(state.filterCode, state.linkCount, state.depCode, state.termName);
 
   useEffect(() => {
@@ -146,136 +158,200 @@ export default function Login() {
       });
     },
   });
+  const [pass,setPass] = useState(false);
+  const authenticateUser = (sicil, password, montaj) => {
+    return new Promise((resolve, reject) => {
+      // Check if the sicil,montaj and password are correct
+      if (sicil === 99619 && password === "toyota" &&  montaj === 222) {
+        // If they are correct, return a success message
+        
+        resolve('Login successful');
 
+      } else {
+        // If they are not correct, return an error message
+        setPass(true)
+        reject('Invalid sicil,montaj or password');
+      }
+    });
+  };
   return (
     <div>
-      <React.Fragment>
-        <CssBaseline />
-        <Container maxWidth="sm" className="round1">
-          <Box textAlign={"center"} component="form">
-            Login page <br />
-            <Formik
-              initialValues={{
-                terminalListesi: "",
-                sicilNo: "",
-                password: "",
-                montaj: "",
-                date: "",
-                vardiya: "",
-              }}
-              onSubmit={(values, actions) => {
-                setUser(values);
-                navigate(location?.state?.return_url || "/", {
-                  replace: true,
-                });
-                setTimeout(() => {
-                  actions.setSubmitting(false);
+      <Container maxWidth="sm" className="round1">
+        <Box textAlign={"center"} component="form">
+          Login page <br />
+          <Formik
+            initialValues={{
+              terminalListe: "",
+              sicilNo: "",
+              pass: "",
+              montaj: "",
+              date: "",
+              vardiya: "",
+            }}
+            onSubmit={ (values, actions) => {
+              // try {
+              //   const response = await authenticateUser(values.sicilNo, values.pass, values.montaj);
+              //   console.log(response)
+              // } catch (error) {
+              //   actions.setErrors({ password: error });
+              // }
+              // if(pass== true){
+              //   alert(JSON.stringify(values, null, 2));
+              //   navigate(location?.state?.return_url || "/errorEntryPage", {
+              //     replace: true,
+              //   });
+              // }else{
+
+              // }
+              
+              //   actions.setSubmitting(false);
+              //     actions.resetForm();
+            authenticateUser(values.sicilNo, values.pass, values.montaj)
+            .then(() => {
+              alert(JSON.stringify(values, null, 2));
+              navigate(location?.state?.return_url || "/errorEntryPage", {
+                replace: true,
+              });
+            })
+            .catch(() => {
+                actions.setSubmitting(false);
                   actions.resetForm();
-                }, 3000);
-              }}
-              // onSubmit={(values) => {
-              //   console.log(values);
-              // }}
-              validationSchema={LoginSchema}
-            >
-              {({ values, isSubmitting }) => (
-                <Form className="grid gap-y-3 p-4">
-                  <Select
-                    open={open}
-                    onClose={handleClose}
-                    onOpen={handleOpen}
-                    label="Terminal listesi"
-                    name="terminalListesi"
-                    // control ? {key: option.termId, value: option.termName} :
-                    options={
-                      control
-                        ? [{ key: option.termId, value: option.termName }]
-                        : options.map((option) => {
-                            return {
-                              key: option.termId,
-                              value: option.termName,
-                            };
-                          })
-                    }
-                  />
-                  <br />
-                  <Input
-                    inputProps={{ min: 0 }}
-                    type="number"
-                    label="Sicil No"
-                    name="sicilNo"
-                  />{" "}
-                  <br />
-                  {/* <Input label="Parola" name="password" type="password" /> <br /> */}
-                  <InputPassword name="password" />
-                  <Input
-                    inputProps={{ min: 0 }}
-                    type="number"
-                    label="Montaj No"
-                    name="montaj"
-                  />{" "}
-                  <br />
-                  <div
-                    className="dene"
-                    style={{ backgroundColor: values.vardiya }}
-                  >
-                    <DatePicker name="date" />
-                    <div>
-                      <Select
-                        dropDown={false}
-                        className="vardiya"
-                        label="Vardiya"
-                        name="vardiya"
-                        options={vardiya.map((vardiya) => {
+            });
+            }}
+            validationSchema={LoginSchema}
+          >
+            {({
+              submitForm,
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            }) => (
+              <form onSubmit={handleSubmit}>
+                <Select
+                  open={open}
+                  onClose={handleClose}
+                  onOpen={handleOpen}
+                  label="Terminal listesi"
+                  name="terminalListe"
+                  // control ? {key: option.termId, value: option.termName} :
+                  options={
+                    control
+                      ? [{ key: option.termId, value: option.termName }]
+                      : options.map((option) => {
                           return {
-                            key: vardiya.rgbColor,
-                            value: vardiya.shiftCode,
+                            key: option.termId,
+                            value: option.termName,
                           };
-                        })}
-                      />{" "}
-                      <br />
-                    </div>
+                        })
+                  }
+                />
+                <br />
+                <Input
+                  onInput={(e)=>{ 
+                    e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,5)
+                }}
+                    inputProps={{ maxLength: 5, inputMode: 'numeric', pattern: '[0-9]*', min: 1, max: 99999 }}
+                  type="number"
+                  label="Sicil No"
+                  name="sicilNo"
+                />{" "}
+                <br />
+                {/* <Input label="Parola" name="password" type="password" /> <br /> */}
+                <InputPassword name="pass" />
+                <Input
+                onInput={(e)=>{ 
+                  e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,3)
+              }}
+                  inputProps={{ maxLength: 3, inputMode: 'numeric', pattern: '[0-9]*', min: 1, max: 999 }}
+                  type="number"
+                  label="Montaj No"
+                  name="montaj"
+                  
+                />{" "}
+                <br />
+                <div
+                  className="dene"
+                  style={{ backgroundColor: values.vardiya }}
+                >
+                  <DatePicker name="date" />
+                  <div>
+                    <Select
+                      dropDown={false}
+                      className="vardiya"
+                      label="Vardiya"
+                      name="vardiya"
+                      options={vardiya.map((vardiya) => {
+                        return {
+                          key: vardiya.rgbColor,
+                          value: vardiya.shiftCode,
+                        };
+                      })}
+                    />{" "}
+                    <br />
                   </div>
-                  <Stack
-                    alignItems="center"
-                    justifyContent="center"
-                    mt={1}
-                    mb={2}
-                    spacing={2}
-                    direction="row"
+                </div>
+                <Stack
+                  alignItems="center"
+                  justifyContent="center"
+                  mt={1}
+                  mb={2}
+                  spacing={2}
+                  direction="row"
+                >
+                  <Button
+                    onClick={submitForm}
+                    variant="contained"
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="bg-black h-10 rounded text-sm text-white disabled:opacity-40"
+                    startIcon={<LoginIcon />}
+                    color="success"
                   >
-                    <Button
-                      variant="contained"
-                      disabled={isSubmitting}
-                      type="submit"
-                      className="bg-black h-10 rounded text-sm text-white disabled:opacity-40"
-                      startIcon={<LoginIcon />}
-                    >
-                      Giris yap
-                    </Button>
-                    <Button
-                      type="Logout "
-                      variant="contained"
-                      color="primary"
-                      startIcon={<LogoutIcon />}
-                      onClick={navigateToContacts}
-                    >
-                      Kapat
-                    </Button>
-                  </Stack>
-                  <Keyboard
+                    GİRİŞ YAP
+                  </Button>
+                  <Button
+                    type="logout"
+                    variant="contained"
+                    color="error"
+                    startIcon={<LogoutIcon />}
+                    onClick={navigateToContacts}
+                  >
+                    Kapat
+                  </Button>
+                </Stack>
+                {/* <Keyboard
                     keyboardRef={(r) => (keyboard.current = r)}
                     layoutName={layout}
                     // onChange={onChange}
                     // onKeyPress={onKeyPress}
-                  />
-                  <pre>{JSON.stringify(values, null, 2)}</pre>
-                </Form>
-              )}
-            </Formik>
-          </Box>
-        </Container>
-      </React.Fragment>
+                  /> */}
+              </form>
+            )}
+          </Formik>
+        </Box>
+      </Container>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={pass}
+        autoHideDuration={5000}
+        onClose={alertClose}
+      >
+        <Alert
+          onClose={alertClose}
+          open={pass}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Girdiğiniz bilgiler hatalıdır!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
