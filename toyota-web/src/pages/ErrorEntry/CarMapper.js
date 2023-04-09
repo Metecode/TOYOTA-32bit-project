@@ -16,7 +16,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
   // const [carImg, dispatch] = useReducer(siteReducer, {
   //   image: "./assets/img/car.jpg",
   // });
-  const [carImg, setImg] = useState("./assets/img/car.jpg");
+  const [carImg, setImg] = useState("../../../../../assets/img/car.jpg");
   const [extendedAreas, setExtendedAreas] = useState([]);
   const [data, setData] = useState("defectScreen");
   const [partDefects, setPartDefects] = useState([]);
@@ -32,7 +32,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
     changePic: changePic
   }));
   const changePic = () => {
-    setImg("./assets/img/car.jpg");
+    setImg("../../../../../assets/img/car.jpg");
     setControlClick(true);
     setData("defectScreen");
     setControlSelect(false);
@@ -68,7 +68,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
 
   const dataCoord = async () => {
     await axios
-      .get(`../db/${data}.json`)
+      .get(`../../../../../db/${data}.json`)
       .then((res) => {
         let data = res.data.data[0].defectButtonRecords.map((x) => {
           return {
@@ -108,7 +108,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
     
   const dataDefect = async () => {
     await axios
-      .get(`../db/${data}.json`)
+      .get(`../../../../../db/${data}.json`)
       .then((res) => {
         let partDefect = res.data.data[0].partDefects.map((x) => {
           return {
@@ -141,7 +141,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
     setData(area.childPicID);
     setDefect(area.name)
     // dispatch({ type: "TOGGLE_IMAGE", value: area.childPicID });
-    setImg(`./assets/img/${area.childPicID}.jpg`);
+    setImg(`./../../../../assets/img/${area.childPicID}.jpg`);
     console.log(partDefects);
     setShow(true);
     setMsg(
@@ -244,7 +244,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
           />
           {controlCursor && (
             <img
-              src="./assets/img/cursor.gif"
+              src="../../../../../assets/img/cursor.gif"
               style={{
                 position: "absolute",
                 left: style.x,

@@ -34,7 +34,14 @@ export default function Login() {
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
   const navigateToContacts = () => {
-    Logout(`../../`);
+    Logout(`../../cvqsterminal`);
+  };
+
+  const goToEntryDefect = (filterCode, depCode) => {
+    navigate(
+      `/cvqsterminal/defectentry/${depCode}/${filterCode}/errorEntryPage`,
+      { state: { filterCode, depCode } }
+    );
   };
   const handleClose = () => {
     setOpen(false);
@@ -55,7 +62,7 @@ export default function Login() {
   useEffect(() => {
     if (state.linkCount > 1) {
       axios
-        .get(`../../../db/${state.filterCode}.json`)
+        .get(`../../../../db/${state.filterCode}.json`)
         .then((res) => {
           let data = res.data.data.map((item) => {
             return {
@@ -77,7 +84,7 @@ export default function Login() {
 
     axios
 
-      .get("../../../db/shifts.json")
+      .get("../../../../db/shifts.json")
       .then((res) => {
         let data = res.data.data.map((item) => {
           return {
@@ -94,6 +101,7 @@ export default function Login() {
 
   const Logout = useNavigate();
   const location = useLocation();
+  console.log(location.state.depCode, location.state.filterCode);
   // const [usernameInput, setusernameInput] = React.useState("");
   // const [montajInput, setmontajInput] = React.useState("");
   // const [passwordInput, setPasswordInput] = React.useState("");
@@ -158,19 +166,18 @@ export default function Login() {
       });
     },
   });
-  const [pass,setPass] = useState(false);
+  const [pass, setPass] = useState(false);
   const authenticateUser = (sicil, password, montaj) => {
     return new Promise((resolve, reject) => {
       // Check if the sicil,montaj and password are correct
-      if (sicil === 99619 && password === "toyota" &&  montaj === 222) {
+      if (sicil === 99619 && password === "toyota" && montaj === 222) {
         // If they are correct, return a success message
-        
-        resolve('Login successful');
 
+        resolve("Login successful");
       } else {
         // If they are not correct, return an error message
-        setPass(true)
-        reject('Invalid sicil,montaj or password');
+        setPass(true);
+        reject("Invalid sicil,montaj or password");
       }
     });
   };
@@ -188,35 +195,22 @@ export default function Login() {
               date: "",
               vardiya: "",
             }}
-            onSubmit={ (values, actions) => {
-              // try {
-              //   const response = await authenticateUser(values.sicilNo, values.pass, values.montaj);
-              //   console.log(response)
-              // } catch (error) {
-              //   actions.setErrors({ password: error });
-              // }
-              // if(pass== true){
-              //   alert(JSON.stringify(values, null, 2));
-              //   navigate(location?.state?.return_url || "/errorEntryPage", {
-              //     replace: true,
-              //   });
-              // }else{
-
-              // }
-              
+            onSubmit={(values, actions) => {
               //   actions.setSubmitting(false);
               //     actions.resetForm();
-            authenticateUser(values.sicilNo, values.pass, values.montaj)
-            .then(() => {
-              alert(JSON.stringify(values, null, 2));
-              navigate(location?.state?.return_url || "/errorEntryPage", {
-                replace: true,
-              });
-            })
-            .catch(() => {
-                actions.setSubmitting(false);
+              authenticateUser(values.sicilNo, values.pass, values.montaj)
+                .then(() => {
+                  setUser(values);
+                  alert(JSON.stringify(values, null, 2));
+                  // navigate(`/cvqsterminal/${location.state.depCode}/${location.state.filterCode}/errorEntryPage` || "/cvqsterminal", {
+                  //   replace: true,
+                  // });
+                  goToEntryDefect(state.depCode, state.filterCode);
+                })
+                .catch(() => {
+                  actions.setSubmitting(false);
                   actions.resetForm();
-            });
+                });
             }}
             validationSchema={LoginSchema}
           >
@@ -251,10 +245,18 @@ export default function Login() {
                 />
                 <br />
                 <Input
-                  onInput={(e)=>{ 
-                    e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,5)
-                }}
-                    inputProps={{ maxLength: 5, inputMode: 'numeric', pattern: '[0-9]*', min: 1, max: 99999 }}
+                  onInput={(e) => {
+                    e.target.value = Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 5);
+                  }}
+                  inputProps={{
+                    maxLength: 5,
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                    min: 1,
+                    max: 99999,
+                  }}
                   type="number"
                   label="Sicil No"
                   name="sicilNo"
@@ -263,14 +265,21 @@ export default function Login() {
                 {/* <Input label="Parola" name="password" type="password" /> <br /> */}
                 <InputPassword name="pass" />
                 <Input
-                onInput={(e)=>{ 
-                  e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,3)
-              }}
-                  inputProps={{ maxLength: 3, inputMode: 'numeric', pattern: '[0-9]*', min: 1, max: 999 }}
+                  onInput={(e) => {
+                    e.target.value = Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 3);
+                  }}
+                  inputProps={{
+                    maxLength: 3,
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                    min: 1,
+                    max: 999,
+                  }}
                   type="number"
                   label="Montaj No"
                   name="montaj"
-                  
                 />{" "}
                 <br />
                 <div

@@ -44,6 +44,7 @@ import { useFormik, Formik, Form } from "formik";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import LargeFont from "./LargeFont";
+import { useNavigate, useLocation } from "react-router";
 
 const drawerWidth = 270;
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -69,6 +70,8 @@ export default function PermanentDrawerRight() {
   const [color, setColor] = useState(false);
   const mainPicElement = useRef();
   const largeFontElement = useRef();
+  const { state } = useLocation();
+  const location = useLocation();
   function handleClick() {
     setLoading(true);
     setTimeout(() => setLoading(false), 3000);
@@ -127,14 +130,14 @@ export default function PermanentDrawerRight() {
 
   useEffect(() => {
     axios
-      .get("../db/headerData.json")
+      .get("../../../../../db/headerData.json")
       .then((res) => setInfo(res.data.data[0]))
       .catch((err) => console.log(err));
   }, []);
 
   const defectLog = () => {
     axios
-      .get(`../db/hataDetay.json`)
+      .get(`../../../../../db/hataDetay.json`)
       .then((res) => {
         let partDefect = res.data.requiredFieldsByInspectionDTOList
           .filter((c) => c.englishUserName.includes("Defect Class"))
@@ -174,7 +177,7 @@ export default function PermanentDrawerRight() {
   };
   const rdd = () => {
     axios
-      .get(`../db/hataDetay2.json`)
+      .get(`../../../../../db/hataDetay2.json`)
       .then((res) => {
         let rddDefect = res.data;
         setDefectRdd(rddDefect);

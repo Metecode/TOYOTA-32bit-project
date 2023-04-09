@@ -18,7 +18,7 @@ export default function TerminalTable() {
   const navigate = useNavigate();
 
   const navigateToContacts = (filterCode,linkCount,depCode,termName) => {
-    navigate(`/auth/login/${depCode}/${filterCode}`, {state:{filterCode, linkCount,depCode,termName}});
+    navigate(`/cvqsterminal/auth/login/${depCode}/${filterCode}`, {state:{filterCode, linkCount,depCode,termName}});
   };
   useEffect(() => {
     axios

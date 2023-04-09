@@ -19,7 +19,7 @@ import ErrorEntryPage from "./pages/ErrorEntry/ErrorEntryPage"
 // console.log(state.filterCode, state.linkCount)
 const routes = [
     {
-        path:'/',
+        path:'/cvqsterminal',
         name:'terminal',
         element: <TerminalLayout/>,
         children:[
@@ -35,8 +35,8 @@ const routes = [
             },
             {
                 name:'errorEntryPage',
-                path:'errorEntryPage',
-                element: <ErrorEntryPage/>
+                path:'defectentry/:depCode?/:filterCode?/errorEntryPage',
+                element: <ErrorEntryPage/>,
             },
             {
                 name:'blog',
@@ -76,7 +76,7 @@ const routes = [
     },
     {
         name:'auth',
-        path:'/auth',
+        path:'/cvqsterminal/auth',
         element: <Authlayout/>,
         children:[
             {
