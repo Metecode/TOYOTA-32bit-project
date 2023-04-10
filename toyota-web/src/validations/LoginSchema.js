@@ -7,11 +7,12 @@ export const LoginSchema = Yup.object().shape({
     pass: Yup.string()
     .required(),
     montaj: Yup.number()
-    .required()
     .min(3),
+    body: Yup.number()
+    .min(5),
     date:Yup.string()
     .required(),
     vardiya:Yup.string()
     .required(),
-
+    
 })

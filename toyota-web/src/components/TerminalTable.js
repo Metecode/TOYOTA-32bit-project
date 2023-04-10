@@ -13,12 +13,12 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Badge from "@mui/material/Badge";
 
+
 export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
   const navigate = useNavigate();
-
   const navigateToContacts = (filterCode,linkCount,depCode,termName) => {
-    navigate(`/cvqsterminal/auth/login/${depCode}/${filterCode}`, {state:{filterCode, linkCount,depCode,termName}});
+    navigate(`/auth/login/${depCode}/${filterCode}`, {state:{filterCode, linkCount,depCode,termName}});
   };
   useEffect(() => {
     axios
@@ -43,7 +43,7 @@ export default function TerminalTable() {
   }, []);
 
   return (
-    <Paper sx={{ width: "100%", backgroundColor:"#B9F3FC" }}>
+    <Paper sx={{ width: "100%", backgroundColor:"#93BFCF" }}>
       <TableContainer
         sx={{ maxHeight: "100%" }}
         // style={{ overflowX: "initial" }}
@@ -61,12 +61,12 @@ export default function TerminalTable() {
           <TableHead>
             <TableRow >
               <TableCell
-                style={{ borderBottom: "1px solid black",backgroundColor:"#B9F3FC"}}
+                style={{ borderBottom: "1px solid black",backgroundColor:"#93BFCF",color:"#c42929",fontWeight:"bold",textDecoration:"underline"}}
                 align="center"
                 colSpan={14}
                 position="sticky"
               >
-                Tum Terminaller
+                TÜM TERMİNALLER
               </TableCell>
             </TableRow>
             <TableRow style={{ width: "100%" }}>
@@ -78,10 +78,13 @@ export default function TerminalTable() {
                   top: 57,
                   minWidth: 150,
                   borderBottom: "1px solid black",
-                  backgroundColor:"#B9F3FC"
+                  backgroundColor:"#93BFCF",
+                  color:"#c42929",
+                  fontWeight:"bold",
+                  fontSize:"12px"
                 }}
               >
-                Bölüm Bazında
+                BÖLÜM BAZINDA
               </TableCell>
               <TableCell
                 colSpan={13}
@@ -92,10 +95,13 @@ export default function TerminalTable() {
                   top: 57,
                   width: "100%",
                   borderBottom: "1px solid black",
-                  backgroundColor:"#B9F3FC"
+                  backgroundColor:"#93BFCF",
+                  color:"#c42929",
+                  fontWeight:"bold",
+                  fontSize:"12px"
                 }}
               >
-                Filtre bazinda
+                FİLTRE BAZINDA
               </TableCell>
             </TableRow>
           </TableHead>
@@ -103,13 +109,13 @@ export default function TerminalTable() {
             {terminals.map((terminal) => {
               return (
                 <TableRow
-                  style={{ borderBottom: "1px solid black", backgroundColor:"#B9F3FC" }}
+                  style={{ borderBottom: "1px solid black", backgroundColor:"#93BFCF" }}
                   hover
                   role="checkbox"
                   key={terminal.depName}
                 >
                   <TableCell
-                    style={{ minWidth: 150, borderBottom: "1px solid black", backgroundColor:"#B9F3FC" }}
+                    style={{ minWidth: 150, borderBottom: "1px solid black", backgroundColor:"#93BFCF",color:"#c42929" }}
                     className="grid-item "
                     key="bolumFiltre"
                   >
@@ -126,11 +132,17 @@ export default function TerminalTable() {
                         key="filtreBazinda"
                       >
                         <Badge
+                        
                           badgeContent={filter.linkCount}
                           invisible={filter.linkCount === 1}
-                          color="primary"
+                          sx={{
+                            "& .MuiBadge-badge": {
+                              color: "white",
+                              backgroundColor: "#c42929"
+                            }
+                          }}
                         >
-                          <Button variant="outlined"  onClick={()=>{
+                          <Button sx={{color:"#000000", border:"1px solid black", fontWeight:"bold"}} variant="outlined"  onClick={()=>{
                             navigateToContacts(filter.filterCode,filter.linkCount,terminal.pathCode,filter.termName)
                           }} >
                             {filter.filterCode}

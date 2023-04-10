@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useNavigate, useLocation } from "react-router";
 import { useAuth } from "../../context/AuthContext";
-import { useFormik, Formik, Form } from "formik";
+import { useFormik, Formik, Form, replace } from "formik";
 import Input from "../../components/form/Input";
 import { LoginSchema } from "../../validations";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -33,16 +33,22 @@ export default function Login() {
   const { state } = useLocation();
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
+  const [term , setTerm] = useState(true)
   const navigateToContacts = () => {
-    Logout(`../../cvqsterminal`);
+    Logout(`../../`);
   };
 
   const goToEntryDefect = (filterCode, depCode) => {
-    navigate(
-      `/cvqsterminal/defectentry/${depCode}/${filterCode}/errorEntryPage`,
-      { state: { filterCode, depCode } }
-    );
+   {!term && navigate(
+      `/defectentry/${filterCode}/${depCode}/3070725`, 
+      {replace:true, state: { filterCode, depCode } } 
+    );}
+    {term && navigate(
+      `/errorList/${filterCode}/${depCode}`,
+      {replace:true, state: { filterCode, depCode } }
+    );}
   };
+ 
   const handleClose = () => {
     setOpen(false);
   };
@@ -54,11 +60,14 @@ export default function Login() {
     if (reason === "clickaway") {
       return;
     }
-
     setPass(false);
   };
   // console.log(state.filterCode, state.linkCount, state.depCode, state.termName);
-
+  useEffect(()=>{
+    if(state.filterCode === "HAT"){
+      setTerm(false)
+    }
+  },[])
   useEffect(() => {
     if (state.linkCount > 1) {
       axios
@@ -167,44 +176,55 @@ export default function Login() {
     },
   });
   const [pass, setPass] = useState(false);
-  const authenticateUser = (sicil, password, montaj) => {
+  const authenticateUser = (sicil, password, montaj,body) => {
     return new Promise((resolve, reject) => {
       // Check if the sicil,montaj and password are correct
-      if (sicil === 99619 && password === "toyota" && montaj === 222) {
-        // If they are correct, return a success message
+      // if (sicil === 99619 && password === "toyota" && montaj === 222) {
+      //   // If they are correct, return a success message
 
-        resolve("Login successful");
-      } else {
-        // If they are not correct, return an error message
-        setPass(true);
-        reject("Invalid sicil,montaj or password");
-      }
+      //   resolve("Login successful");
+      // } 
+
+      {sicil === 99619 && password === "toyota" && montaj === 222 ? resolve("Login successful") :
+      sicil === 99619 && password === "toyota" && body === 55555 ? resolve("Login successful") :setPass(true)
+      reject("Invalid sicil,montaj or password");}
+      // else if(sicil === 99619 && password === "toyota" && body === 55555){
+      //   resolve("Login successful");
+      // }
+      // else {
+      //   // If they are not correct, return an error message
+      //   setPass(true);
+      //   reject("Invalid sicil,montaj or password");
+      
     });
   };
+  console.log(term)
   return (
     <div>
       <Container maxWidth="sm" className="round1">
+        <Stack style={{textAlign:"center",fontSize:"20px",color:'red'}}>CVQS (TMMT)</Stack>
+          
+          <hr />
         <Box textAlign={"center"} component="form">
-          Login page <br />
           <Formik
             initialValues={{
               terminalListe: "",
               sicilNo: "",
               pass: "",
               montaj: "",
+              body:"",
               date: "",
               vardiya: "",
             }}
             onSubmit={(values, actions) => {
               //   actions.setSubmitting(false);
               //     actions.resetForm();
-              authenticateUser(values.sicilNo, values.pass, values.montaj)
+              console.log(values);
+              authenticateUser(values.sicilNo, values.pass, values.montaj,values.body)
                 .then(() => {
+                  actions.setSubmitting(false);
                   setUser(values);
                   alert(JSON.stringify(values, null, 2));
-                  // navigate(`/cvqsterminal/${location.state.depCode}/${location.state.filterCode}/errorEntryPage` || "/cvqsterminal", {
-                  //   replace: true,
-                  // });
                   goToEntryDefect(state.depCode, state.filterCode);
                 })
                 .catch(() => {
@@ -217,10 +237,6 @@ export default function Login() {
             {({
               submitForm,
               values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
               handleSubmit,
               isSubmitting,
             }) => (
@@ -263,8 +279,8 @@ export default function Login() {
                 />{" "}
                 <br />
                 {/* <Input label="Parola" name="password" type="password" /> <br /> */}
-                <InputPassword name="pass" />
-                <Input
+                <InputPassword name="pass" />{" "}
+               {!term && <Input
                   onInput={(e) => {
                     e.target.value = Math.max(0, parseInt(e.target.value))
                       .toString()
@@ -280,7 +296,25 @@ export default function Login() {
                   type="number"
                   label="Montaj No"
                   name="montaj"
-                />{" "}
+                />}
+                {term && <Input
+                  onInput={(e) => {
+                    e.target.value = Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 5);
+                  }}
+                  inputProps={{
+                    maxLength: 5,
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                    min: 1,
+                    max: 99999,
+                  }}
+                  type="number"
+                  label="Body No"
+                  name="body"
+                />}
+                {" "}
                 <br />
                 <div
                   className="dene"
@@ -320,7 +354,7 @@ export default function Login() {
                     startIcon={<LoginIcon />}
                     color="success"
                   >
-                    GİRİŞ YAP
+                    {isSubmitting ? "Giriş Yapılıyor..." : "Giriş Yap"}
                   </Button>
                   <Button
                     type="logout"
@@ -332,12 +366,12 @@ export default function Login() {
                     Kapat
                   </Button>
                 </Stack>
-                {/* <Keyboard
+                <Keyboard
                     keyboardRef={(r) => (keyboard.current = r)}
                     layoutName={layout}
                     // onChange={onChange}
                     // onKeyPress={onKeyPress}
-                  /> */}
+                  />
               </form>
             )}
           </Formik>

@@ -25,6 +25,8 @@ import TextField from "@mui/material/TextField";
 import "../fonts/hataListesi.css";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useNavigate} from "react-router";
+
 const columns = [
   {
     width: 40,
@@ -207,7 +209,7 @@ export default function HataListesi() {
   const [defectList, setdefectList] = useState([]);
   const [reasonList, setReasonList] = useState([]);
   const [open, setOpen] = React.useState(false);
-
+  const navigate = useNavigate();
   const handleClose = () => {
     setOpen(false);
   };
@@ -230,7 +232,7 @@ export default function HataListesi() {
     //defectType -> hata turu
     //defectName -> HATA SOR
     axios
-      .get("./db/hataListesiData.json")
+      .get("../../../db/hataListesiData.json")
       .then((res) => {
         let reason = res.data.data[0].nrReasonList.map((x) => {
           return {
@@ -305,6 +307,10 @@ export default function HataListesi() {
     );
     setOpen(true);
   };
+    const logoutHandle = () => {
+      navigate(`../../`);
+    };
+
   function rowContent(_index, row) {
     return (
       <React.Fragment>
@@ -402,6 +408,7 @@ export default function HataListesi() {
       variant="contained"
       size="large"
       style={{ padding: 20, width: 150 }}
+      onClick={logoutHandle}
     >
       Çıkış
     </Button>,

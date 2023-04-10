@@ -10,7 +10,6 @@ export default function Input({ label, ...props }) {
         <TextField
         required
           error={meta.error && Boolean(meta.error)}
-          helperText={meta.error ? meta.error : ""}
           sx={{ m: 1, minWidth: 400 }}
           id="outlined-basic"
           size="small"

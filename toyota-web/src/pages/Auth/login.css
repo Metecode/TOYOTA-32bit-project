@@ -1,3 +1,6 @@
+body{
+  font-family: "Toyota Base", arial, helvetica, sans-serif;
+}
 .round1 {
     border: 2px solid rgb(139, 137, 137);
     border-radius: 5px;
@@ -24,4 +27,3 @@ input {
   .simple-keyboard {
     max-width: 850px;
   }
-  

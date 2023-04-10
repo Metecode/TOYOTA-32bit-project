@@ -27,11 +27,12 @@ export default function InputPassword({label, ...props}) {
             Password
           </InputLabel>
           <OutlinedInput error={meta.error && Boolean(meta.error)}  helperText={meta.error ? meta.error:""} {...field} {...props}
-            id="outlined-adornment-password"
+           
+           id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
             size="small"
             endAdornment={
-              <InputAdornment position="end">
+              <InputAdornment  position="end">
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
@@ -45,7 +46,6 @@ export default function InputPassword({label, ...props}) {
             
             label="Password"
           />
-      <ErrorMessage name={field.name} component="small" className="errorMessage" />
         </FormControl>
       </div>
       

@@ -72,6 +72,8 @@ export default function PermanentDrawerRight() {
   const largeFontElement = useRef();
   const { state } = useLocation();
   const location = useLocation();
+  const navigate = useNavigate();
+
   function handleClick() {
     setLoading(true);
     setTimeout(() => setLoading(false), 3000);
@@ -89,9 +91,11 @@ export default function PermanentDrawerRight() {
     if (reason === "clickaway") {
       return;
     }
-
     setAlert(false);
   };
+  const logout =()=>{
+    navigate(`../`)
+  }
   const audio = new Audio("/assets/sound/AlertSirenSound.mp3");
   audio.loop = true;
   let timer = null;
@@ -222,6 +226,8 @@ export default function PermanentDrawerRight() {
               coordXY:{coordxy},
             }}
             onSubmit={(values) => {
+              alert(JSON.stringify(values, null, 2));
+
               console.log(values);
               setLoading(true);
               setTimeout(() => setLoading(false), 3000);
@@ -381,6 +387,7 @@ export default function PermanentDrawerRight() {
               style={{ position: "static" }}
               size="large"
               variant="outlined"
+              onClick={logout}
             >
               ÇIKIŞ
             </Button>

@@ -31,11 +31,11 @@ const LargeFont = forwardRef(function LargeFont({color}, ref) {
   const [background, setBackground] = useState(null);
   useEffect(() => {
     axios
-      .get("../db/largeFont.json")
+      .get("../../../../../db/largeFont.json")
       .then((res) => setInfo(res.data.data))
       .catch((err) => console.log(err));
     axios
-      .get("../db/largeFont2.json")
+      .get("../../../../../db/largeFont2.json")
       .then((res) => setInfo2(res.data.data[0]))
       .catch((err) => console.log(err));
   }, []);

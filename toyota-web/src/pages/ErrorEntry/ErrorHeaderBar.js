@@ -10,7 +10,7 @@ export default function HataHeaderBar() {
 
   useEffect(()=>{
     axios
-    .get("../db/headerData.json")
+    .get("../../../../../db/headerData.json")
       .then((res) => setInfo(res.data.data[0]))
       .catch((err) => console.log(err));
     },[])
@@ -29,7 +29,7 @@ export default function HataHeaderBar() {
       </Button>
       <span className="wrap-text">HATA GİRİŞ EKRANI  </span>
       <div>
-      <Button style={{backgroundColor:"#ff1c23", color:"white"}} >
+      <Button style={{backgroundColor:`${info.bgColor}`, color:"white"}} >
         RENK <br />
         {info.extCode}
       </Button>
