@@ -215,22 +215,6 @@ export default function HataListesi() {
   };
 
   useEffect(() => {
-    //depCode -> bildiren
-    //bodyNo -> body
-    //vinNo -> Vin No
-    //colorExtCode -> renk
-    //modelCode-> mdl
-    //localId -> sicil
-    //partName -> parca
-    //spotCode-> spot
-    //spotgunName-> gun
-    //arcnutboltCode->arc
-    //arcnutboltgunName-> arcgun
-    //description-> hata
-    //defrankCode-> rank
-    //formattedDefectHour -> saat
-    //defectType -> hata turu
-    //defectName -> HATA SOR
     axios
       .get("../../../db/hataListesiData.json")
       .then((res) => {

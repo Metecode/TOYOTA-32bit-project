@@ -1,8 +1,6 @@
-import classNames from "classnames";
 import { useField, ErrorMessage } from "formik";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-export default function Input({ label, ...props }) {
+export default function Input({ label,value,onKeyUp,onChange, ...props }) {
   const [field, meta, helpers] = useField(props);
   return (
     <>
@@ -15,6 +13,9 @@ export default function Input({ label, ...props }) {
           size="small"
           label={label}
           variant="outlined"
+          onChange={onChange}
+          onKeyUp={onKeyUp}
+          value={value}
           {...field}
           {...props}
         />

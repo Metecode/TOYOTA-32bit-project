@@ -45,15 +45,13 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import LargeFont from "./LargeFont";
 import { useNavigate, useLocation } from "react-router";
+import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 
 const drawerWidth = 270;
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function PermanentDrawerRight() {
-  const [layout, setLayout] = React.useState("default");
-  const keyboard = React.useRef();
-  const [checked, setChecked] = React.useState([0]);
   const [info, setInfo] = useState([]);
   const [isHide, setIsHide] = useState(true);
   const [show, setShow] = useState(false);
@@ -70,9 +68,16 @@ export default function PermanentDrawerRight() {
   const [color, setColor] = useState(false);
   const mainPicElement = useRef();
   const largeFontElement = useRef();
+  const [focus, setFocus] = useState();
   const { state } = useLocation();
   const location = useLocation();
   const navigate = useNavigate();
+  const [operation, setOperation] = useState();
+  const [responsible, setResponsible] = useState();
+  const [explanation, setExplanation] = useState();
+  const [numPad, setNumPad]=useState(false);
+
+  const keyboard = useRef(null);
 
   function handleClick() {
     setLoading(true);
@@ -93,9 +98,9 @@ export default function PermanentDrawerRight() {
     }
     setAlert(false);
   };
-  const logout =()=>{
-    navigate(`../`)
-  }
+  const logout = () => {
+    navigate(`../`);
+  };
   const audio = new Audio("/assets/sound/AlertSirenSound.mp3");
   audio.loop = true;
   let timer = null;
@@ -179,6 +184,47 @@ export default function PermanentDrawerRight() {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    
+  }, [focus]);
+  const parseInputs = (value, setFieldValue, setFieldTouched) => {
+    switch (focus) {
+      case "appliedOperation":
+        setOperation(value);
+        setFieldValue("appliedOperation", value, true);
+        setTimeout(() => setFieldTouched("appliedOperation", true), 1);
+        break;
+      case "subResponsible":
+        setResponsible(value);
+        setFieldValue("subResponsible", value, true);
+        setTimeout(() => setFieldTouched("subResponsible", true), 1);
+
+        break;
+      case "explanation":
+        setExplanation(value);
+        setFieldValue("explanation", value, true);
+        setTimeout(() => setFieldTouched("explanation", true), 1);
+        break;
+    }
+  };
+  const onChangeInput = (event, setFieldValue, setFieldTouched) => {
+    if (event == "" || event == "NaN") {
+      if (event == "") {
+        parseInputs("");
+      }
+      return;
+    }
+    if (!event.target) {
+      const t = event;
+      event = { target: {} };
+      event.target.value = t;
+    }
+    const input = event.target.value;
+    parseInputs(input, setFieldValue, setFieldTouched);
+    keyboard?.current.setInput(input);
+  };
+
   const rdd = () => {
     axios
       .get(`../../../../../db/hataDetay2.json`)
@@ -192,9 +238,9 @@ export default function PermanentDrawerRight() {
   const passFirstPic = () => {
     mainPicElement.current.changePic();
   };
-  const openLargeFont = ()=>{
+  const openLargeFont = () => {
     largeFontElement.current.openDialog();
-  }
+  };
   useEffect(() => {
     defectLog();
     rdd();
@@ -223,11 +269,9 @@ export default function PermanentDrawerRight() {
               subResponsible: "",
               explanation: "",
               rdd: "",
-              coordXY:{coordxy},
+              coordXY: { coordxy },
             }}
             onSubmit={(values) => {
-              alert(JSON.stringify(values, null, 2));
-
               console.log(values);
               setLoading(true);
               setTimeout(() => setLoading(false), 3000);
@@ -235,10 +279,9 @@ export default function PermanentDrawerRight() {
               setTimeout(() => setAlert(true), 3000);
               setTimeout(() => passFirstPic(), 3000);
               setTimeout(() => setIsHide(true), 3000);
-              
             }}
           >
-            {({ values }) => (
+            {({ values,setFieldValue,setFieldTouched }) => (
               <Form>
                 <Box
                   sx={{
@@ -298,7 +341,7 @@ export default function PermanentDrawerRight() {
                     </Grid>
                     <Grid item xs={8}>
                       <DialogActions>
-                         <LoadingButton
+                        <LoadingButton
                           loading={loading}
                           loadingPosition="start"
                           type="submit"
@@ -333,28 +376,57 @@ export default function PermanentDrawerRight() {
                       };
                     })}
                   />
-                  <Input label="Yapılan İşlem" name="appliedOperation" />
-                  <Input label="Alt Sorumlu" name="subResponsible" />
+                  <Input
+                    onFocus={(e) => setFocus("appliedOperation",keyboard?.current.setInput(""))}
+                    onChange={(e) => {
+                      onChangeInput(e, setFieldValue, setFieldTouched);
+                    }}
+                    onInput={(e) => onChangeInput(e)}
+                    label="Yapılan İşlem"
+                    name="appliedOperation"
+                    inputProps={{
+                      value: operation,
+                    }}
+                  />
+                  <Input
+                    onFocus={(e) => setFocus("subResponsible",keyboard?.current.setInput(""))}
+                    onChange={(e) => {
+                      onChangeInput(e, setFieldValue, setFieldTouched);
+                    }}
+                    onInput={(e) => onChangeInput(e)}
+                    label="Alt Sorumlu"
+                    name="subResponsible"
+                    inputProps={{
+                      value: responsible,
+                    }}
+                  />
                   <Stack style={{ marginLeft: 8 }}>
                     <Textarea
+                    onFocus={(e) => setFocus("explanation",keyboard?.current.setInput(""))}
+                    onChange={(e) => {
+                      onChangeInput(e, setFieldValue, setFieldTouched);
+                    }}
+                    onInput={(e) => onChangeInput(e)}
                       label="Açıklama"
                       placeHolder="Örnek açıklama"
                       name="explanation"
+                      inputProps={{
+                        value: explanation,
+                      }}
                     />
                   </Stack>
                 </Box>
                 {JSON.stringify(values)}
+          <Stack style={{ alignItems: "center", marginTop: 10 }}>
+            <VirtualKeyboard
+              keyboardRef={keyboard}
+              onChange={(e) => onChangeInput(e, setFieldValue, setFieldTouched)}
+              ip={numPad}
+            />
+          </Stack>
               </Form>
             )}
           </Formik>
-          <Stack style={{ alignItems: "center", marginTop: 10 }}>
-            <Keyboard
-              keyboardRef={(r) => (keyboard.current = r)}
-              layoutName={layout}
-              // onChange={onChange}
-              // onKeyPress={onKeyPress}
-            />
-          </Stack>
         </DialogContent>
       </Dialog>
       <AppBar
@@ -411,7 +483,7 @@ export default function PermanentDrawerRight() {
             <Button onClick={openLargeFont} size="large" variant="outlined">
               BÜYÜK FONT
             </Button>
-            <LargeFont color={color} ref={largeFontElement}/>
+            <LargeFont color={color} ref={largeFontElement} />
           </Stack>
         </Toolbar>
         <Stack>

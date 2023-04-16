@@ -9,16 +9,17 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import "../App.css";
-import {Routes, Route, useNavigate} from 'react-router-dom'; 
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Badge from "@mui/material/Badge";
-
 
 export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
   const navigate = useNavigate();
-  const navigateToContacts = (filterCode,linkCount,depCode,termName) => {
-    navigate(`/auth/login/${depCode}/${filterCode}`, {state:{filterCode, linkCount,depCode,termName}});
+  const navigateToContacts = (filterCode, linkCount, depCode, termName) => {
+    navigate(`/auth/login/${depCode}/${filterCode}`, {
+      state: { filterCode, linkCount, depCode, termName },
+    });
   };
   useEffect(() => {
     axios
@@ -27,12 +28,12 @@ export default function TerminalTable() {
         let data = res.data.data.map((item) => {
           return {
             depCode: `(${item.depCode})  ${item.depName}`,
-            pathCode:`${item.depCode}`,
+            pathCode: `${item.depCode}`,
             filterBaseds: item.filterBaseds.map((x) => {
               return {
                 filterCode: x.filterCode,
                 linkCount: x.linkCount,
-                termName:x.termName,
+                termName: x.termName,
               };
             }),
           };
@@ -43,7 +44,7 @@ export default function TerminalTable() {
   }, []);
 
   return (
-    <Paper sx={{ width: "100%", backgroundColor:"#93BFCF" }}>
+    <Paper sx={{ width: "100%", backgroundColor: "#93BFCF" }}>
       <TableContainer
         sx={{ maxHeight: "100%" }}
         // style={{ overflowX: "initial" }}
@@ -59,9 +60,15 @@ export default function TerminalTable() {
           aria-label="sticky table"
         >
           <TableHead>
-            <TableRow >
+            <TableRow>
               <TableCell
-                style={{ borderBottom: "1px solid black",backgroundColor:"#93BFCF",color:"#c42929",fontWeight:"bold",textDecoration:"underline"}}
+                style={{
+                  borderBottom: "1px solid black",
+                  backgroundColor: "#93BFCF",
+                  color: "#c42929",
+                  fontWeight: "bold",
+                  textDecoration: "underline",
+                }}
                 align="center"
                 colSpan={14}
                 position="sticky"
@@ -78,10 +85,10 @@ export default function TerminalTable() {
                   top: 57,
                   minWidth: 150,
                   borderBottom: "1px solid black",
-                  backgroundColor:"#93BFCF",
-                  color:"#c42929",
-                  fontWeight:"bold",
-                  fontSize:"12px"
+                  backgroundColor: "#93BFCF",
+                  color: "#c42929",
+                  fontWeight: "bold",
+                  fontSize: "12px",
                 }}
               >
                 BÖLÜM BAZINDA
@@ -95,10 +102,10 @@ export default function TerminalTable() {
                   top: 57,
                   width: "100%",
                   borderBottom: "1px solid black",
-                  backgroundColor:"#93BFCF",
-                  color:"#c42929",
-                  fontWeight:"bold",
-                  fontSize:"12px"
+                  backgroundColor: "#93BFCF",
+                  color: "#c42929",
+                  fontWeight: "bold",
+                  fontSize: "12px",
                 }}
               >
                 FİLTRE BAZINDA
@@ -109,13 +116,21 @@ export default function TerminalTable() {
             {terminals.map((terminal) => {
               return (
                 <TableRow
-                  style={{ borderBottom: "1px solid black", backgroundColor:"#93BFCF" }}
+                  style={{
+                    borderBottom: "1px solid black",
+                    backgroundColor: "#93BFCF",
+                  }}
                   hover
                   role="checkbox"
                   key={terminal.depName}
                 >
                   <TableCell
-                    style={{ minWidth: 150, borderBottom: "1px solid black", backgroundColor:"#93BFCF",color:"#c42929" }}
+                    style={{
+                      minWidth: 150,
+                      borderBottom: "1px solid black",
+                      backgroundColor: "#93BFCF",
+                      color: "#c42929",
+                    }}
                     className="grid-item "
                     key="bolumFiltre"
                   >
@@ -132,19 +147,35 @@ export default function TerminalTable() {
                         key="filtreBazinda"
                       >
                         <Badge
-                        
                           badgeContent={filter.linkCount}
                           invisible={filter.linkCount === 1}
                           sx={{
                             "& .MuiBadge-badge": {
                               color: "white",
-                              backgroundColor: "#c42929"
-                            }
+                              backgroundColor: "#c42929",
+                            },
                           }}
                         >
-                          <Button sx={{color:"#000000", border:"1px solid black", fontWeight:"bold"}} variant="outlined"  onClick={()=>{
-                            navigateToContacts(filter.filterCode,filter.linkCount,terminal.pathCode,filter.termName)
-                          }} >
+                          <Button
+                            sx={{
+                              color: "#000000",
+                              "&:hover": {
+                                color: "#BDCDD6",
+                                border: "1px solid black",
+                              },
+                              border: "1px solid black",
+                              fontWeight: "bold",
+                            }}
+                            variant="outlined"
+                            onClick={() => {
+                              navigateToContacts(
+                                filter.filterCode,
+                                filter.linkCount,
+                                terminal.pathCode,
+                                filter.termName
+                              );
+                            }}
+                          >
                             {filter.filterCode}
                           </Button>
                         </Badge>

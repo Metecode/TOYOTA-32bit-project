@@ -26,6 +26,7 @@
     "react-select": "^5.7.0",
     "react-simple-keyboard": "^3.5.27",
     "react-virtuoso": "^4.1.0",
+    "simple-keyboard-layouts": "^3.1.306",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.0"
   },
