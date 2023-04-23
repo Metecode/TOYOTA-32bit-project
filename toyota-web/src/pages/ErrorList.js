@@ -166,9 +166,9 @@ const VirtuosoTableComponents = {
       sx={{
         borderCollapse: "separate",
         tableLayout: "fixed",
-        backgroundColor: "#B9F3FC",
+        backgroundColor: "#93BFCF",
         "& .MuiTableRow-root:hover": {
-          backgroundColor: "primary.light",
+          backgroundColor: "#6096B4",
         },
       }}
     />
@@ -193,7 +193,7 @@ function fixedHeaderContent() {
             width: column.width,
             borderCollapse: "collapse",
             border: "1px solid black",
-            backgroundColor: "#B9F3FC",
+            backgroundColor: "#93BFCF",
           }}
         >
           {column.label}
@@ -372,23 +372,35 @@ export default function HataListesi() {
     );
   }
 
+  const style ={
+    
+    color: "#000000",
+      backgroundColor:"#93BFCF",
+      "&:hover": {
+        color: "#000000",
+        backgroundColor:"#6096B4"
+      },
+    
+  }
+
   const buttons = [
-    <Button variant="contained" size="large" style={{ padding: 20 }}>
+    <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
       Araç Listesi
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 20 }}>
+    <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
       Manual Hata
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 20 }}>
+    <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
       Çoklu Hata
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 20 }}>
+    <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
       Hata Listesi
     </Button>,
-    <Button variant="contained" size="large" style={{ padding: 20 }}>
+    <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
       Hata Kopya
     </Button>,
     <Button
+    sx={style}
       variant="contained"
       size="large"
       style={{ padding: 20, width: 150 }}
@@ -398,7 +410,7 @@ export default function HataListesi() {
     </Button>,
   ];
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%", backgroundColor:"#EEE9DA" }}>
       <Paper
         style={{
           height: 570,
@@ -414,13 +426,13 @@ export default function HataListesi() {
           itemContent={rowContent}
         />
       </Paper>
-      <Box className="total-row">
+      <Box  className="total-row">
         <span style={{ marginRight: 5 }}>Total Row: {defectList.length}</span>
       </Box>
 
       <Box
         style={{ display: "flex", height: "100%" }}
-        sx={{ backgroundColor: "white", "& button": { m: 1 } }}
+        sx={{ backgroundColor: "#EEE9DA", "& button": { m: 1 } }}
       >
         <Box
           style={{
@@ -439,6 +451,7 @@ export default function HataListesi() {
               type="search"
             />
             <Button
+            sx={style}
               size="large"
               variant="contained"
               style={{ height: 50, width: 100 }}
@@ -448,12 +461,19 @@ export default function HataListesi() {
           </Box>
           <Box component="form">
             <TextField
+            sx={{'& fieldset.MuiOutlinedInput-notchedOutline': {
+              borderColor: '#93BFCF',
+          },
+          '&hover fieldset.MuiOutlinedInput-notchedOutline': {
+            borderColor: '#93BFCF',
+        },}}
               style={{ marginTop: 8 }}
               id="outlined-search"
               label="BODY NO"
               type="search"
             />
             <Button
+            sx={style}
               size="large"
               variant="contained"
               style={{ height: 50, width: 100 }}
@@ -464,11 +484,13 @@ export default function HataListesi() {
         </Box>
 
         <ButtonGroup
+          className="button-group"
           style={{ margin: 20 }}
           orientation="vertical"
           aria-label="vertical contained button group"
         >
           <Button
+          sx={style}
             variant="contained"
             size="large"
             style={{ margin: 0, height: 40, width: 100 }}
@@ -476,6 +498,7 @@ export default function HataListesi() {
             <ArrowDropUpIcon />
           </Button>
           <Button
+          sx={style}
             variant="contained"
             size="large"
             style={{ margin: 0, height: 40, width: 100 }}

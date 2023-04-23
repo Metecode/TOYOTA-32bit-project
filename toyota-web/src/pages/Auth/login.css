@@ -23,7 +23,10 @@ input {
     border: none;
     box-sizing: border-box;
   }
-  
-  .simple-keyboard {
-    max-width: 850px;
-  }
+
+body{
+  background-color: #93BFCF !important;
+}
+hr{
+  border-top: 1px solid black;
+}

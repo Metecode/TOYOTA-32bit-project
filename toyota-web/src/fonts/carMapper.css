@@ -11,6 +11,7 @@
 	width: 78px;
     height: 50px;
 	text-align: center;
+	pointer-events: none;
 }
 
 a {
@@ -73,4 +74,14 @@ pre.message {
 	margin: 15px 0;
 	font-style: italic;
 	color: #999;
+}
+/* canvas {
+	z-index: 10;
+	position: absolute;
+} */
+
+canvas{
+	position: absolute;
+	 z-index: 40;
+	 pointer-events: none;
 }

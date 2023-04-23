@@ -247,7 +247,7 @@ export default function PermanentDrawerRight() {
   }, []);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",backgroundColor:"#919394" }}>
       <CssBaseline />
       <Dialog
         open={open}
@@ -255,10 +255,10 @@ export default function PermanentDrawerRight() {
         maxWidth="lg"
         fullWidth="fullWidth"
       >
-        <DialogTitle style={{ fontWeight: "bold" }}>
+        <DialogTitle sx={{backgroundColor:"#93BFCF"}} style={{ fontWeight: "bold" }}>
           {info.companyName}
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{backgroundColor:"#93BFCF"}}>
           <DialogContentText></DialogContentText>
           <Formik
             initialValues={{
@@ -416,8 +416,7 @@ export default function PermanentDrawerRight() {
                     />
                   </Stack>
                 </Box>
-                {JSON.stringify(values)}
-          <Stack style={{ alignItems: "center", marginTop: 10 }}>
+          <Stack className="myFavouriteClass" style={{ alignItems: "center", marginTop: 10 }}>
             <VirtualKeyboard
               keyboardRef={keyboard}
               onChange={(e) => onChangeInput(e, setFieldValue, setFieldTouched)}
@@ -430,9 +429,9 @@ export default function PermanentDrawerRight() {
         </DialogContent>
       </Dialog>
       <AppBar
-        color="default"
+  
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, mr: `${drawerWidth}px` }}
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, mr: `${drawerWidth}px`,backgroundColor:"#93BFCF" }}
       >
         <Toolbar>
           <HataHeaderBar />
@@ -451,10 +450,10 @@ export default function PermanentDrawerRight() {
       <AppBar
         position="fixed"
         color="default"
-        sx={{ top: "auto", bottom: 0, height: 86 }}
+        sx={{ top: "auto", bottom: 0, height: 86,backgroundColor:"#93BFCF" }}
       >
         <Toolbar>
-          <Stack direction="row" spacing={2}>
+          <Stack className="button-group" direction="row" spacing={2}>
             <Button
               style={{ position: "static" }}
               size="large"
@@ -503,7 +502,7 @@ export default function PermanentDrawerRight() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            backgroundColor: "#F5F5F5",
+            backgroundColor:"#93BFCF",
           },
         }}
         variant="permanent"
@@ -520,13 +519,13 @@ export default function PermanentDrawerRight() {
             <FormControlLabel
               style={{ marginLeft: 2 }}
               control={
-                <Checkbox sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
+                <Checkbox color="success" sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
               }
               label="Harigami"
             />
             <FormControlLabel
               control={
-                <Checkbox sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
+                <Checkbox color="success" sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
               }
               label="RDD"
             />

@@ -37,4 +37,10 @@
     align-items: end;
     
   }
- 
+ #root .button-group> Button{
+  border-color: black;
+  color: black;
+ }
+ .myFavouriteClass .simple-keyboard {
+  width: 1000px;
+}

@@ -62,14 +62,14 @@ useEffect(()=>{
         TransitionComponent={Transition}
         PaperProps={{
           style: {
-            backgroundColor: (background ? "red" : "#B9F3FC"),
+            backgroundColor: (background ? "red" : "#93BFCF"),
           },
         }}
       >
         <Box
           sx={{
             margin: "20px",
-            backgroundColor: "white",
+            backgroundColor: "#EEE9DA",
             borderRadius: "10px",
             flexDirection: "row",
           }}
@@ -92,6 +92,7 @@ useEffect(()=>{
                 float: "right",
                 margin: "20px",
                 marginTop: "3px",
+                backgroundColor: "#EEE9DA",
               }}
             >
               <CardActions>
@@ -115,7 +116,7 @@ useEffect(()=>{
                 />
               </CardContent>
               <CardActions>
-                <Button size="large" variant="outlined" style={{ width: 250 }}>
+                <Button sx={{borderColor:"black", color:"black"}} size="large" variant="outlined" style={{ width: 250 }}>
                   ARA
                 </Button>
               </CardActions>

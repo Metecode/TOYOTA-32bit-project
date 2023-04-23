@@ -10,8 +10,11 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import "../App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import Badge from "@mui/material/Badge";
+import translate from "../translation/translate";
+import { AppContext } from "../context";
+
 
 export default function TerminalTable() {
   const [terminals, setTerminals] = useState([]);
@@ -73,7 +76,7 @@ export default function TerminalTable() {
                 colSpan={14}
                 position="sticky"
               >
-                TÜM TERMİNALLER
+                {translate("TÜM TERMİNALLER")}
               </TableCell>
             </TableRow>
             <TableRow style={{ width: "100%" }}>
@@ -91,7 +94,7 @@ export default function TerminalTable() {
                   fontSize: "12px",
                 }}
               >
-                BÖLÜM BAZINDA
+                {translate("BÖLÜM BAZINDA")}
               </TableCell>
               <TableCell
                 colSpan={13}
@@ -108,7 +111,7 @@ export default function TerminalTable() {
                   fontSize: "12px",
                 }}
               >
-                FİLTRE BAZINDA
+                {translate("FİLTRE BAZINDA")}
               </TableCell>
             </TableRow>
           </TableHead>

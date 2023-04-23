@@ -5,7 +5,6 @@ import ImageMapper from "react-img-mapper";
 import "../../fonts/carMapper.css";
 import Select from "../../components/form/Select.js";
 import axios from "axios";
-import { siteReducer } from "../../reducer";
 import { useFormik, Formik, Form, useFormikContext } from "formik";
 
 const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coord},ref)  {
@@ -13,9 +12,6 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
   const [box, setBox] = useState(null);
-  // const [carImg, dispatch] = useReducer(siteReducer, {
-  //   image: "./assets/img/car.jpg",
-  // });
   const [carImg, setImg] = useState("../../../../../assets/img/car.jpg");
   const [extendedAreas, setExtendedAreas] = useState([]);
   const [data, setData] = useState("defectScreen");
@@ -28,6 +24,43 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
   const [controlCursor, setControlCursor] = useState(false);
   let active = false;
   const [defect, setDefect] = useState("")
+  const canvas = useRef(null);
+  let ctx = null;
+
+  // initialize the canvas context
+  useEffect(() => {
+    // dynamically assign the width and height to canvas
+    const canvasEle = canvas.current;
+    canvasEle.width = canvasEle.clientWidth;
+    canvasEle.height = canvasEle.clientHeight;
+
+    // get context of the canvas
+    ctx = canvasEle.getContext("2d");
+  }, [box]);
+
+  const line = async (data) =>{
+  await  data.areas.filter((filter)=>filter.lineX>0).map((area)=>(
+    drawLine({ x:area.lineX , y:area.lineY , x1: (area.boxX +area.boxX +area.boxWidth)/2, y1: (area.boxY +area.boxY+ area.boxHeight)/2 }, { color: 'red' })
+     ))
+  }
+  
+useEffect(()=>{
+  line(box)
+  console.log(box);
+},[box])
+
+  // draw a line
+  const drawLine = (info, style = {}) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const { x, y, x1, y1 } = info;
+    const { color = 'black', width = 1 } = style;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x1, y1);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.stroke();
+  }
   useImperativeHandle(ref, () => ({
     changePic: changePic
   }));
@@ -84,6 +117,8 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
             labelColor: x.labelColor,
             boxWidth: x.boxWidth,
             boxHeight: x.boxHeight,
+            lineX: x.lineX,
+            lineY:x.lineY,
             preFillColor: "rgba(255, 255, 255, 0)",
             lineWidth: 5,
             shape: "rect",
@@ -102,6 +137,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
           };
         });
         setPartDefects(partDefect);
+        // line(data)
       })
       .catch((err) => console.log(err));
     };
@@ -122,11 +158,6 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
       .catch((err) => console.log(err));
   };
 
-
-  // const mainPic = async()=>{
-   
-  // }
-
   useEffect(() => {
     dataCoord();
     dataDefect();
@@ -137,13 +168,18 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
   };
 
   const clicked = async (area) => {
+  if( area.boxColor === "blue") {
     setControlClick(false);
     setData(area.childPicID);
     setDefect(area.name)
-    // dispatch({ type: "TOGGLE_IMAGE", value: area.childPicID });
     setImg(`./../../../../assets/img/${area.childPicID}.jpg`);
-    console.log(partDefects);
     setShow(true);
+  }
+  else{
+    setControlSelect(true);
+    setStyle({ x: 730, y: 243 });
+    setShow(true);
+  }
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
@@ -213,14 +249,14 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
     }, [values]);
     return null;
   };
-  // const getTipPosition = (area) => {
-  //   return { top: `${area.center[1]}px`, left: `${area.center[0]}px` };
-  // };
   
   return (
     <div className="gridd">
       <div className="presenter">
         <div style={{ position: "relative" }}>
+
+        <canvas ref={canvas}></canvas>
+    
           <ImageMapper
             src={carImg}
             map={
@@ -264,7 +300,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
                   position: "absolute",
                   top: area.center.y - 12,
                   left: area.center.x,
-                  zIndex: 1000,
+                  zIndex: 1,
                   overflowWrap: "break-word",
                   color: area.color,
                 }}
@@ -320,6 +356,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
             )}
             
           </Formik>
+          
         )}
         <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre>

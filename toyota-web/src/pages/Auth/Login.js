@@ -45,13 +45,7 @@ export default function Login() {
     Logout(`../../`);
   };
   
-  const [input, setInput] = useState();
   const keyboard = useRef(null);
-  // const onChangeInput = (event) => {
-  //   const input = event.target.value;
-  //   setInput(input);
-  //   keyboard.current.setInput(input);
-  // };
 
   useEffect(() => {
     keyboard?.current.setInput("");
@@ -74,6 +68,8 @@ export default function Login() {
         break;
         case "body":
           setBody(value);
+    setFieldValue("body", value,true);setTimeout(() => setFieldTouched('body', true),1)
+
         break;
     }
   };
@@ -132,7 +128,7 @@ export default function Login() {
     }
     setPass(false);
   };
-  // console.log(state.filterCode, state.linkCount, state.depCode, state.termName);
+
   useEffect(() => {
     if (state.filterCode === "HAT") {
       setTerm(false);
@@ -186,14 +182,7 @@ export default function Login() {
 
   const [pass, setPass] = useState(false);
   const authenticateUser = (sicil, password, montaj, body) => {
-    return new Promise((resolve, reject) => {
-      // Check if the sicil,montaj and password are correct
-      // if (sicil === 99619 && password === "toyota" && montaj === 222) {
-      //   // If they are correct, return a success message
-
-      //   resolve("Login successful");
-      // }
-      
+    return new Promise((resolve, reject) => {  
       {
         sicil == "99619" && password === "toyota" && montaj == "222"
           ? resolve("Login successful")
@@ -206,13 +195,6 @@ export default function Login() {
               setPasValue("")
               setMontaj("");
               setBody("");
-      // else if(sicil === 99619 && password === "toyota" && body === 55555){
-      //   resolve("Login successful");
-      // }
-      // else {
-      //   // If they are not correct, return an error message
-      //   setPass(true);
-      //   reject("Invalid sicil,montaj or password");
     });
   };
   console.log(term);
@@ -233,7 +215,7 @@ export default function Login() {
               montaj: "",
               body: "",
               date: "",
-              vardiya: "",
+              vardiya: "#12a6eb",
             }}
             onSubmit={(values, actions) => {
               
@@ -356,6 +338,9 @@ export default function Login() {
                       className="vardiya"
                       label="Vardiya"
                       name="vardiya"
+                      inputProps={{
+                        defaultValue:"#12a6eb"
+                      }}
                       options={vardiya.map((vardiya) => {
                         return {
                           key: vardiya.rgbColor,
@@ -400,6 +385,7 @@ export default function Login() {
                   placeholder={"Tap on the virtual keyboard to start"}
                   onChange={(e) => onChangeInput(e)}
                 /> */}
+                
                 <VirtualKeyboard
                   keyboardRef={keyboard}
                   onChange={(e) => onChangeInput(e, 5,setFieldValue,setFieldTouched)}
