@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import "../../fonts/hataGiris.css"
 import axios from "axios";
 import { useEffect,useState} from "react";
-
+import translate from "../../translation/translate";
 export default function HataHeaderBar() {
    const [info, setInfo]= useState([]);
 
@@ -19,18 +19,18 @@ export default function HataHeaderBar() {
     return (
     <Stack spacing={3} className="wrap" direction="row" >
       <Button>
-        MONTAJ NO <br />
+      {translate("MONTAJ NO")}<br />
         {info.seqNo}
       </Button>
       <Button variant="contained">
-        BODY NO <br />
+      {translate("BODY NO")} <br />
         {info.bodyNo} 
         {/* Arka plan vardiyaya gore renk degistirecek */}
       </Button>
-      <span className="wrap-text">HATA GİRİŞ EKRANI  </span>
+      <span className="wrap-text">{translate("HATA GİRİŞ EKRANI")} </span>
       <div>
       <Button style={{backgroundColor:`${info.bgColor}`, color:"white"}} >
-        RENK <br />
+      {translate("RENK")} <br />
         {info.extCode}
       </Button>
       </div>

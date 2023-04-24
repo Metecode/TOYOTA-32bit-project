@@ -12,7 +12,7 @@ import "./login.css";
 import DatePicker from "../../components/form/DatePicker";
 import axios from "axios";
 import "react-simple-keyboard/build/css/index.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef,useContext} from "react";
 import Button from "@mui/material/Button";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
@@ -21,12 +21,15 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import "react-simple-keyboard/build/css/index.css";
+import translate from "../../translation/translate";
+
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function Login() {
+
   const [sicil, setSicil] = useState();
   const [montaj, setMontaj] = useState();
   const [body, setBody] = useState();
@@ -249,7 +252,7 @@ export default function Login() {
                   open={open}
                   onClose={handleClose}
                   onOpen={handleOpen}
-                  label="Terminal listesi"
+                  label={translate("Terminal Listesi")}
                   name="terminalListe"
                   // control ? {key: option.termId, value: option.termName} :
                   options={
@@ -276,7 +279,7 @@ export default function Login() {
                     value: sicil,
                   }}
                   type="number"
-                  label="Sicil No"
+                  label={translate("Sicil No")}
                   name="sicilNo"
                 />{" "}
                 <br />
@@ -304,7 +307,7 @@ export default function Login() {
                       value: montaj,
                     }}
                     type="number"
-                    label="Montaj No"
+                    label={translate("Montaj")}
                     name="montaj"
                   />
                 )}
@@ -322,7 +325,7 @@ export default function Login() {
                       value: body,
                     }}
                     type="number"
-                    label="Body No"
+                    label={translate("Montaj No")}
                     name="body"
                   />
                 )}{" "}
@@ -331,12 +334,12 @@ export default function Login() {
                   className="dene"
                   style={{ backgroundColor: values.vardiya }}
                 >
-                  <DatePicker name="date" />
+                  <DatePicker name="date" label={translate("Tarih")} />
                   <div>
                     <Select
                       dropDown={false}
                       className="vardiya"
-                      label="Vardiya"
+                      label={translate("Vardiya")}
                       name="vardiya"
                       inputProps={{
                         defaultValue:"#12a6eb"
@@ -368,7 +371,7 @@ export default function Login() {
                     startIcon={<LoginIcon />}
                     color="success"
                   >
-                    {isSubmitting ? "Giriş Yapılıyor..." : "Giriş Yap"}
+                    {isSubmitting ? translate("Giriş yapılıyor...") : translate("Giriş Yap")}
                   </Button>
                   <Button
                     type="logout"
@@ -377,7 +380,7 @@ export default function Login() {
                     startIcon={<LogoutIcon />}
                     onClick={navigateToContacts}
                   >
-                    Kapat
+                     {translate("Kapat")}
                   </Button>
                 </Stack>
                 {/* <input

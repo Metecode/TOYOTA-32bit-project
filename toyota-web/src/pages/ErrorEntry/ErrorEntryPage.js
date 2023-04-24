@@ -46,6 +46,7 @@ import MuiAlert from "@mui/material/Alert";
 import LargeFont from "./LargeFont";
 import { useNavigate, useLocation } from "react-router";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
+import translate from "../../translation/translate";
 
 const drawerWidth = 270;
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -292,7 +293,7 @@ export default function PermanentDrawerRight() {
                   <Grid container spacing={20}>
                     <Grid item xs={4}>
                       <Select
-                        label="Hata Sorumlusu"
+                        label={translate("Hata Sorumlusu")}
                         name="defectResponsibles"
                         options={defectRes[0].map((option) => {
                           return {
@@ -305,11 +306,11 @@ export default function PermanentDrawerRight() {
                     <Grid item xs={8}>
                       <FormControlLabel
                         control={<Checkbox defaultChecked />}
-                        label="Harigami"
+                        label={translate("Harigami")}
                       />
                       <FormControlLabel
                         control={<Checkbox defaultChecked />}
-                        label="Sık Gelen Hata"
+                        label={translate("Sık Gelen Hata")}
                       />
 
                       <Select
@@ -329,7 +330,7 @@ export default function PermanentDrawerRight() {
                     <Grid item xs={4}>
                       <Select
                         dropDown={false}
-                        label="Hata Sınıfı"
+                        label={translate("Hata Sınıfı")}
                         name="defectClass"
                         options={defectClass[0].map((option) => {
                           return {
@@ -350,7 +351,7 @@ export default function PermanentDrawerRight() {
                           color="success"
                           startIcon={<SaveIcon />}
                         >
-                          Kaydet
+                          {translate("Kaydet")}
                         </LoadingButton>
                         <Button
                           size="large"
@@ -359,7 +360,7 @@ export default function PermanentDrawerRight() {
                           onClick={handleClose}
                           startIcon={<CancelIcon />}
                         >
-                          İptal
+                          {translate("İptal")}
                         </Button>
                       </DialogActions>
                     </Grid>
@@ -367,7 +368,7 @@ export default function PermanentDrawerRight() {
 
                   <Select
                     dropDown={false}
-                    label="Exit Department"
+                    label={translate("Çıkış Departmanı")}
                     name="defectExit"
                     options={defectExit[0].map((option) => {
                       return {
@@ -382,7 +383,7 @@ export default function PermanentDrawerRight() {
                       onChangeInput(e, setFieldValue, setFieldTouched);
                     }}
                     onInput={(e) => onChangeInput(e)}
-                    label="Yapılan İşlem"
+                    label={translate("Yapılan İşlem")}
                     name="appliedOperation"
                     inputProps={{
                       value: operation,
@@ -394,7 +395,7 @@ export default function PermanentDrawerRight() {
                       onChangeInput(e, setFieldValue, setFieldTouched);
                     }}
                     onInput={(e) => onChangeInput(e)}
-                    label="Alt Sorumlu"
+                    label={translate("Alt Sorumlu")}
                     name="subResponsible"
                     inputProps={{
                       value: responsible,
@@ -407,7 +408,7 @@ export default function PermanentDrawerRight() {
                       onChangeInput(e, setFieldValue, setFieldTouched);
                     }}
                     onInput={(e) => onChangeInput(e)}
-                      label="Açıklama"
+                      label={translate("Açıklama")}
                       placeHolder="Örnek açıklama"
                       name="explanation"
                       inputProps={{
@@ -460,10 +461,10 @@ export default function PermanentDrawerRight() {
               variant="outlined"
               onClick={logout}
             >
-              ÇIKIŞ
+             {translate("ÇIKIŞ")}
             </Button>
             <Button size="large" variant="outlined">
-              MODEL İLK RESMİ
+              {translate("MODEL İLK RESMİ")}
             </Button>
             <Button
               size="large"
@@ -471,16 +472,16 @@ export default function PermanentDrawerRight() {
               startIcon={<ArrowBackIosIcon />}
             >
               {" "}
-              GERİ
+              {translate("GERİ")}
             </Button>
             <Button size="large" variant="outlined">
-              HATA LİSTESİ
+              {translate("HATA LİSTESİ")}
             </Button>
             <Button size="large" variant="outlined">
-              TEMİZLE
+            {translate("TEMİZLE")}
             </Button>
             <Button onClick={openLargeFont} size="large" variant="outlined">
-              BÜYÜK FONT
+              {translate("BÜYÜK FONT")}
             </Button>
             <LargeFont color={color} ref={largeFontElement} />
           </Stack>
@@ -521,23 +522,23 @@ export default function PermanentDrawerRight() {
               control={
                 <Checkbox color="success" sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
               }
-              label="Harigami"
+              label={translate("Harigami")}
             />
             <FormControlLabel
               control={
                 <Checkbox color="success" sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
               }
-              label="RDD"
+              label={translate("RDD")}
             />
           </Stack>
           <ListItem>
             <ListItemButton disabled className="Button">
-              <ListItemText primary={"HIZLI KAYDET"} />
+              <ListItemText primary={translate("HIZLI KAYDET")} />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton disabled className="Button">
-              <ListItemText primary={"KAYDET VE GEÇ"} />
+              <ListItemText primary={translate("KAYDET VE GEÇ")} />
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -546,7 +547,7 @@ export default function PermanentDrawerRight() {
               disabled={isHide}
               className="Button"
             >
-              <ListItemText primary={"HATA KAYIT"} />
+              <ListItemText primary={translate("HATA KAYIT")} />
             </ListItemButton>
           </ListItem>
         </List>
@@ -555,29 +556,29 @@ export default function PermanentDrawerRight() {
           <ListItem>
             <TextField
               id="outlined-basic"
-              label="MONTAJ NO"
+              label={translate("MONTAJ NO")}
               value={`${info.seqNo}`}
               variant="outlined"
             />
           </ListItem>
           <ListItem>
             <ListItemButton className="Button">
-              <ListItemText primary={"ARA"} />
+              <ListItemText primary={translate("ARA")} />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton onClick={passFirstPic} className="Button">
-              <ListItemText primary={"TERMİNAL İLK RESMİ"} />
+              <ListItemText primary={translate("TERMİNAL İLK RESMİ")} />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton className="Button">
-              <ListItemText primary={"SIK GELEN HATA"} />
+              <ListItemText primary={translate("SIK GELEN HATA")} />
             </ListItemButton>
           </ListItem>
           <ListItem>
             <ListItemButton className="Button">
-              <ListItemText primary={"MANİFEST"} />
+              <ListItemText primary={translate("MANİFEST")} />
             </ListItemButton>
           </ListItem>
         </List>
@@ -593,7 +594,7 @@ export default function PermanentDrawerRight() {
             {show && <span>{selectedValue.defect}</span>}
           </div>
           <div style={{ textAlign: "center" }}>
-            <span className="rightRapper">Teknik Destek </span>
+            <span className="rightRapper">{translate("Teknik Destek")} </span>
             <span className="leftRapper"> {info.companyName}</span>
           </div>
         </div>
@@ -613,7 +614,7 @@ export default function PermanentDrawerRight() {
           severity="success"
           sx={{ width: "100%" }}
         >
-          Kaydedildi
+          {translate("Kaydedildi")}
         </Alert>
       </Snackbar>
     </Box>

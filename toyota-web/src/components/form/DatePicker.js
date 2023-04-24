@@ -8,7 +8,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import FormControl from "@mui/material/FormControl";
 import { useField, ErrorMessage } from "formik";
 
-export default function DatePicker({ original = false, ...props }) {
+export default function DatePicker({ original = false,label, ...props }) {
   const [field, meta, helpers] = useField(props);
   const changeHandle = (e) => {
     helpers.setValue(new Date(e).toLocaleDateString())
@@ -29,7 +29,7 @@ export default function DatePicker({ original = false, ...props }) {
         <Stack>
           <DesktopDatePicker
             {...field}
-            label="Tarih"
+            label={label}
             inputFormat="MM/DD/YYYY"
             onChange={changeHandle}
             // onChange={(newValue) => {

@@ -26,15 +26,16 @@ import "../fonts/hataListesi.css";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useNavigate} from "react-router";
+import translate from "../translation/translate";
 
 const columns = [
   {
-    width: 40,
-    label: "Bildiren",
+    width: 60,
+    label: translate("Bildiren"),
     dataKey: "depCode",
   },
   {
-    width: 25,
+    width: 30,
     label: "Body",
     dataKey: "bodyNo",
     numeric: true,
@@ -53,7 +54,7 @@ const columns = [
   },
   {
     width: 25,
-    label: "Renk",
+    label: translate("Renk"),
     dataKey: "colorExtCode",
     numeric: true,
   },
@@ -64,14 +65,14 @@ const columns = [
     numeric: true,
   },
   {
-    width: 25,
-    label: "Sicil",
+    width: 40,
+    label: translate("Sicil"),
     dataKey: "localId",
     numeric: true,
   },
   {
     width: 150,
-    label: "Parca",
+    label: translate("Parça"),
     dataKey: "partName",
     numeric: true,
   },
@@ -101,7 +102,7 @@ const columns = [
   },
   {
     width: 100,
-    label: "Hata",
+    label:  translate("Hata"),
     dataKey: "description",
     numeric: true,
   },
@@ -113,25 +114,25 @@ const columns = [
   },
   {
     width: 40,
-    label: "Saat",
+    label: translate("Saat"),
     dataKey: "formattedDefectHour",
     numeric: true,
   },
   {
     width: 25,
-    label: "Hata Türü",
+    label:  translate("Hata Türü"),
     dataKey: "defectType",
     numeric: true,
   },
   {
     width: 90,
-    label: "Hata Sor",
+    label: translate("Hata Sor"),
     dataKey: "defrespName",
     numeric: true,
   },
   {
     width: 40,
-    label: "Alt Sorumlu",
+    label: translate("Alt Sorumlu"),
     dataKey: "altSorumlu",
     numeric: true,
   },
@@ -143,13 +144,13 @@ const columns = [
   },
   {
     width: 60,
-    label: "Kaydet",
+    label: translate("Kaydet"),
     dataKey: "kaydet",
     numeric: true,
   },
   {
     width: 140,
-    label: "İşlem",
+    label: translate("İşlem"),
     dataKey: "islem",
     numeric: true,
   },
@@ -385,19 +386,19 @@ export default function HataListesi() {
 
   const buttons = [
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-      Araç Listesi
+     {translate("ARAÇ LİSTESİ")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-      Manual Hata
+    {translate("MANUEL HATA")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-      Çoklu Hata
+    {translate("ÇOKLU HATA")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-      Hata Listesi
+      {translate("HATA LİSTESİ")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-      Hata Kopya
+      {translate("HATA KOPYA")}
     </Button>,
     <Button
     sx={style}
@@ -406,7 +407,7 @@ export default function HataListesi() {
       style={{ padding: 20, width: 150 }}
       onClick={logoutHandle}
     >
-      Çıkış
+      {translate("ÇIKIŞ")}
     </Button>,
   ];
   return (
@@ -447,7 +448,7 @@ export default function HataListesi() {
             <TextField
               style={{ marginTop: 8 }}
               id="outlined-search"
-              label="MONTAJ NO"
+              label={translate("MONTAJ NO")}
               type="search"
             />
             <Button
@@ -456,7 +457,7 @@ export default function HataListesi() {
               variant="contained"
               style={{ height: 50, width: 100 }}
             >
-              ARA
+           {translate("ARA")}
             </Button>
           </Box>
           <Box component="form">
@@ -469,7 +470,7 @@ export default function HataListesi() {
         },}}
               style={{ marginTop: 8 }}
               id="outlined-search"
-              label="BODY NO"
+              label={translate("BODY NO")}
               type="search"
             />
             <Button
@@ -478,7 +479,7 @@ export default function HataListesi() {
               variant="contained"
               style={{ height: 50, width: 100 }}
             >
-              ARA
+              {translate("ARA")}
             </Button>
           </Box>
         </Box>
@@ -506,7 +507,7 @@ export default function HataListesi() {
             <ArrowDropDownIcon />
           </Button>
           <span style={{ marginTop: 30 }} className="teknik-text">
-            Teknik Destek
+            {translate("Teknik Destek")}
           </span>
         </ButtonGroup>
         {buttons}
@@ -523,7 +524,7 @@ export default function HataListesi() {
           severity="success"
           sx={{ width: "100%" }}
         >
-          Kayıt başarıyla silinmiştir!
+          {translate("The record has been deleted successfully!")}
         </Alert>
       </Snackbar>
     </div>

@@ -19,6 +19,7 @@ import {
 } from "react";
 import HataHeaderBar from "./ErrorHeaderBar";
 import axios from "axios";
+import translate from "../../translation/translate";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -103,21 +104,21 @@ useEffect(()=>{
                   color="error"
                   style={{ width: 250 }}
                 >
-                  HATA GİRİŞİ
+                  {translate("HATA GİRİŞİ")}
                 </Button>
               </CardActions>
               <CardContent>
                 <TextField
                   style={{ marginLeft: "7px" }}
                   id="outlined-basic"
-                  label="MONTAJ NO"
+                  label={translate("MONTAJ NO")}
                   value={222}
                   variant="outlined"
                 />
               </CardContent>
               <CardActions>
                 <Button sx={{borderColor:"black", color:"black"}} size="large" variant="outlined" style={{ width: 250 }}>
-                  ARA
+                {translate("ARA")}
                 </Button>
               </CardActions>
             </Card>
