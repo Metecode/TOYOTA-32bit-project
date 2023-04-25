@@ -14,6 +14,7 @@ import { useEffect, useState,useContext } from "react";
 import Badge from "@mui/material/Badge";
 import translate from "../translation/translate";
 import { AppContext } from "../context";
+import LangSwitcher from "../components/LangSwitcher";
 
 
 export default function TerminalTable() {
@@ -47,11 +48,14 @@ export default function TerminalTable() {
   }, []);
 
   return (
+    <>
+
+      <LangSwitcher/>
     <Paper sx={{ width: "100%", backgroundColor: "#93BFCF" }}>
       <TableContainer
         sx={{ maxHeight: "100%" }}
         // style={{ overflowX: "initial" }}
-      >
+        >
         <Table
           style={{
             width: "auto",
@@ -61,7 +65,7 @@ export default function TerminalTable() {
           }}
           stickyHeader
           aria-label="sticky table"
-        >
+          >
           <TableHead>
             <TableRow>
               <TableCell
@@ -192,5 +196,6 @@ export default function TerminalTable() {
         </Table>
       </TableContainer>
     </Paper>
+    </>
   );
 }

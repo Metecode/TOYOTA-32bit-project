@@ -13,10 +13,12 @@
 	 padding: 0;
 	 list-style: none;
 	 height: 15px;
+	 margin-right: 10px;
 }
 .lang .dropdown li {
 	padding-top: 15px;
 	padding-bottom: 15px;
+
 }
  .lang:hover .dropdown {
 	 display: flex;
@@ -66,4 +68,9 @@
 	 width: 30px;
 	 height: 30px;
 }
- 
+.RUSSIAN{
+	background-image: url("https://flagicons.lipis.dev/flags/1x1/ru.svg");
+	 border-radius: 20px;
+	 width: 30px;
+	 height: 30px;
+}
