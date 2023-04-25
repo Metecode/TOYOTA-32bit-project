@@ -1,0 +1,69 @@
+.lang {
+	 display: flex;
+	 flex-direction: row;
+	 align-items: center;
+	 margin-bottom: 50px;
+
+}
+ .lang .dropdown {
+	 position: relative;
+	 left: 0;
+	 display: none;
+	 margin: 0;
+	 padding: 0;
+	 list-style: none;
+	 height: 15px;
+}
+.lang .dropdown li {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+ .lang:hover .dropdown {
+	 display: flex;
+	 flex-direction: row;
+	 align-items: center;
+}
+ .lang:hover .dropdown li {
+	 margin: 0;
+	 display: block;
+	 padding: 0;
+	 
+}
+ .lang:hover .dropdown li div:hover {
+	 width: 45px;
+	 height: 45px;
+}
+ @keyframes rotating {
+	 0% {
+		 transform: rotate(0deg);
+	}
+	 100% {
+		 transform: rotate(360deg);
+	}
+}
+ .TURKISH {
+	 background-image: url("https://flagicons.lipis.dev/flags/1x1/tr.svg");
+	 border-radius: 20px;
+	 width: 30px;
+	 height: 30px;
+	 
+}
+ .ENGLISH {
+	 background-image: url("https://flagicons.lipis.dev/flags/1x1/gb.svg");
+	 border-radius: 20px;
+	 width: 30px;
+	 height: 30px;
+}
+ .FRENCH {
+	 background-image: url("https://flagicons.lipis.dev/flags/1x1/fr.svg");
+	 border-radius: 20px;
+	 width: 30px;
+	 height: 30px;
+}
+ .GERMAN {
+	 background-image: url("https://flagicons.lipis.dev/flags/1x1/de.svg");
+	 border-radius: 20px;
+	 width: 30px;
+	 height: 30px;
+}
+ 

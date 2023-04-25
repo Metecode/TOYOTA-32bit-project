@@ -17,7 +17,6 @@ export default function TerminalLayout() {
           <NavLink to={url("terminal.profile")}>Profil</NavLink>
           <NavLink to={url("terminal.errorEntryPage")}>HataGiris</NavLink>
           <LangSwitcher/>
-          {translate("hello",{name: "MAKSYM"})}
         </nav>
         <Outlet></Outlet>
       </>
