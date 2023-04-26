@@ -27,6 +27,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useNavigate} from "react-router";
 import translate from "../translation/translate";
+import { useAuth } from "../context/AuthContext";
 
 const columns = [
   {
@@ -211,6 +212,7 @@ export default function HataListesi() {
   const [reasonList, setReasonList] = useState([]);
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const {setUser, user} = useAuth()
   const handleClose = () => {
     setOpen(false);
   };
@@ -294,6 +296,7 @@ export default function HataListesi() {
   };
     const logoutHandle = () => {
       navigate(`../../`);
+      setUser(false)
     };
 
   function rowContent(_index, row) {

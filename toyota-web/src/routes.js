@@ -5,13 +5,8 @@ import Login from "./pages/Auth/Login"
 import ErrorList from "./pages/ErrorList"
 import Terminal from "./pages/Terminal"
 import TerminalLayout from "./pages/TerminalLayout"
-import Profile from "./pages/Profile"
 import ErrorEntryPage from "./pages/ErrorEntry/ErrorEntryPage"
-// import { useNavigate, useLocation } from "react-router";
-// import * as React from "react";
 
-// const {state} = useLocation();
-// console.log(state.filterCode, state.linkCount)
 const routes = [
     {
         path:'/',
@@ -35,12 +30,6 @@ const routes = [
                 element: <ErrorEntryPage/>,
                 auth:true
             },
-            {
-                name: 'profile',
-                path: 'profile',
-                element:  <Profile></Profile>,
-                auth:true
-            }
         ]
     },
     {

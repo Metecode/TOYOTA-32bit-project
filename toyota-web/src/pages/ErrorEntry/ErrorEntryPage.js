@@ -47,12 +47,14 @@ import LargeFont from "./LargeFont";
 import { useNavigate, useLocation } from "react-router";
 import VirtualKeyboard from "../../components/VirtualKeyboard/VirtualKeyboard";
 import translate from "../../translation/translate";
+import { useAuth } from "../../context/AuthContext";
 
 const drawerWidth = 270;
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function PermanentDrawerRight() {
+  const {setUser, user} = useAuth()
   const [info, setInfo] = useState([]);
   const [isHide, setIsHide] = useState(true);
   const [show, setShow] = useState(false);
@@ -101,6 +103,7 @@ export default function PermanentDrawerRight() {
   };
   const logout = () => {
     navigate(`../`);
+    setUser(false)
   };
   const audio = new Audio("/assets/sound/AlertSirenSound.mp3");
   audio.loop = true;
