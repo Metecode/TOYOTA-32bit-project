@@ -211,19 +211,9 @@ useEffect(()=>{
   };
 
   const enterArea = (area) => {
-    //hoveredArea: area, ???
     setHoveredArea(area);
     setMsg(
       `You entered ${area.shape} ${area.name} at coords ${JSON.stringify(
-        area.coords
-      )} !`
-    );
-  };
-
-  const leaveArea = (area) => {
-    // setHoveredArea(null);
-    setMsg(
-      `You leaved ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
       )} !`
     );
@@ -272,7 +262,6 @@ useEffect(()=>{
                 : (area) => clickedChildPic(area)
             }
             onMouseEnter={(area) => enterArea(area)}
-            onMouseLeave={(area) => leaveArea(area)}
             onImageClick={(evt) => clickedOutside(evt)}
             onImageMouseMove={(evt) => moveOnImage(evt)}
             // lineWidth={4}
