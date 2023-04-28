@@ -15,15 +15,16 @@
 [![react-simple-keyboard][react-simple-keyboard-shield]][react-simple-keyboard-url]
 [![formik][formik-shield]][formik-url]
 [![i18n][i18n-shield]][i18n-url]
-[![React][react-shield]][react-url]
+[![React][React.js]][React-url]
 [![Axios][axios-shield]][axios-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-<img src="https://user-images.githubusercontent.com/37766175/121809054-446bac80-cc96-11eb-9139-08c6d9ad2d88.png" />
+## Demo
+Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 
-## 🚩 Table of Contents
+## 🚩 İçindekiler
 
-- [Packages](#-packages)
+- [Sayfalar](#-sayfalar)
 - [Why TOAST UI Editor?](#-why-toast-ui-editor)
 - [Features](#-features)
 - [Examples](#-examples)
@@ -35,30 +36,32 @@
 - [License](#-license)
 
 
-## 📦 Packages
+## 💻 Sayfalar
 
-### TOAST UI Editor
+### Terminal Sayfası
 
-| Name | Description |
-| --- | --- |
-| [`@toast-ui/editor`](https://github.com/nhn/tui.editor/tree/master/apps/editor) | Plain JavaScript component |
+* Bütün terminallerin listelendiği sayfadır. Servisten gelen veriye göre dinamik bir şekilde listelenir. 
+* Sol üst kısımda ise dil değiştirici butonu vardır. Varsayılan olarak türkçe dil seçeneği seçilidir.
 
-### TOAST UI Editor's Wrappers
+![image](https://user-images.githubusercontent.com/71905780/234992098-2981e948-3ee3-46c1-abc0-f661cbc800ab.png)
 
-| Name | Description |
-| --- | --- |
-| [`@toast-ui/react-editor`](https://github.com/nhn/tui.editor/tree/master/apps/react-editor) | [React](https://reactjs.org/) wrapper component |
-| [`@toast-ui/vue-editor`](https://github.com/nhn/tui.editor/tree/master/apps/vue-editor) | [Vue](https://vuejs.org/) wrapper component |
+### Giriş Sayfası
+* Uygulamam ilk girişte giriş sayfası ile başlar.
+* Minimal bir mock servisle başarısız veya hatalı bir girişte alert snackbarlar ile uyarı verir.
+* Vardiya verileri servisten dinamik bir şekilde başta seçili olarak gelir ve seçilen vardiyaya göre arkaplan rengi değişir.
+* Terminal listesi seçilen filtreye göre gelir ve terminal listesi sayfa ilk açıldığında açık bir şekilde kullanıcıyı karşılar.
+* Tarih güncel olarak bugünü ele alır.
+* ***Çoklu dil destekli sanal klavye vardır*** .
+* ***Dinamik bir şekilde seçilen filtreye göre pathler değişir*** .
 
-### TOAST UI Editor's Plugins
+![image](https://user-images.githubusercontent.com/71905780/235005226-8999d4b4-f0cb-4fa4-aa7a-2c02b1307842.png)
 
-| Name | Description |
-| --- | --- |
-| [`@toast-ui/editor-plugin-chart`](https://github.com/nhn/tui.editor/tree/master/plugins/chart) | Plugin to render chart |
-| [`@toast-ui/editor-plugin-code-syntax-highlight`](https://github.com/nhn/tui.editor/tree/master/plugins/code-syntax-highlight) | Plugin to highlight code syntax |
-| [`@toast-ui/editor-plugin-color-syntax`](https://github.com/nhn/tui.editor/tree/master/plugins/color-syntax) | Plugin to color editing text |
-| [`@toast-ui/editor-plugin-table-merged-cell`](https://github.com/nhn/tui.editor/tree/master/plugins/table-merged-cell) | Plugin to merge table columns |
-| [`@toast-ui/editor-plugin-uml`](https://github.com/nhn/tui.editor/tree/master/plugins/uml) | Plugin to render UML |
+### Hata Giriş Sayfası
+* Servisten gelen verilere göre dinamik bir şekilde arabanın üzerindeki kutucuklar konumlandırılır.
+*
+*
+
+![image](https://user-images.githubusercontent.com/71905780/235008816-818889a1-04db-4790-9b2d-bb4d172960a1.png)
 
 
 ## 🤖 Why TOAST UI Editor?
