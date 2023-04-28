@@ -25,7 +25,6 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 ## 🚩 İçindekiler
 
 - [Sayfalar](#-sayfalar)
-- [Why TOAST UI Editor?](#-why-toast-ui-editor)
 - [Features](#-features)
 - [Examples](#-examples)
 - [Browser Support](#-browser-support)
@@ -58,15 +57,18 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 
 ### Hata Giriş Sayfası
 * Servisten gelen verilere göre dinamik bir şekilde arabanın üzerindeki kutucuklar konumlandırılır.
-*
-*
+* Kullanıcı 80 saniye herhangi bir işlem yapmazsa rahatsız edici bir  [alarm](https://www.youtube.com/watch?v=7ejH_BihwFQ&list=PLJ_uDFPrtpfR8OM2QthNB8HJdt4ZXVhmM&index=3) sesi çalar.
+* Tıklanan kutu eğer mavi ise bir alt resme geçer.
 
 ![image](https://user-images.githubusercontent.com/71905780/235008816-818889a1-04db-4790-9b2d-bb4d172960a1.png)
 
 
-## 🤖 Why TOAST UI Editor?
+### Büyük Font Sayfası
+*
+*
+*
 
-TOAST UI Editor provides **Markdown mode** and **WYSIWYG mode**. Depending on the type of use you want like production of *Markdown* or maybe to just edit the *Markdown*. The TOAST UI Editor can be helpful for both the usage. It offers **Markdown mode** and **WYSIWYG mode**, which can be switched any point in time.
+![image](https://user-images.githubusercontent.com/71905780/235219940-3ba840c3-2010-4f22-8fa0-e1d1494b70bd.png)
 
 ### Productive Markdown Mode
 
