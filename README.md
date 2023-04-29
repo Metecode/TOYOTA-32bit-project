@@ -8,24 +8,36 @@
   <br>
 </h1>
 
+<a name="readme-top"></a>
+
 > Bir aracın üretimdeki hata tespiti ve kaydı girilmesini sağlayan ve bu hataları listeleyen bir react projesidir.
 
 
+[![Vscode][Vscode]][Vscode-url]
+[![json][json]][json-url]
+[![git][git]][git-url]
+[![React][React.js]][React-url]
+[![react-router][react-router]][react-router-url]
 [![react-img-mapper][react-img-mapper-shield]][react-img-mapper-url]
 [![react-simple-keyboard][react-simple-keyboard-shield]][react-simple-keyboard-url]
 [![formik][formik-shield]][formik-url]
 [![i18n][i18n-shield]][i18n-url]
-[![React][React.js]][React-url]
 [![Axios][axios-shield]][axios-url]
+[![material][material-shield]][material-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 ## Demo
 Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 
 ## 🚩 İçindekiler
-
+- [Proje Yapısı](#-proje-yapısı)
 - [Sayfalar](#-sayfalar)
-- [Features](#-features)
+  * [Terminal Sayfası](#terminal-sayfası)
+  * [Giriş Sayfası](#giriş-sayfası)
+  * [Hata Giriş Sayfası](#hata-giriş-sayfası)
+  * [Büyük Font Sayfası](#büyük-font-sayfası)
+  * [Hata Listeleme Sayfası](#hata-listeleme-sayfası)
+- [Özellikler](#-özellikler)
 - [Examples](#-examples)
 - [Browser Support](#-browser-support)
 - [Pull Request Steps](#-pull-request-steps)
@@ -35,12 +47,113 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 - [License](#-license)
 
 
+## 🗃 Proje Yapısı
+
+```
+TOYOTA-32bit-project
+└─ toyota-web
+   ├─ LICENCE
+   ├─ package-lock.json
+   ├─ package.json
+   ├─ public
+   │  ├─ assets
+   │  │  ├─ img
+   │  │  │  ├─ 87897.jpg
+   │  │  │  ├─ car.jpg
+   │  │  │  └─ cursor.gif
+   │  │  └─ sound
+   │  │     └─ AlertSirenSound.mp3
+   │  ├─ db
+   │  │  ├─ 87897.json
+   │  │  ├─ defectScreen.json
+   │  │  ├─ HAT.json
+   │  │  ├─ hataData.json
+   │  │  ├─ hataDetay.json
+   │  │  ├─ hataDetay2.json
+   │  │  ├─ hataListesiData.json
+   │  │  ├─ headerData.json
+   │  │  ├─ largeFont.json
+   │  │  ├─ largeFont2.json
+   │  │  ├─ shiftInfo.json
+   │  │  ├─ shifts.json
+   │  │  └─ terminal.json
+   │  ├─ favicon.ico
+   │  └─ index.html
+   ├─ README.md
+   └─ src
+      ├─ App.css
+      ├─ App.js
+      ├─ components
+      │  ├─ form
+      │  │  ├─ DatePicker.js
+      │  │  ├─ form.css
+      │  │  ├─ Input.js
+      │  │  ├─ InputPassword.js
+      │  │  ├─ Select.js
+      │  │  └─ Textarea.js
+      │  ├─ LangSwitcher
+      │  │  ├─ index.css
+      │  │  └─ index.js
+      │  ├─ PrivateRoute.js
+      │  ├─ TerminalTable.js
+      │  └─ VirtualKeyboard
+      │     ├─ index.css
+      │     └─ VirtualKeyboard.js
+      ├─ context
+      │  ├─ AuthContext.js
+      │  ├─ defaultContext.js
+      │  └─ index.js
+      ├─ fonts
+      │  ├─ 404.css
+      │  ├─ carMapper.css
+      │  ├─ hataGiris.css
+      │  └─ hataListesi.css
+      ├─ index.js
+      ├─ localeStorage.js
+      ├─ pages
+      │  ├─ 404.js
+      │  ├─ Auth
+      │  │  ├─ AuthLayout.js
+      │  │  ├─ login.css
+      │  │  └─ Login.js
+      │  ├─ ErrorEntry
+      │  │  ├─ CarMapper.js
+      │  │  ├─ ErrorEntryPage.js
+      │  │  ├─ ErrorHeaderBar.js
+      │  │  └─ LargeFont.js
+      │  ├─ ErrorList.js
+      │  ├─ Terminal.js
+      │  └─ TerminalLayout.js
+      ├─ routes.js
+      ├─ translation
+      │  ├─ index.js
+      │  ├─ locales.js
+      │  ├─ messages
+      │  │  ├─ de-DE.js
+      │  │  ├─ en-US.js
+      │  │  ├─ fr-CA.js
+      │  │  ├─ index.js
+      │  │  ├─ ru-RU.js
+      │  │  └─ tr-TR.js
+      │  ├─ provider.js
+      │  └─ translate.js
+      ├─ utils.js
+      └─ validations
+         ├─ index.js
+         ├─ LoginSchema.js
+         └─ Validation.js
+
+```
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
+
 ## 💻 Sayfalar
+
+<!-- Terminal Sayfası -->
 
 ### Terminal Sayfası
 
-* Bütün terminallerin listelendiği sayfadır. Servisten gelen veriye göre dinamik bir şekilde listelenir. 
-* Sol üst kısımda ise dil değiştirici butonu vardır. Varsayılan olarak türkçe dil seçeneği seçilidir.
+- Bütün terminallerin listelendiği sayfadır. Servisten gelen veriye göre dinamik bir şekilde listelenir. 
+- Sol üst kısımda ise dil değiştirici butonu vardır. Varsayılan olarak türkçe dil seçeneği seçilidir.
 
 ![image](https://user-images.githubusercontent.com/71905780/234992098-2981e948-3ee3-46c1-abc0-f661cbc800ab.png)
 
@@ -64,61 +177,36 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 
 
 ### Büyük Font Sayfası
-*
-*
-*
+* Responsive bir tasarımla aracın bilgileri ve üzerindeki onaylanmamış hataların gösterildiği ekrandır.
+* Çalışma şartlarına göre aynı ekran fakat farklı bir gösterimdir.
 
 ![image](https://user-images.githubusercontent.com/71905780/235219940-3ba840c3-2010-4f22-8fa0-e1d1494b70bd.png)
 
-### Productive Markdown Mode
+### Hata Listeleme Sayfası
 
-![markdown](https://user-images.githubusercontent.com/37766175/121464762-71e2fc80-c9ef-11eb-9a0a-7b06e08d3ccb.png)
+* İlgili olan vardiyadaki tüm hataların listelendiği sayfadır.
+* Hatalar silinebilir
+* Yüksek sayıda veriyi tek sayfada performanslı bir şekilde gösteriliyor ve kullanici akıcı bir şekilde scroll işlemi yapabilir.
 
-**CommonMark + GFM Specifications**
+![image](https://user-images.githubusercontent.com/71905780/235316807-1ada2719-6505-4a0c-979e-fa83aca9f380.png)
 
-Today *CommonMark* is the de-facto *Markdown* standard. *GFM (GitHub Flavored Markdown)* is another popular specification based on *CommonMark* - maintained by *GitHub*, which is the *Markdown* mostly used. TOAST UI Editor follows both [*CommonMark*](http://commonmark.org/) and [*GFM*](https://github.github.com/gfm/) specifications. Write documents with ease using productive tools provided by TOAST UI Editor and you can easily open the produced document wherever the specifications are supported.
 
-* **Live Preview** : Edit Markdown while keeping an eye on the rendered HTML. Your edits will be applied immediately.
-* **Scroll Sync** : Synchronous scrolling between Markdown and Preview. You don't need to scroll through each one separately.
-* **Syntax Highlight** : You can check broken Markdown syntax immediately.
 
-### Easy WYSIWYG Mode
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
 
-![wysiwyg](https://user-images.githubusercontent.com/37766175/121808381-251f5000-cc93-11eb-8c47-4f5a809de2b3.png)
 
-* **Table** : Through the context menu of the table, you can add or delete columns or rows of the table, and you can also arrange text in cells.
-* **Custom Block Editor** : The custom block area can be edited through the internal editor.
-* **Copy and Paste** : Paste anything from browser, screenshot, excel, powerpoint, etc.
+## 🎨 Özellikler
 
-### UI
-* **Toolbar** : Through the toolbar, you can style or add elements to the document you are editing.
-![UI](https://user-images.githubusercontent.com/37766175/121808231-767b0f80-cc92-11eb-82a0-433123746982.png)
+### [Internationalization (i18n)](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/translation)
+* Proje Türkçe, İngilizce, Almanca, Fransızca ve Rusçayı desteklemektedir ve **daha fazla dil desteği oluşturmaya uygundur**.
+* Dil değişikliği için **`Contex Api`** ile bir switcher component tasarladım. Context yapısını kullanmamın sebebi tekrar tekrar sayfaları renderlamak yerine üst bileşenler tarafından sağlanan bir yapı üzerinden bütün componentlere erişilebilir hale getirdim. Bu da uygulamanın daha verimli ve yönetilebilir olmasını sağladı.
+* Kullanıcı deneyimini iyileştirmek için kullanıcının seçtiği dil tercihini **`Locale Storageda`** sakladım. Böylece sayfa yenilendiğinde bile korunur ve daha sonra bile erişilebilir olur.
 
-* **Dark Theme** : You can use the dark theme.
-![UI](https://user-images.githubusercontent.com/37766175/121808649-8136a400-cc94-11eb-8674-812e170ccab5.png)
+![screen-recording](https://user-images.githubusercontent.com/71905780/235325150-2cff0f2d-346b-4f3d-9e89-4a719b1af780.gif)
+Local Storage, web uygulamalarında küçük veri parçalarını yerel cihazda saklamak için kullanılan bir API'dir. Bu veriler, sayfa yenilendiğinde bile korunur ve kullanıcı cihazında depolama alanı sınırlı olmasına rağmen, genellikle oturum açma bilgileri, tercihler veya diğer küçük veri parçaları gibi birkaç kilobayt veri saklamak için kullanılır. Local Storage, verilerin web tarayıcısı tarafından güvenli bir şekilde depolanmasını sağlar ve daha sonra erişilebilir olmasını sağlar. Bu nedenle, kullanıcı deneyimini iyileştirmek ve küçük verileri saklamak için kullanılır.
 
-### Use of Various Extended Functions - Plugins
+### [Internationalization (i18n)](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/translation)
 
-![plugin](https://user-images.githubusercontent.com/37766175/121808323-d8d41000-cc92-11eb-9117-b92a435c9b43.png)
-
-CommonMark and GFM are great, but we often need more abstraction. The TOAST UI Editor comes with powerful **Plugins** in compliance with the Markdown syntax.
-
-**Five basic plugins** are provided as follows, and can be downloaded and used with npm.
-
-* [**`chart`**](https://github.com/nhn/tui.editor/tree/master/plugins/chart) : A code block marked as a 'chart' will render [TOAST UI Chart](https://github.com/nhn/tui.chart).
-* [**`code-syntax-highlight`**](https://github.com/nhn/tui.editor/tree/master/plugins/code-syntax-highlight) : Highlight the code block area corresponding to the language provided by [Prism.js](https://prismjs.com/).
-* [**`color-syntax`**](https://github.com/nhn/tui.editor/tree/master/plugins/color-syntax) : 
-Using [TOAST UI ColorPicker](https://github.com/nhn/tui.color-picker), you can change the color of the editing text with the GUI.
-* [**`table-merged-cell`**](https://github.com/nhn/tui.editor/tree/master/plugins/table-merged-cell) : 
-You can merge columns of the table header and body area.
-* [**`uml`**](https://github.com/nhn/tui.editor/tree/master/plugins/uml) : A code block marked as an 'uml' will render [UML diagrams](http://plantuml.com/screenshot).
-
-## 🎨 Features
-
-* [Viewer](https://github.com/nhn/tui.editor/tree/master/docs/en/viewer.md) : Supports a mode to display only markdown data without an editing area.
-* [Internationalization (i18n)](https://github.com/nhn/tui.editor/tree/master/docs/en/i18n.md) : Supports English, Dutch, Korean, Japanese, Chinese, Spanish, German, Russian, French, Ukrainian, Turkish, Finnish, Czech, Arabic, Polish, Galician, Swedish, Italian, Norwegian, Croatian + language and you can extend.
-* [Widget](https://github.com/nhn/tui.editor/tree/master/docs/en/widget.md) : This feature allows you to configure the rules that replaces the string matching to a specific `RegExp` with the widget node.
-* [Custom Block](https://github.com/nhn/tui.editor/tree/master/docs/en/custom-block.md) : Nodes not supported by Markdown can be defined through custom block. You can display the node what you want through writing the parsing logic with custom block.
 
 ## 🐾 Examples
 
@@ -226,9 +314,9 @@ This software is licensed under the [MIT](https://github.com/nhn/tui.editor/blob
 [formik-url]: https://www.npmjs.com/package/formik
 [i18n-shield]:https://img.shields.io/npm/v/i18next?color=white&label=i18next&style=for-the-badge
 [i18n-url]: https://www.npmjs.com/package/i18n
-[material-shield]:https://img.shields.io/npm/v/@mui/material?color=red&label=Material-Ui&style=for-the-badge
+[material-shield]:https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
 [material-url]: https://www.npmjs.com/package/@mui/material
-[axios-shield]:https://img.shields.io/npm/v/axios?color=purple&label=Axios&style=for-the-badge
+[axios-shield]:https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
 [axios-url]: https://www.npmjs.com/package/axios
 [react-shield]:https://img.shields.io/npm/v/react?label=react&style=for-the-badge
 [react-url]: https://www.npmjs.com/package/react
@@ -237,19 +325,15 @@ This software is licensed under the [MIT](https://github.com/nhn/tui.editor/blob
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Vscode]:https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white
+[Vscode-url]:https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white
+[html]:https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[html-url]:https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white  
+[json]:https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white 
+[json-url]:https://www.json.org/json-en.html
+[git]:https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white
+[git-url]:https://git-scm.com
+[react-router]:https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
+[react-router-url]:https://reactrouter.com/en/main
