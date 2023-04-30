@@ -25,7 +25,6 @@
 [![Axios][axios-shield]][axios-url]
 [![material][material-shield]][material-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 ## Demo
 Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 
@@ -38,7 +37,14 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
   * [Büyük Font Sayfası](#büyük-font-sayfası)
   * [Hata Listeleme Sayfası](#hata-listeleme-sayfası)
 - [Özellikler](#-özellikler)
-- [Examples](#-examples)
+  * [Internationalization (i18n)](#internationalization-i18n)
+  * [Çoklu Dil Destekli Sanal Klavye](#çoklu-dil-destekli-sanal-klavye)
+  * [UI Blocking](#ui-blocking)
+  * [Select Input Component](#select-input-component)
+  * [React Hooks](#react-hooks)
+  * [Virtualized Table](#virtualized-table)
+  * [Kullanıcı hareketsiz kaldı uyarısı ⚠](#kullanıcı-hareketsiz-kaldı-uyarısı-)
+- [Renk Referansı](#-renk-referansı)
 - [Browser Support](#-browser-support)
 - [Pull Request Steps](#-pull-request-steps)
 - [Contributing](#-contributing)
@@ -195,7 +201,7 @@ TOYOTA-32bit-project
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 
-## 🎨 Özellikler
+## 🚀 Özellikler
 
 ### [Internationalization (i18n)](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/translation)
 * Proje Türkçe, İngilizce, Almanca, Fransızca ve Rusçayı desteklemektedir ve **daha fazla dil desteği oluşturmaya uygundur**.
@@ -215,8 +221,56 @@ TOYOTA-32bit-project
 
 ![screen-recording-_2_](https://user-images.githubusercontent.com/71905780/235362602-650c7e36-4ca6-44d6-a4fe-5f43c1aa02c3.gif)
 
-### [UI Blocking](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/components/VirtualKeyboard)
-*
+### [UI Blocking](https://github.com/Metecode/TOYOTA-32bit-project/blob/d4f7690a368158776326f33fe43c0e8c9859cb98/toyota-web/src/pages/ErrorEntry/ErrorEntryPage.js#L281)
+* **`UI blocking`** , kullanıcı arayüzünde gerçekleşen bir işlemin tamamlanana kadar başka işlemin gerçekleşmesini engellemektir. Böylece kullanıcı işlemin durumunu gözlemleyebilir ve başarılı bir şekilde işlemini tamamlayabilir. Bu yüzden hata giriş sayfasında bir hatayı kaydettikten sonra kullanıcın tekrar tekrar başka butonlara basmaması için veya login işlemlerinde ardı ardına form gönderme işlemi yapılmaması için **`UI blocking`** kullandım.
+* Login sayfasında kullandığım **`UI blocking`** .
+
+![screen-recording3](https://user-images.githubusercontent.com/71905780/235374118-c3dae373-ac0e-4ad3-a5de-2e8dc240fc54.gif)
+
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
+
+* Hata giriş sayfasında kullandığım **`UI blocking`** .
+
+![screen-recording-_1_](https://user-images.githubusercontent.com/71905780/235374618-2d1d5503-b460-4dc5-bf74-2cb1f64d087e.gif)
+
+### [Select Input Component](https://github.com/Metecode/TOYOTA-32bit-project/blob/main/toyota-web/src/components/form/Select.js)
+* Dokunmatik ekran kullanan kullanıcılar için scroll işlemi yapmak zahmetli olabilir. Bu yüzden kullanıcı select inputun valuelarında rahatlıkla aşağı yukarı kaydırabilmesi için scroll up ve down buttonları ekledim.
+* Select inputunu oluştururken [**`material ui`**](https://mui.com/material-ui/react-select/) paketini kullandım.
+
+![screen-recording-_2_](https://user-images.githubusercontent.com/71905780/235376289-c40b5aa8-e902-45d8-b92e-18c7eac0cd81.gif)
+
+### [React Hooks](https://legacy.reactjs.org/docs/hooks-intro.html)
+* **`React Hooks'u`** tercih etmemin sebebi daha kolay ve daha okunaklı kod yazımına sahip olmasıdır. Class componentlerin yerine, functional componentlerle React uygulamaları yazmak daha kolay ve daha az kod yazımı gerektiriyor.
+* Özellikle stateleri yönetmek **`React Hooks`** ile daha kolaydır. Stateleri bir değişkenmiş gibi tanımlayabiliyorum.
+* Bir diğer avantajı da componentlerde lifecycle metodlarını kullanmak daha kolaydır. **`useEffect()`** fonksiyonu sayesinde mount, update ve unmount aşamalarında lifecycle metotlarını kullanabildim.
+
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
+
+### [Virtualized Table](https://github.com/Metecode/TOYOTA-32bit-project/blob/main/toyota-web/src/pages/ErrorList.js)
+* **`Virtualized Table`** yani sanallaştırılmış tablo yüksek sayıda veriyi kolayca işleyebilir. Sanallaştırma, performans sorunlarına yardımcı olur.
+* Kullanıcı hiç takılmadan akıcı bir şekilde scroll işlemlerini yapabilir.
+* Sanallaştırılmış tablo için [**`material ui`**](https://mui.com/material-ui/react-table/#virtualized-table) kütüphanesinin virtualized table paketini kullandım.
+
+![screen-recording](https://user-images.githubusercontent.com/71905780/235377991-8793d457-1d94-4a17-a549-c3d76c79e6c2.gif)
+
+### [Kullanıcı hareketsiz kaldı uyarısı ⚠](https://github.com/Metecode/TOYOTA-32bit-project/blob/d4f7690a368158776326f33fe43c0e8c9859cb98/toyota-web/src/pages/ErrorEntry/ErrorEntryPage.js#L108)
+* Kullanıcı eğer hata giriş sayfasında **80 saniye boyunca bir işlem yapmazsa rahatsız edici bir alarm sesi çalar**.
+* Büyük font sayfasında da aynı şekilde kullanıcı **80 saniye bir işlem yapmazsa hem alarm sesi çalar hem de arkaplan rengi kırmızıya döner**.
+
+[screen-recording (1).webm](https://user-images.githubusercontent.com/71905780/235378133-47fdcac7-f882-445e-988c-94b213cb0540.webm)
+
+* Büyük font sayfasındaki görünüm.
+
+[screen-recording (2).webm](https://user-images.githubusercontent.com/71905780/235378260-7b39f917-746b-4db4-881a-4de43f1d2a17.webm)
+
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
+
+<!-- Color Reference -->
+## 🎨 Renk Referansı
+* Projede kullandığım renk paletleridir.
+
+![Color Hunt Palette 6096b493bfcfbdcdd6eee9da](https://user-images.githubusercontent.com/71905780/235379138-46025a86-cbbd-43ef-8534-2bc02a545991.png)
+
 
 ## 🐾 Examples
 
@@ -236,6 +290,7 @@ Here are more [examples](https://nhn.github.io/tui.editor/latest/tutorial-exampl
 | :---------: | :---------: | :---------: | :---------: | :---------: |
 | Yes | 11+ | Yes | Yes | Yes |
 
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 ## 🔧 Pull Request Steps
 
@@ -284,32 +339,17 @@ Before uploading your PR, run test one last time to check if there are any error
 
 For more information on PR's steps, please see links in the Contributing section.
 
-## 💬 Contributing
-
-* [Code of Conduct](https://github.com/nhn/tui.editor/blob/master/CODE_OF_CONDUCT.md)
-* [Contributing Guideline](https://github.com/nhn/tui.editor/blob/master/CONTRIBUTING.md)
-* [Commit Convention](https://github.com/nhn/tui.editor/blob/master/docs/COMMIT_MESSAGE_CONVENTION.md)
-* [Issue Guidelines](https://github.com/nhn/tui.editor/tree/master/.github/ISSUE_TEMPLATE)
-
-
-## 🍞 TOAST UI Family
-
-- [TOAST UI Calendar](https://github.com/nhn/tui.calendar)
-- [TOAST UI Chart](https://github.com/nhn/tui.chart)
-- [TOAST UI Grid](https://github.com/nhn/tui.grid)
-- [TOAST UI Image Editor](https://github.com/nhn/tui.image-editor)
-- [TOAST UI Components](https://github.com/nhn)
-
-
-## 🚀 Used By
-
-* [NHN Dooray! - Collaboration Service (Project, Messenger, Mail, Calendar, Drive, Wiki, Contacts)](https://dooray.com)
-* [UNOTES - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ryanmcalister.Unotes)
-
+## 💎 Acknowledgements
+Projemde kullandığım yararlı kaynaklar.
+ - [StackOverFlow](https://stackoverflow.com)
+ - [Shields.io](https://shields.io/)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+ - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
+ - [Readme Template](https://github.com/othneildrew/Best-README-Template)
 
 ## 📜 License
 
-This software is licensed under the [MIT](https://github.com/nhn/tui.editor/blob/master/LICENSE) © [NHN Cloud](https://github.com/nhn).
+This software is licensed under the [MIT](https://github.com/nhn/tui.editor/blob/master/LICENSE) © [İsmail Mete Uçar](https://github.com/Metecode).
 
 
 
