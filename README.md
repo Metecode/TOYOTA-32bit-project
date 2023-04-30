@@ -203,10 +203,20 @@ TOYOTA-32bit-project
 * Kullanıcı deneyimini iyileştirmek için kullanıcının seçtiği dil tercihini **`Locale Storageda`** sakladım. Böylece sayfa yenilendiğinde bile korunur ve daha sonra bile erişilebilir olur.
 
 ![screen-recording](https://user-images.githubusercontent.com/71905780/235325150-2cff0f2d-346b-4f3d-9e89-4a719b1af780.gif)
-Local Storage, web uygulamalarında küçük veri parçalarını yerel cihazda saklamak için kullanılan bir API'dir. Bu veriler, sayfa yenilendiğinde bile korunur ve kullanıcı cihazında depolama alanı sınırlı olmasına rağmen, genellikle oturum açma bilgileri, tercihler veya diğer küçük veri parçaları gibi birkaç kilobayt veri saklamak için kullanılır. Local Storage, verilerin web tarayıcısı tarafından güvenli bir şekilde depolanmasını sağlar ve daha sonra erişilebilir olmasını sağlar. Bu nedenle, kullanıcı deneyimini iyileştirmek ve küçük verileri saklamak için kullanılır.
 
-### [Internationalization (i18n)](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/translation)
+### [Çoklu Dil Destekli Sanal Klavye](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/components/VirtualKeyboard)
+* Dokunmatik ekran kullanan kullanıcılar için sanal klavye desteği ekledim.
+* Sanal klavyenin Türkçe, Rusça, Japonca, İngilizce, Çekçe ve Fransızca olmak üzere 6 dilde dil desteği vardır. Kullanıcı dil değişikliği için sanal klavyenin hemen altındaki butondan değişiklik yapabilir.
+* Eldiven kullanan kullancılar için geniş buton tasarımına sahiptir.
 
+![screen-recording2](https://user-images.githubusercontent.com/71905780/235360052-99d1478f-ed2a-4ac0-b5d0-d89db4989823.gif)
+
+* İnput türüne göre dinamik olarak sanal klavye türü numpad olarak değişir.
+
+![screen-recording-_2_](https://user-images.githubusercontent.com/71905780/235362602-650c7e36-4ca6-44d6-a4fe-5f43c1aa02c3.gif)
+
+### [UI Blocking](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/components/VirtualKeyboard)
+*
 
 ## 🐾 Examples
 
