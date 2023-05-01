@@ -44,6 +44,11 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
   * [React Hooks](#react-hooks)
   * [Virtualized Table](#virtualized-table)
   * [Kullanıcı hareketsiz kaldı uyarısı ⚠](#kullanıcı-hareketsiz-kaldı-uyarısı-)
+  * [Dinamik Kutucuklar](#dinamik-kutucuklar)
+  * [Responsive Yapı](#responsive-yapı)
+  * [404 Not Found](#404-not-found)
+  * [Dinamik Routes](#dinamik-routes)
+- [Deneyimlerim ve Zorlandığım Yerler](#-deneyimlerim-ve-zorlandığım-yerler)
 - [Renk Referansı](#-renk-referansı)
 - [Browser Support](#-browser-support)
 - [Getting Started](#-getting-started)
@@ -150,6 +155,7 @@ TOYOTA-32bit-project
 
 ```
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
+
 
 ## 💻 Sayfalar
 
@@ -278,6 +284,22 @@ TOYOTA-32bit-project
 
 ![image](https://user-images.githubusercontent.com/71905780/235445748-9e828a5b-1655-48f2-9845-c80cdc73fcb5.png)
 
+### [404 Not Found](https://github.com/Metecode/TOYOTA-32bit-project/)
+* Bu sayfanın amacı kullanıcılara doğru bilgiyi vererek onları web sitesinde kalmaya teşvik etmek ve web sitesinin kullanılabilirliğini artırmaktır.
+
+![image](https://user-images.githubusercontent.com/71905780/235500524-3de6c532-7329-435a-b877-6a9195cd71c8.png)
+
+### [Dinamik Routes](https://github.com/Metecode/TOYOTA-32bit-project/blob/main/toyota-web/src/pages/404.js)
+* Terminal listesinden seçilen terminale path yolları dinamik bir şekilde değişir.
+* Pathler aşama aşama işlem yapılacak verilere göre değişir
+
+![image2](https://user-images.githubusercontent.com/71905780/235504091-9ff542b6-76d0-46fb-9736-ceb7dac56f88.png)
+
+![image](https://user-images.githubusercontent.com/71905780/235504190-bbee31e2-700f-412e-91c9-5b8879a333d1.png)
+
+![image3](https://user-images.githubusercontent.com/71905780/235504411-9d6de2e9-a331-48f1-8889-10d9451189e9.png)
+
+
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 ## 📖 Deneyimlerim ve Zorlandığım Yerler
@@ -285,9 +307,10 @@ TOYOTA-32bit-project
 * Bu zorluklardan biri formik ile material ui kütüphanelerini birlikte kullanmak benim için zorlayıcı oldu. **`Material ui`** bilgim başlangıçta sıfırdı bu projeyle    birlikte öğrenerek ilerledim. Bu aşamada **`material ui`** dökümanları bana yeterli oldu. Stillendirme konusunda **`material ui`** çok yardımcı olduğunu söyleyebilirim.
 * Özellikle sanal klavyeyi component şekline getirirken ve fiziksel klavye ile senkronize bir şekilde çalışması için çok uğraştığımı söyleyebilirim. İlk defa kullandığım bir kütüphane olan [**`react-img-mapper`**](https://www.npmjs.com/package/react-img-mapper) githubtaki [**desteği'nin**](https://github.com/hodgef/react-simple-keyboard/issues?q=is%3Aissue+is%3Aclosed) bana çok faydası olduğunu söyleyebilirim. Buradaki issuelar kısmından bir çok sorunun çözümünü bulabilirsiniz eğer farklı bir sorununuz varsa issue açabilirsiniz.
 
-
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
+
 <!-- Color Reference -->
+
 ## 🎨 Renk Referansı
 * Projede kullandığım renk paletidir.
 
