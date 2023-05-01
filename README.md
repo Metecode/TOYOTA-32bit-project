@@ -201,7 +201,7 @@ TOYOTA-32bit-project
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 
-## 🚀 Özellikler
+## 🤖 Özellikler
 
 ### [Internationalization (i18n)](https://github.com/Metecode/TOYOTA-32bit-project/tree/main/toyota-web/src/translation)
 * Proje Türkçe, İngilizce, Almanca, Fransızca ve Rusçayı desteklemektedir ve **daha fazla dil desteği oluşturmaya uygundur**.
@@ -257,6 +257,8 @@ TOYOTA-32bit-project
 * Kullanıcı eğer hata giriş sayfasında **80 saniye boyunca bir işlem yapmazsa rahatsız edici bir alarm sesi çalar**.
 * Büyük font sayfasında da aynı şekilde kullanıcı **80 saniye bir işlem yapmazsa hem alarm sesi çalar hem de arkaplan rengi kırmızıya döner**.
 
+*Örnek göstermek amaçlı saniyesi 2 olarak ayarlanmıştır.*
+
 [screen-recording (1).webm](https://user-images.githubusercontent.com/71905780/235378133-47fdcac7-f882-445e-988c-94b213cb0540.webm)
 
 * Büyük font sayfasındaki görünüm.
@@ -267,7 +269,16 @@ TOYOTA-32bit-project
 
 <!-- Color Reference -->
 ## 🎨 Renk Referansı
-* Projede kullandığım renk paletleridir.
+* Projede kullandığım renk paletidir.
+
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Primary Color | ![#93BFCF](https://via.placeholder.com/10/93BFCF?text=+) #93BFCF |
+| Secondary Color | ![#6096B4](https://via.placeholder.com/10/6096B4?text=+) #6096B4 |
+| Accent Color | ![#BDCDD6](https://via.placeholder.com/10/BDCDD6?text=+) #BDCDD6 |
+| Text Color | ![#EEE9DA](https://via.placeholder.com/10/EEE9DA?text=+) #EEE9DA |
+
 
 ![Color Hunt Palette 6096b493bfcfbdcdd6eee9da](https://user-images.githubusercontent.com/71905780/235379138-46025a86-cbbd-43ef-8534-2bc02a545991.png)
 
@@ -292,45 +303,62 @@ Here are more [examples](https://nhn.github.io/tui.editor/latest/tutorial-exampl
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
-## 🔧 Pull Request Steps
+<!-- Getting Started -->
+## 	🧰 Getting Started
 
-TOAST UI products are open source, so you can create a pull request(PR) after you fix issues. Run npm scripts and develop yourself with the following process.
+<!-- Prerequisites -->
+### ‼️ Prerequisites
 
-### Setup
+This project uses Npm as package manager.
 
-Fork `main` branch into your personal repository. Clone it to local computer. Install node modules. Before starting development, you should check if there are any errors.
-
-```sh
-$ git clone https://github.com/{your-personal-repo}/tui.editor.git
-$ npm install
-$ npm run build toastmark
-$ npm run test editor
+```bash
+ npm install npm@latest -g
 ```
 
-> TOAST UI Editor uses [npm workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces/), so you need to set the environment based on [npm7](https://github.blog/2021-02-02-npm-7-is-now-generally-available/). If subversion is used, dependencies must be installed by moving direct paths per package.
+<!-- Installation -->
+### ⚙️ Installation
 
-### Develop
+Install my-project with npm
 
-You can see your code reflected as soon as you save the code by running a server. Don't miss adding test cases and then make green rights.
+```bash
+  npm install my-project
+  cd my-project
+```
+   
+<!-- Running Tests -->
+### :test_tube: Running Tests
 
-#### Run snowpack-dev-server
-[snowpack](https://www.snowpack.dev/) allows you to run a development server without bundling.
+To run tests, run the following command.
 
-``` sh
-$ npm run serve editor
+```bash
+  npm test
 ```
 
-#### Run webpack-dev-server
-If testing of legacy browsers is required, the development server can still be run using a [webpack](https://webpack.js.org/).
+<!-- Run Locally -->
+### :running: Run Locally
 
-``` sh
-$ npm run serve:ie editor
+Clone the project
+
+```bash
+  git clone https://github.com/Metecode/TOYOTA-32bit-project.git
 ```
 
-#### Run test
+Go to the project directory
 
-``` sh
-$ npm test editor
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
 ```
 
 ### Pull Request
@@ -339,9 +367,18 @@ Before uploading your PR, run test one last time to check if there are any error
 
 For more information on PR's steps, please see links in the Contributing section.
 
-## 💎 Acknowledgements
-Projemde kullandığım yararlı kaynaklar.
+## 🤝 Contact
+
+- İsmail Mete Uçar - i.meteucar@gmail.com
+- [![linkedin][linkedin-shield]][linkedin-url]
+- Project Link: [https://github.com/Metecode/TOYOTA-32bit-project.git](https://github.com/Metecode/TOYOTA-32bit-project.git)
+
+## 💎 Teşekkürler
+Projemde kullandığım yararlı kaynaklar ve dökümanlar.
  - [StackOverFlow](https://stackoverflow.com)
+ - [React](https://react.dev)
+ - [Tayfun Erbilen](https://github.com/tayfunerbilen)
+ - [Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
  - [Shields.io](https://shields.io/)
  - [Awesome README](https://github.com/matiassingers/awesome-readme)
  - [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
@@ -355,7 +392,7 @@ This software is licensed under the [MIT](https://github.com/nhn/tui.editor/blob
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
+[google]:https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
 [react-img-mapper-shield]:https://img.shields.io/npm/v/react-img-mapper?color=yellow&label=react-img-mapper&style=for-the-badge
 [react-img-mapper-url]:https://www.npmjs.com/package/react-img-mapper
 [react-simple-keyboard-shield]:https://img.shields.io/npm/v/react-simple-keyboard?color=brown&label=react-simple-keyboard&style=for-the-badge
@@ -373,7 +410,7 @@ This software is licensed under the [MIT](https://github.com/nhn/tui.editor/blob
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/mete-uçar-1626101b3/
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
