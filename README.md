@@ -280,6 +280,13 @@ TOYOTA-32bit-project
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
+## 📖 Deneyimlerim ve Zorlandığım Yerler
+* Bu projede birçok zorlukla karşı karşıya kaldım. Her commit attığımda kendime yeni bir bilgi kattığımı düşünüyorum.
+* Bu zorluklardan biri formik ile material ui kütüphanelerini birlikte kullanmak benim için zorlayıcı oldu. **`Material ui`** bilgim başlangıçta sıfırdı bu projeyle    birlikte öğrenerek ilerledim. Bu aşamada **`material ui`** dökümanları bana yeterli oldu. Stillendirme konusunda **`material ui`** çok yardımcı olduğunu söyleyebilirim.
+* Özellikle sanal klavyeyi component şekline getirirken ve fiziksel klavye ile senkronize bir şekilde çalışması için çok uğraştığımı söyleyebilirim. İlk defa kullandığım bir kütüphane olan [**`react-img-mapper`**](https://www.npmjs.com/package/react-img-mapper) githubtaki [**desteği'nin**](https://github.com/hodgef/react-simple-keyboard/issues?q=is%3Aissue+is%3Aclosed) bana çok faydası olduğunu söyleyebilirim. Buradaki issuelar kısmından bir çok sorunun çözümünü bulabilirsiniz eğer farklı bir sorununuz varsa issue açabilirsiniz.
+
+
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
 <!-- Color Reference -->
 ## 🎨 Renk Referansı
 * Projede kullandığım renk paletidir.
@@ -290,7 +297,7 @@ TOYOTA-32bit-project
 | Primary Color | ![#93BFCF](https://via.placeholder.com/10/93BFCF?text=+) #93BFCF |
 | Secondary Color | ![#6096B4](https://via.placeholder.com/10/6096B4?text=+) #6096B4 |
 | Accent Color | ![#BDCDD6](https://via.placeholder.com/10/BDCDD6?text=+) #BDCDD6 |
-| Text Color | ![#EEE9DA](https://via.placeholder.com/10/EEE9DA?text=+) #EEE9DA |
+| Light Color | ![#EEE9DA](https://via.placeholder.com/10/EEE9DA?text=+) #EEE9DA |
 
 
 ![Color Hunt Palette 6096b493bfcfbdcdd6eee9da](https://user-images.githubusercontent.com/71905780/235379138-46025a86-cbbd-43ef-8534-2bc02a545991.png)
