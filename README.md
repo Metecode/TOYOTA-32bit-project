@@ -264,6 +264,20 @@ TOYOTA-32bit-project
 
 [screen-recording (2).webm](https://user-images.githubusercontent.com/71905780/235378260-7b39f917-746b-4db4-881a-4de43f1d2a17.webm)
 
+
+### [Dinamik Kutucuklar](https://github.com/Metecode/TOYOTA-32bit-project/blob/1026a4b3f50659d9b221caee3a1e427b22457588/toyota-web/src/pages/ErrorEntry/CarMapper.js#L250)
+* Servisten çekilen koordinatlara göre dinamik bir şekilde kutucuklar oluşturulabilir.
+* Bu işlemi [**`react-img-mapper`**](https://www.npmjs.com/package/react-img-mapper) paketini kullanarak yaptım.
+* Kutucuklar eğer mavi ise bir alt resme geçer ve yine aynı şekilde alt resmin hata koordinatlarına göre kutucuk konumlandırılır.
+
+![screen-recording-3](https://user-images.githubusercontent.com/71905780/235444370-821dcff6-8e1e-465e-8566-ac56f91af6cf.gif)
+
+### [Responsive Yapı](https://github.com/Metecode/TOYOTA-32bit-project/)
+* Hata giriş ve hata listeleme sayfalarında her ne kadar responsive yapıya uymak zor olsada olabildiğince responsive yapmaya çalıştım.
+* Özellikle büyük font sayfasında responsive yapıya oldukça dikkat ettim.
+
+![image](https://user-images.githubusercontent.com/71905780/235445748-9e828a5b-1655-48f2-9845-c80cdc73fcb5.png)
+
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 <!-- Color Reference -->
