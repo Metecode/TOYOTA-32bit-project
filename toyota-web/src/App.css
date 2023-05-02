@@ -8,7 +8,7 @@
   padding: 10px;
 }
 .grid-item {
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid grey;
   padding: 20px;
   font-size: 30px;
   text-align: center;
@@ -19,4 +19,7 @@
 }
 #root{
   height: 100%;
+}
+body{
+  background: linear-gradient(#93BFCF, #6096B4) !important;
 }

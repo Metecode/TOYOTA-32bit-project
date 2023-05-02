@@ -2,15 +2,20 @@ import React, { useContext, useState } from "react";
 import { LOCALES } from "../../translation";
 import { AppContext } from "../../context";
 import "./index.css";
+import { saveToStorage } from "../../localeStorage";
+import { getFromStorage } from "../../localeStorage";
 export default () => {
-  const [lang, setLang] = useState("TURKISH");
+  const storage = getFromStorage("lang") || "TURKISH"
+  const [lang, setLang] = useState(storage);
   const { dispatch } = useContext(AppContext);
 
   const changeLanguageHandler = (lang) => {
     setLang(lang);
+    saveToStorage("lang", lang);
   };
   const setLanguage = (siteLang) => {
     dispatch({ type: "setLang", siteLang });
+    saveToStorage("siteLang", siteLang);
   };
 
   const options = Object.keys(LOCALES).map((locale) => {

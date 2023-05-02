@@ -3,7 +3,7 @@ import * as Yup from "yup"
 
 Yup.setLocale({
     mixed:{
-        required:'bu alan doldurulmasi zorunlu alandir',
+        required:'Bu alan seçilmesi zorunlu alandır',
         oneOf:'Bu alani isaretlemek zorundasiniz'
     },
     string:{

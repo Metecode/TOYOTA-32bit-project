@@ -9,7 +9,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useField, ErrorMessage } from "formik";
 import "./form.css";
-export default function InputPassword({ label, onChange, ...props }) {
+import translate from "../../translation/translate";
+
+export default function InputPassword({ label, onChange,error, ...props }) {
   const [field, meta, helpers] = useField(props);
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -25,16 +27,15 @@ export default function InputPassword({ label, onChange, ...props }) {
         <FormControl
           sx={{ m: 1, minWidth: 400 }}
           variant="outlined"
-          error={meta.error && Boolean(meta.error)}
-          helperText={meta.error ? meta.error : ""}
+          error={error}
+          required
         >
           <InputLabel size="small" htmlFor="outlined-adornment-password">
-            Password
+          {translate("Şifre")}
           </InputLabel>
           <OutlinedInput
           onChange={onChange}
-            error={meta.error && Boolean(meta.error)}
-            helperText={meta.error ? meta.error : ""}
+
             {...field}
             {...props}
             id="outlined-adornment-password"
@@ -52,7 +53,7 @@ export default function InputPassword({ label, onChange, ...props }) {
                 </IconButton>
               </InputAdornment>
             }
-            label="Password"
+            label={translate("Şifre")}
           />
         </FormControl>
       </div>

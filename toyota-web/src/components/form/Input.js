@@ -1,13 +1,13 @@
 import { useField, ErrorMessage } from "formik";
 import TextField from "@mui/material/TextField";
-export default function Input({ label,value,onKeyUp,onChange, ...props }) {
+export default function Input({ label,value,onKeyUp,onChange,error, ...props }) {
   const [field, meta, helpers] = useField(props);
   return (
     <>
       <label className="block w-full">
         <TextField
         required
-          error={meta.error && Boolean(meta.error)}
+          error={error}
           sx={{ m: 1, minWidth: 400 }}
           id="outlined-basic"
           size="small"
@@ -20,12 +20,8 @@ export default function Input({ label,value,onKeyUp,onChange, ...props }) {
           {...props}
         />
 
-        {/* <input  className={classNames({
-                "w-full h-10  border-b outline-none ":true,
-                "focus:border-black": !meta.error,
-                "border-red-600":meta.error 
-            })} {...field} {...props} /> */}
       </label>
+      
     </>
   );
 }

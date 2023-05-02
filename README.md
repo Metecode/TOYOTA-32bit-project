@@ -196,7 +196,7 @@ TOYOTA-32bit-project
 ### Hata Listeleme Sayfası
 
 * İlgili olan vardiyadaki tüm hataların listelendiği sayfadır.
-* Hatalar silinebilir
+* Hatalar silinebilir ve güncellenebilir.
 * Yüksek sayıda veriyi tek sayfada performanslı bir şekilde gösteriliyor ve kullanici akıcı bir şekilde scroll işlemi yapabilir.
 
 ![image](https://user-images.githubusercontent.com/71905780/235316807-1ada2719-6505-4a0c-979e-fa83aca9f380.png)
@@ -254,7 +254,7 @@ TOYOTA-32bit-project
 ### [Virtualized Table](https://github.com/Metecode/TOYOTA-32bit-project/blob/main/toyota-web/src/pages/ErrorList.js)
 * **`Virtualized Table`** yani sanallaştırılmış tablo yüksek sayıda veriyi kolayca işleyebilir. Sanallaştırma, performans sorunlarına yardımcı olur.
 * Kullanıcı hiç takılmadan akıcı bir şekilde scroll işlemlerini yapabilir.
-* Sanallaştırılmış tablo için [**`material ui`**](https://mui.com/material-ui/react-table/#virtualized-table) kütüphanesinin virtualized table paketini kullandım.
+* Sanallaştırılmış tablo için [**`material ui`**](https://mui.com/material-ui/react-table/#virtualized-table) kütüphanesinin virtualized table paketi kullanıldı.
 
 ![screen-recording](https://user-images.githubusercontent.com/71905780/235377991-8793d457-1d94-4a17-a549-c3d76c79e6c2.gif)
 

@@ -65,5 +65,6 @@ export default {
         'İptal':'İptal',
         'RENK':'RENK',
         'HATA GİRİŞİ':'HATA GİRİŞİ',
+        'Başarılı bir şekilde hata kaydı güncellendi':'Başarılı bir şekilde hata kaydı güncellendi',
 	}
 }

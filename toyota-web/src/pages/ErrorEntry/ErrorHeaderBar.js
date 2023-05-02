@@ -17,7 +17,7 @@ export default function HataHeaderBar() {
     
   
     return (
-    <Stack spacing={3} className="wrap" direction="row" >
+    <Stack spacing={{ xs: 1, sm: 2, md: 4}} columns={{ xs: 4, sm: 8, md: 12 }} className="wrap" direction={{ xs: 'column', sm: 'row' }} >
       <Button>
       {translate("MONTAJ NO")}<br />
         {info.seqNo}

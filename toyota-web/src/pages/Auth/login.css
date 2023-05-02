@@ -1,14 +1,19 @@
 body{
   font-family: "Toyota Base", arial, helvetica, sans-serif;
+ background: linear-gradient(#93BFCF, #6096B4) !important;
 }
 .round1 {
-    border: 2px solid rgb(139, 137, 137);
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 5px;
     padding: 50px;
+    background: linear-gradient(#BDCDD6, #EEE9DA);
   }
 
 .dene{
     border-radius: 20px;
+   padding: 0%;
+   margin-right: 200px;
+  margin-left: 200px;
 }
 .vardiya{
     height: 10;
@@ -24,9 +29,11 @@ input {
     box-sizing: border-box;
   }
 
-body{
-  background-color: #93BFCF !important;
-}
 hr{
   border-top: 1px solid black;
+  
+}
+.input-feedback {
+  color: red;
+  margin-top: 0.25rem;
 }

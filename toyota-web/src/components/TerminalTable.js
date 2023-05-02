@@ -61,7 +61,8 @@ export default function TerminalTable() {
             width: "auto",
             tableLayout: "auto",
             borderCollapse: "collapse",
-            border: "1px solid black",
+            border: "1px solid grey",
+            boxShadow: "0 15px 25px rgba(0,0,0,.6)"
           }}
           stickyHeader
           aria-label="sticky table"
@@ -70,7 +71,7 @@ export default function TerminalTable() {
             <TableRow>
               <TableCell
                 style={{
-                  borderBottom: "1px solid black",
+                  borderBottom: "1px solid grey",
                   backgroundColor: "#93BFCF",
                   color: "#c42929",
                   fontWeight: "bold",
@@ -91,7 +92,7 @@ export default function TerminalTable() {
                 style={{
                   top: 57,
                   minWidth: 150,
-                  borderBottom: "1px solid black",
+                  borderBottom: "1px solid grey",
                   backgroundColor: "#93BFCF",
                   color: "#c42929",
                   fontWeight: "bold",
@@ -108,7 +109,7 @@ export default function TerminalTable() {
                 style={{
                   top: 57,
                   width: "100%",
-                  borderBottom: "1px solid black",
+                  borderBottom: "1px solid grey",
                   backgroundColor: "#93BFCF",
                   color: "#c42929",
                   fontWeight: "bold",
@@ -124,7 +125,7 @@ export default function TerminalTable() {
               return (
                 <TableRow
                   style={{
-                    borderBottom: "1px solid black",
+                    borderBottom: "1px solid grey",
                     backgroundColor: "#93BFCF",
                   }}
                   hover
@@ -134,7 +135,7 @@ export default function TerminalTable() {
                   <TableCell
                     style={{
                       minWidth: 150,
-                      borderBottom: "1px solid black",
+                      borderBottom: "1px solid grey",
                       backgroundColor: "#93BFCF",
                       color: "#c42929",
                     }}
@@ -149,7 +150,7 @@ export default function TerminalTable() {
                       <TableCell
                         style={{
                           width: "100%",
-                          borderBottom: "1px solid black",
+                          borderBottom: "1px solid grey",
                         }}
                         key="filtreBazinda"
                       >

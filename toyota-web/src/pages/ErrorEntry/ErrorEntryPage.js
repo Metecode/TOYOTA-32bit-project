@@ -36,7 +36,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Select from "../../components/form/Select.js";
 import Input from "../../components/form/Input";
 import Textarea from "../../components/form/Textarea";
-import Keyboard from "react-simple-keyboard";
 import Grid from "@mui/material/Grid";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";

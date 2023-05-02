@@ -73,19 +73,21 @@ useEffect(()=>{
             backgroundColor: "#EEE9DA",
             borderRadius: "10px",
             flexDirection: "row",
+            
           }}
+          position="static"
         >
           <HataHeaderBar />
         </Box>
-        <Grid container spacing={2}>
-          <Grid style={{ textAlign: "center" }} item xs={8}>
-            <Typography style={{ fontSize: 100, fontWeight: "bold" }}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
+          <Grid style={{ textAlign: "center" }} item xs={8} sm={8} >
+            <Typography style={{ fontSize: 100, fontWeight: "bold"}}>
               {info2.modelCode} - 222
               <br />
               25073
             </Typography>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={4}  >
             <Card
               sx={{
                 width: 270,

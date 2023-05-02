@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
-import "../App.css";
 import axios from "axios";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,7 +24,7 @@ import TextField from "@mui/material/TextField";
 import "../fonts/hataListesi.css";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import { useNavigate} from "react-router";
+import { useNavigate } from "react-router";
 import translate from "../translation/translate";
 import { useAuth } from "../context/AuthContext";
 
@@ -84,7 +83,7 @@ const columns = [
     numeric: true,
   },
   {
-    width: 25,
+    width: 30,
     label: "Gun",
     dataKey: "spotgunName",
     numeric: true,
@@ -103,7 +102,7 @@ const columns = [
   },
   {
     width: 100,
-    label:  translate("Hata"),
+    label: translate("Hata"),
     dataKey: "description",
     numeric: true,
   },
@@ -114,14 +113,14 @@ const columns = [
     numeric: true,
   },
   {
-    width: 40,
+    width: 50,
     label: translate("Saat"),
     dataKey: "formattedDefectHour",
     numeric: true,
   },
   {
     width: 25,
-    label:  translate("Hata Türü"),
+    label: translate("Hata Türü"),
     dataKey: "defectType",
     numeric: true,
   },
@@ -194,7 +193,7 @@ function fixedHeaderContent() {
           style={{
             width: column.width,
             borderCollapse: "collapse",
-            border: "1px solid black",
+            border: "1px solid grey",
             backgroundColor: "#93BFCF",
           }}
         >
@@ -210,13 +209,17 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function HataListesi() {
   const [defectList, setdefectList] = useState([]);
   const [reasonList, setReasonList] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const navigate = useNavigate();
-  const {setUser, user} = useAuth()
+  const { setUser, user } = useAuth();
+  const [temp, setTemp] = useState();
   const handleClose = () => {
     setOpen(false);
   };
-
+  const handleUpdateClose = () => {
+    setOpenUpdate(false);
+  };
   useEffect(() => {
     axios
       .get("../../../db/hataListesiData.json")
@@ -262,6 +265,7 @@ export default function HataListesi() {
             defrespName: x.defrespName,
             textColorCode: color,
             nrReasonId: x.nrReasonId,
+            disable: true,
             nrReasonValue: reason.filter((r) => r.nrId == x.nrReasonId)[0]
               ?.nrReasonDetail,
           };
@@ -269,14 +273,15 @@ export default function HataListesi() {
         setdefectList(hata);
       })
       .catch((err) => console.log(err));
-      
-      
-      filterEvenResults();
+
+    sorting();
+    // filterEvenResults();
   }, []);
- 
+
   const sorting = () => {
     setdefectList((data) => {
       const dataToSort = [...data];
+      console.log(dataToSort);
       dataToSort.sort((a, b) => Number(a.bodyNo) - Number(b.bodyNo)); // or b.money - a.money to invert order
       return dataToSort; // <-- now sorted ascending
     });
@@ -284,20 +289,45 @@ export default function HataListesi() {
   const filterEvenResults = () => {
     setdefectList((data) => {
       const dataToSort = [...data];
-      dataToSort.sort((a, b) => b.depCode?.localeCompare(a.depCode)); // or b.money - a.money to invert order
+      dataToSort.sort((a, b) =>
+        a.depCode?.toString().localeCompare(b.depCode.toString())
+      ); // or b.money - a.money to invert order
       return dataToSort; // <-- now sorted ascending
     });
-  }
+  };
   const handleDelete = (columnIndex) => {
     setdefectList((defectList) =>
       defectList.filter((_, index) => index !== columnIndex)
     );
     setOpen(true);
   };
-    const logoutHandle = () => {
-      navigate(`../../`);
-      setUser(false)
-    };
+  const handleUpdate = (columnIndex) => {
+    let updatedList = defectList.map((item) => {
+      if (item.vinNo == columnIndex) {
+        return { ...item, nrReasonValue: temp,disable:true };
+      }
+      return item;
+    });
+    setdefectList(updatedList);
+    setOpenUpdate(true);
+  };
+
+  const onChangeReason = (columnIndex, event) => {
+    const reason = event.target.value;
+    setTemp(reason);
+    let updatedList = defectList.map((item) => {
+      if (item.vinNo == columnIndex) {
+        return { ...item, disable: false };
+      }
+      return item;
+    });
+
+    setdefectList(updatedList);
+  };
+  const logoutHandle = () => {
+    navigate(`../../`);
+    setUser(false);
+  };
 
   function rowContent(_index, row) {
     return (
@@ -324,6 +354,7 @@ export default function HataListesi() {
                 id="demo-select-small"
                 style={{ maxWidth: 150 }}
                 value={row.nrReasonValue}
+                onChange={(e) => onChangeReason(row.vinNo, e)}
               >
                 {console.log(row.nrReasonValue, row.nrReasonId)}
                 {reasonList.map((option, key) => (
@@ -338,9 +369,17 @@ export default function HataListesi() {
             {column.dataKey == "kaydet" ? (
               <Button
                 size="small"
+                disabled={row.disable}
                 variant="contained"
                 style={{ backgroundColor: "black" }}
+                sx={{
+                  "&.Mui-disabled": {
+                    background: "#eaeaea",
+                    color: "#c0c0c0",
+                  },
+                }}
                 aria-label="save"
+                onClick={(e) => handleUpdate(row.vinNo, e)}
               >
                 <SaveIcon />
               </Button>
@@ -376,26 +415,24 @@ export default function HataListesi() {
     );
   }
 
-  const style ={
-    
+  const style = {
     color: "#000000",
-      backgroundColor:"#93BFCF",
-      "&:hover": {
-        color: "#000000",
-        backgroundColor:"#6096B4"
-      },
-    
-  }
+    backgroundColor: "#93BFCF",
+    "&:hover": {
+      color: "#000000",
+      backgroundColor: "#6096B4",
+    },
+  };
 
   const buttons = [
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-     {translate("ARAÇ LİSTESİ")}
+      {translate("ARAÇ LİSTESİ")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-    {translate("MANUEL HATA")}
+      {translate("MANUEL HATA")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
-    {translate("ÇOKLU HATA")}
+      {translate("ÇOKLU HATA")}
     </Button>,
     <Button sx={style} variant="contained" size="large" style={{ padding: 20 }}>
       {translate("HATA LİSTESİ")}
@@ -404,7 +441,7 @@ export default function HataListesi() {
       {translate("HATA KOPYA")}
     </Button>,
     <Button
-    sx={style}
+      sx={style}
       variant="contained"
       size="large"
       style={{ padding: 20, width: 150 }}
@@ -414,7 +451,7 @@ export default function HataListesi() {
     </Button>,
   ];
   return (
-    <div style={{ height: "100%", backgroundColor:"#EEE9DA" }}>
+    <div style={{ height: "100%", backgroundColor: "#EEE9DA" }}>
       <Paper
         style={{
           height: 570,
@@ -430,13 +467,16 @@ export default function HataListesi() {
           itemContent={rowContent}
         />
       </Paper>
-      <Box  className="total-row">
+      <Box className="total-row">
         <span style={{ marginRight: 5 }}>Total Row: {defectList.length}</span>
       </Box>
 
       <Box
         style={{ display: "flex", height: "100%" }}
-        sx={{ backgroundColor: "#EEE9DA", "& button": { m: 1 } }}
+        sx={{
+          background: "linear-gradient(#EEE9DA,#BDCDD6);",
+          "& button": { m: 1 },
+        }}
       >
         <Box
           style={{
@@ -455,29 +495,31 @@ export default function HataListesi() {
               type="search"
             />
             <Button
-            sx={style}
+              sx={style}
               size="large"
               variant="contained"
               style={{ height: 50, width: 100 }}
             >
-           {translate("ARA")}
+              {translate("ARA")}
             </Button>
           </Box>
           <Box component="form">
             <TextField
-            sx={{'& fieldset.MuiOutlinedInput-notchedOutline': {
-              borderColor: '#93BFCF',
-          },
-          '&hover fieldset.MuiOutlinedInput-notchedOutline': {
-            borderColor: '#93BFCF',
-        },}}
+              sx={{
+                "& fieldset.MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#93BFCF",
+                },
+                "&hover fieldset.MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#93BFCF",
+                },
+              }}
               style={{ marginTop: 8 }}
               id="outlined-search"
               label={translate("BODY NO")}
               type="search"
             />
             <Button
-            sx={style}
+              sx={style}
               size="large"
               variant="contained"
               style={{ height: 50, width: 100 }}
@@ -494,7 +536,7 @@ export default function HataListesi() {
           aria-label="vertical contained button group"
         >
           <Button
-          sx={style}
+            sx={style}
             variant="contained"
             size="large"
             style={{ margin: 0, height: 40, width: 100 }}
@@ -502,7 +544,7 @@ export default function HataListesi() {
             <ArrowDropUpIcon />
           </Button>
           <Button
-          sx={style}
+            sx={style}
             variant="contained"
             size="large"
             style={{ margin: 0, height: 40, width: 100 }}
@@ -517,16 +559,21 @@ export default function HataListesi() {
       </Box>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openUpdate}
+        autoHideDuration={6000}
+        onClose={handleUpdateClose}
+      >
+        <Alert severity="success" sx={{ width: "100%" }}>
+          {translate("Başarılı bir şekilde hata kaydı güncellendi")}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
       >
-        <Alert
-          onClose={handleClose}
-          open={open}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
+        <Alert severity="success" sx={{ width: "100%" }}>
           {translate("The record has been deleted successfully!")}
         </Alert>
       </Snackbar>

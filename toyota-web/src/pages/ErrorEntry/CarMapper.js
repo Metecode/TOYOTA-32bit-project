@@ -347,8 +347,8 @@ useEffect(()=>{
           </Formik>
           
         )}
-        <pre className="message">{msg ? msg : null}</pre>
-        <pre>{moveMsg ? moveMsg : null}</pre>
+        {/* <pre className="message">{msg ? msg : null}</pre>
+        <pre>{moveMsg ? moveMsg : null}</pre> */}
       </div>
     </div>
   );

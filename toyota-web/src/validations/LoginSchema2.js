@@ -1,6 +1,6 @@
 import Yup from "./Validation"
  
-export const LoginSchema = Yup.object().shape({
+export const LoginSchema2 = Yup.object().shape({
     terminalListe: Yup.mixed()
     .required(),
     sicilNo: Yup.number()
@@ -8,9 +8,9 @@ export const LoginSchema = Yup.object().shape({
     .min(5),
     pass: Yup.string()
     .required("Lütfen şifre giriniz"),
-    montaj: Yup.number()
-    .required("Lütfen montaj no giriniz")
-    .min(3),
+    body: Yup.number()
+    .required("body no giriniz")
+    .min(5),
     date:Yup.mixed()
     .required(),
     vardiya:Yup.mixed()

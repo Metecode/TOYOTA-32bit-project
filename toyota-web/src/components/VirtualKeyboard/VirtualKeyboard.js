@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import englishLayout from "simple-keyboard-layouts/build/layouts/english";
 import turkish from "simple-keyboard-layouts/build/layouts/turkish";
 import japaneseLayout from "simple-keyboard-layouts/build/layouts/japanese";
@@ -65,7 +67,7 @@ const VirtualKeyboard = ({ ip, onChange, keyboardRef }) => {
           />
         </div>
       ) : (
-        <div>
+        <div className="keyboard-select">
           <Keyboard
             keyboardRef={(r) => (keyboardRef.current = r)}
             {...keyboardLayout}
@@ -74,17 +76,19 @@ const VirtualKeyboard = ({ ip, onChange, keyboardRef }) => {
             onKeyPress={onKeyPress}
             onRender={() => console.log("Rendered")}
           />
-          <select
-            defaultValue={keyboardLayout}
+          <Select
             onChange={(e) => onChangeLanguage(e)}
+            inputProps={
+              {defaultValue:"turkish"}
+            }
           >
-            <option value={"turkish"}>Turkish</option>
-            <option value={"russianLayout"}>Russian</option>
-            <option value={"japaneseLayout"}>Japanese</option>
-            <option value={"englishLayout"}>English</option>
-            <option value={"czechLayout"}>Czech</option>
-            <option value={"frenchLayout"}>French</option>
-          </select>
+            <MenuItem value={"turkish"}>Turkish</MenuItem>
+            <MenuItem value={"russianLayout"}>Russian</MenuItem>
+            <MenuItem value={"japaneseLayout"}>Japanese</MenuItem>
+            <MenuItem value={"englishLayout"}>English</MenuItem>
+            <MenuItem value={"czechLayout"}>Czech</MenuItem>
+            <MenuItem value={"frenchLayout"}>French</MenuItem>
+          </Select>
         </div>
       )}
     </div>
