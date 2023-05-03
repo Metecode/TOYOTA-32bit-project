@@ -9,11 +9,13 @@ body{
     background: linear-gradient(#BDCDD6, #EEE9DA);
   }
 
+
 .dene{
     border-radius: 20px;
    padding: 0%;
    margin-right: 200px;
   margin-left: 200px;
+  min-width: 400px;
 }
 .vardiya{
     height: 10;
@@ -36,4 +38,13 @@ hr{
 .input-feedback {
   color: red;
   margin-top: 0.25rem;
+}
+
+@media screen and (max-width: 768px) {
+  .dene {
+    margin-right: 100px;
+    margin-left: 100px;
+  top: auto;
+  left: auto;
+ }
 }
