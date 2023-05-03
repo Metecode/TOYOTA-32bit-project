@@ -309,7 +309,7 @@ TOYOTA-32bit-project
 * Formik ve Yup birlikte kullanıldığında, Formik'in içindeki form alanlarının doğru şekilde doldurulduğundan emin olmak için Yup'un sağladığı doğrulama şemaları kullanılmıştır. 
 * Böylece Formik ve Yup'un birlikte kullanılması, form işlemlerinde hataların önlenmesine ve daha düzenli, doğru ve güvenilir bir veri girişi sağlamaya yardımcı olur.
 
-*Burada eğer kullanıcı input içini boş geçerse alacağı hata*
+*Login sayfasında eğer kullanıcı input içini boş geçerse alacağı hata*
 
 ![image](https://user-images.githubusercontent.com/71905780/236072954-efc4d835-6e45-4df1-bdc0-b741ec4c2236.png)
 
