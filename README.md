@@ -286,6 +286,7 @@ TOYOTA-32bit-project
 ![image](https://user-images.githubusercontent.com/71905780/235445748-9e828a5b-1655-48f2-9845-c80cdc73fcb5.png)
 
 * Login sayfasının Ipad görünümü.
+
 ![image](https://user-images.githubusercontent.com/71905780/236055346-1f99dc9d-5a6a-4b10-8aa9-cbed7a2a9ac1.png)
 
 ### [404 Not Found](https://github.com/Metecode/TOYOTA-32bit-project/)
