@@ -8,7 +8,6 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useField, ErrorMessage } from "formik";
-import "./form.css";
 import translate from "../../translation/translate";
 
 export default function InputPassword({ label, onChange,error, ...props }) {

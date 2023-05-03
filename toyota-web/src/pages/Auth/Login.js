@@ -43,6 +43,7 @@ export default function Login() {
   const { state } = useLocation();
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
+  const [numLength, setNumLength] = useState(null);
   const [term, setTerm] = useState(true);
   const [pasValue, setPasValue]=useState();
   const [numPad, setNumPad]=useState(false);
@@ -181,7 +182,6 @@ export default function Login() {
 
   const Logout = useNavigate();
   const location = useLocation();
-  console.log(location.state.depCode, location.state.filterCode);
 
   const { setUser } = useAuth();
 
@@ -202,7 +202,7 @@ export default function Login() {
               setBody("");
     });
   };
-  console.log(term);
+
   return (
     <div className="login">
       <Container maxWidth="md" className="round1">
@@ -273,7 +273,7 @@ export default function Login() {
                 <br />
                 <Input
                 error={errors.sicilNo && touched.sicilNo}
-                  onFocus={(e) => setFocus("sicil",setNumPad(true))}
+                  onFocus={(e) => setFocus("sicil",setNumPad(true),setNumLength(5))}
                   onChange={(e) => {onChangeInput(e, 5,setFieldValue,setFieldTouched)}}
                   onInput={(e) => onChangeInput(e, 5)}
                   onBlur={handleBlur}
@@ -306,7 +306,7 @@ export default function Login() {
                   <Input
                   error={errors.montaj && touched.montaj}
                     onBlur={handleBlur}
-                    onFocus={(e) => setFocus("montaj",setNumPad(true))}
+                    onFocus={(e) => setFocus("montaj",setNumPad(true),setNumLength(3))}
                     onChange={(e) => onChangeInput(e, 3,setFieldValue,setFieldTouched)}
                     onInput={(e) => onChangeInput(e, 3)}
                     inputProps={{
@@ -325,7 +325,7 @@ export default function Login() {
                 {term && (
                   <Input
                   error={errors.body && touched.body}
-                  onFocus={(e) => setFocus("body",setNumPad(true))}
+                  onFocus={(e) => setFocus("body",setNumPad(true),setNumLength(5))}
                   onChange={(e) => onChangeInput(e, 5)}
                   onInput={(e) => onChangeInput(e, 5)}
                     inputProps={{
@@ -408,7 +408,7 @@ export default function Login() {
                 
                 <VirtualKeyboard
                   keyboardRef={keyboard}
-                  onChange={(e) => onChangeInput(e, 5,setFieldValue,setFieldTouched)}
+                  onChange={(e) => onChangeInput(e, numLength,setFieldValue,setFieldTouched)}
                   ip={numPad}
                 />
               {/* <pre>{JSON.stringify(values,null, 2)}</pre> */}

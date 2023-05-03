@@ -54,7 +54,6 @@ export default function TerminalTable() {
     <Paper sx={{ width: "100%", backgroundColor: "#93BFCF" }}>
       <TableContainer
         sx={{ maxHeight: "100%" }}
-        // style={{ overflowX: "initial" }}
         >
         <Table
           style={{

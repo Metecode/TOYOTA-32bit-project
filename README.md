@@ -61,6 +61,7 @@ Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
 
 ```
 TOYOTA-32bit-project
+├─ README.md
 └─ toyota-web
    ├─ LICENCE
    ├─ package-lock.json
@@ -89,14 +90,12 @@ TOYOTA-32bit-project
    │  │  └─ terminal.json
    │  ├─ favicon.ico
    │  └─ index.html
-   ├─ README.md
    └─ src
       ├─ App.css
       ├─ App.js
       ├─ components
       │  ├─ form
       │  │  ├─ DatePicker.js
-      │  │  ├─ form.css
       │  │  ├─ Input.js
       │  │  ├─ InputPassword.js
       │  │  ├─ Select.js
@@ -151,9 +150,11 @@ TOYOTA-32bit-project
       └─ validations
          ├─ index.js
          ├─ LoginSchema.js
+         ├─ LoginSchema2.js
          └─ Validation.js
 
 ```
+
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 

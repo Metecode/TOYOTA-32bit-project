@@ -5,23 +5,17 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import FormControl from "@mui/material/FormControl";
-import { useField, ErrorMessage } from "formik";
+import { useField } from "formik";
 
 export default function DatePicker({ original = false,label, ...props }) {
   const [field, meta, helpers] = useField(props);
   const changeHandle = (e) => {
     helpers.setValue(new Date(e).toLocaleDateString())
     setSelectedDate(e);
-    // let selected = options.find((option) => option.key === +e.target.value);
-    // helpers.setValue(original ? selected : e.target.value);
   };
-  // const [value, setValue] = React.useState(dayjs('2022-05-11'));
-  const [selectedDate, setSelectedDate] = React.useState();
-  console.log({ selectedDate });
-  // const handleChange = (newValue) => {
-  //   setValue(newValue);
 
-  // };
+  const [selectedDate, setSelectedDate] = React.useState();
+
   return (
     <FormControl>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -31,11 +25,6 @@ export default function DatePicker({ original = false,label, ...props }) {
             label={label}
             inputFormat="MM/DD/YYYY"
             onChange={changeHandle}
-            // onChange={(newValue) => {
-            //   setSelectedDate(newValue);
-            //   const date = new Date(newValue).toLocaleDateString();
-            //   // setSelectedDate(new Date(newValue).toLocaleDateString())
-            // }}
             selected={field.value || null}
             renderInput={(params) => (
               <TextField sx={{ m: 1, minWidth: 400 }} {...params} />

@@ -1,7 +1,6 @@
 import * as React from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useField, ErrorMessage } from "formik";
@@ -9,7 +8,6 @@ import { useEffect, useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import "./form.css";
 
 export default function Input({
   label,
@@ -68,8 +66,6 @@ export default function Input({
           size="small"
           label={label}
           style={{ display: "block", float: "left" }}
-          // value={menuItems[0].value}
-          // defaultValue={menuItems[0] ? menuItems[0].value : 'seciniz'}
           {...props}
           onChange={changeHandle}
         >
@@ -93,13 +89,7 @@ export default function Input({
             </MenuItem>
           ))}
         </Select>
-        {/* <FormHelperText>Required</FormHelperText> */}
       </FormControl>
-      {/* <select  className="w-full  border-b outline-none focus:border-black" onChange={changeHandle} defaultValue={field.value} {...props}>
-                
-            </select> */}
-      {/* <button onClick={() => handleScroll(-10)}>Up</button>
-        <button onClick={() => handleScroll(10)}>Up</button> */}
     </label>
   );
 }
