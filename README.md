@@ -26,7 +26,7 @@
 [![material][material-shield]][material-url]
 [![MIT License][license-shield]][license-url]
 ## Demo
-Buradan canlı demoya ulaşabilirsiniz :  https://iharsh234.github.io/WebApp/
+Buradan canlı demoya ulaşabilirsiniz :  #
 
 ## 🚩 İçindekiler
 - [Proje Yapısı](#-proje-yapısı)
