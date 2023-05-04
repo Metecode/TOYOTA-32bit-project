@@ -319,7 +319,7 @@ TOYOTA-32bit-project
 
 ![image3](https://user-images.githubusercontent.com/71905780/235504411-9d6de2e9-a331-48f1-8889-10d9451189e9.png)
 
-### [Formik ve Yup ile Validasyon]
+### Formik ve Yup ile Validasyon
 * Formik ve Yup birlikte kullanıldığında, Formik'in içindeki form alanlarının doğru şekilde doldurulduğundan emin olmak için Yup'un sağladığı doğrulama şemaları kullanılmıştır. 
 * Böylece Formik ve Yup'un birlikte kullanılması, form işlemlerinde hataların önlenmesine ve daha düzenli, doğru ve güvenilir bir veri girişi sağlamaya yardımcı olur.
 
