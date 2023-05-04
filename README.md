@@ -188,6 +188,20 @@ TOYOTA-32bit-project
 
 ![image](https://user-images.githubusercontent.com/71905780/235008816-818889a1-04db-4790-9b2d-bb4d172960a1.png)
 
+* Bir alt resimde hatanın bulunduğu kısım seçildikten sonra dinamik bir şekilde hata türü listesi açılır.
+
+![screen-recording-_5_](https://user-images.githubusercontent.com/71905780/236217596-9894a901-0ab5-4e5f-bdef-3b0cd2578678.gif)
+
+* Hata türü seçildikten sonra hata kayıt butonu aktif hale gelir.
+* Hata konum seçimi yapılır.
+
+![screen-recording-_6_](https://user-images.githubusercontent.com/71905780/236224057-07b14f0c-e43e-43cb-929c-56bee00b203a.gif)
+
+* Hata kayıt butonuna tıkladığında zaman ekranda hata kayıt formu açılır kullanıcı burada hata kayıt bilgilerini girer.
+* Kaydet butonuna tıklandığı zaman ui blocking devreye girer ve kayıt süreci devam edene kadar kullanıcı bir daha kaydet butonuna tıklayamaz kayıt bittikten sonra formdan çıkar ve hata giriş ekranının ana sayfasına geri döner.
+* Kullancıyı da snackbarlar yardımıyla başarılı bir şekilde işlemin tamamlandığını bilgilendirir. 
+
+![screen-recording-_7_](https://user-images.githubusercontent.com/71905780/236227103-69f70695-90cb-447b-8b1d-3bd6f96e2ed2.gif)
 
 ### Büyük Font Sayfası
 * Responsive bir tasarımla aracın bilgileri ve üzerindeki onaylanmamış hataların gösterildiği ekrandır.
