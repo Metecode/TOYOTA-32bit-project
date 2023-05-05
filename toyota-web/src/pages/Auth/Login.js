@@ -12,7 +12,7 @@ import "./login.css";
 import DatePicker from "../../components/form/DatePicker";
 import axios from "axios";
 import "react-simple-keyboard/build/css/index.css";
-import { useEffect, useState, useRef,useContext} from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import Button from "@mui/material/Button";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
@@ -24,14 +24,14 @@ import "react-simple-keyboard/build/css/index.css";
 import translate from "../../translation/translate";
 import { LoginSchema2 } from "../../validations/LoginSchema2";
 
-
-
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function Login() {
   const current = new Date();
-  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
   const [sicil, setSicil] = useState();
   const [montaj, setMontaj] = useState();
   const [body, setBody] = useState();
@@ -45,42 +45,46 @@ export default function Login() {
   const navigate = useNavigate();
   const [numLength, setNumLength] = useState(null);
   const [term, setTerm] = useState(true);
-  const [pasValue, setPasValue]=useState();
-  const [numPad, setNumPad]=useState(false);
+  const [pasValue, setPasValue] = useState();
+  const [numPad, setNumPad] = useState(false);
   const navigateToContacts = () => {
     Logout(`../../`);
   };
-  
+
   const keyboard = useRef(null);
 
   useEffect(() => {
     keyboard?.current.setInput("");
   }, [focus]);
-  const parseInputs = (value,setFieldValue,setFieldTouched) => {
+  const parseInputs = (value, setFieldValue, setFieldTouched) => {
     switch (focus) {
       case "sicil":
         setSicil(value);
-    setFieldValue("sicilNo", value,true);setTimeout(() => setFieldTouched('sicilNo', true), 1)
+        setFieldValue("sicilNo", value, true);
+        setTimeout(() => setFieldTouched("sicilNo", true), 1);
         break;
       case "montaj":
         setMontaj(value);
-    setFieldValue("montaj", value,true);setTimeout(() => setFieldTouched('montaj', true),1)
-        
-        break;
-        case "pass":
-        setPasValue(value);
-    setFieldValue("pass", value,true);setTimeout(() => setFieldTouched('pass', true),1)
+        setFieldValue("montaj", value, true);
+        setTimeout(() => setFieldTouched("montaj", true), 1);
 
         break;
-        case "body":
-          setBody(value);
-    setFieldValue("body", value,true);setTimeout(() => setFieldTouched('body', true),1)
+      case "pass":
+        setPasValue(value);
+        setFieldValue("pass", value, true);
+        setTimeout(() => setFieldTouched("pass", true), 1);
+
+        break;
+      case "body":
+        setBody(value);
+        setFieldValue("body", value, true);
+        setTimeout(() => setFieldTouched("body", true), 1);
 
         break;
     }
   };
 
-  const onChangeInput = (event, length,setFieldValue,setFieldTouched) => {
+  const onChangeInput = (event, length, setFieldValue, setFieldTouched) => {
     if (focus != "pass" && (event == "" || event == "NaN")) {
       if (event == "") {
         parseInputs("");
@@ -94,13 +98,13 @@ export default function Login() {
       event.target.value = t;
     }
     console.log(event, "event", focus);
-    if(focus!= "pass"){
+    if (focus != "pass") {
       event.target.value = Math.max(0, parseInt(event.target.value))
         .toString()
         .slice(0, length);
     }
     const input = event.target.value;
-    parseInputs(input,setFieldValue,setFieldTouched);
+    parseInputs(input, setFieldValue, setFieldTouched);
     keyboard?.current.setInput(input);
   };
 
@@ -187,7 +191,7 @@ export default function Login() {
 
   const [pass, setPass] = useState(false);
   const authenticateUser = (sicil, password, montaj, body) => {
-    return new Promise((resolve, reject) => {  
+    return new Promise((resolve, reject) => {
       {
         sicil == "99619" && password === "toyota" && montaj == "222"
           ? resolve("Login successful")
@@ -196,10 +200,10 @@ export default function Login() {
           : setPass(true);
         reject("Invalid sicil,montaj or password");
       }
-      setSicil("")
-              setPasValue("")
-              setMontaj("");
-              setBody("");
+      setSicil("");
+      setPasValue("");
+      setMontaj("");
+      setBody("");
     });
   };
 
@@ -212,19 +216,18 @@ export default function Login() {
         <hr />
         <Box textAlign={"center"} component="form">
           <Formik
-          validateOnChange={false}
-          enableReinitialize={true}
+            validateOnChange={false}
+            enableReinitialize={true}
             initialValues={{
               terminalListe: "",
               sicilNo: "",
               pass: "",
               montaj: "",
               body: "",
-              date: {date},
+              date: { date },
               vardiya: "#12a6eb",
             }}
             onSubmit={(values, actions) => {
-              
               authenticateUser(
                 values.sicilNo,
                 values.pass,
@@ -242,14 +245,23 @@ export default function Login() {
                     actions.setSubmitting(false);
                   }, 2000);
                   setTimeout(() => {
-                      actions.resetForm();
-                    }, 2000);
+                    actions.resetForm();
+                  }, 2000);
                 });
             }}
             validationSchema={term ? LoginSchema2 : LoginSchema}
-            
           >
-            {({ submitForm,touched, values, handleSubmit, isSubmitting ,setFieldValue,setFieldTouched,errors,handleBlur}) => (
+            {({
+              submitForm,
+              touched,
+              values,
+              handleSubmit,
+              isSubmitting,
+              setFieldValue,
+              setFieldTouched,
+              errors,
+              handleBlur,
+            }) => (
               <form onSubmit={handleSubmit}>
                 <Select
                   open={open}
@@ -257,7 +269,6 @@ export default function Login() {
                   onOpen={handleOpen}
                   label={translate("Terminal Listesi")}
                   name="terminalListe"
-                  // control ? {key: option.termId, value: option.termName} :
                   options={
                     control
                       ? [{ key: option.termId, value: option.termName }]
@@ -269,12 +280,18 @@ export default function Login() {
                         })
                   }
                 />
-                   {errors.terminalListe && <div className="input-feedback">{errors.terminalListe}</div>}
+                {errors.terminalListe && (
+                  <div className="input-feedback">{errors.terminalListe}</div>
+                )}
                 <br />
                 <Input
-                error={errors.sicilNo && touched.sicilNo}
-                  onFocus={(e) => setFocus("sicil",setNumPad(true),setNumLength(5))}
-                  onChange={(e) => {onChangeInput(e, 5,setFieldValue,setFieldTouched)}}
+                  error={errors.sicilNo && touched.sicilNo}
+                  onFocus={(e) =>
+                    setFocus("sicil", setNumPad(true), setNumLength(5))
+                  }
+                  onChange={(e) => {
+                    onChangeInput(e, 5, setFieldValue, setFieldTouched);
+                  }}
                   onInput={(e) => onChangeInput(e, 5)}
                   onBlur={handleBlur}
                   inputProps={{
@@ -287,27 +304,37 @@ export default function Login() {
                   type="number"
                   label={translate("Sicil No")}
                   name="sicilNo"
-                />{errors.sicilNo && touched.sicilNo && <div className="input-feedback">{errors.sicilNo}</div>}
+                />
+                {errors.sicilNo && touched.sicilNo && (
+                  <div className="input-feedback">{errors.sicilNo}</div>
+                )}
                 <br />
                 <InputPassword
                   error={errors.pass && touched.pass}
                   onBlur={handleBlur}
-                  onFocus={(e) => setFocus("pass",setNumPad(false))}
-                  onChange={(e) => onChangeInput(e, 100,setFieldValue,setFieldTouched)}
+                  onFocus={(e) => setFocus("pass", setNumPad(false))}
+                  onChange={(e) =>
+                    onChangeInput(e, 100, setFieldValue, setFieldTouched)
+                  }
                   onInput={(e) => onChangeInput(e, 100)}
                   name="pass"
                   inputProps={{
-                    value:pasValue,
+                    value: pasValue,
                   }}
-                />{errors.pass && touched.pass && (
+                />
+                {errors.pass && touched.pass && (
                   <div className="input-feedback">{errors.pass}</div>
                 )}
                 {!term && (
                   <Input
-                  error={errors.montaj && touched.montaj}
+                    error={errors.montaj && touched.montaj}
                     onBlur={handleBlur}
-                    onFocus={(e) => setFocus("montaj",setNumPad(true),setNumLength(3))}
-                    onChange={(e) => onChangeInput(e, 3,setFieldValue,setFieldTouched)}
+                    onFocus={(e) =>
+                      setFocus("montaj", setNumPad(true), setNumLength(3))
+                    }
+                    onChange={(e) =>
+                      onChangeInput(e, 3, setFieldValue, setFieldTouched)
+                    }
                     onInput={(e) => onChangeInput(e, 3)}
                     inputProps={{
                       maxLength: 3,
@@ -324,10 +351,12 @@ export default function Login() {
                 )}
                 {term && (
                   <Input
-                  error={errors.body && touched.body}
-                  onFocus={(e) => setFocus("body",setNumPad(true),setNumLength(5))}
-                  onChange={(e) => onChangeInput(e, 5)}
-                  onInput={(e) => onChangeInput(e, 5)}
+                    error={errors.body && touched.body}
+                    onFocus={(e) =>
+                      setFocus("body", setNumPad(true), setNumLength(5))
+                    }
+                    onChange={(e) => onChangeInput(e, 5)}
+                    onInput={(e) => onChangeInput(e, 5)}
                     inputProps={{
                       maxLength: 5,
                       inputMode: "numeric",
@@ -340,7 +369,8 @@ export default function Login() {
                     label={translate("Montaj No")}
                     name="body"
                   />
-                )}{errors.montaj && touched.montaj && (
+                )}
+                {errors.montaj && touched.montaj && (
                   <div className="input-feedback">{errors.montaj}</div>
                 )}
                 {errors.body && touched.body && (
@@ -349,26 +379,26 @@ export default function Login() {
                 <br />
                 <div
                   className="dene"
-                  style={{ backgroundColor: values.vardiya}}
+                  style={{ backgroundColor: values.vardiya }}
                 >
                   <DatePicker name="date" label={translate("Tarih")} />
                   <br />
-                    <Select
-                      dropDown={false}
-                      className="vardiya"
-                      label={translate("Vardiya")}
-                      name="vardiya"
-                      inputProps={{
-                        defaultValue:"#12a6eb"
-                      }}
-                      options={vardiya.map((vardiya) => {
-                        return {
-                          key: vardiya.rgbColor,
-                          value: vardiya.shiftCode,
-                        };
-                      })}
-                    />{" "}
-                    <br />
+                  <Select
+                    dropDown={false}
+                    className="vardiya"
+                    label={translate("Vardiya")}
+                    name="vardiya"
+                    inputProps={{
+                      defaultValue: "#12a6eb",
+                    }}
+                    options={vardiya.map((vardiya) => {
+                      return {
+                        key: vardiya.rgbColor,
+                        value: vardiya.shiftCode,
+                      };
+                    })}
+                  />{" "}
+                  <br />
                 </div>
                 <Stack
                   alignItems="center"
@@ -379,7 +409,9 @@ export default function Login() {
                   direction="row"
                 >
                   <Button
-                    onClick={e=>{submitForm()}}
+                    onClick={(e) => {
+                      submitForm();
+                    }}
                     variant="contained"
                     disabled={isSubmitting}
                     type="submit"
@@ -387,7 +419,9 @@ export default function Login() {
                     startIcon={<LoginIcon />}
                     color="success"
                   >
-                    {isSubmitting ? translate("Giriş yapılıyor...") : translate("Giriş Yap")}
+                    {isSubmitting
+                      ? translate("Giriş yapılıyor...")
+                      : translate("Giriş Yap")}
                   </Button>
                   <Button
                     type="logout"
@@ -397,21 +431,17 @@ export default function Login() {
                     startIcon={<LogoutIcon />}
                     onClick={navigateToContacts}
                   >
-                     {translate("Kapat")}
+                    {translate("Kapat")}
                   </Button>
                 </Stack>
-                {/* <input
-                  value={input}
-                  placeholder={"Tap on the virtual keyboard to start"}
-                  onChange={(e) => onChangeInput(e)}
-                /> */}
-                
                 <VirtualKeyboard
                   keyboardRef={keyboard}
-                  onChange={(e) => onChangeInput(e, numLength,setFieldValue,setFieldTouched)}
+                  onChange={(e) =>
+                    onChangeInput(e, numLength, setFieldValue, setFieldTouched)
+                  }
                   ip={numPad}
                 />
-              {/* <pre>{JSON.stringify(values,null, 2)}</pre> */}
+                {/* <pre>{JSON.stringify(values,null, 2)}</pre> */}
               </form>
             )}
           </Formik>

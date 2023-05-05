@@ -1,87 +1,91 @@
 .tooltip {
-	position: absolute;
-	color: #030303;
-	padding: 1px;
-	background: rgba(239, 236, 236, 0.8);
-	transform: translate3d(-50%, -50%, 0);
-	border-radius: 5px;
-	z-index: 10;
-	font-size: 10px;
-	overflow-wrap: break-word;
-	width: 78px;
-    height: 50px;
-	text-align: center;
-	pointer-events: none;
+  position: absolute;
+  color: #030303;
+  padding: 1px;
+  background: rgba(239, 236, 236, 0.8);
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 5px;
+  z-index: 10;
+  font-size: 10px;
+  overflow-wrap: break-word;
+  width: 78px;
+  height: 50px;
+  text-align: center;
+  pointer-events: none;
 }
 
 a {
-	color: #08c;
-	text-decoration: none;
+  color: #08c;
+  text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .container {
-	margin-left: auto;
-	margin-right: auto;
-	padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
 }
 
 .gridd {
-	margin-top: 50px;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .presenter {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex-grow: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 9999;
 }
 
 .source {
-	margin-right: 50px;
-	margin-left: 50px;
-	flex-grow: 9999;
+  margin-right: 50px;
+  margin-left: 50px;
+  flex-grow: 9999;
 }
 
 .footer {
-	margin-top: 50px;
-	border-top: 1px solid #eee;
-	padding: 20px 0;
-	font-size: 12px;
-	color: #999;
+  margin-top: 50px;
+  border-top: 1px solid #eee;
+  padding: 20px 0;
+  font-size: 12px;
+  color: #999;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	color: #222;
-	font-weight: 100;
-	margin: 0.5em 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #222;
+  font-weight: 100;
+  margin: 0.5em 0;
 }
 
 pre.message {
-	white-space: normal;
-	width: 600px;
-	text-align: center;
+  white-space: normal;
+  width: 600px;
+  text-align: center;
 }
 
-
 .hint {
-	margin: 15px 0;
-	font-style: italic;
-	color: #999;
+  margin: 15px 0;
+  font-style: italic;
+  color: #999;
 }
 /* canvas {
 	z-index: 10;
 	position: absolute;
 } */
 
-canvas{
-	position: absolute;
-	 z-index: 40;
-	 pointer-events: none;
+canvas {
+  position: absolute;
+  z-index: 40;
+  pointer-events: none;
 }

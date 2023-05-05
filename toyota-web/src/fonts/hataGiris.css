@@ -1,46 +1,44 @@
 .wrap div:last-child {
-    margin-left: auto;
-  }
+  margin-left: auto;
+}
 
-  .wrap {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
+.wrap {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
 
-  .wrap-text{
-    font-size:x-large;
-    color:coral;
-  }
+.wrap-text {
+  font-size: x-large;
+  color: coral;
+}
 
-  .Button{
-    border: 1px solid black!important;
-    border-radius: 10px!important;
-  }
+.Button {
+  border: 1px solid black !important;
+  border-radius: 10px !important;
+}
 
-  .rightRapper {
-    margin: 0px; 
-    display: inline-block; 
-    color:red;
-    margin-right: 10px;
-    font-size: small;
-    font-weight: bold;
-    align-items: end;
+.rightRapper {
+  margin: 0px;
+  display: inline-block;
+  color: red;
+  margin-right: 10px;
+  font-size: small;
+  font-weight: bold;
+  align-items: end;
+}
 
-  }
-  
-  .leftRapper {
-    margin: 0px;
-    display: inline-block;
-    font-size: small;
-    font-weight: bold;
-    align-items: end;
-    
-  }
- #root .button-group> Button{
+.leftRapper {
+  margin: 0px;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  align-items: end;
+}
+#root .button-group > Button {
   border-color: black;
   color: black;
- }
- .myFavouriteClass .simple-keyboard {
+}
+.myFavouriteClass .simple-keyboard {
   width: 1000px;
 }

@@ -14,25 +14,25 @@
 .total-row {
   width: 100%;
   text-align: right;
-  background-color: #EEE9DA;
+  background-color: #eee9da;
   font-family: "Toyota Base", arial, helvetica, sans-serif;
 }
 
-.button{
+.button {
   border-radius: 15px;
   text-align: center;
 }
 .MuiFormLabel-root.Mui-focused {
-  color: black!important;
+  color: black !important;
 }
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: black!important;
+  border-color: black !important;
 }
-.MuiOutlinedInput-root  {
-  color: black!important;
-  border-color: black!important;
+.MuiOutlinedInput-root {
+  color: black !important;
+  border-color: black !important;
 }
-.MuiOutlinedInput-root  :hover{
-  color: black!important;
-  border-color: black!important;
+.MuiOutlinedInput-root :hover {
+  color: black !important;
+  border-color: black !important;
 }

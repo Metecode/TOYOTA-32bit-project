@@ -1,13 +1,21 @@
-import React, {forwardRef,
+import React, {
+  forwardRef,
   useImperativeHandle,
-  useRef, useState, useEffect, useReducer } from "react";
+  useRef,
+  useState,
+  useEffect,
+  useReducer,
+} from "react";
 import ImageMapper from "react-img-mapper";
 import "../../fonts/carMapper.css";
 import Select from "../../components/form/Select.js";
 import axios from "axios";
 import { useFormik, Formik, Form, useFormikContext } from "formik";
 
-const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coord},ref)  {
+const CarMapper = forwardRef(function CarMapper(
+  { hide, defects, defectsName, coord },
+  ref
+) {
   const [msg, setMsg] = useState(null);
   const [hoveredArea, setHoveredArea] = useState(null);
   const [moveMsg, setMoveMsg] = useState(null);
@@ -23,7 +31,7 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
   const [controlSelect, setControlSelect] = useState(false);
   const [controlCursor, setControlCursor] = useState(false);
   let active = false;
-  const [defect, setDefect] = useState("")
+  const [defect, setDefect] = useState("");
   const canvas = useRef(null);
   let ctx = null;
 
@@ -38,31 +46,40 @@ const CarMapper = forwardRef(function CarMapper({ hide, defects,defectsName,coor
     ctx = canvasEle.getContext("2d");
   }, [box]);
 
-  const line = async (data) =>{
-  await  data.areas.filter((filter)=>filter.lineX>0).map((area)=>(
-    drawLine({ x:area.lineX , y:area.lineY , x1: (area.boxX +area.boxX +area.boxWidth)/2, y1: (area.boxY +area.boxY+ area.boxHeight)/2 }, { color: 'red' })
-     ))
-  }
-  
-useEffect(()=>{
-  line(box)
-  console.log(box);
-},[box])
+  const line = async (data) => {
+    await data.areas
+      .filter((filter) => filter.lineX > 0)
+      .map((area) =>
+        drawLine(
+          {
+            x: area.lineX,
+            y: area.lineY,
+            x1: (area.boxX + area.boxX + area.boxWidth) / 2,
+            y1: (area.boxY + area.boxY + area.boxHeight) / 2,
+          },
+          { color: "red" }
+        )
+      );
+  };
+
+  useEffect(() => {
+    line(box);
+  }, [box]);
 
   // draw a line
   const drawLine = (info, style = {}) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const { x, y, x1, y1 } = info;
-    const { color = 'black', width = 1 } = style;
+    const { color = "black", width = 1 } = style;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x1, y1);
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
     ctx.stroke();
-  }
+  };
   useImperativeHandle(ref, () => ({
-    changePic: changePic
+    changePic: changePic,
   }));
   const changePic = () => {
     setImg("../../../../../assets/img/car.jpg");
@@ -81,9 +98,9 @@ useEffect(()=>{
     setControlCursor(true);
     setShowBox(false);
     hide(active);
-    defectsName(defect)
+    defectsName(defect);
   };
-  
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -118,7 +135,7 @@ useEffect(()=>{
             boxWidth: x.boxWidth,
             boxHeight: x.boxHeight,
             lineX: x.lineX,
-            lineY:x.lineY,
+            lineY: x.lineY,
             preFillColor: "rgba(255, 255, 255, 0)",
             lineWidth: 5,
             shape: "rect",
@@ -140,8 +157,8 @@ useEffect(()=>{
         // line(data)
       })
       .catch((err) => console.log(err));
-    };
-    
+  };
+
   const dataDefect = async () => {
     await axios
       .get(`../../../../../db/${data}.json`)
@@ -168,25 +185,24 @@ useEffect(()=>{
   };
 
   const clicked = async (area) => {
-  if( area.boxColor === "blue") {
-    setControlClick(false);
-    setData(area.childPicID);
-    setDefect(area.name)
-    setImg(`./../../../../assets/img/${area.childPicID}.jpg`);
-    setShow(true);
-  }
-  else{
-    setControlSelect(true);
-    setStyle({ x: 730, y: 243 });
-    setShow(true);
-  }
+    if (area.boxColor === "blue") {
+      setControlClick(false);
+      setData(area.childPicID);
+      setDefect(area.name);
+      setImg(`./../../../../assets/img/${area.childPicID}.jpg`);
+      setShow(true);
+    } else {
+      setControlSelect(true);
+      setStyle({ x: 730, y: 243 });
+      setShow(true);
+    }
     setMsg(
       `You clicked on ${area.shape} ${area.name} at coords ${JSON.stringify(
         area.coords
       )} !`
     );
   };
-  
+
   const [style, setStyle] = useState(null);
   const clickedChildPic = async (area) => {
     setControlSelect(true);
@@ -197,12 +213,12 @@ useEffect(()=>{
       )} !`
     );
   };
-  
+
   const clickedOutside = async (evt) => {
     const coords = { x: evt.nativeEvent.layerX, y: evt.nativeEvent.layerY };
     setMsg(`You clicked on the image at coords ${JSON.stringify(coords)} !`);
     setStyle({ x: coords.x, y: coords.y });
-    coord({ x: coords.x, y: coords.y })
+    coord({ x: coords.x, y: coords.y });
   };
 
   const moveOnImage = (evt) => {
@@ -232,21 +248,21 @@ useEffect(()=>{
         coords.y +
         "} !"
     );
-  };const AutoSubmitCode = () => {
+  };
+  const AutoSubmitCode = () => {
     const { values, submitForm } = useFormikContext();
     useEffect(() => {
-        submitForm();
+      submitForm();
     }, [values]);
     return null;
   };
-  
+
   return (
     <div className="gridd">
       <div className="presenter">
         <div style={{ position: "relative" }}>
+          <canvas ref={canvas}></canvas>
 
-        <canvas ref={canvas}></canvas>
-    
           <ImageMapper
             src={carImg}
             map={
@@ -264,7 +280,6 @@ useEffect(()=>{
             onMouseEnter={(area) => enterArea(area)}
             onImageClick={(evt) => clickedOutside(evt)}
             onImageMouseMove={(evt) => moveOnImage(evt)}
-            // lineWidth={4}
             strokeColor={"white"}
           />
           {controlCursor && (
@@ -297,22 +312,14 @@ useEffect(()=>{
                 {area.title}
               </span>
             ))}
-          {/* {hoveredArea && (
-            <span
-              className="tooltip"
-              style={{ ...getTipPosition(hoveredArea) }}
-            >
-              {hoveredArea && hoveredArea.name}
-            </span>
-          )} */}
         </div>
         {controlSelect && (
           <Formik
             initialValues={{
               defect: "",
             }}
-            onSubmit={(value,actions) => {
-              defects(value)
+            onSubmit={(value, actions) => {
+              defects(value);
             }}
           >
             {({ values }) => (
@@ -338,21 +345,17 @@ useEffect(()=>{
                       };
                     })}
                   />
-                )}   
-            <AutoSubmitCode></AutoSubmitCode>
+                )}
+                <AutoSubmitCode></AutoSubmitCode>
               </div>
-              
             )}
-            
           </Formik>
-          
         )}
         {/* <pre className="message">{msg ? msg : null}</pre>
         <pre>{moveMsg ? moveMsg : null}</pre> */}
       </div>
     </div>
   );
-  //return React.createElement('div', {className:"App"}, React.createElement('h1',null,'Hi 2 !!!'))
 });
 
 export default CarMapper;

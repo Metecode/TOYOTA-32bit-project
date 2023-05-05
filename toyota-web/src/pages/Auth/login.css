@@ -1,39 +1,37 @@
-body{
+body {
   font-family: "Toyota Base", arial, helvetica, sans-serif;
- background: linear-gradient(#93BFCF, #6096B4) !important;
+  background: linear-gradient(#93bfcf, #6096b4) !important;
 }
 .round1 {
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 5px;
-    padding: 50px;
-    background: linear-gradient(#BDCDD6, #EEE9DA);
-  }
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  padding: 50px;
+  background: linear-gradient(#bdcdd6, #eee9da);
+}
 
-
-.dene{
-    border-radius: 20px;
-   padding: 0%;
-   margin-right: 200px;
+.dene {
+  border-radius: 20px;
+  padding: 0%;
+  margin-right: 200px;
   margin-left: 200px;
   min-width: 400px;
 }
-.vardiya{
-    height: 10;
-    width: 10;
+.vardiya {
+  height: 10;
+  width: 10;
 }
 
 input {
-    width: 100%;
-    height: 100px;
-    padding: 20px;
-    font-size: 20px;
-    border: none;
-    box-sizing: border-box;
-  }
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  font-size: 20px;
+  border: none;
+  box-sizing: border-box;
+}
 
-hr{
+hr {
   border-top: 1px solid black;
-  
 }
 .input-feedback {
   color: red;
@@ -44,7 +42,7 @@ hr{
   .dene {
     margin-right: 100px;
     margin-left: 100px;
-  top: auto;
-  left: auto;
- }
+    top: auto;
+    left: auto;
+  }
 }

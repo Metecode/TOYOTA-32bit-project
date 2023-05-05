@@ -240,6 +240,7 @@ export default function PermanentDrawerRight() {
 
   const passFirstPic = () => {
     mainPicElement.current.changePic();
+    setIsHide(true)
   };
   const openLargeFont = () => {
     largeFontElement.current.openDialog();
