@@ -163,7 +163,7 @@ export default function TerminalTable() {
                               sx={{
                                 color: "#000000",
                                 "&:hover": {
-                                  color: "#BDCDD6",
+                                  color: "#66696b",
                                   border: "1px solid black",
                                 },
                                 border: "1px solid black",

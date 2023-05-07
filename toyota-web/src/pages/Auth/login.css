@@ -10,10 +10,9 @@ body {
 }
 
 .dene {
+  display: inline-block;
   border-radius: 20px;
-  padding: 0%;
-  margin-right: 200px;
-  margin-left: 200px;
+  padding:20px 0;
   min-width: 400px;
 }
 .vardiya {
@@ -37,7 +36,7 @@ hr {
   color: red;
   margin-top: 0.25rem;
 }
-
+/* 
 @media screen and (max-width: 768px) {
   .dene {
     margin-right: 100px;
@@ -45,4 +44,4 @@ hr {
     top: auto;
     left: auto;
   }
-}
+} */

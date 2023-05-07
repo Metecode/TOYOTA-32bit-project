@@ -181,28 +181,6 @@ const VirtuosoTableComponents = {
   )),
 };
 
-function fixedHeaderContent() {
-  return (
-    <TableRow>
-      {columns.map((column) => (
-        <TableCell
-          className="grid-item header-color"
-          key={column.dataKey}
-          variant="head"
-          align={"center"}
-          style={{
-            width: column.width,
-            borderCollapse: "collapse",
-            border: "1px solid grey",
-            backgroundColor: "#93BFCF",
-          }}
-        >
-          {column.label}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
-}
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -274,27 +252,59 @@ export default function HataListesi() {
       })
       .catch((err) => console.log(err));
 
-    sorting();
-    // filterEvenResults();
   }, []);
+ 
+  const sorting = (key) => {
+    setdefectList((data) => {
+      const dataToSort = [...data];
+      let newData = [];
+      switch (key) {
+        case columns[1].dataKey:
+          newData = dataToSort.sort(
+            (a, b) => Number(a.bodyNo) - Number(b.bodyNo)
+          );
+          break;
+        case columns[0].dataKey:
+          newData = dataToSort.sort((a, b) =>
+            a.depCode?.toString().localeCompare(b.depCode.toString())
+          );
+          break;
+        case columns[6].dataKey:
+          newData = dataToSort.sort(
+            (a, b) => Number(a.localId) - Number(b.localId)
+          );
+          break;
+        default:
+          return dataToSort;
+      }
+      console.log(data);
+      return newData;
+    });
+  };
+  function fixedHeaderContent() {
+    return (
+      <TableRow>
+        {columns.map((column) => (
+          <TableCell
+            onClick={(e) => sorting(column.dataKey)}
+            className="grid-item header-color"
+            key={column.dataKey}
+            variant="head"
+            align={"center"}
+            style={{
+              width: column.width,
+              borderCollapse: "collapse",
+              border: "1px solid grey",
+              backgroundColor: "#93BFCF",
+            }}
+          >
+            {column.label}
+          </TableCell>
+        ))}
+      </TableRow>
+    );
+  }
 
-  const sorting = () => {
-    setdefectList((data) => {
-      const dataToSort = [...data];
-      console.log(dataToSort);
-      dataToSort.sort((a, b) => Number(a.bodyNo) - Number(b.bodyNo)); // or b.money - a.money to invert order
-      return dataToSort; // <-- now sorted ascending
-    });
-  };
-  const filterEvenResults = () => {
-    setdefectList((data) => {
-      const dataToSort = [...data];
-      dataToSort.sort((a, b) =>
-        a.depCode?.toString().localeCompare(b.depCode.toString())
-      ); // or b.money - a.money to invert order
-      return dataToSort; // <-- now sorted ascending
-    });
-  };
   const handleDelete = (columnIndex) => {
     setdefectList((defectList) =>
       defectList.filter((_, index) => index !== columnIndex)
@@ -304,7 +314,7 @@ export default function HataListesi() {
   const handleUpdate = (columnIndex) => {
     let updatedList = defectList.map((item) => {
       if (item.vinNo == columnIndex) {
-        return { ...item, nrReasonValue: temp,disable:true };
+        return { ...item, nrReasonValue: temp, disable: true };
       }
       return item;
     });

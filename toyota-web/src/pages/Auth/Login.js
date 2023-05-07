@@ -345,7 +345,7 @@ export default function Login() {
                       value: montaj,
                     }}
                     type="number"
-                    label={translate("Montaj")}
+                    label={translate("Montaj No")}
                     name="montaj"
                   />
                 )}
@@ -366,7 +366,7 @@ export default function Login() {
                       value: body,
                     }}
                     type="number"
-                    label={translate("Montaj No")}
+                    label={translate("Body No")}
                     name="body"
                   />
                 )}

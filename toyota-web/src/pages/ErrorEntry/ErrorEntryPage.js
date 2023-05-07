@@ -188,9 +188,6 @@ export default function PermanentDrawerRight() {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    
-  }, [focus]);
   const parseInputs = (value, setFieldValue, setFieldTouched) => {
     switch (focus) {
       case "appliedOperation":
