@@ -213,6 +213,7 @@ TOYOTA-32bit-project
 
 * İlgili olan vardiyadaki tüm hataların listelendiği sayfadır.
 * Hatalar silinebilir ve güncellenebilir.
+* Hatalar sıralanabiliyor ve güncellenebiliyor.
 * Yüksek sayıda veriyi tek sayfada performanslı bir şekilde gösteriliyor ve kullanici akıcı bir şekilde scroll işlemi yapabilir.
 
 ![image](https://user-images.githubusercontent.com/71905780/235316807-1ada2719-6505-4a0c-979e-fa83aca9f380.png)
@@ -327,6 +328,11 @@ TOYOTA-32bit-project
 
 ![image](https://user-images.githubusercontent.com/71905780/236072954-efc4d835-6e45-4df1-bdc0-b741ec4c2236.png)
 
+### Hata Listeleme Sayfasında Sıralama ve Filtreleme
+* Sütün başlıklarına tıklandığında sıralama ve filtrleme işlemlerini başarıyla yapmaktadır.
+* Bildiren, body ve sicil nosuna göre sıralama ve filtreleme yapılabilmektedir.
+
+![screen-recording-_12_](https://user-images.githubusercontent.com/71905780/236704321-57bf1fc7-00df-4c3c-b2a0-a61d85f6c048.gif)
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
