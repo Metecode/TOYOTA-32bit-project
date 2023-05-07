@@ -54,7 +54,7 @@ Buradan canlı demoya ulaşabilirsiniz :  #
 - [Renk Referansı](#-renk-referansı)
 - [Browser Support](#-browser-support)
 - [Getting Started](#-getting-started)
-- [Contact](#-contact)
+- [İletişim](#-iletişim)
 - [Teşekkürler](#-teşekkürler)
 - [License](#-license)
 
@@ -435,7 +435,7 @@ For more information on PR's steps, please see links in the Contributing section
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
-## 🤝 Contact
+## 🤝 İletişim
 
 - İsmail Mete Uçar - i.meteucar@gmail.com
 - [![linkedin][linkedin-shield]][linkedin-url]
