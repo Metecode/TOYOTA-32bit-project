@@ -30,6 +30,7 @@ Buradan canlı demoya ulaşabilirsiniz :  #
 
 ## 🚩 İçindekiler
 - [Proje Yapısı](#-proje-yapısı)
+- [Başlarken](#-başlarken)
 - [Sayfalar](#-sayfalar)
   * [Terminal Sayfası](#terminal-sayfası)
   * [Giriş Sayfası](#giriş-sayfası)
@@ -53,7 +54,6 @@ Buradan canlı demoya ulaşabilirsiniz :  #
 - [Deneyimlerim ve Zorlandığım Yerler](#-deneyimlerim-ve-zorlandığım-yerler)
 - [Renk Referansı](#-renk-referansı)
 - [Tarayıcı Desteği](#-tarayıcı-desteği)
-- [Getting Started](#-getting-started)
 - [İletişim](#-iletişim)
 - [Teşekkürler](#-teşekkürler)
 - [License](#-license)
@@ -159,6 +159,71 @@ TOYOTA-32bit-project
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
+<!-- Getting Started -->
+## 	🧰 Başlarken
+
+<!-- Prerequisites -->
+### ‼️ Gereksinimler
+
+Bu proje paket yöneticisi olarak Npm kullanıyor.
+
+```bash
+ npm install npm@latest -g
+```
+
+<!-- Installation -->
+### ⚙️ Kurma
+
+Install my-project with npm
+
+```bash
+  npm install my-project
+  cd my-project
+```
+   
+<!-- Running Tests -->
+### :test_tube: Running Tests
+
+To run tests, run the following command.
+
+```bash
+  npm test
+```
+
+<!-- Run Locally -->
+### :running: Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Metecode/TOYOTA-32bit-project.git
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+### Pull Request
+
+Before uploading your PR, run test one last time to check if there are any errors. If it has no errors, commit and then push it!
+
+For more information on PR's steps, please see links in the Contributing section.
+
+<p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 ## 💻 Sayfalar
 
@@ -366,72 +431,6 @@ TOYOTA-32bit-project
 | <img src="https://user-images.githubusercontent.com/1215767/34348387-a2e64588-ea4d-11e7-8267-a43365103afe.png" alt="Chrome" width="16px" height="16px" /> Chrome | <img src="https://user-images.githubusercontent.com/1215767/34348590-250b3ca2-ea4f-11e7-9efb-da953359321f.png" alt="IE" width="16px" height="16px" /> Internet Explorer | <img src="https://user-images.githubusercontent.com/1215767/34348380-93e77ae8-ea4d-11e7-8696-9a989ddbbbf5.png" alt="Edge" width="16px" height="16px" /> Edge | <img src="https://user-images.githubusercontent.com/1215767/34348394-a981f892-ea4d-11e7-9156-d128d58386b9.png" alt="Safari" width="16px" height="16px" /> Safari | <img src="https://user-images.githubusercontent.com/1215767/34348383-9e7ed492-ea4d-11e7-910c-03b39d52f496.png" alt="Firefox" width="16px" height="16px" /> Firefox |
 | :---------: | :---------: | :---------: | :---------: | :---------: |
 | Yes | 11+ | Yes | Yes | Yes |
-
-<p align="right">(<a href="#readme-top">🔝</a>)</p>
-
-<!-- Getting Started -->
-## 	🧰 Getting Started
-
-<!-- Prerequisites -->
-### ‼️ Prerequisites
-
-This project uses Npm as package manager.
-
-```bash
- npm install npm@latest -g
-```
-
-<!-- Installation -->
-### ⚙️ Installation
-
-Install my-project with npm
-
-```bash
-  npm install my-project
-  cd my-project
-```
-   
-<!-- Running Tests -->
-### :test_tube: Running Tests
-
-To run tests, run the following command.
-
-```bash
-  npm test
-```
-
-<!-- Run Locally -->
-### :running: Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/Metecode/TOYOTA-32bit-project.git
-```
-
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm start
-```
-
-### Pull Request
-
-Before uploading your PR, run test one last time to check if there are any errors. If it has no errors, commit and then push it!
-
-For more information on PR's steps, please see links in the Contributing section.
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
