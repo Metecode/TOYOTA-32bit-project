@@ -97,7 +97,6 @@ export default function Login() {
       event = { target: {} };
       event.target.value = t;
     }
-    console.log(event, "event", focus);
     if (focus != "pass") {
       event.target.value = Math.max(0, parseInt(event.target.value))
         .toString()
