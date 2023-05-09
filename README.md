@@ -323,7 +323,8 @@ For more information on PR's steps, please see links in the Contributing section
 
 ### [Select Input Component](https://github.com/Metecode/TOYOTA-32bit-project/blob/main/toyota-web/src/components/form/Select.js)
 * Dokunmatik ekran kullanan kullanıcılar için scroll işlemi yapmak zahmetli olabilir. Bu yüzden kullanıcı select inputun valuelarında rahatlıkla aşağı yukarı kaydırabilmesi için scroll up ve down buttonları ekledim.
-* Select inputunu oluştururken [**`material ui`**](https://mui.com/material-ui/react-select/) paketini kullandım.
+* *Bütün fonksiyonlar 0dan yazılmıştır. Hazır paket kullanılmamıştır.*
+* Select inputun stil kısmını oluştururken [**`material ui`**](https://mui.com/material-ui/react-select/) paketini kullandım.
 
 ![screen-recording-_2_](https://user-images.githubusercontent.com/71905780/235376289-c40b5aa8-e902-45d8-b92e-18c7eac0cd81.gif)
 
