@@ -10,7 +10,7 @@
 
 <a name="readme-top"></a>
 
-> Bir aracın üretimdeki hata tespiti ve kaydı girilmesini sağlayan ve bu hataları listeleyen bir react projesidir.
+> React.js, context api ve hooks kullanılarak yazılmış. Bir aracın hata tespiti ve kaydı girilmesini sağlayan ve bu hataları listeleyen bir react projesidir.
 
 
 [![Vscode][Vscode]][Vscode-url]
