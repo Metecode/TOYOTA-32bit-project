@@ -2,7 +2,7 @@ import Yup from "./Validation"
  
 export const LoginSchema = Yup.object().shape({
     terminalListe: Yup.mixed()
-    .required(),
+    .required("Bu alanın seçilmesi zorunludur"),
     sicilNo: Yup.number()
     .required("Lütfen sicil no giriniz")
     .min(5),

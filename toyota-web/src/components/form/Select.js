@@ -14,6 +14,7 @@ export default function Input({
   options,
   dropDown = true,
   original = false,
+  error,
   ...props
 }) {
   const [field, meta, helpers] = useField(props);
@@ -60,7 +61,7 @@ export default function Input({
         </InputLabel>
         <Select
         required
-        error={meta.error && Boolean(meta.error)}
+        error={error}
           ref={selectRef}
           id="demo-simple-select-error"
           size="small"

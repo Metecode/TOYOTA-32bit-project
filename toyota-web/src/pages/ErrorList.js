@@ -277,7 +277,6 @@ export default function HataListesi() {
         default:
           return dataToSort;
       }
-      console.log(data);
       return newData;
     });
   };
@@ -366,7 +365,6 @@ export default function HataListesi() {
                 value={row.nrReasonValue}
                 onChange={(e) => onChangeReason(row.vinNo, e)}
               >
-                {console.log(row.nrReasonValue, row.nrReasonId)}
                 {reasonList.map((option, key) => (
                   <MenuItem value={option.nrReasonDetail} key={key}>
                     {option.nrReasonDetail}
