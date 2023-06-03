@@ -27,6 +27,16 @@ import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
 import translate from "../translation/translate";
 import { useAuth } from "../context/AuthContext";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const columns = [
   {
@@ -309,6 +319,7 @@ export default function HataListesi() {
       defectList.filter((_, index) => index !== columnIndex)
     );
     setOpen(true);
+    setOpenDeleteDialog(false);
   };
   const handleUpdate = (columnIndex) => {
     let updatedList = defectList.map((item) => {
@@ -409,7 +420,8 @@ export default function HataListesi() {
                   variant="contained"
                   color="error"
                   aria-label="delete"
-                  onClick={(e) => handleDelete(_index, e)}
+                  onClick={(e) => handleClickOpen(_index, e)}
+                  // onClick={(e) => handleDelete(_index, e)}
                 >
                   <DeleteIcon />
                 </Button>
@@ -458,6 +470,16 @@ export default function HataListesi() {
       {translate("ÇIKIŞ")}
     </Button>,
   ];
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [index, setIndex] = useState(null);
+  const handleClickOpen = (columnIndex) => {
+    setOpenDeleteDialog(true);
+      setIndex(columnIndex);
+  };
+
+  const handleClickClose = () => {
+    setOpenDeleteDialog(false);
+  };
   return (
     <div style={{ height: "100%", backgroundColor: "#EEE9DA" }}>
       <Paper
@@ -585,6 +607,24 @@ export default function HataListesi() {
           {translate("The record has been deleted successfully!")}
         </Alert>
       </Snackbar>
+      <Dialog
+        open={openDeleteDialog}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClickClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Devam ederseniz bu işlem geri alınamaz!"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Bu hatayı silmekten emin misiniz ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClickClose}>İptal</Button>
+          <Button onClick={()=>handleDelete(index)}>Sil</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

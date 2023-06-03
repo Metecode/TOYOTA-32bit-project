@@ -86,6 +86,15 @@ useEffect(()=>{
               <br />
               25073
             </Typography>
+            {info.map((item) => {
+          return (
+            <Typography
+              style={{ fontSize: 30, marginLeft: "10px", fontWeight: "bold",textAlign:"left" }}
+            >
+              {item.partName} - {item.defectName}
+            </Typography>
+          );
+        })}
           </Grid>
           <Grid item xs={4}  >
             <Card
@@ -126,15 +135,7 @@ useEffect(()=>{
             </Card>
           </Grid>
         </Grid>
-        {info.map((item) => {
-          return (
-            <Typography
-              style={{ fontSize: 30, marginLeft: "10px", fontWeight: "bold" }}
-            >
-              {item.partName} - {item.defectName}
-            </Typography>
-          );
-        })}
+        
       </Dialog>
     </div>
   );
