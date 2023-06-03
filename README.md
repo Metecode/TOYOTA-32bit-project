@@ -52,10 +52,10 @@ Buradan canlı demoya ulaşabilirsiniz :  #
   * [Formik ve Yup ile Validasyon](#formik-ve-yup-ile-validasyon)
   * [Hata Listeleme Sayfasında Sıralama ve Filtreleme](#hata-listeleme-sayfasında-sıralama-ve-filtreleme)
 - [Deneyimlerim ve Zorlandığım Yerler](#-deneyimlerim-ve-zorlandığım-yerler)
-- [Renk Referansı](#-renk-referansı)
-- [Tarayıcı Desteği](#-tarayıcı-desteği)
-- [İletişim](#-iletişim)
-- [Teşekkürler](#-teşekkürler)
+- [Color Reference](#-color-reference)
+- [Browser Support](#-browser-support)
+- [Contact](#-contact)
+- [Acknowledgements](#-acknowledgements)
 - [License](#-license)
 
 
@@ -412,8 +412,8 @@ For more information on PR's steps, please see links in the Contributing section
 
 <!-- Color Reference -->
 
-## 🎨 Renk Referansı
-* Projede kullandığım renk paletidir.
+## 🎨 Color Reference
+* This is the color palette I used in the project.
 
 
 | Color             | Hex                                                                |
@@ -427,7 +427,7 @@ For more information on PR's steps, please see links in the Contributing section
 ![Color Hunt Palette 6096b493bfcfbdcdd6eee9da](https://user-images.githubusercontent.com/71905780/235379138-46025a86-cbbd-43ef-8534-2bc02a545991.png)
 
 
-## 🌏 Tarayıcı Desteği
+## 🌏 Browser Support
 
 | <img src="https://user-images.githubusercontent.com/1215767/34348387-a2e64588-ea4d-11e7-8267-a43365103afe.png" alt="Chrome" width="16px" height="16px" /> Chrome | <img src="https://user-images.githubusercontent.com/1215767/34348590-250b3ca2-ea4f-11e7-9efb-da953359321f.png" alt="IE" width="16px" height="16px" /> Internet Explorer | <img src="https://user-images.githubusercontent.com/1215767/34348380-93e77ae8-ea4d-11e7-8696-9a989ddbbbf5.png" alt="Edge" width="16px" height="16px" /> Edge | <img src="https://user-images.githubusercontent.com/1215767/34348394-a981f892-ea4d-11e7-9156-d128d58386b9.png" alt="Safari" width="16px" height="16px" /> Safari | <img src="https://user-images.githubusercontent.com/1215767/34348383-9e7ed492-ea4d-11e7-910c-03b39d52f496.png" alt="Firefox" width="16px" height="16px" /> Firefox |
 | :---------: | :---------: | :---------: | :---------: | :---------: |
@@ -435,14 +435,13 @@ For more information on PR's steps, please see links in the Contributing section
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
-## 🤝 İletişim
-
+## 🤝 Contact
 - İsmail Mete Uçar - i.meteucar@gmail.com
 - [![linkedin][linkedin-shield]][linkedin-url]
 - Project Link: [https://github.com/Metecode/TOYOTA-32bit-project.git](https://github.com/Metecode/TOYOTA-32bit-project.git)
 
-## 💎 Teşekkürler
-Projemde kullandığım yararlı kaynaklar ve dökümanlar.
+## 💎 Acknowledgements
+Useful resources and documents that I used in my project.
  - [StackOverFlow](https://stackoverflow.com)
  - [React](https://react.dev)
  - [Tayfun Erbilen](https://github.com/tayfunerbilen)
