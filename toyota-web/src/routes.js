@@ -2,10 +2,10 @@ import PrivateRoute from "./components/PrivateRoute"
 import Page404 from "./pages/404"
 import Authlayout from "./pages/Auth/AuthLayout"
 import Login from "./pages/Auth/Login"
-import ErrorList from "./pages/ErrorList"
+import DefectList from "./pages/DefectList"
 import Terminal from "./pages/Terminal"
 import TerminalLayout from "./pages/TerminalLayout"
-import ErrorEntryPage from "./pages/ErrorEntry/ErrorEntryPage"
+import DefectEntryPage from "./pages/DefectEntry/DefectEntryPage"
 
 const routes = [
     {
@@ -19,15 +19,15 @@ const routes = [
                 element: <Terminal/>
             },
             {
-                name:'errorList',
-                path:'errorList/:depCode?/:filterCode?',
-                element: <ErrorList/>,
+                name:'defectList',
+                path:'defectList/:depCode?/:filterCode?',
+                element: <DefectList/>,
                 auth:true
             },
             {
                 name:'errorEntryPage',
                 path:'defectentry/:depCode?/:filterCode?/3070725',
-                element: <ErrorEntryPage/>,
+                element: <DefectEntryPage/>,
                 auth:true
             },
         ]

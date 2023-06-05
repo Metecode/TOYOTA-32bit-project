@@ -116,7 +116,7 @@ export default function Login() {
     }
     {
       term &&
-        navigate(`/errorList/${filterCode}/${depCode}`, {
+        navigate(`/defectList/${filterCode}/${depCode}`, {
           replace: true,
           state: { filterCode, depCode },
         });

@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import HataHeaderBar from "./ErrorHeaderBar";
+import HataHeaderBar from "./DefectHeaderBar";
 import CarMapper from "./CarMapper";
 import axios from "axios";
 import List from "@mui/material/List";
@@ -53,7 +53,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function PermanentDrawerRight() {
-  const {setUser, user} = useAuth()
+  const { setUser, user } = useAuth();
   const [info, setInfo] = useState([]);
   const [isHide, setIsHide] = useState(true);
   const [show, setShow] = useState(false);
@@ -77,7 +77,7 @@ export default function PermanentDrawerRight() {
   const [operation, setOperation] = useState();
   const [responsible, setResponsible] = useState();
   const [explanation, setExplanation] = useState();
-  const [numPad, setNumPad]=useState(false);
+  const [numPad, setNumPad] = useState(false);
 
   const keyboard = useRef(null);
 
@@ -102,7 +102,7 @@ export default function PermanentDrawerRight() {
   };
   const logout = () => {
     navigate(`../`);
-    setUser(false)
+    setUser(false);
   };
   const audio = new Audio("/assets/sound/AlertSirenSound.mp3");
   audio.loop = true;
@@ -237,7 +237,7 @@ export default function PermanentDrawerRight() {
 
   const passFirstPic = () => {
     mainPicElement.current.changePic();
-    setIsHide(true)
+    setIsHide(true);
   };
   const openLargeFont = () => {
     largeFontElement.current.openDialog();
@@ -248,7 +248,7 @@ export default function PermanentDrawerRight() {
   }, []);
 
   return (
-    <Box sx={{ display: "flex",backgroundColor:"#919394" }}>
+    <Box sx={{ display: "flex", backgroundColor: "#919394" }}>
       <CssBaseline />
       <Dialog
         open={open}
@@ -256,10 +256,13 @@ export default function PermanentDrawerRight() {
         maxWidth="lg"
         fullWidth="fullWidth"
       >
-        <DialogTitle sx={{backgroundColor:"#93BFCF"}} style={{ fontWeight: "bold" }}>
+        <DialogTitle
+          sx={{ backgroundColor: "#93BFCF" }}
+          style={{ fontWeight: "bold" }}
+        >
           {info.companyName}
         </DialogTitle>
-        <DialogContent sx={{backgroundColor:"#93BFCF"}}>
+        <DialogContent sx={{ backgroundColor: "#93BFCF" }}>
           <DialogContentText></DialogContentText>
           <Formik
             initialValues={{
@@ -282,7 +285,7 @@ export default function PermanentDrawerRight() {
               setTimeout(() => setIsHide(true), 3000);
             }}
           >
-            {({ values,setFieldValue,setFieldTouched }) => (
+            {({ values, setFieldValue, setFieldTouched }) => (
               <Form>
                 <Box
                   sx={{
@@ -378,7 +381,12 @@ export default function PermanentDrawerRight() {
                     })}
                   />
                   <Input
-                    onFocus={(e) => setFocus("appliedOperation",keyboard?.current.setInput(""))}
+                    onFocus={(e) =>
+                      setFocus(
+                        "appliedOperation",
+                        keyboard?.current.setInput("")
+                      )
+                    }
                     onChange={(e) => {
                       onChangeInput(e, setFieldValue, setFieldTouched);
                     }}
@@ -390,7 +398,9 @@ export default function PermanentDrawerRight() {
                     }}
                   />
                   <Input
-                    onFocus={(e) => setFocus("subResponsible",keyboard?.current.setInput(""))}
+                    onFocus={(e) =>
+                      setFocus("subResponsible", keyboard?.current.setInput(""))
+                    }
                     onChange={(e) => {
                       onChangeInput(e, setFieldValue, setFieldTouched);
                     }}
@@ -403,11 +413,13 @@ export default function PermanentDrawerRight() {
                   />
                   <Stack style={{ marginLeft: 8 }}>
                     <Textarea
-                    onFocus={(e) => setFocus("explanation",keyboard?.current.setInput(""))}
-                    onChange={(e) => {
-                      onChangeInput(e, setFieldValue, setFieldTouched);
-                    }}
-                    onInput={(e) => onChangeInput(e)}
+                      onFocus={(e) =>
+                        setFocus("explanation", keyboard?.current.setInput(""))
+                      }
+                      onChange={(e) => {
+                        onChangeInput(e, setFieldValue, setFieldTouched);
+                      }}
+                      onInput={(e) => onChangeInput(e)}
                       label={translate("Açıklama")}
                       placeHolder="Örnek açıklama"
                       name="explanation"
@@ -417,22 +429,30 @@ export default function PermanentDrawerRight() {
                     />
                   </Stack>
                 </Box>
-          <Stack className="myFavouriteClass" style={{ alignItems: "center", marginTop: 10 }}>
-            <VirtualKeyboard
-              keyboardRef={keyboard}
-              onChange={(e) => onChangeInput(e, setFieldValue, setFieldTouched)}
-              ip={numPad}
-            />
-          </Stack>
+                <Stack
+                  className="myFavouriteClass"
+                  style={{ alignItems: "center", marginTop: 10 }}
+                >
+                  <VirtualKeyboard
+                    keyboardRef={keyboard}
+                    onChange={(e) =>
+                      onChangeInput(e, setFieldValue, setFieldTouched)
+                    }
+                    ip={numPad}
+                  />
+                </Stack>
               </Form>
             )}
           </Formik>
         </DialogContent>
       </Dialog>
       <AppBar
-  
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, mr: `${drawerWidth}px`,backgroundColor:"#93BFCF" }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          mr: `${drawerWidth}px`,
+          backgroundColor: "#93BFCF",
+        }}
       >
         <Toolbar>
           <HataHeaderBar />
@@ -451,7 +471,7 @@ export default function PermanentDrawerRight() {
       <AppBar
         position="fixed"
         color="default"
-        sx={{ top: "auto", bottom: 0, height: 86,backgroundColor:"#93BFCF" }}
+        sx={{ top: "auto", bottom: 0, height: 86, backgroundColor: "#93BFCF" }}
       >
         <Toolbar>
           <Stack className="button-group" direction="row" spacing={2}>
@@ -461,7 +481,7 @@ export default function PermanentDrawerRight() {
               variant="outlined"
               onClick={logout}
             >
-             {translate("ÇIKIŞ")}
+              {translate("ÇIKIŞ")}
             </Button>
             <Button size="large" variant="outlined">
               {translate("MODEL İLK RESMİ")}
@@ -478,7 +498,7 @@ export default function PermanentDrawerRight() {
               {translate("HATA LİSTESİ")}
             </Button>
             <Button size="large" variant="outlined">
-            {translate("TEMİZLE")}
+              {translate("TEMİZLE")}
             </Button>
             <Button onClick={openLargeFont} size="large" variant="outlined">
               {translate("BÜYÜK FONT")}
@@ -503,7 +523,7 @@ export default function PermanentDrawerRight() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            backgroundColor:"#93BFCF",
+            backgroundColor: "#93BFCF",
           },
         }}
         variant="permanent"
@@ -520,13 +540,19 @@ export default function PermanentDrawerRight() {
             <FormControlLabel
               style={{ marginLeft: 2 }}
               control={
-                <Checkbox color="success" sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
+                <Checkbox
+                  color="success"
+                  sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                />
               }
               label={translate("Harigami")}
             />
             <FormControlLabel
               control={
-                <Checkbox color="success" sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
+                <Checkbox
+                  color="success"
+                  sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+                />
               }
               label={translate("RDD")}
             />

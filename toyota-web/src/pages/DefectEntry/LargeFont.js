@@ -17,7 +17,7 @@ import {
   useState,
   useReducer,
 } from "react";
-import HataHeaderBar from "./ErrorHeaderBar";
+import HataHeaderBar from "./DefectHeaderBar";
 import axios from "axios";
 import translate from "../../translation/translate";
 
@@ -25,7 +25,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const LargeFont = forwardRef(function LargeFont({color}, ref) {
+const LargeFont = forwardRef(function LargeFont({ color }, ref) {
   const [info, setInfo] = useState([]);
   const [info2, setInfo2] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -50,10 +50,10 @@ const LargeFont = forwardRef(function LargeFont({color}, ref) {
   const handleClose = () => {
     setOpen(false);
   };
-  
-useEffect(()=>{
-  setBackground(color);
-},[color])
+
+  useEffect(() => {
+    setBackground(color);
+  }, [color]);
   return (
     <div>
       <Dialog
@@ -63,7 +63,7 @@ useEffect(()=>{
         TransitionComponent={Transition}
         PaperProps={{
           style: {
-            backgroundColor: (background ? "red" : "#93BFCF"),
+            backgroundColor: background ? "red" : "#93BFCF",
           },
         }}
       >
@@ -73,30 +73,38 @@ useEffect(()=>{
             backgroundColor: "#EEE9DA",
             borderRadius: "10px",
             flexDirection: "row",
-            
           }}
           position="static"
         >
           <HataHeaderBar />
         </Box>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
-          <Grid style={{ textAlign: "center" }} item xs={8} sm={8} >
-            <Typography style={{ fontSize: 100, fontWeight: "bold"}}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          <Grid style={{ textAlign: "center" }} item xs={8} sm={8}>
+            <Typography style={{ fontSize: 100, fontWeight: "bold" }}>
               {info2.modelCode} - 222
               <br />
               25073
             </Typography>
             {info.map((item) => {
-          return (
-            <Typography
-              style={{ fontSize: 30, marginLeft: "10px", fontWeight: "bold",textAlign:"left" }}
-            >
-              {item.partName} - {item.defectName}
-            </Typography>
-          );
-        })}
+              return (
+                <Typography
+                  style={{
+                    fontSize: 30,
+                    marginLeft: "10px",
+                    fontWeight: "bold",
+                    textAlign: "left",
+                  }}
+                >
+                  {item.partName} - {item.defectName}
+                </Typography>
+              );
+            })}
           </Grid>
-          <Grid item xs={4}  >
+          <Grid item xs={4}>
             <Card
               sx={{
                 width: 270,
@@ -128,14 +136,18 @@ useEffect(()=>{
                 />
               </CardContent>
               <CardActions>
-                <Button sx={{borderColor:"black", color:"black"}} size="large" variant="outlined" style={{ width: 250 }}>
-                {translate("ARA")}
+                <Button
+                  sx={{ borderColor: "black", color: "black" }}
+                  size="large"
+                  variant="outlined"
+                  style={{ width: 250 }}
+                >
+                  {translate("ARA")}
                 </Button>
               </CardActions>
             </Card>
           </Grid>
         </Grid>
-        
       </Dialog>
     </div>
   );
