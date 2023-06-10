@@ -27,12 +27,12 @@ import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
 import translate from "../translation/translate";
 import { useAuth } from "../context/AuthContext";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -261,13 +261,19 @@ export default function HataListesi() {
         setdefectList(hata);
       })
       .catch((err) => console.log(err));
-
   }, []);
- 
+  const [sortConfig, setSortConfig] = useState(null);
   const sorting = (key) => {
     setdefectList((data) => {
       const dataToSort = [...data];
       let newData = [];
+      let direction = "ascending"; // Varsayılan sıralama yönü: artan
+
+      // Eğer zaten sıralama yapılmışsa ve aynı sütuna tıklanıyorsa sıralama yönünü değiştir
+      if (sortConfig && sortConfig.key === key) {
+        direction =
+          sortConfig.direction === "ascending" ? "descending" : "ascending";
+      }
       switch (key) {
         case columns[1].dataKey:
           newData = dataToSort.sort(
@@ -284,11 +290,30 @@ export default function HataListesi() {
             (a, b) => Number(a.localId) - Number(b.localId)
           );
           break;
+        case columns[14].dataKey: // Örnek olarak saat sütunu
+          newData = dataToSort.sort((a, b) => {
+            const timeA = getTimeValue(a.formattedDefectHour)
+            const timeB = getTimeValue(b.formattedDefectHour)
+            return timeA - timeB;
+          });
+          break;
+
         default:
           return dataToSort;
       }
+      // Sıralama yönüne göre verileri tersine çevir
+      if (direction === "descending") {
+        newData.reverse();
+      }
+
+      // Sıralama konfigürasyonunu güncelle
+      setSortConfig({ key, direction });
       return newData;
     });
+  };
+  const getTimeValue = (time) => {
+    const [hours, minutes, seconds] = time.split(':');
+    return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
   };
   function fixedHeaderContent() {
     return (
@@ -308,6 +333,9 @@ export default function HataListesi() {
             }}
           >
             {column.label}
+            {sortConfig &&
+              sortConfig.key === column.dataKey &&
+              (sortConfig.direction === "ascending" ? "▲" : "▼")}
           </TableCell>
         ))}
       </TableRow>
@@ -474,7 +502,7 @@ export default function HataListesi() {
   const [index, setIndex] = useState(null);
   const handleClickOpen = (columnIndex) => {
     setOpenDeleteDialog(true);
-      setIndex(columnIndex);
+    setIndex(columnIndex);
   };
 
   const handleClickClose = () => {
@@ -622,7 +650,7 @@ export default function HataListesi() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClickClose}>İptal</Button>
-          <Button onClick={()=>handleDelete(index)}>Sil</Button>
+          <Button onClick={() => handleDelete(index)}>Sil</Button>
         </DialogActions>
       </Dialog>
     </div>
