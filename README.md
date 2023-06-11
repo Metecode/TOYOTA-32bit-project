@@ -10,7 +10,7 @@
 
 <a name="readme-top"></a>
 
-> React.js, context api ve hooks kullanılarak yazılmış. Bir aracın hata tespiti ve kaydı girilmesini sağlayan ve bu hataları listeleyen bir react projesidir.
+> This is a React project written using React.js, Context API, and hooks. It allows the user to enter and record a vehicle's error detection and keeps a list of these errors.
 
 
 [![Vscode][Vscode]][Vscode-url]
@@ -26,9 +26,9 @@
 [![material][material-shield]][material-url]
 [![MIT License][license-shield]][license-url]
 ## Demo
-Buradan canlı demoya ulaşabilirsiniz :  #
+You can find the live demo here :  #
 
-## 🚩 İçindekiler
+## 🚩 Contents
 - [Proje Yapısı](#-proje-yapısı)
 - [Başlarken](#-başlarken)
 - [Sayfalar](#-sayfalar)
@@ -59,7 +59,7 @@ Buradan canlı demoya ulaşabilirsiniz :  #
 - [License](#-license)
 
 
-## 🗃 Proje Yapısı
+## 🗃 Project Structure
 
 ```
 TOYOTA-32bit-project
@@ -160,19 +160,19 @@ TOYOTA-32bit-project
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 <!-- Getting Started -->
-## 	🧰 Başlarken
+## 	🧰 Getting Started
 
 <!-- Prerequisites -->
-### ‼️ Gereksinimler
+### ‼️ Prerequisites
 
-Bu proje paket yöneticisi olarak Npm kullanıyor.
+This project uses Npm as the package manager.
 
 ```bash
  npm install npm@latest -g
 ```
 
 <!-- Installation -->
-### ⚙️ Kurma
+### ⚙️ Installation
 
 Install my-project with npm
 
@@ -225,36 +225,36 @@ For more information on PR's steps, please see links in the Contributing section
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
-## 💻 Sayfalar
+## 💻 Pages
 
 <!-- Terminal Sayfası -->
 
-### Terminal Sayfası
+### Terminal Page
 
-- Bütün terminallerin listelendiği sayfadır. Servisten gelen veriye göre dinamik bir şekilde listelenir. 
-- Sol üst kısımda ise dil değiştirici butonu vardır. Varsayılan olarak türkçe dil seçeneği seçilidir.
+- This is a page that lists all terminals. It is dynamically populated based on the data received from the service. 
+- In the top left corner, there is a language switch button. By default, the Turkish language option is selected.
 
 ![image](https://user-images.githubusercontent.com/71905780/234992098-2981e948-3ee3-46c1-abc0-f661cbc800ab.png)
 
-### Giriş Sayfası
-* Uygulamam ilk girişte giriş sayfası ile başlar.
-* Minimal bir mock servisle başarısız veya hatalı bir girişte alert snackbarlar ile uyarı verir.
-* Vardiya verileri servisten dinamik bir şekilde başta seçili olarak gelir ve seçilen vardiyaya göre arkaplan rengi değişir.
-* Terminal listesi seçilen filtreye göre gelir ve terminal listesi sayfa ilk açıldığında açık bir şekilde kullanıcıyı karşılar.
-* Tarih güncel olarak bugünü ele alır.
-* ***Çoklu dil destekli sanal klavye vardır*** .
-* ***Dinamik bir şekilde seçilen filtreye göre pathler değişir*** .
+### Login Page
+* My application starts with a login page upon initial entry.
+* With a minimal mock service, it displays alert snackbars to warn about unsuccessful or incorrect login attempts.
+* Shift data is dynamically fetched from the service and initially comes with a pre-selected shift, which changes the background color accordingly.
+* The terminal list is fetched based on the selected filter, and the terminal list is prominently displayed to the user when the page is first opened.
+* The date is always up-to-date and represents the current day.
+* ***It features a multilingual virtual keyboard.***
+* ***Paths dynamically change based on the selected filter.***
 
 ![image](https://user-images.githubusercontent.com/71905780/235005226-8999d4b4-f0cb-4fa4-aa7a-2c02b1307842.png)
 
-### Hata Giriş Sayfası
-* Servisten gelen verilere göre dinamik bir şekilde arabanın üzerindeki kutucuklar konumlandırılır.
-* Kullanıcı 80 saniye herhangi bir işlem yapmazsa rahatsız edici bir  [alarm](https://www.youtube.com/watch?v=7ejH_BihwFQ&list=PLJ_uDFPrtpfR8OM2QthNB8HJdt4ZXVhmM&index=3) sesi çalar.
-* Tıklanan kutu eğer mavi ise bir alt resme geçer.
+### Defect Login Page
+* Based on the data received from the service, the boxes on the car are dynamically positioned.
+* If the user doesn't perform any action for 80 seconds, a disruptive [alarm](https://www.youtube.com/watch?v=7ejH_BihwFQ&list=PLJ_uDFPrtpfR8OM2QthNB8HJdt4ZXVhmM&index=3) sound is played.
+* When a box is clicked and it is blue, it transitions to a lower image.
 
 ![image](https://user-images.githubusercontent.com/71905780/235008816-818889a1-04db-4790-9b2d-bb4d172960a1.png)
 
-* Bir alt resimde hatanın bulunduğu kısım seçildikten sonra dinamik bir şekilde hata türü listesi açılır.
+* After selecting the area where the error is located in the lower image, a list of error types opens dynamically.
 
 ![screen-recording-_5_](https://user-images.githubusercontent.com/71905780/236217596-9894a901-0ab5-4e5f-bdef-3b0cd2578678.gif)
 
