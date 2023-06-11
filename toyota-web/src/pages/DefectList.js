@@ -449,7 +449,6 @@ export default function HataListesi() {
                   color="error"
                   aria-label="delete"
                   onClick={(e) => handleClickOpen(_index, e)}
-                  // onClick={(e) => handleDelete(_index, e)}
                 >
                   <DeleteIcon />
                 </Button>
@@ -508,9 +507,23 @@ export default function HataListesi() {
   const handleClickClose = () => {
     setOpenDeleteDialog(false);
   };
+  const [filter, setFilter] = useState('');
+
+  const filteredRows = defectList.filter((row) =>
+  row.bodyNo.toString().toLowerCase().includes(filter.toLowerCase())
+  );
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
   return (
     <div style={{ height: "100%", backgroundColor: "#EEE9DA" }}>
       <Paper
+      sx={{
+        "& .MuiPaper-root": {
+          backgroundColor:"#93BFCF" 
+        }
+      }}
         style={{
           height: 570,
           width: "100%",
@@ -519,7 +532,7 @@ export default function HataListesi() {
         }}
       >
         <TableVirtuoso
-          data={defectList}
+          data={filteredRows}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
           itemContent={rowContent}
@@ -552,14 +565,6 @@ export default function HataListesi() {
               label={translate("MONTAJ NO")}
               type="search"
             />
-            <Button
-              sx={style}
-              size="large"
-              variant="contained"
-              style={{ height: 50, width: 100 }}
-            >
-              {translate("ARA")}
-            </Button>
           </Box>
           <Box component="form">
             <TextField
@@ -575,15 +580,9 @@ export default function HataListesi() {
               id="outlined-search"
               label={translate("BODY NO")}
               type="search"
+              value={filter}
+              onChange={handleFilterChange}
             />
-            <Button
-              sx={style}
-              size="large"
-              variant="contained"
-              style={{ height: 50, width: 100 }}
-            >
-              {translate("ARA")}
-            </Button>
           </Box>
         </Box>
 
