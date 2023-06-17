@@ -36,7 +36,7 @@ You can find the live demo here :  #
   * [Login Page](#login-page)
   * [Defect Login Page](#defect-login-page)
   * [Large Font Page](#large-font-page)
-  * [Error Listing Page](#error-listing-page)
+  * [Defect Listing Page](#defect-listing-page)
 - [Features](#-features)
   * [Internationalization (i18n)](#internationalization-i18n)
   * [Multi-Language Virtual Keyboard](#multi-language-virtual-keyboard)
@@ -50,7 +50,7 @@ You can find the live demo here :  #
   * [404 Not Found](#404-not-found)
   * [Dynamic Routes](#dynamic-routes)
   * [Validation with Formic and Yup](#validation-with-formic-and-yup)
-  * [Sorting and Filtering on the Defect Listing Page](#sorting-and-filtering-on-the-defect-listing-page)
+  * [Sorting, Filtering and Updatable on the Defect Listing Page](#sorting,-filtering-and-updatable-on-the-defect-listing-page)
 - [My Experiences and Difficulties](#-my-experiences-and-difficulties)
 - [Color Reference](#-color-reference)
 - [Browser Support](#-browser-support)
@@ -275,7 +275,7 @@ For more information on PR's steps, please see links in the Contributing section
 
 ![image](https://user-images.githubusercontent.com/71905780/235219940-3ba840c3-2010-4f22-8fa0-e1d1494b70bd.png)
 
-### Error Listing Page
+### Defect Listing Page
 
 * It is a page where all relevant errors in the shift are listed.
 * Errors can be deleted and updated.
@@ -283,9 +283,6 @@ For more information on PR's steps, please see links in the Contributing section
 * A large amount of data is efficiently displayed on a single page, allowing users to smoothly scroll through the information.
 
 ![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/38737f96-a372-4449-ab8f-d42716b10b7a)
-
-
-
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
@@ -312,9 +309,13 @@ For more information on PR's steps, please see links in the Contributing section
 
 ### [UI Blocking](https://github.com/Metecode/TOYOTA-32bit-project/blob/d4f7690a368158776326f33fe43c0e8c9859cb98/toyota-web/src/pages/ErrorEntry/ErrorEntryPage.js#L281)
 * **`UI blocking`** is a technique that prevents other actions from taking place in the user interface until a certain process is completed. This allows the user to observe the progress of the operation and successfully complete it. Therefore, in the error entry page, I used **`UI blocking`** to prevent the user from pressing other buttons repeatedly after saving an error, or to prevent consecutive form submissions during login processes.
-* **`UI blocking`** used in the login page..
+* **`UI Blocking`** used in the login page.
 
 ![screen-recording3](https://user-images.githubusercontent.com/71905780/235374118-c3dae373-ac0e-4ad3-a5de-2e8dc240fc54.gif)
+
+* **`UI Blocking`** used in the defet list page.
+   
+![screen-recording-_20_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/fd7e1a00-1444-47e6-83a6-1dfb13af54ed)
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
@@ -341,7 +342,7 @@ For more information on PR's steps, please see links in the Contributing section
 * Users can smoothly scroll through the table without any lag or performance hiccups.
 * For the virtualized table, the [**`material ui`**](https://mui.com/material-ui/react-table/#virtualized-table) library's virtualized table package was used.
 
-![screen-recording](https://user-images.githubusercontent.com/71905780/235377991-8793d457-1d94-4a17-a549-c3d76c79e6c2.gif)
+![screen-recording-_18_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/30949c26-1887-479f-a4e8-ebdbb7561327)
 
 ### [User inactive alert ⚠](https://github.com/Metecode/TOYOTA-32bit-project/blob/d4f7690a368158776326f33fe43c0e8c9859cb98/toyota-web/src/pages/ErrorEntry/ErrorEntryPage.js#L108)
 * If the user does not perform any action for **80 seconds** on the error entry page, a disruptive alarm sound will play.
@@ -396,11 +397,18 @@ For more information on PR's steps, please see links in the Contributing section
 
 ![image](https://user-images.githubusercontent.com/71905780/236072954-efc4d835-6e45-4df1-bdc0-b741ec4c2236.png)
 
-### Sorting and Filtering on the Defect Listing Page
+### Sorting, Filtering and Updatable on the Defect Listing Page
 * When clicking on the column headers, sorting and filtering operations are successfully performed.
 * Sorting can be done based on the "Reported", "Body", and "Registration Number" columns. Filtering can be done based on the "Body" number.
 
-![screen-recording-_12_](https://user-images.githubusercontent.com/71905780/236704321-57bf1fc7-00df-4c3c-b2a0-a61d85f6c048.gif)
+*Sorting:*
+![screen-recording-_14_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/5edf9437-3d18-4c48-b889-0a66fb2e11c2)
+
+*Filtering:*
+![screen-recording-_16_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/c573dfb4-6859-48c2-96da-d08ea2e9806a)
+
+*Updatable:*
+![screen-recording-_17_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/ceadcd0a-ba46-4830-87e0-94c75e293102)
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
