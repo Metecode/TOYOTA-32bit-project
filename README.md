@@ -29,14 +29,14 @@
 You can find the live demo here :  #
 
 ## 🚩 Contents
-- [Proje Yapısı](#-proje-yapısı)
-- [Başlarken](#-başlarken)
-- [Sayfalar](#-sayfalar)
-  * [Terminal Sayfası](#terminal-sayfası)
-  * [Giriş Sayfası](#giriş-sayfası)
-  * [Hata Giriş Sayfası](#hata-giriş-sayfası)
-  * [Büyük Font Sayfası](#büyük-font-sayfası)
-  * [Hata Listeleme Sayfası](#hata-listeleme-sayfası)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Pages](#-pages)
+  * [Terminal Page](#terminal-page)
+  * [Login Page](#login-page)
+  * [Defect Login Page](#defect-login-page)
+  * [Large Font Page](#large-font-page)
+  * [Error Listing Page](#error-listing-page)
 - [Özellikler](#-özellikler)
   * [Internationalization (i18n)](#internationalization-i18n)
   * [Çoklu Dil Destekli Sanal Klavye](#çoklu-dil-destekli-sanal-klavye)
@@ -258,29 +258,29 @@ For more information on PR's steps, please see links in the Contributing section
 
 ![screen-recording-_5_](https://user-images.githubusercontent.com/71905780/236217596-9894a901-0ab5-4e5f-bdef-3b0cd2578678.gif)
 
-* Hata türü seçildikten sonra hata kayıt butonu aktif hale gelir.
-* Hata konum seçimi yapılır.
+* After selecting the error type, the error recording button becomes active.
+* Error location selection is made.
 
 ![screen-recording-_6_](https://user-images.githubusercontent.com/71905780/236224057-07b14f0c-e43e-43cb-929c-56bee00b203a.gif)
 
-* Hata kayıt butonuna tıkladığında zaman ekranda hata kayıt formu açılır kullanıcı burada hata kayıt bilgilerini girer.
-* Kaydet butonuna tıklandığı zaman ui blocking devreye girer ve kayıt süreci devam edene kadar kullanıcı bir daha kaydet butonuna tıklayamaz kayıt bittikten sonra formdan çıkar ve hata giriş ekranının ana sayfasına geri döner.
-* Kullancıyı da snackbarlar yardımıyla başarılı bir şekilde işlemin tamamlandığını bilgilendirir. 
+* When the user clicks on the error recording button, a error recording form appears on the screen and the user enters the error information there.
+* When the save button is clicked, UI blocking is activated, and the user cannot click the save button again until the recording process is completed. After the recording is finished, the user exits the form and returns to the main page of the error entry screen.
+* The user is informed about the successful completion of the process through snackbars.
 
 ![screen-recording-_7_](https://user-images.githubusercontent.com/71905780/236227103-69f70695-90cb-447b-8b1d-3bd6f96e2ed2.gif)
 
-### Büyük Font Sayfası
-* Responsive bir tasarımla aracın bilgileri ve üzerindeki onaylanmamış hataların gösterildiği ekrandır.
-* Çalışma şartlarına göre aynı ekran fakat farklı bir gösterimdir.
+### Large Font Page
+* It is a screen with a responsive design that displays information about the vehicle and the unresolved errors on it.
+* It is the same screen but with a different presentation according to the operating conditions.
 
 ![image](https://user-images.githubusercontent.com/71905780/235219940-3ba840c3-2010-4f22-8fa0-e1d1494b70bd.png)
 
-### Hata Listeleme Sayfası
+### Error Listing Page
 
-* İlgili olan vardiyadaki tüm hataların listelendiği sayfadır.
-* Hatalar silinebilir ve güncellenebilir.
-* Hatalar sıralanabiliyor ve güncellenebiliyor.
-* Yüksek sayıda veriyi tek sayfada performanslı bir şekilde gösteriliyor ve kullanici akıcı bir şekilde scroll işlemi yapabilir.
+* It is a page where all relevant errors in the shift are listed.
+* Errors can be deleted and updated.
+* Errors can be sorted, filtered, and updated.
+* A large amount of data is efficiently displayed on a single page, allowing users to smoothly scroll through the information.
 
 ![image](https://user-images.githubusercontent.com/71905780/235316807-1ada2719-6505-4a0c-979e-fa83aca9f380.png)
 
