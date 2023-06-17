@@ -50,7 +50,7 @@ You can find the live demo here :  #
   * [404 Not Found](#404-not-found)
   * [Dynamic Routes](#dynamic-routes)
   * [Validation with Formic and Yup](#validation-with-formic-and-yup)
-  * [Sorting, Filtering and Updatable on the Defect Listing Page](#sorting,-filtering-and-updatable-on-the-defect-listing-page)
+  * [Sorting, Filtering and Updatable on the Defect Listing Page](#sorting-filtering-and-updatable-on-the-defect-listing-page)
 - [My Experiences and Difficulties](#-my-experiences-and-difficulties)
 - [Color Reference](#-color-reference)
 - [Browser Support](#-browser-support)
