@@ -368,7 +368,7 @@ For more information on PR's steps, please see links in the Contributing section
 * I made an effort to make the error entry and error listing pages as responsive as possible, although it can be challenging to adhere to a responsive design.
 * Especially on the large font page, I paid great attention to ensuring responsiveness and adapting to different screen sizes.
 
-![image](https://user-images.githubusercontent.com/71905780/235445748-9e828a5b-1655-48f2-9845-c80cdc73fcb5.png)
+![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/70db9c04-1160-4903-b37f-a76cd53155fb)
 
 * Ipad view of the login page.
 
