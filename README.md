@@ -387,7 +387,8 @@ For more information on PR's steps, please see links in the Contributing section
 
 ![image](https://user-images.githubusercontent.com/71905780/235504190-bbee31e2-700f-412e-91c9-5b8879a333d1.png)
 
-![image3](https://user-images.githubusercontent.com/71905780/235504411-9d6de2e9-a331-48f1-8889-10d9451189e9.png)
+![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/7c79ce5e-bf1b-4799-be0a-c791f0715391)
+
 
 ### Validation with Formic and Yup
 * When used together, Formik and Yup are utilized to ensure that form fields within Formik are correctly filled. Yup's validation schemas are used to validate the form data.
