@@ -292,8 +292,8 @@ export default function HataListesi() {
           break;
         case columns[14].dataKey: // Örnek olarak saat sütunu
           newData = dataToSort.sort((a, b) => {
-            const timeA = getTimeValue(a.formattedDefectHour)
-            const timeB = getTimeValue(b.formattedDefectHour)
+            const timeA = getTimeValue(a.formattedDefectHour);
+            const timeB = getTimeValue(b.formattedDefectHour);
             return timeA - timeB;
           });
           break;
@@ -312,7 +312,7 @@ export default function HataListesi() {
     });
   };
   const getTimeValue = (time) => {
-    const [hours, minutes, seconds] = time.split(':');
+    const [hours, minutes, seconds] = time.split(":");
     return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
   };
   function fixedHeaderContent() {
@@ -330,6 +330,7 @@ export default function HataListesi() {
               borderCollapse: "collapse",
               border: "1px solid grey",
               backgroundColor: "#93BFCF",
+              cursor: "pointer",
             }}
           >
             {column.label}
@@ -507,10 +508,10 @@ export default function HataListesi() {
   const handleClickClose = () => {
     setOpenDeleteDialog(false);
   };
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
 
   const filteredRows = defectList.filter((row) =>
-  row.bodyNo.toString().toLowerCase().includes(filter.toLowerCase())
+    row.bodyNo.toString().toLowerCase().includes(filter.toLowerCase())
   );
 
   const handleFilterChange = (event) => {
@@ -519,14 +520,15 @@ export default function HataListesi() {
   return (
     <div style={{ height: "100%", backgroundColor: "#EEE9DA" }}>
       <Paper
-      sx={{
-        "& .MuiPaper-root": {
-          backgroundColor:"#93BFCF" 
-        }
-      }}
+      className="modal__body"
+        sx={{
+          "& .MuiPaper-root": {
+            backgroundColor: "#93BFCF",
+          },
+        }}
         style={{
-          height: 570,
-          width: "100%",
+          // height: 570,
+          // width: "100%",
           borderCollapse: "collapse",
           border: "1px solid black",
         }}
@@ -543,6 +545,7 @@ export default function HataListesi() {
       </Box>
 
       <Box
+      className="total-row"
         style={{ display: "flex", height: "100%" }}
         sx={{
           background: "linear-gradient(#EEE9DA,#BDCDD6);",

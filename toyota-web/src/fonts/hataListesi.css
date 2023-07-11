@@ -12,7 +12,7 @@
   display: block;
 }
 .total-row {
-  width: 100%;
+  width: 110vw;
   text-align: right;
   background-color: #eee9da;
   font-family: "Toyota Base", arial, helvetica, sans-serif;
@@ -35,4 +35,8 @@
 .MuiOutlinedInput-root :hover {
   color: black !important;
   border-color: black !important;
+}
+.modal__body{
+  width: 110vw;
+  height:73vh;
 }

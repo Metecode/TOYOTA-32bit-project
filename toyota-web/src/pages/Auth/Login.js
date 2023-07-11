@@ -262,8 +262,8 @@ export default function Login() {
             }) => (
               <form onSubmit={handleSubmit}>
                 <Select
-                value = { values.terminalListe || "" }
-                error={errors.terminalListe && touched.terminalListe}
+                  value={values.terminalListe || ""}
+                  error={errors.terminalListe && touched.terminalListe}
                   open={open}
                   onBlur={handleBlur}
                   onClose={handleClose}
@@ -281,7 +281,7 @@ export default function Login() {
                         })
                   }
                 />
-                {errors.terminalListe &&  (
+                {errors.terminalListe && (
                   <div className="input-feedback">{errors.terminalListe}</div>
                 )}
                 <br />
@@ -382,10 +382,14 @@ export default function Login() {
                   className="dene"
                   style={{ backgroundColor: values.vardiya }}
                 >
-                  <DatePicker setFieldValue={date} name="date" label={translate("Tarih")} />
+                  <DatePicker
+                    setFieldValue={date}
+                    name="date"
+                    label={translate("Tarih")}
+                  />
                   <br />
                   <Select
-                  setFieldValue="#12a6eb"
+                    setFieldValue="#12a6eb"
                     dropDown={false}
                     className="vardiya"
                     label={translate("Vardiya")}

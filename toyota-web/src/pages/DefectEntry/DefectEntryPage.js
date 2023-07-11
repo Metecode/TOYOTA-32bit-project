@@ -451,6 +451,7 @@ export default function PermanentDrawerRight() {
         sx={{
           width: `calc(100% - ${drawerWidth}px)`,
           mr: `${drawerWidth}px`,
+          ml: { sm: `${drawerWidth}px` },
           backgroundColor: "#93BFCF",
         }}
       >
@@ -458,7 +459,15 @@ export default function PermanentDrawerRight() {
           <HataHeaderBar />
         </Toolbar>
       </AppBar>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          marginBottom: "200px",
+        }}
+      >
         <CarMapper
           hide={hide}
           defects={defects}
@@ -474,7 +483,12 @@ export default function PermanentDrawerRight() {
         sx={{ top: "auto", bottom: 0, height: 86, backgroundColor: "#93BFCF" }}
       >
         <Toolbar>
-          <Stack className="button-group" direction="row" spacing={2}>
+          <Stack
+            sx={{ margin: "100px" }}
+            className="button-group"
+            direction="row"
+            spacing={2}
+          >
             <Button
               style={{ position: "static" }}
               size="large"
