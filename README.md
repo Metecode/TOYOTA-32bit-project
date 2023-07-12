@@ -315,7 +315,7 @@ For more information on PR's steps, please see links in the Contributing section
 
 * **`UI Blocking`** used in the defet list page.
    
-![screen-recording-_20_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/fd7e1a00-1444-47e6-83a6-1dfb13af54ed)
+![screen-recording-_20_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/1df75460-c2f6-4ac3-b0ca-38bd0b0bcb8c)
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
@@ -342,7 +342,7 @@ For more information on PR's steps, please see links in the Contributing section
 * Users can smoothly scroll through the table without any lag or performance hiccups.
 * For the virtualized table, the [**`material ui`**](https://mui.com/material-ui/react-table/#virtualized-table) library's virtualized table package was used.
 
-![screen-recording-_18_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/30949c26-1887-479f-a4e8-ebdbb7561327)
+![screen-recording-_18_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/173d365b-564e-460e-b53c-e75f4a0736b1)
 
 ### [User inactive alert ⚠](https://github.com/Metecode/TOYOTA-32bit-project/blob/d4f7690a368158776326f33fe43c0e8c9859cb98/toyota-web/src/pages/ErrorEntry/ErrorEntryPage.js#L108)
 * If the user does not perform any action for **80 seconds** on the error entry page, a disruptive alarm sound will play.
@@ -368,7 +368,7 @@ For more information on PR's steps, please see links in the Contributing section
 * I made an effort to make the error entry and error listing pages as responsive as possible, although it can be challenging to adhere to a responsive design.
 * Especially on the large font page, I paid great attention to ensuring responsiveness and adapting to different screen sizes.
 
-![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/70db9c04-1160-4903-b37f-a76cd53155fb)
+![resim_2023-06-18_230145506](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/c328f510-6285-46e3-a076-4f56878a870f)
 
 * Ipad view of the login page.
 
@@ -387,7 +387,7 @@ For more information on PR's steps, please see links in the Contributing section
 
 ![image](https://user-images.githubusercontent.com/71905780/235504190-bbee31e2-700f-412e-91c9-5b8879a333d1.png)
 
-![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/7c79ce5e-bf1b-4799-be0a-c791f0715391)
+![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/292e0cac-549f-42e8-a93b-26f590f5f330)
 
 
 ### Validation with Formic and Yup
@@ -403,13 +403,13 @@ For more information on PR's steps, please see links in the Contributing section
 * Sorting can be done based on the "Reported", "Body", and "Registration Number" columns. Filtering can be done based on the "Body" number.
 
 *Sorting:*
-![screen-recording-_14_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/5edf9437-3d18-4c48-b889-0a66fb2e11c2)
+![screen-recording-_14_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/ac979aec-7628-4ae9-b071-4da8a6f4c102)
 
 *Filtering:*
-![screen-recording-_16_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/c573dfb4-6859-48c2-96da-d08ea2e9806a)
+![screen-recording-_16_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/da5a80e7-371d-42bb-890f-fd7f418a7f24)
 
 *Updatable:*
-![screen-recording-_17_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/ceadcd0a-ba46-4830-87e0-94c75e293102)
+![screen-recording-_17_](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/5609b241-e968-4c4d-b8a0-c7283e55b227)
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
