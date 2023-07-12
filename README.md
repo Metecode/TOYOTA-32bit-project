@@ -282,7 +282,7 @@ For more information on PR's steps, please see links in the Contributing section
 * Errors can be sorted, filtered, and updated.
 * A large amount of data is efficiently displayed on a single page, allowing users to smoothly scroll through the information.
 
-![image](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/38737f96-a372-4449-ab8f-d42716b10b7a)
+![resim_2023-06-18_225845856](https://github.com/Metecode/TOYOTA-32bit-project/assets/71905780/64c956d4-4123-4e7c-a66f-76531dbeb6e5)
 
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
