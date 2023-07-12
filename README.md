@@ -446,7 +446,7 @@ For more information on PR's steps, please see links in the Contributing section
 <p align="right">(<a href="#readme-top">🔝</a>)</p>
 
 ## 🤝 Contact
-- İsmail Mete Uçar - i.meteucar@gmail.com
+- İsmail Mete Uçar - i.meteucar@gmail.com - ismail.ucar2@ogr.sakarya.edu.tr
 - [![linkedin][linkedin-shield]][linkedin-url]
 - Project Link: [https://github.com/Metecode/TOYOTA-32bit-project.git](https://github.com/Metecode/TOYOTA-32bit-project.git)
 
